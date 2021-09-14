@@ -1,3 +1,6 @@
+\chapter{Energy Reconstruction}
+\label{chap:Energy Reco}
+
 \section{Pandora/Larsoft Overview?}
 
 \section{Motivation for improving the shower energy reconstruction}
@@ -33,18 +36,12 @@ The $\frac{dE}{dx}$ values are calculated by dividing the energy by the track le
 \begin{figure}[hb]
     \centering
     \includegraphics[width = 0.8\textwidth]{figures-chap4/ESTAR_lookup_curve.pdf}
-    \caption{Caption}
+    \caption{ESTAR Lookup Curve}
     \label{fig:ESTAR lookup curve}
 \end{figure}
 
 To assess the performance of the \textit{Shower ESTAR Energy tool}, the the reconstructed energy of each hit was summed up for all the hits in a shower. This was compared the sum of the true energy of all the hits.
 
-ESTAR: 
-\begin{itemize}
-    \item Use ESTAR database in conjunction with ModBox equation to create lookup curve of collected charge vs energy. Inspired by method used in ArgoNeuT 
-    \item This lookup curve has recombination correction 'baked-in'. Same method as kGeVToElectrons (obviously not double correcting for recombination), but instead of using scale factor to convert to energy, we use the lookup curve.
-    \item To correct for the SCE, treat the E-Field in the ModBox model as a variable instead of a constant. Now produce a 3D lookup curve of collected charge vs E-Field vs energy. When converting the hits to energy, we use the lookup curve to interpolate the energy from from the collected charge and the local E-Field of the hit.  
-\end{itemize}
 
 \section{Summary + outstanding issues etc}
 
