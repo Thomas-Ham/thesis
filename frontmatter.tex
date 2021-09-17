@@ -44,8 +44,9 @@
 %% I don't want a page number on the following blank page either.
 \thispagestyle{empty}
 
-\include{acronyms}
-\input{abbreviations}
+%% Add Glossary
+\glsaddall 
+\printglossaries
 
 %% I prefer to put these tables here rather than making the
 %% front matter seemingly interminable. No-one cares, anyway!

@@ -3,37 +3,89 @@
 
 \section{Pandora/Larsoft Overview?}
 
+Use vertex sample - make life easier for Pandora.
+Don't really have a 3D trajectory for showers (can't get dE/dx) unlike for tracks.
+
 \section{Motivation for improving the shower energy reconstruction}
 Important for the selections. 
-Need to correct for SCE.
-\section{Overview/History of different methods used in SBND}
-Linear Energy Tool. \newline
-kGeVToElectrons:
+Need to correct for SCE + explain SCE. Show non linear EField
+
+The electric field in the \Glspl{tpc} are designed to be uniform between the \Gls{cpa} and the \Glspl{apa}, however, due to for example cosmic muons, argon atom may be ionised. The ionised electrons and argon ions then drift towards the anode and cathode respectively, however the drift time for the ions is much greater than the electron drift time. This results in a positive charge build up towards the cathode which in turn will pull the drifting electrons towards the \Gls{tpc} centre. This is known as the \Gls{sce} and causes the electric field in the \Gls{tpc} to be non-uniform. An example of the modified non-uniform electric field is shown in \FigureRef{fig:SCE_map}. Space charge is expected to be a non-negligible effect in SBND, therefore any shower reconstruction algorithms need to be able to correct for a recombination effect which is electric field dependent. This is further discussed in \SectionRef{subchap:shower reco overview}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap4/SCE_map_SBND.png}
+    \caption{The expected electric field offset relative to the nominal value of 0.5 kV/cm at z~=~250cm in SBND (the centre of the detector) caused by SCE.}
+    \label{fig:SCE_map}
+\end{figure}
+
+
+\section{Overview of shower energy reconstruction in SBND}\label{subchap:shower reco overview}
+Reconstructing shower energies predominantly involves calculating the charge collected by the \Gls{tpc} wire planes and estimating an associated energy. Detector dependant effects such as electron lifetime and recombination need to be accounted for. Electron lifetime is a measure of the free electrons lost due to attachment to impurities in the liquid argon whilst drifting across the detector \cite{ArgoNeuT_electron_lifetime_paper}. When argon atoms are ionised, the resulting argon ion and ionised electron may immediately recombine. This is known as the recombination effect and the magnitude of the effect is largely due to the local electric field \cite{ArgoNeuT_recombination_paper}. 
+
+Correcting for the recombination effect directly is not straightforward because it is dependent on $\frac{dE}{dx}$ (see \EquationRef{eqn:ModBox} and unlike for track-like objects, reconstructing the 3D trajectory for showers is difficult \cite{MicroBooNE_photon_Ereco_paper}. Two different approaches have been considered and are discussed in the relevant energy reconstruction methods below; 1) Assume a nominal recombination value for all hits and 2) use a lookup curve which relates the collected charge to energy which circumvents the need to evaluate a recombination correction because it is already accounted for in the curve.
+
+\subsection{Linear Energy Tool}\label{subchap:Linear Energy Tool}
+The first shower energy reconstruction method developed as part of the \textit{PandoraShower} suite of tools was the \textit{Shower Linear Energy tool}. This tool relies on the linear relationship between the true energy deposited in the detector and the reconstructed charge. A sample of \Gls{mc} muons are used as calibration because the $\frac{dE}{dx}$ value for electrons and \Gls{mip} muons are not dissimilar. The relationship between the charge obtained from the hits due to the muons and the energy deposited by the muons is shown in \FigureRef{fig:linear lookup curve}. A linear relationship such as this is comparable to assuming a constant recombination factor. 
+
+
+
+%\begin{center}
+%    \centering
+%    \includegraphics[width = 0.7\textwidth]{figures-chap4/linear_energy_lookup_curve1.png}
+%    \captionsetup{type=figure}
+%    \captionof{figure}{The linear relationship between deposited charge and energy. Produced from a sample of muons used for calibrating the \textit{Shower Linear Energy tool.}}
+%    \label{fig:linear lookup curve}
+%\end{center}
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap4/linear_energy_lookup_curve1.png}
+    \caption{The linear relationship between deposited charge and energy. Produced from a sample of muons used for calibrating the \textit{Shower Linear Energy tool.}}
+    \label{fig:linear lookup curve}
+\end{figure}
+
+
+
+To estimate the reconstructed shower energy, the hits from the shower are found and integrated over to obtain the charge in \Gls{adc} units. The charge is corrected to account for electron lifetime and then the linear dependency is used to convert the charge to deposited energy. A further recombination correction is not required as it has already been accounted for in the charge to energy conversion. The fractional energy resolution of the \textit{Shower Linear Energy tool} is shown in \FigureRef{fig:linear_kGeVelectrons}. 
+
+\subsection{Number of Electrons to Energy}\label{subchap:kGeVToElectrons}
+The \textit{Shower Num Electrons Energy Tool} was developed to move away from being reliant on in-house calibration curves and instead use the pre-existing calibration available in the \Gls{sbnd} portion of the \Gls{larsoft} framework. The method to estimate the reconstructed energy is as follows; the charge for each hit is found and corrected for electron lifetime as is described in \SectionRef{subchap:Linear Energy Tool}, a correction for the recombination effect is applied, the charge is then converted to the number of electrons using the \Gls{sbnd} \textit{CalorimetryAlg} and finally the number of electrons are converted to energy by use of a \textit{GeVToElectrons} scale factor which is the inverse of the energy required to ionise and argon atom. The recombination correction is taken to be a constant value of 0.64 for all hits. (NEED REFERENCE). \FigureRef{fig:linear_kGeVelectrons} compares the reconstructed energy from \textit{Shower Num Electrons Energy Tool} to the true energy of the showering electrons alongside the same results from the \textit{Shower Linear Energy tool}.
+
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap4/linear_energy_kGeVElectrons_true_showering.pdf}
+    \caption{Comparison of the \textit{Shower Linear Energy Tool} (Blue) and the \textit{Shower Num Electrons Energy Tool} (Red) with the true energy of the showering electrons.}
+    \label{fig:linear_kGeVelectrons}
+\end{figure}
+
+An attempt to correct for the \Gls{sce} can be made with this method by utilising the Modified Box Recombination Model which is given by \begin{equation}\label{eqn:ModBox}
+    \frac{dE}{dx} = \frac{\exp{(\frac{\beta}{\rho \mathcal{E}} W_{ion}.\frac{dQ}{dx}}) - \alpha}{\frac{\beta}{\rho \mathcal{E}}}
+\end{equation}
+where $\frac{dE}{dx}$ is the deposited energy per unit length, $\frac{dQ}{dx}$ is the deposited charge per unit length,  $\mathcal{E}$ is the electric field in the detector, $\rho$ is the density of liquid argon, $W_{ion} = 23.6$ eV which is the energy required to ionise an argon atom, $\alpha = 0.93 \pm 0.02$ and $\beta = 0.212 \pm 0.002$ (kV/cm)(g/cm$^2$)/MeV. The values for parameters $\alpha$ and $\beta$ are results from the \Gls{argoneut} experiment \cite{ArgoNeuT_recombination_paper}. The recombination correction, \textit{R} is given by $\frac{\frac{dQ}{dx}.W_{ion}}{\frac{dE}{dx}}$ and by taking the nominal values of \textit{R} and $\mathcal{E}$ a nominal value for $\frac{dE}{dx}$ is calculated using \EquationRef{eqn:ModBox}. Assuming the nominal value of $\frac{dE}{dx}$ is constant, \textit{R} may be expressed as $R = R(\mathcal{E}$). For each of the hits, their corresponding \Gls{sp} are found and the coordinates of the \Gls{sp} in the detector are determined. Instead of using the nominal value for $\mathcal{E}$, the local value for $\mathcal{E}$ at the position of the \Gls{sp} is used and the corresponding value for \textit{R} is calculated. The method to estimate the reconstructed energy is the same as the case without any \Gls{sce} corrections except the modified value for \textit{R} is used. In the case that a hit has no corresponding \Gls{sp}, the charge weighted centre of the shower is found and the local value of $\mathcal{E}$ at this point is used instead.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap4/ratio_plot_oldmethod_trueshoweringparticle.pdf}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+
+
+
+Shortcoming (don't know how much to put here? don't know if i want to emphasise how bad stuff is..): 
 \begin{itemize}
-    \item Get hits associated with cluster.
-    \item Loop over hits to get the charge whilst correcting or electron lifetime.
-    \item Correct for recombination using a nominal fixed value of 0.64 (reference Ed's study showing it should be roughly this value) 
-    \item Convert the collected charge to number of electrons using the calorimetry alg.
-    \item Convert the number of electrons to Energy using the kGeVToElectrons scale factor. 
-\end{itemize}
-kGeVToElectrons correcting for SCE:
-\begin{itemize}
-    \item Use the modified box model.
-    \item Not trivial to obtain a value for dE/dx.
-    \item Assume dE/dx will be relatively constant. Calculate a nominal dE/dx by feeding in the nominal recombination value (0.64) and nominal E-Field (0.5) into the ModBox equation. 
-    \item Attempt to correct for SCE, by finding the local E-field in the detector at the position of the hits/shower. Use this along with the nominal dE/dx and calculate a local value for the recombination. 
-    \item Use the local recombination value when correcting the obtained charge. 
+    \item Things revolve around the nominal recomb of 0.64 - not really that realistic. 
+    \item Correcting for SCE 'properly' is not straightforward either - using a fixed nominal dE/dx isn't ideal.
 \end{itemize}
 
 \section{Current method (ESTAR)}
-The \textit{Shower ESTAR Energy tool} is the currently used method to reconstruct shower energy in SBND. It combines the ESTAR database along with the Modified Box recombination model. This approach was first used in the in ArgoNeuT experiment \cite{ArgoNeuT_ESTAR_paper}. The ESTAR database is provided by the National Institute of Standards and Technology (NIST) and gives the track length of electrons in liquid argon for energies ranging from 0.01 MeV to 1000 MeV \cite{ESTAR_Database}. The Modified Box recombination model is given by \begin{equation}\label{ModBox_eqn}
-    \frac{dE}{dx} = \frac{\exp{(\frac{\beta}{\rho \mathcal{E}} W_{ion}.\frac{dQ}{dx}} - \alpha)}{\frac{\beta}{\rho \mathcal{E}}}
-\end{equation}
-where $\frac{dE}{dx}$ is the deposited energy per unit length, $\frac{dQ}{dx}$ is the deposited charge per unit length,  $\mathcal{E}$ is the electric field in the detector, $\rho$ is the density of liquid argon, $W_{ion} = 23.6$ eV which is the energy required to ionise an argon atom, $\alpha = 0.93 \pm 0.02$ and $\beta = 0.212 \pm 0.002$ (kV/cm)(g/cm$^2$)/MeV. The values for parameters $\alpha$ and $\beta$ are results from the ArgoNeuT experiment \cite{ArgoNeuT_recombination_paper}. 
+The \textit{Shower ESTAR Energy tool} is the currently used method to reconstruct shower energy in SBND. It combines the ESTAR database along with the Modified Box recombination model. This approach was first used in the in \Gls{argoneut} experiment \cite{ArgoNeuT_ESTAR_paper}. The ESTAR database is provided by the \Gls{nist} and gives the track length of electrons in liquid argon for energies ranging from 0.01 MeV to 1000 MeV \cite{ESTAR_Database}.
 
-The $\frac{dE}{dx}$ values are calculated by dividing the energy by the track length for each entry in the ESTAR database. The deposited charge, Q, is then found by using Equation (\ref{ModBox_eqn}) to find $\frac{dQ}{dx}$ and multiplying by the track length, dx. This now allows the deposited charge and energy to be related. If $\mathcal{E}$ in Equation \ref{ModBox_eqn} is taken to be a variable, the above process is repeated whilst iterating over a set values of $\mathcal{E}$. This results in a 3D curve relating both the deposited charge and electric field to energy as is shown in Figure (\ref{fig:ESTAR lookup curve}). The overall reconstruction chain is similar to that described in (???), but instead of directly converting the number of electrons using a scale factor, this lookup curve is used the interpolate the energy from the deposited charge and electric field. Electron lifetime correction are applied as before, however a direct recombination correction is not required as this has been accounted for in the lookup curve. 
+The $\frac{dE}{dx}$ values are calculated by dividing the energy by the track length for each entry in the ESTAR database. The deposited charge, Q, is then found by using \EquationRef{eqn:ModBox} to find $\frac{dQ}{dx}$ and multiplying by the track length, dx. This now allows the deposited charge and energy to be related. If $\mathcal{E}$ in \EquationRef{eqn:ModBox} is taken to be a variable, the above process is repeated whilst iterating over a set values of $\mathcal{E}$. This results in a 3D curve relating both the deposited charge and electric field to energy as is shown in \FigureRef{fig:ESTAR lookup curve}. The overall reconstruction chain is similar to that described in \SectionRef{subchap:kGeVToElectrons}, but instead of directly converting the number of electrons using a scale factor, this lookup curve is used the interpolate the energy from the deposited charge and electric field. Electron lifetime correction are applied as before, however a direct recombination correction is not required as this has been accounted for in the lookup curve. 
 
-\begin{figure}[hb]
+\begin{figure}[h]
     \centering
     \includegraphics[width = 0.8\textwidth]{figures-chap4/ESTAR_lookup_curve.pdf}
     \caption{ESTAR Lookup Curve}
@@ -43,7 +95,29 @@ The $\frac{dE}{dx}$ values are calculated by dividing the energy by the track le
 To assess the performance of the \textit{Shower ESTAR Energy tool}, the the reconstructed energy of each hit was summed up for all the hits in a shower. This was compared the sum of the true energy of all the hits.
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width = \smallfigwidth]{figures-chap4/ESTAR_kGeVElectrons_true_showering.pdf}
+    \includegraphics[width = \smallfigwidth]{figures-chap4/ESTAR_kGeVElectrons_true_hit.pdf}
+    \caption{The fractional resolution of the \textit{Shower Num Electrons Energy Tool} and \textit{Shower ESTAR Energy Tool} compared with the true energy of the showering electron (left) and the sum of the true energy of all the hits (right). }
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+Other Validation stuff to do?
+\begin{itemize}
+    \item Use photon sample?
+    \item validate for each individual plane and then best plane?
+    \item Look at all showers in an event and compare with total showering energy. 
+\end{itemize}
+
+
 \section{Summary + outstanding issues etc}
+
+Why getting dE/dx is hard (page 17).
+Using muons as calibration
+Energy bias corrections
+https://inspirehep.net/files/f10063871db4836eb6ad935fcf761e7d
 
 Energy Reco - Things to include.
 

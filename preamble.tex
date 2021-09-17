@@ -3,8 +3,12 @@
 \usepackage{morefloats,subfig,afterpage}
 \usepackage{mathrsfs} % script font
 \usepackage{verbatim}
+\usepackage{float}
 
-\usepackage{acronym}
+% glossary - add to toc and remove page numbers
+\usepackage[xindy,toc,nonumberlist]{glossaries} 
+\input{glossary}
+\makeglossaries
 
 %% Using Babel allows other languages to be used and mixed-in easily
 %\usepackage[ngerman,english]{babel}

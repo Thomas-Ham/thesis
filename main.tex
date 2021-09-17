@@ -13,7 +13,7 @@
 \documentclass[hyperpdf,oneside,notlot,notlof]{hepthesis}
 
 %% Load special font packages here if you wish
-%\usepackage{lmodern}
+\usepackage{lmodern}
 \usepackage{mathpazo}
 %\usepackage{euler}
 
@@ -41,6 +41,8 @@
 }}{}
 \makeatother
 
+% Redeclare the \EquationRef command so it uses \ref instead of \eqnref
+\DeclareRobustCommand{\EquationRef}{Equation \ref}
 
 %% Start the document
 \begin{document}
@@ -53,12 +55,12 @@
 %% Start the content body of the thesis
 \begin{mainmatter}
   %% Actually, more semantic chapter filenames are better, like "chap-bgtheory.tex"
-  \input{chap1-introduction}
-  \input{chap2-motivation_for_steriles}
-  \input{chap3-SBN_Program}
+  %\input{chap1-introduction}
+  %\input{chap2-motivation_for_steriles}
+  %\input{chap3-SBN_Program}
   \input{chap4-Energy_Reco}
-  \input{chap5-VALOR_Analysis}
-  \input{chap6-Conclusion}
+  %\input{chap5-VALOR_Analysis}
+  %\input{chap6-Conclusion}
   %% To ignore a specific chapter while working on another, making the build faster, comment it out:
   %\input{chap4}
 \end{mainmatter}
