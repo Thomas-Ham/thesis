@@ -1,5 +1,232 @@
 \chapter{Motivaton for Steriles/Neutrino Physics}
 \label{chap:Neutrino Physics}
-\subsection{Overview of Neutrino Physics}
-\subsection{Theory of Sterile Neutrinos}
-Some Physics
+\section{A Brief History of Neutrino Discoveries}
+\begin{itemize}
+    \item Postulated in 1930 to explain continuous energy spectrum of beta decays. \cite{Pauli_letter}
+    \item Electron neutrino discovered in 1956 \cite{cowan_and_reines_paper}
+    \item Discovery of muon neutrino \cite{Muon_neutrino_discovery}
+    \item Tau lepton discovered. Tau neutrino theorised and eventually found by the DONUT experiment \cite{DONUT}.
+    \item Homestake experiment observes solar neutrinos but the observed flux disagrees with the predicted value - Solar neutrino problem \cite{Homestake}. 
+    \item Evidence of neutrino oscillation observed by Super-Kamiokande in 1998 \cite{SuperK_neutrino_oscillations}
+    \item Solar Neutrino Problem solved by SNO in 2002 \cite{SNO_solar_neutrinos}
+    \item 3 flavours of leptons, 3 neutrino flavours. Lifetime of Z-boson decay matches with 3 flavour neutrino theory - looking good..
+    \item LSND, MiniBooNE experiments cause a ruckus.. Gallium and reactor anomalies too.
+    \item Neutrinos oscillate, so have mass. Need mass generation mechanism. Dirac mass needs coupling between left and right handed chiral states. All neutrinos observed are left handed - steriles, if they exist, are expected to be right handed. Could have different mass mechanism, Majorana? 
+\end{itemize}
+
+
+The neutrino was first postulated in 1930 by Pauli in an attempt to explain the continuous energy spectrum observed for the electrons from beta decay experiments \cite{Pauli_letter}. At the time it was assumed that along with the nucleus, an electron was the only other product from beta decays. That is, beta decay was thought to be a two body decay of the following form,
+\begin{equation}
+    {^A_Z}X \longrightarrow {^{\ \ A}_{Z+1}}Y + e^-
+\end{equation}
+The continuous energy spectrum of the electron was puzzling as it was expected that the electron would always have a fixed kinetic energy and observing electrons with a range of energies appeared to violate energy conservation. Pauli theorised that in addition to the electron, a neutral particle was also emitted in beta decays and that the sum of the energy of the electron and this neutral particle would be constant \cite{Pauli_letter}.
+
+The (electron) neutrino wasn't experimentally confirmed until 1956 by Cowan and Reines who used a nuclear reactor as their neutrino source \cite{cowan_and_reines_paper}. Their detector consisted of two tanks of water in which cadmium chloride had been dissolved interlaced between three tanks of liquid scintillator. When the electron anti-neutrinos would interact with protons in one of the water tanks via inverse beta decay, a neutron and positron would be produced. The positron would then quickly annihilate with and electron producing two gamma rays. The cadmium would absorb the neutron and then emit a single gamma ray. The liquid scintillator was surrounded by \Glspl{pmt} and the signal for the experiment was two gamma rays from the electron-positron annihilation shortly followed by another gamma ray from the absorption of the neutron.
+
+The second type of neutrino to be discovered was the muon neutrino by the Alternating Gradient Synchrotron at Brookhaven National Laboratory in 1962. The neutrinos were predominantly produced from charged pion decays which in turn were produced by firing a beam of protons at beryllium target. The pions were directed in the direction of an iron wall during which they have the chance to decay. The iron wall was designed to absorb muons and other interacting particles. The neutrinos were then detected by an aluminium spark chamber located behind the shield \cite{Muon_neutrino_discovery}. 
+
+Following the discovery of the tau lepton in 1975 by the SLAC National Accelerator Laboratory, the tau neutrino was predicted in order to mirror the structure of the electron and muon lepton both of which have an associated neutrino \cite{tau_lepton_discovery}. The existence of the tau neutrino was eventually confirmed by the \Gls{donut} experiment in 2000. The \Gls{donut} experiment used a neutrino beam created from the decay of charmed mesons produced by protons from the  Tevatron accelerator at \gls{fermilab}. Most of the tau neutrinos were produced from the decay of the $D_s$ meson and the decay from the resulting tau lepton.
+
+\textcolor{red}{More detail on the experiments?}
+
+The three confirmed flavours of neutrinos ($\nu_e, \nu_{\mu}, \nu_{\tau}$) are consistent with predictions from the \Gls{sm}. The number of expected neutrinos may be determined from the decay of the Z-boson since it's lifetime is dependent on the number of flavours.  The lifetime of the Z-boson has been found to be consistent with a three neutrino model \cite{Zboson_number_of_neutrinos}. There have, however, been results from experiments which are inconsistent with the 3 neutrino framework. Namely the excess of events observed by the LSND and MiniBooNE experiments, the deficit of events observed by the SAGE and GALLEX detectors (dubbed the \textit{Gallium Anomaly}) and the deficit of events observed from nuclear reactors (dubbed the \textit{Reactor Anomaly}) \cite{LSND_excess} \cite{MiniBooNE_excess} \cite{GALLEX} \cite{Gallex_reanalysis} \cite{SAGE} \cite{Reactor_anomaly}. Additional neutrino flavours may exist and not contradict the statement on the lifetime of the Z-boson if they have a mass greater than half that of the Z-boson and/or they do not weakly interact and hence don't contribute to the decay rate of the Z-boson. The hypothetical neutrinos which do not weakly interact are know as \textit{sterile} neutrinos in order to distinguish them from the \textit{active} ones that do. Sterile neutrinos will be discussed in greater detail in \SectionRef{subchap:Motivation for Sterile Neutrinos} and \SectionRef{subchap:Theory of Sterile Neutrinos}.
+
+\section{Overview of Neutrino Physics}
+
+\begin{itemize}
+    \item Double beta decay
+    \item Majorana idea - neutrinoless double beta decay
+    \item Pontecorvo - neutrino oscillations
+    \item Goldhaber experiment - all neutrinos are left handed
+    \item Solare neutrino problem
+    \item SK - evidence of neutrino oscillations
+    \item SNO solves solar neutrino problem
+\end{itemize}
+\subsection{Weak interactions??}
+Since neutrinos are neutral fermions, it possible that neutrinos are their own anti-particle (a Majorana Particle). This idea was first proposed in 1937 by Majorana \cite{Majorana2020}. Within the \Gls{sm}, all fermions with the possible exception of neutrinos behave as Dirac fermions, that is the particle and anti-particle are distinct. With the possibility that neutrinos are Majorana in nature, it has lead to the search for neutrinoless double beta decay \cite{Double_beta_decay}. This is a variation on ordinary double beta decay in which a nucleus decays by emitting two electrons simultaneously. In ordinary double beta decay there would also be two (anti)neutrinos in the final state, however if neutrinos are Majorana particles, it can be thought of as one nucleon emitting a neutrino and the other absorbing it hence there are no neutrinos in the final state. Observation of such a decay would confirm the Majorana nature of neutrinos and give direct evidence for physics beyond the \Gls{sm} since the lepton number would not be conserved. 
+\subsection{neutrino mass}
+\subsection{Helicity/chirality }
+Suff on mass and goldhaber experiment
+
+\subsection{Neutrino Oscillations}
+Another unique property of neutrinos are their ability to oscillate. That is, the neutrino flavour may change as it propagates. This phenomenon was first proposed by Pontecorvo in 1957 \cite{Pontecorvo}. In the following years this work was built upon by Maki, Nakagawa, Sakata and Pontecorvo himself \cite{MNS_oscillations}. 
+
+One of the first experimental results to eventually be explained be neutrino oscillations was the Homestake experiment. This was an experiment in the 1960's that was designed to count the number of solar neutrinos. The crux of the experiment was to fill an underground tank with dry-cleaning fluid (perchloroethylene) since it contains chlorine. The solar neutrinos would be detected by inverse beta decay via
+\begin{equation}
+    ^{37}Cl + \nue \longrightarrow {^{37}Ar} + \electron
+\end{equation}
+where the argon would be extracted and counted as it decayed. From this, the number of interacting electron neutrinos was determined, however this number was consistently about a third of the number expected by solar predictions \cite{Homestake}. This inconsistency was latter dubbed the \textit{Solar Neutrino Problem}.
+
+The ratio of muon to electron neutrinos produced in the atmosphere from the decay of pions and muons was also studied. The predicted rate of neutrinos in the atmosphere was thought to be well understood, however a number of experiments, the most notable of which \Gls{sk}, all observed ratios significantly below the expected value. This indicated a deficit in the observed muon neutrinos or an excess in electron neutrinos (or both). Mirroring the solar neutrino problem, these observation were dubbed the \textit{Atmospheric Neutrino Anomaly} \cite{Atmospheric_anomaly}.
+
+In addition to measuring the ratio of atmospheric neutrinos, \Gls{sk} was also able to measure the zenith angle of the incoming neutrinos. This allowed the observed and predicted number of neutrinos to be compared as a function of the zenith angle. It was noted that the number of electron neutrinos agreed reasonably well with the expected value across all angles whereas for low energy muon neutrinos there was a deficit of events for all angles and for high energy muons there was a deficit of events for zenith angles corresponding to large distances travelled (e.g. neutrinos which travelled through the earth and into the detector from below). The observed rate of high energy muons at angles corresponding to travelling directly down from the atmosphere to the detector agreed with predicted value \cite{SuperK_neutrino_oscillations}. 
+
+The results published by \gls{sk} 1998 allowed the atmospheric neutrino anomaly to be reconciled with neutrino oscillations and was the first time neutrino oscillations were confirmed to have been observed \cite{SuperK_neutrino_oscillations}. Shortly after, in 2001, the \Gls{sno} experiment resolved the solar neutrino problem by again explaining the deficit in observed electron neutrinos as a result of neutrino oscillations. The \gls{sno} detector was designed with the intention of being able to measure the total neutrino flux (the sum of all three flavours) and the electron neutrino flux in isolation. The detector consisted of a tank of heavy water. Solar neutrinos have sufficient energy to interact via \gls{nc} with the deuterium in the heavy water regardless of neutrino flavour,
+\begin{equation}
+    \nu + d \longrightarrow \nu + p + n.
+\end{equation}
+Neutrinos of any flavour may also interact via \gls{es},
+\begin{equation}
+    \nu + \electron \longrightarrow \nu + \electron,
+\end{equation}
+but the sensitivity to \numu and \nutau are reduced. 
+Finally, only electron neutrinos may interact via \gls{cc},
+\begin{equation}
+    \nue + d \longrightarrow p + p + \electron,
+\end{equation}
+therefore this channel only measure the flux of \nue. Confirmation that the flux of \nue was less than the flux from the \gls{nc} or \gls{es} channels coupled with the fact that the \nue flux was in agreement with previous solar neutrino experiments was sufficient to resolve the solar neutrino problem \cite{SNO_solar_neutrinos}.
+
+
+Neutrino oscillations is one of the key topics in the field and this thesis. In the remainder of this section we will discuss the theory of neutrino oscillations. The three flavour states (\nue, \numu, \nutau) have already been established, but with the confirmation of neutrino oscillations the three corresponding mass states (\nuone, \nutwo, \nuthree) are required to be distinct from the flavour states. The flavour eigenstate of a neutrino is what is observed, however each flavour state is a superposition of the three mass states. As a neutrino propagates, the mass states propagate at different rates and thus the relative phase between the states is continuously changing. When a neutrino then interacts, it will have a certain set of mass states which correspond to a superposition of the flavour states. The flavour superposition will then collapse into a single flavour and this what is then detected. This is the mechanism which allows neutrino flavours to oscillate. 
+
+The transformation between the flavour and mass states may be expressed as
+\begin{equation}\label{eqn:state transformation}
+    \ket{\nu_\alpha} = \sum_k U^*_{\alpha k} \ket{\nu_k},
+\end{equation}
+where $\alpha$ $\in$ (e, $\mu$, $\tau$), k $\in$ (1, 2, 3) and U is a unitary rotation matrix. In the case of three flavour neutrino oscillations, U is known as the \gls{pmns} mixing matrix which is a $3 \times 3$ matrix representing the three different states. The \gls{pmns} matrix is parameterised in terms of three mixing angles ($\theta_{12}, \theta_{13}, \theta_{23}$) and a \gls{cp} violating phase, \textit{$\Kronecker_{cp}$}, as
+\begin{equation}
+\begin{split}
+U &= 
+\begin{pmatrix}
+U_{e1} & U_{e2} & U_{e3} \\
+U_{\mu1} & U_{\mu2} & U_{\mu3}  \\
+U_{\tau1} & U_{\tau2} & U_{\tau3}
+\end{pmatrix} \\
+&=
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & c_{23} & s_{23}  \\
+0 & -s_{23} & c{23}
+\end{pmatrix}
+\begin{pmatrix}
+c_{13} & 0 & s_{13}e^{-i\delta_{cp}} \\
+0 & 1 & 0  \\
+-s_{13}e^{i\delta_{cp}} & 0 & c_{13}
+\end{pmatrix}
+\begin{pmatrix}
+c_{12} & s_{12} & 0 \\
+-s_{12} & c_{12} & 0  \\
+0 & 0 & 1
+\end{pmatrix}
+\end{split}
+\end{equation}
+where $c_{kj} = \cos{\theta_{kj}}$ and $s_{kj} = \sin{\theta_{kj}}$.
+
+The time evolution of the mass states is given by the time dependent Schr{\"o}dinger equation
+\begin{equation} \label{eqn:t.d. schrodinger}
+    i \dByd{}{t}\ket{\nu_{k}(t)} = H \ket{\nu_{k}(t)}
+\end{equation}
+where \textit{H} is the Hamiltonian. It can be seen that the solution to \EquationRef{eqn:t.d. schrodinger} is given by a plane wave solution 
+\begin{equation}\label{eqn:plane wave soln}
+    \ket{\nu_{k}(t)} = e^{-iE_{k}t} \ket{\nu_{k}}.
+\end{equation}
+The amplitude of a transition is defined as the projection of the final state onto the initial state, so for the the flavour transitions the amplitude is given by
+\begin{equation}
+    A_{\nu_\alpha \rightarrow \nu_\beta}(t) \isdefinedas \braket{\nu_\beta|\nu_\alpha(t)}.
+\end{equation}
+The probability of transition is then given by the absolute square of the amplitude
+\begin{equation}
+    P_{\nu_\alpha \rightarrow \nu_\beta}(t) = |A_{\nu_\alpha \rightarrow \nu_\beta}(t)|^2.
+\end{equation}
+It follows from \EquationRef{eqn:state transformation} and \EquationRef{eqn:plane wave soln} that
+\begin{equation}
+    \ket{\nu_\alpha(t)} = \sum_k U^*_{\alpha k} e^{-iE_kt}\ket{\nu_k}
+\end{equation}
+and that the transition amplitude is given by
+\begin{equation}
+    A_{\nu_\alpha \rightarrow \nu_\beta}(t) = \sum_k U^*_{\alpha k} U_{\beta k} e^{-iE_kt}
+\end{equation}
+where we have used the fact that $\braket{\nu_j|\nu_k} = \Kronecker_{jk}$ since the mass eigenstates are orthonormal. It then follows that the oscillation probability is given by
+\begin{equation}
+    P_{\nu_\alpha \rightarrow \nu_\beta}(t) = \sum_{k,j} U^*_{\alpha k} U_{\beta k} U_{\alpha j} U^*_{\beta j} e^{-i(E_k-E_j)t}
+\end{equation}
+Under the assumption that neutrinos are relativistic, the mass state energy may be expressed in terms of the neutrino energy, \textit{E},
+\begin{equation}
+    E_k = \sqrt{|\Vec{p}|^2 + m_k^2} \simeq E + \frac{m_k^2}{2E}.
+\end{equation}
+By noting that the mass splitting, $\Delta^2_{kj}$, is defined as 
+\begin{equation}
+    \Delta m^2_{kj} = m_k^2 - m_j^2
+\end{equation}
+and that for highly relativistic particles $t \approx L$, where L is known as the baseline (i.e. the distance the neutrino has travelled), the oscillation probability may be written as 
+\begin{equation}
+     P_{\nu_\alpha \rightarrow \nu_\beta}(L,E) = \sum_{k,j} U^*_{\alpha k} U_{\beta k} U_{\alpha j} U^*_{\beta j} e^{-i\frac{\Delta m^2_{kj}L}{2E}}.
+\end{equation}
+Finally, in a two flavour oscillation regime, the oscillation probability may be simplified to
+\begin{equation}
+\begin{split}
+    P_{\nu_\alpha \rightarrow \nu_\beta} &= \sin^2(2\theta)sin^2(\frac{\Delta m^2L}{4E}), \ \ \ \ \nu_\alpha \neq \nu_\beta   \\
+    P_{\nu_\alpha \rightarrow \nu_\alpha} &= 1 - P_{\nu_\alpha \rightarrow \nu_\beta},
+\end{split}
+\end{equation}
+where the mixing matrix has been reduced to a rotation matrix. 
+
+
+\begin{table}[]
+\begin{tabular}{l|ll}
+\multicolumn{1}{c|}{\multirow{2}{*}{Parameter}} & \multicolumn{2}{c}{Best Fit}                                                                           \\
+\multicolumn{1}{c|}{} & \multicolumn{1}{c}{Normal Hierarchy} & \multicolumn{1}{c}{Inverted Hierarchy}   \\  \hline \hline
+$sin^22\theta_{12}$ & \multicolumn{1}{l|}{$0.307\pm0.013$}                                        & \multicolumn{1}{l}{$0.307\pm0.013$}  \\
+$sin^22\theta_{13}$ & \multicolumn{1}{l|}{$(2.20\pm0.07) \times 10^{-2}$}                         & \multicolumn{1}{l}{$(2.20\pm0.07) \times 10^{-2}$} \\
+$sin^22\theta_{23}$ & \multicolumn{1}{l|}{$0.546\pm 0.021$}                                       & 0.539 \pm 0.022                          \\
+$\Delta m^2_{21}$   & \multicolumn{1}{l|}{$(7.53\pm0.18) \times 10^{-5} eV^2$}                     & \multicolumn{1}{l}{$(7.53\pm0.18) \times 10^{-5} eV^2$}   \\
+$\Delta m^2_{32}$   & \multicolumn{1}{l|}{$(2.453\pm0.033) \times 10^{-3} eV^2$} & $(-2.536 \pm 0.034) \times 10^{-3} eV^2$ \\
+$\delta_{CP}$       & \multicolumn{1}{l|}{$1.36^{+0.20}_{-0.16} \pi$ rad}                         &  \multicolumn{1}{l}{$1.36^{+0.20}_{-0.16} \pi$ rad} \\  
+\end{tabular}
+\caption{The best fit values for 3-flavour neutrino oscillation parameters from the 2020 \gls{pdg} \cite{PDG_2020}.}
+\label{table:Best fit params}
+\end{table}
+
+
+\newpage
+\section{Motivation for Sterile Neutrinos}\label{subchap:Motivation for Sterile Neutrinos}
+
+\begin{itemize}
+    \item Gallium anomaly
+    \item Reactor anomaly
+    \item LSND
+    \item MiniBooNE
+    \item Neutrinos are massive - need right handed neutrino to generate 'Dirac' mass.. 
+\end{itemize}
+
+\section{Theory of Sterile Neutrinos}\label{subchap:Theory of Sterile Neutrinos}
+\begin{equation}
+\begin{pmatrix}
+U_{e1} & U_{e2} & U_{e3} & U_{e4} & \dots\\
+U_{\mu1} & U_{\mu2} & U_{\mu3} & U_{\mu4} & \dots \\
+U_{\tau1} & U_{\tau2} & U_{\tau3} & U_{\tau4} & \dots \\
+U_{s1} & U_{s2} & U_{s3} & U_{s4} & \dots \\
+\vdots & \vdots & \vdots & \vdots & \ddots \\
+\end{pmatrix} 
+\end{equation}
+
+In the case that $\Delta m^2_{41} >> |\Delta m^2_{31}|, \Delta m^2_{21}$, short baseline oscillation are well represented by the two flavour oscillation probability,
+
+\begin{equation}
+    P_{\nu_\alpha \rightarrow \nu_\beta} = \Kronecker_{\alpha \beta} -4|U_{\alpha \beta}|^2 (\Kronecker_{\alpha \beta} -|U_{\alpha \beta}|^2)sin^2(\frac{\Delta m^2_{41}L}{4E})
+\end{equation}
+
+\begin{equation}
+    sin^22\thetamumu &\isdefinedas 4|U_{\mu 4}|^2(1 - |U_{\mu 4}|^2) \\
+    sin^22\thetamue  &\isdefinedas 4|U_{\mu 4}|^2|U_{e4}|^2 \\
+    sin^22\thetaee   &\isdefinedas 4|U_{e 4}|^2(1 - |U_{e4}|^2) 
+\end{equation}
+
+Note that \nue appearance depends on $U_{\mu 4}$ and $U_{e4}$ - this allows these parameters to be over consttrained etc..
+
+%\begin{fmffile}{diagram}
+%\begin{fmfgraph*}(200,150)
+%    \fmfleft{i1,i2}
+%    \fmfright{o1,o2}
+%    \fmf{fermion, label=p/n}{i1,v1}
+%    \fmf{fermion, label=n/p}{v1,o1}
+%    \fmf{fermion, label=$\nu$}{i2,v2}
+%    \fmf{fermion, label.side=left, label=l}{v2,o2}
+%    \fmf{photon, label=$W$}{v1,v2}
+%    %\fmflabel{$v_1$}{v1}
+%    %\fmflabel{$v_2$}{v2}
+%\end{fmfgraph*}
+%\end{fmffile}
+
+
+

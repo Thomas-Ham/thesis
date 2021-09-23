@@ -3,7 +3,7 @@
 %\documentclass[hyperpdf,nobind,draft,twoside]{hepthesis}
 
 %% For short draft builds (breaks citations by necessity)
-%\documentclass[hyperpdf,nobind,draft,hidefrontback]{hepthesis}
+%documentclass[hyperpdf,nobind,draft,hidefrontback]{hepthesis}
 
 %%For Cambridge soft-bound version
 %\documentclass[hyperpdf,bindnopdf]{hepthesis}
@@ -13,8 +13,8 @@
 \documentclass[hyperpdf,oneside,notlot,notlof]{hepthesis}
 
 %% Load special font packages here if you wish
-\usepackage{lmodern}
-\usepackage{mathpazo}
+%\usepackage{lmodern}
+%\usepackage{mathpazo}
 %\usepackage{euler}
 
 %% Put package includes etc. into preamble.tex for convenience
@@ -56,9 +56,9 @@
 \begin{mainmatter}
   %% Actually, more semantic chapter filenames are better, like "chap-bgtheory.tex"
   %\input{chap1-introduction}
-  %\input{chap2-motivation_for_steriles}
+  \input{chap2-motivation_for_steriles}
   %\input{chap3-SBN_Program}
-  \input{chap4-Energy_Reco}
+  %\input{chap4-Energy_Reco}
   %\input{chap5-VALOR_Analysis}
   %\input{chap6-Conclusion}
   %% To ignore a specific chapter while working on another, making the build faster, comment it out:

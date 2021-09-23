@@ -5,6 +5,7 @@ author
 booktitle
 chapter
 collaboration
+doi 
 edition
 editor
 howpublished
@@ -532,6 +533,7 @@ collaboration output
 format.authors "author" output.check
 new.block
 format.title output
+doi output
 crossref missing$
 { journal field.or.null
 format.vol.num.pages 
@@ -739,6 +741,7 @@ title howpublished new.block.checkb
 format.title output
 howpublished new.block.checka
 howpublished output
+doi output
 format.date output
 eprint output
 new.block

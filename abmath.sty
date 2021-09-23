@@ -5,6 +5,45 @@
 
 %% --------------------------------------------------------------
 
+%% Stuff I commonly use
+\DeclareRobustCommand{\nue}{\nu_{e}}
+\DeclareRobustCommand{\numu}{\nu_{\mu}}
+\DeclareRobustCommand{\nutau}{\nu_{\tau}}
+\DeclareRobustCommand{\nuone}{\nu_{1}}
+\DeclareRobustCommand{\nutwo}{\nu_{2}}
+\DeclareRobustCommand{\nuthree}{\nu_{3}}
+\DeclareRobustCommand{\thetamumu}{\theta_{\mu \mu}}
+\DeclareRobustCommand{\thetamue}{\theta_{\mu e}}
+\DeclareRobustCommand{\thetaee}{\theta_{e e}}
+\DeclareRobustCommand{\electron}{e^-}
+\DeclareRobustCommand{\positron}{e^+}
+%% Oustide math mode
+\let\@Oldnue\nue%
+\renewcommand{\nue}{\mymath{\@Oldnue}\xspace}%
+\let\@Oldnumu\numu%
+\renewcommand{\numu}{\mymath{\@Oldnumu}\xspace}%
+\let\@Oldnutau\nutau%
+\renewcommand{\nutau}{\mymath{\@Oldnutau}\xspace}%
+\let\@Oldnuone\nuone%
+\renewcommand{\nuone}{\mymath{\@Oldnuone}\xspace}%
+\let\@Oldnutwo\nutwo%
+\renewcommand{\nutwo}{\mymath{\@Oldnutwo}\xspace}%
+\let\@Oldnuthree\nuthree%
+\renewcommand{\nuthree}{\mymath{\@Oldnuthree}\xspace}%
+\let\@Oldthetamumu\thetamumu%
+\renewcommand{\thetamumu}{\mymath{\@Oldthetamumu}\xspace}%
+\let\@Oldthetamue\thetamue%
+\renewcommand{\thetamue}{\mymath{\@Oldthetamue}\xspace}%
+\let\@Oldthetaee\thetaee%
+\renewcommand{\thetaee}{\mymath{\@Oldthetaee}\xspace}%
+\let\@Oldelectron\electron%
+\renewcommand{\electron}{\mymath{\@Oldelectron}\xspace}%
+\let\@Oldpositron\positron%
+\renewcommand{\positron}{\mymath{\@Oldpositron}\xspace}%
+
+
+
+
 \DeclareRobustCommand{\mymath}[1]{\ensuremath{\maybebmsf{#1}}}
 \DeclareRobustCommand{\MathUpright}[1]{\mymath{\mathrm{#1}}}
 \DeclareRobustCommand{\MathText}[1]{\ensuremath{\text{#1}}}
@@ -98,6 +137,7 @@
 \let\@Oldchi\chi%
 \let\@Oldpsi\psi%
 \let\@Oldomega\omega%
+
 \renewcommand{\alpha}{\mymath{\@Oldalpha}\xspace}%
 \renewcommand{\beta}{\mymath{\@Oldbeta}\xspace}%
 \renewcommand{\gamma}{\mymath{\@Oldgamma}\xspace}%
