@@ -1,13 +1,193 @@
-\chapter{SBN Program}
+\chapter{The Short Baseline Neutrino Programme}
 \label{chap:SBN Program}
 Results from LSND, MiniBooNE etc. at odds with null results from e.g. KARMEN and MINOS.. Need a definitive test.
 
 Good stepping stone for DUNE - similar design (LArTPC)
 
 
-\section{SBN Program Overview}
+\section{SBN Programme Overview}
+
+\textcolor{red}{SOME GENERIC OVERVIEW PICTURE OF SBN}
+
+The \gls{sbn} programme is comprised of three distinct \gls{lartpc} type detectors located at the \gls{fnal}. The three detectors are the \gls{sbnd}, the \gls{microboone} and the \gls{icarus} detector and all lie along the axis of the \gls{bnb}. The details of each detector is further discussed in \SectionRef{sec:SBND} (\gls{sbnd}), \SectionRef{sec:MicroBooNE} (\gls{microboone}) and \SectionRef{sec:ICARUS} (\gls{icarus}). The \gls{bnb} consist predominantly of muon neutrinos with energies of the order 1 GeV and is discussed in detail in \SectionRef{sec:BNB}. The three detectors are positioned at 110m, 470m and 600m from the neutrino beam source respectively. 
+
+One of the primary aims of the \gls{sbn} programme is to provide a definitive test to either confirm or refute the existence of light sterile neutrinos which have been hinted at by a number of experiments discussed in \SectionRef{subchap:Motivation for Sterile Neutrinos}. Other major aims of the \gls{sbn} programme include investigating neutrino argon cross sections and developing large scale \gls{lartpc} technologies. The close proximity of \gls{sbnd} to the \gls{bnb} source means that \gls{sbnd} will observe neutrino argon interactions with high statistics allowing statistical uncertainties to be minimised and will allow for the exploration of rare channels such as neutrino-electron scattering. Both the development of \gls{lartpc} technology and an improved understanding of neutrino interaction cross-sections will be invaluable for future neutrino experiments such as the \gls{dune}.
+
+
 \section{Liquid Argon Time Projection Chambers}
-\section{Booster Neutrino Beam}
-\section{SBND}
-\section{MicroBooNE}
-\section{ICARUS}
+
+The idea of a \gls{lartpc} was first proposed in 1977 by Rubbia in an attempt to consolidate the high resolution but low number of interactions obtained from 'bubble chamber' style detectors and the high rate but low resolution interactions obtained from 'counter' experiments. This would be achieved by propagating the complete image of an event through a noble element and then electronically reconstructing the 3D event by combining the 2D information collected and the drift time \cite{LArTPC_proposal}.
+
+Liquid argon was identified as the most suitable medium to use for such a detector due to the following properties; 
+\begin{itemize}
+    \item High density (1.4 gcm$^{-3}$) with a sufficiently high atomic mass to allow for a reasonable probability of neutrino interactions.
+    \item Argon is a noble element, meaning the electrons will not combine with the argon resulting in long drift times.
+    \item A high electron mobility, meaning the electrons may drift quickly across the detector.
+    \item Argon is relatively cheap and easy to purify.
+    \item Argon may be liquefied easily using liquid nitrogen. 
+\end{itemize}
+
+\subsection{\gls{lartpc} Design}
+The general design of a single chamber \gls{lartpc} is shown in \FigureRef{fig:lartpc}. Most \glspl{lartpc} consist of one or more \glspl{tpc} with a cathode and anode plane at either end inducing an electric field across the \gls{tpc}. The electric field causes charged particles to drift in the detector. The electrons produced from neutrino interactions will drift towards the anode where they will induce a current on a series of wire planes. The most rear wire plane (the one furthest away from the cathode) is known as the collection plane and the one or more wire planes in front of the collection plane are known as induction planes. There is a further potential difference between the induction and collection planes which ensures that the electrons will also reach the collection plane. The wire planes are orientated so that the wire angles between the planes are different which allows for 2D position reconstruction. Located behind the anode plane are also a series of \glspl{pmt} which collect scintillation light. The time taken for the scintillation light to be detected is very short in comparison to the time taken for the electrons to drift to the wire planes, so by using this timing information and knowing the electron drift velocity, the horizontal drift distance may be determined. Combining this with the 2D information from the wire planes allowes for 3D event reconstruction. The induced current on the wire planes is interpreted in terms of signal waveforms from which \textit{hits} are constructed. Each hit contains information such as the associated wire plane, wire number and charge and it is this information which is used to obtain reconstructed information about an event. The specific designs of the three \glspl{lartpc} used in the \gls{sbn} programme are discussed in \SectionRef{sec:SBND} (SBND), \SectionRef{sec:MicroBooNE} (MicroBooNE) and \SectionRef{sec:ICARUS} (ICARUS).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width =\largefigwidth]{figures-chap3/Operational-principle-of-the-MicroBooNE-LArTPC.png}
+    \caption{A schematic of the operating principle of a \gls{lartpc} detector. A neutrino interacts in the argon producing secondary particles. The electric field across the \gls{tpc} cause charged particles to drift towards the wire planes where their energy deposits are recorded. \cite{Design_and_Construction_of_the_MicroBooNE_Detector}}
+    \label{fig:lartpc}
+\end{figure}
+\newpage
+
+\subsection{Detector effects}
+
+Despite the many desirable properties of liquid argon, there are still a number of effects which have to be considered when performing event reconstruction.
+
+\subsubsection{Diffusion}
+
+Diffusion is the process in which the drifting electrons do not drift in such a way that they will continue to perfectly represent the initial image of an event. That is to say that the electrons will disperse as they drift in the detector. This happens in both the transverse and longitudinal directions with respect to the direction of the electric field and impacts the spatial resolution of the detector. 
+
+For the case of a zero electric field and with the electrons in thermal equilibrium, the diffusion is isotropic and the diffusion coefficient, \textit{D}, is given by the Einstein relation such that
+\begin{equation}
+    D = \frac{kT}{e}\mu_0,
+\end{equation}
+where \textit{k} is Boltzmann's constant, \textit{T} is the temperature, \textit{e} is the elementary charge and $\mu_0$ is the electron mobility (for the case of no electric field).
+
+In the presence of an electric field, the electron mobility is no longer given by $\mu_0$, but instead by $\mu$ and the electrons are no longer in thermal equilibrium. The diffusion also becomes anisotropic, leading to distinct diffusion coefficients for the longitudinal and transverse directions, $D_L$ and $D_T$ respectively which are given by
+\begin{equation}
+\begin{split}
+    D_L &= \frac{kT}{e}(\mu + E \frac{\partial \mu}{\partial E}) \\
+    D_T &= \frac{kT}{e}\mu.
+\end{split}
+\end{equation}
+In general, the diffusion in the transverse direction is greater than the diffusion in the longitudinal direction \cite{LArTPC_book} \cite{diffusion}.
+
+\subsubsection{Electron Lifetime}
+ Electron lifetime is a measure of the free electrons lost due to attachment to impurities in the liquid argon whilst drifting across the detector \cite{ArgoNeuT_electron_lifetime_paper}. Naturally the electron lifetime, $\tau_{e}$, is coupled to the purity of the argon and is defined as 
+ \begin{equation}
+     \tau_{e} = 1/k_e,
+ \end{equation}
+ where $k_e$ is the impurity concentration. The rate of charge loss is then given by 
+ \begin{equation}
+     Q = Q_{0}e^{-t/\tau},
+ \end{equation}
+where $Q$ is the charge remaining after correcting for electron lifetime, $Q_0$ is the initial charge and $t$ is the drift time. 
+ 
+\subsubsection{Recombination}
+When argon atoms are ionised, the resulting ionised electron may immediately recombine with a nearby argon ion instead of being separated by the electric field in the detector. This is known as the recombination effect and the magnitude of the effect is largely determined by the local electric field. A number of different approaches to model the recombination effect exist, however for liquid argon detectors a form of the box model or Jaff\'{e} model are usually used \cite{LArTPC_book}.
+
+The Jaff\'{e} model is based on the idea that recombination depends on the charge density of both nearby electrons and ions. The model assumes a cylinder surrounding the ionisation track and recombination may occur between any of the ionised electrons and ions, not just the electron with it's associated parent ion which is were the Jaff\'{e} model largely differs from earlier models \cite{Jaffe_model}. The recombination effect from the Jaff\'{e} model is given by 
+\begin{equation}\label{Jaffe}
+    Q = \frac{Q_{0}}{1+q_{0}F(Esin\phi)},
+\end{equation}
+where $Q_0$ is the initial charge, $Q$ is the charge after recombination, $q_0$ is the initial density of electron-ion pairs and $F$ is a function depending on the electric field $E$, the angle between the field and the ionisation track, $\phi$ and other quantities which describe the diffusion. \EquationRef{Jaffe} is commonly approximated by Birks' law with a normalisation parameter to help fit the model to the experimental data \cite{LArTPC_book}. 
+
+In their development of the box model, Thomas and Imel assumed the diffusion and ion mobility to be zero and instead of the cylindrical column used in the Jaff\'{e} model, they considered a box with a uniform charge distribution such that, 
+\begin{equation}
+    Q = Q_{0}\frac{1}{\xi}ln(1+\xi),
+\end{equation}
+where $\xi = \alpha Q_0/E$. $\alpha$ is a free parameter and $Q$ and $Q_0$ are defined as in \EquationRef{Jaffe}\cite{LArTPC_book}\cite{Recombination_box_model}.
+
+
+\subsubsection{Space Charge}
+The electric field in a \gls{tpc} is usually designed to be uniform between the cathode and the anode, however, particularly for surface level detectors this often doesn't end being the case. Cosmic muons may enter the detector ionising the argon atoms. The ionised electrons and argon ions then drift towards the anode and cathode respectively, however the drift time for the ions is much greater than the electron drift time. If the flux of cosmic muons entering the detector is sufficiently large, this results in a significant positive charge build up towards the cathode. This effect is known as \textit{space charge} and directly impacts the recombination effect since it is linked to the magnitude of local electric field as well as affecting the drifting electrons.
+
+\textcolor{red}{SOME SPACE CHARGE MATH?}
+
+\section{Booster Neutrino Beam}\label{sec:BNB}
+The \gls{bnb} is produced by firing 8 GeV protons onto a beryllium target resulting in a secondary beam of hadrons. A toroidal focusing horn surrounds the target and focuses or defocuses charged particles depending on the sign of their charge. The focused hadrons then travel down a 50 m tunnel where most of them will decay producing mostly muon neutrinos and small fraction of electron neutrinos. At the end of the 50 m decay region is a concrete and steel absorber designed to absorb any non-neutrino particles. A schematic of the \gls{bnb} layout is shown in \FigureRef{fig: BNB schematic}. The decay modes of the hadrons resulting in a neutrino and the corresponding branching ratios are listed in \TableRef{Table: BNB decay modes}. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width =\largefigwidth]{figures-chap3/BNB_schematic.png}
+    \caption{A schematic of the layout of the \gls{bnb} \cite{BNB_flux}.}
+    \label{fig: BNB schematic}
+\end{figure}
+
+\begin{table}[h]
+\begin{tabular}{ccc}
+Particle                 & Decay Mode                        & Branching Ratio (\%) \\ \hline
+\multirow{2}{*}{$\pi^+$} & $\mu^+ + \nu_{\mu}$               & 99.9877             \\
+                         & $e^+ + \nu_e$                     & 0.0123              \\ \hline
+\multirow{3}{*}{$k^+$}   & $\mu^+ + \nu_{\mu}$               & 63.44               \\
+                         & $\pi^0 + e^+ + \nu_e$             & 4.98                \\
+                         & $\pi^0 + \mu^+ \nu_{\mu}$         & 3.32                \\ \hline
+\multirow{4}{*}{$k^0$}   & $\pi^- + e^+ + \nu_e$             & 20.333              \\
+                         & $\pi^+ + e^- + \bar{\nu}_e$         & 20.197              \\
+                         & $\pi^- + \mu^+ + \nu_{\mu}$       & 13.551              \\
+                         & $\pi^+ + \mu^- + \bar{\nu}_{\mu}$ & 13.469              \\ \hline
+$\mu^+$                   & $e^+ + \nu_e + \bar{\nu}_e$       & 100                
+\end{tabular}
+\caption{The decay modes of the hadrons produced by the \gls{bnb} when running in neutrino mode. The branching ratio of each of the decay modes is also given \cite{BNB_flux}.}
+\label{Table: BNB decay modes}
+\end{table}
+
+\newpage
+A current of 174 kA is supplied to magnetic horn in 143 $\mu$s pulses which corresponds to the frequency of the incident protons. The direction of the current may be reversed allowing for the focusing of positively or negatively charged particles. Since the charge of the decaying hadrons is linked to the type of neutrino produced, the ability to focus both positively and negatively charged particles allows the \gls{bnb} to run in neutrino or anti-neutrino mode. Pions are the primary particle produced from the incident protons hence the \gls{bnb} is muon (anti-)neutrino dominated. The percentage neutrino flavour composition of the \gls{bnb} is given in \TableRef{Table: BNB composition} for both neutrino and anti-neutrino mode.
+
+
+\begin{table}[h]
+\begin{tabular}{ccc}
+Neutrino Flavour & \% in Neutrino Mode & \% in Anti-neutrino Mode \\ \hline
+$\nu_\mu$        & 93.6                & 15.71                    \\
+$\bar{\nu_\mu}$  & 5.86                & 83.73                    \\
+$\nu_e$          & 0.52                & 0.2                      \\
+$\bar{\nu_e}$    & 0.05                & 0.4                     
+\end{tabular}
+\caption{The neutrino flavour composition of the \gls{bnb} when it's running in either neutrino or anti-neutrino mode \cite{BNB_flux}.}
+\label{Table: BNB composition}
+\end{table}
+
+ The neutrino flux of the BNB was simulated by the MiniBooNE collaboration for both neutrino and anti-neutrino mode \cite{BNB_flux}. The flux of the electron and muon (anti-)neutrinos in each of the three \gls{sbn} detectors is shown in \FigureRef{fig: SBN flux}.
+ 
+ \begin{figure}[h!]
+     \centering
+     \includegraphics[width = \largefigwidth]{figures-chap3/SBN_flux.png}
+     \caption{The predicted flux of the \gls{bnb} at \gls{sbnd} (left), \gls{microboone} (middle) and \gls{icarus} (right) for both electron and muon neutrinos and anti-neutrinos \cite{SBN_Proposal}.}
+     \label{fig: SBN flux}
+ \end{figure}
+ The systematic uncertainties associated with the \gls{bnb} account for an error of $\sim 9\%$ at the peak of the $\nu_\mu$ flux with a larger error for energies either side of the peak. The systematic uncertainties are mainly due to determining the rate and spectrum of neutrinos for each proton on target, determining the rate and spectrum of secondary particles produced from protons interacting with the beryllium target, the rate of hadronic interactions, the focusing properties of the magnetic horn and the beamline geometry \cite{BNB_flux}. 
+
+
+
+\section{SBND}\label{sec:SBND}
+\section{MicroBooNE}\label{sec:MicroBooNE}
+
+The \gls{microboone} detector is located slightly upstream of its predecessor, \gls{miniboone}. The detectors are at 470 m and 500 m from the \gls{bnb} source respectively. The Principal design goal of \gls{microboone} is to investigate the low energy excess of events observed by \gls{miniboone} and it began its operations in 2015 were it was initially used as a stand alone detector before becoming part of the larger \gls{sbn} program.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \smallfigwidth]{figures-chap3/MicroBooNE.png}
+    \includegraphics[width = \smallfigwidth]{figures-chap3/MicroBooNE_cross-section.jpg}
+    \caption{Diagram of the \gls{microboone} \gls{lartpc} inside the cryostat with the open front and left sided showing the field cage and anode planes respectively (Left). Cross-section schematic of the \gls{microboone} detector orientated such that the beam direction (z-direction) is orientated out of the page \cite{microboone_detector}.}
+    \label{fig:microboone}
+\end{figure}
+
+The \gls{microboone} detector consists of a single \gls{tpc} enclosed within a cryostat as is shown in \FigureRef{fig:microboone}. The \gls{tpc} has dimensions of (2.560, 2.325, 10.368)~m and is orientated such that the z direction is along the neutrino beam line with the cathode to the left of the beam and the anode to the right. The active volume is defined as the volume enclosed by the \gls{lartpc} field cage which has a liquid argon mass of 90 tonnes out of a total 170 tonnes. The \gls{apa} consists of three wire planes with the wires on the two induction planes orientated at $\pm 60^{\circ}$ to the vertical and the wires of the collection plane orientated vertically. Both the wire plane spacing and the wire pitch of each plane is 3 mm. Unlike \gls{sbnd} and \gls{icarus}, the nominal electric field in \gls{microboone} is 273 V/cm. The light collection system consists of a series of 32 \glspl{pmt} and 4 lightguide paddles which are located directly behind the anode planes. The lightguides have a large collection area and their purpose is to guide light to the \glspl{pmt} (the lightguide paddles were disfavoured once the ARAPUCA technology was developed.)\cite{microboone_detector}.
+
+\gls{microboone} is considered a surface detector being only $\sim 6$ underground and as there is no overburden present, a large flux of cosmic rays are observed. In order to be able to accurately identify and discard cosmic ray events, a \gls{crt} system was implemented. The \gls{crt} system consists of 73 scintillating modules positioned on the four sides of the X and Y coordinates of the detector. 
+
+\textcolor{red}{Maybe is generic? Explain in SBND and then just say microboone crt is the same.}
+The \gls{crt} system monitors the crossing time and coordinates of the particles and compares them with the information from the light detection system and the beam time rejecting the events identifies as cosmic muons.   \cite{microboone_crt}. \textcolor{red}{More on the CRT?}
+
+
+
+
+
+
+\section{ICARUS}\label{sec:ICARUS}
+
+The \gls{icarus} detector was first operated in 2010 and  located at the Gran Sasso National Laboratory in Italy where it was used to detect events from cosmic rays and from the neutrino beam which is directed from CERN to Gran Sasso. In 2013 the decommissioning process began and the detector was taken to CERN for refurbishment before making its way to \gls{fnal} and becoming part of the \gls{sbn} program \cite{SBN_Proposal}.
+
+The \gls{icarus} detector consists of two \textit{modules} within a single cryostat with each module containing two \glspl{tpc}. A schematic of this design is shown in \FigureRef{fig:icarus}. Similar to \gls{sbnd}, the two \glspl{tpc} within each module share a common cathode. The dimensions of each module are (3.6, 3.9, 19.6) m and the cryostat contains 760 tonnes of liquid argon with an active volume of 476 tonnes.  Again, the \glspl{apa} consists of three wire planes with a wire plane spacing and wire pitch of 3 mm. In contrast to \gls{sbnd} however, the wire planes are orientated at 0$^\circ$ for the first induction plane and at $\pm 60^\circ$ for the second induction plane and the collection plane. The choice of having a horizontal wire plane is due to \gls{icarus} being initially designed to detect cosmic rays which would predominantly enter the detector from above and therefore be travelling perpendicular to the horizontal. The nominal electric field in each of the \glspl{tpc} is 500 V/m. The light collection systmem for \gls{icarus} is comprised of a series of 74 \glspl{pmt} positioned behind the wire planes \cite{SBN_Proposal}. \textcolor{red}{PMT coeating? Mention why etc in SBND section and then just say these PMTS are also coated?}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap3/icarus.png}
+    \caption{Caption \cite{ICARUS_image}}
+    \label{fig:icarus}
+\end{figure}
+
+The \gls{icarus} \gls{crt} system surrounds the detector on all sides however the actual position is not always the same due to design choices. The \gls{crt} on the top most side which experiences the highest flux of cosmic rays, is located outside the \gls{tpc}, about 3m from the top face above the readout electronics. It consists of two planes of scintillating modules with the readout coming from the same electronics board as is used by \gls{sbnd}.
+The \gls{crt} for the vertical sides are again outside the \gls{tpc} and behind the \gls{pmt} arrays and close to the cryostat walls. The scintillator modules from the \gls{minos} experiment are being reused for this purpose. The \gls{crt} for the bottom face are the repurposed spare modules from the veto shield from the Double Chooz experiment and are located within the cryostat. Only about 50\% of the bottom face is be covered by the \gls{crt} because of limited space due to the supporting structure of the cryostat \cite{SBN_Proposal}\cite{ICARUS_CRT}.
+
+\section{SBN Physics Capabilities}

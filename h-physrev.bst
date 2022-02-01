@@ -18,6 +18,7 @@ number
 organization
 pages
 publisher
+reportNumber
 school
 series
 title
@@ -527,13 +528,28 @@ if$
 if$
 " \cite{" * crossref * "}" *
 }
+FUNCTION {format.url}
+{   doi empty$ not
+    url empty$
+  or
+    { "" }
+    { "\urlprefix\url{" url * "}" * }
+  if$
+}
+
+FUNCTION {format.doi}
+{ doi empty$
+    { "" }
+    { "\doi{" doi * "}" * }
+  if$
+}
 FUNCTION {article}
 { output.bibitem
 collaboration output
 format.authors "author" output.check
 new.block
 format.title output
-doi output
+format.doi output
 crossref missing$
 { journal field.or.null
 format.vol.num.pages 
@@ -739,9 +755,10 @@ collaboration output
 format.authors output
 title howpublished new.block.checkb
 format.title output
+reportNumber output
 howpublished new.block.checka
 howpublished output
-doi output
+format.doi output
 format.date output
 eprint output
 new.block
@@ -936,12 +953,31 @@ if$
 }
 EXECUTE {initialize.longest.label}
 ITERATE {longest.label.pass}
+
 FUNCTION {begin.bib}
 { preamble$ empty$
-'skip$
-{ preamble$ write$ newline$ }
-if$
-"\begin{thebibliography}{"  longest.label  * "}" * write$ newline$
+    'skip$
+    { preamble$ write$ newline$ }
+  if$
+  "\begin{thebibliography}{"  longest.label  * "}" * write$ newline$
+  "\expandafter\ifx\csname url\endcsname\relax"
+  write$ newline$
+  "  \def\url#1{\texttt{#1}}\fi"
+  write$ newline$
+  "\expandafter\ifx\csname doi\endcsname\relax"
+  write$ newline$
+  "  \def\doi#1{\burlalt{doi:#1}{http://dx.doi.org/#1}}\fi"
+  write$ newline$
+  "\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi"
+  write$ newline$
+  "\expandafter\ifx\csname href\endcsname\relax"
+  write$ newline$
+  "  \def\href#1#2{#2}\fi"
+  write$ newline$
+  "\expandafter\ifx\csname burlalt\endcsname\relax"
+  write$ newline$
+  "  \def\burlalt#1#2{\href{#2}{#1}}\fi"
+  write$ newline$
 }
 EXECUTE {begin.bib}
 EXECUTE {init.state.consts}
