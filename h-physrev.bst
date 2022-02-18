@@ -150,7 +150,7 @@ if$
 FUNCTION {embolden}
 { duplicate$ empty$
 { pop$ "" }
-{ "{\textbf " swap$ * "}" * }
+{ "{\bfseries " swap$ * "}" * }
 if$
 }
 FUNCTION {paren}

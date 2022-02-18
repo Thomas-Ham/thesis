@@ -9,7 +9,14 @@ Good stepping stone for DUNE - similar design (LArTPC)
 
 \textcolor{red}{SOME GENERIC OVERVIEW PICTURE OF SBN}
 
-The \gls{sbn} programme is comprised of three distinct \gls{lartpc} type detectors located at the \gls{fnal}. The three detectors are the \gls{sbnd}, the \gls{microboone} and the \gls{icarus} detector and all lie along the axis of the \gls{bnb}. The details of each detector is further discussed in \SectionRef{sec:SBND} (\gls{sbnd}), \SectionRef{sec:MicroBooNE} (\gls{microboone}) and \SectionRef{sec:ICARUS} (\gls{icarus}). The \gls{bnb} consist predominantly of muon neutrinos with energies of the order 1 GeV and is discussed in detail in \SectionRef{sec:BNB}. The three detectors are positioned at 110m, 470m and 600m from the neutrino beam source respectively. 
+\begin{figure}
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap3/SBN_program.jpg}
+    \caption{Caption \cite{SBN_paper}}
+    \label{fig:my_label}
+\end{figure}
+
+The \gls{sbn} programme is comprised of three distinct \gls{lartpc} type detectors located at the \gls{fnal}. The three detectors are \gls{sbnd}, \gls{microboone} and \gls{icarus} and all three lie along the axis of the \gls{bnb}. The details of each detector is further discussed in \SectionRef{sec:SBND} (\gls{sbnd}), \SectionRef{sec:MicroBooNE} (\gls{microboone}) and \SectionRef{sec:ICARUS} (\gls{icarus}). The \gls{bnb} consist predominantly of muon neutrinos with energies of the order 1 GeV and is discussed in detail in \SectionRef{sec:BNB}. The three detectors are positioned at 110m, 470m and 600m from the neutrino beam source respectively. 
 
 One of the primary aims of the \gls{sbn} programme is to provide a definitive test to either confirm or refute the existence of light sterile neutrinos which have been hinted at by a number of experiments discussed in \SectionRef{subchap:Motivation for Sterile Neutrinos}. Other major aims of the \gls{sbn} programme include investigating neutrino argon cross sections and developing large scale \gls{lartpc} technologies. The close proximity of \gls{sbnd} to the \gls{bnb} source means that \gls{sbnd} will observe neutrino argon interactions with high statistics allowing statistical uncertainties to be minimised and will allow for the exploration of rare channels such as neutrino-electron scattering. Both the development of \gls{lartpc} technology and an improved understanding of neutrino interaction cross-sections will be invaluable for future neutrino experiments such as the \gls{dune}.
 
@@ -27,7 +34,7 @@ Liquid argon was identified as the most suitable medium to use for such a detect
     \item Argon may be liquefied easily using liquid nitrogen. 
 \end{itemize}
 
-\subsection{\gls{lartpc} Design}
+\subsection{LArTPC Design}
 The general design of a single chamber \gls{lartpc} is shown in \FigureRef{fig:lartpc}. Most \glspl{lartpc} consist of one or more \glspl{tpc} with a cathode and anode plane at either end inducing an electric field across the \gls{tpc}. The electric field causes charged particles to drift in the detector. The electrons produced from neutrino interactions will drift towards the anode where they will induce a current on a series of wire planes. The most rear wire plane (the one furthest away from the cathode) is known as the collection plane and the one or more wire planes in front of the collection plane are known as induction planes. There is a further potential difference between the induction and collection planes which ensures that the electrons will also reach the collection plane. The wire planes are orientated so that the wire angles between the planes are different which allows for 2D position reconstruction. Located behind the anode plane are also a series of \glspl{pmt} which collect scintillation light. The time taken for the scintillation light to be detected is very short in comparison to the time taken for the electrons to drift to the wire planes, so by using this timing information and knowing the electron drift velocity, the horizontal drift distance may be determined. Combining this with the 2D information from the wire planes allowes for 3D event reconstruction. The induced current on the wire planes is interpreted in terms of signal waveforms from which \textit{hits} are constructed. Each hit contains information such as the associated wire plane, wire number and charge and it is this information which is used to obtain reconstructed information about an event. The specific designs of the three \glspl{lartpc} used in the \gls{sbn} programme are discussed in \SectionRef{sec:SBND} (SBND), \SectionRef{sec:MicroBooNE} (MicroBooNE) and \SectionRef{sec:ICARUS} (ICARUS).
 
 \begin{figure}[h]
@@ -150,6 +157,34 @@ $\bar{\nu_e}$    & 0.05                & 0.4
 
 
 \section{SBND}\label{sec:SBND}
+\gls{sbnd} was purposely designed to be the near detector of the \gls{sbn} program and has an active volume with dimensions (4, 4, 5) m containing 112 tons of liquid argon. It consists of two \glspl{tpc}, where the central shared cathode sits in the middle of the detector with an anode either side as is shown in \FigureRef{fig:sbnd_schematic}. Each of the \glspl{apa} consist of three wire planes where the first and second induction plane are orientated at $\pm 60^{\circ}$ to the vertical and the collection plane is vertical. In all cases, the wire plane spacing and the wire pitch are 3 mm. The nominal electric field in each of the \glspl{tpc} is 500 V/m. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap3/SBND.jpg}
+    \caption{Caption \cite{LArTPC_review}}
+    \label{fig:sbnd_schematic}
+\end{figure}
+
+\subsection{Photon Detection System}
+The \gls{pds} consists of a total of 24 \textit{boxes}, 12 of of which are mounted behind each \gls{apa}. Each box houses 5 \glspl{pmt} and 8 \glspl{arapuca} (specifically, X-ARAPUCA's are used which are an advancement of the initial \gls{arapuca} design) as shown in \FigureRef{fig:pds_box}. The 4 outer \glspl{pmt} of each box are coated with \gls{tpb} whilst the central one remains uncoated. The \gls{tpb} coating shifts the wavelength of the \gls{vuv} light into the visible region allowing it to be detected. Therefore, the coated \glspl{pmt} are sensitive to both visible and \gls{vuv} light whilst the uncoated \glspl{pmt} are only sensitive to visible light \cite{LArTPC_review}. \glspl{arapuca} are a novel light trap which consist of a box where the internal surfaces are highly reflective. The surface of the \gls{arapuca} which faces the incoming light consists of dichroic filter with a wavelength shifter either side of the filter. The wavelength of the light which is incident on the outermost shifter is shifted such that it may pass through the dichroic filter and after passing through the filter the light is again wavelength shifted so that it may no longer pass through the filter and thus remains trapped in the \gls{arapuca}. A schematic of the \gls{arapuca} design is shown on the left of \FigureRef{fig:arapuca}. The inside of the \gls{arapuca} module contains a \gls{sipm} photo-sensor in order to detect the light. Due to the highly reflective nature of the inside of the \gls{arapuca}, only a small region needs to be exposed to a photo-sensor in order to detect the trapped photons \cite{ARAPUCA}. The X-ARAPUCA improves on the initial design by replacing the inner wavelength shifter with an acrylic slab with the wavelength shifter implanted in the slab and the photo-sensor being directly attached to the slab. Light entering the X-ARAPUCA may be detected in same way as was done in the original \gls{arapuca} (\FigureRef{fig:arapuca}: Left), however the photons may also become trapped in the slab by total internal reflection and travel within the slab to the photo-sensor (\FigureRef{fig:arapuca}: Middle) or if the light enters at a large angle, the photons may become trapped between the surface of the slab and the filter and will travel to the photo-sensor without ever entering the slab (\FigureRef{fig:arapuca}: Right). The middle scenario of \FigureRef{fig:arapuca} represents a direct improvement over the original \gls{arapuca} design because the number of reflections on the internal sides of the X-ARAPUCA module is reduced which in turn increases the photon detection efficiency \cite{X-ARAPUCA}. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap3/arapuca.png}
+    \caption{Caption \cite{X-ARAPUCA}}
+    \label{fig:arapuca}
+\end{figure}
+
+Another component of the \gls{pds} is covering each side of the \gls{cpa} with a 19 m$^2$ of \gls{tpb} coated reflective covering. This mean that \gls{vuv} light directed towards the \gls{cpa} will be wavelength shifted into the visible spectrum and reflected back to towards the \glspl{pmt} where it may be detected. Since one of the \glspl{pmt} in each of the boxes remains uncoated, it will allow \gls{sbnd} to distinguish between light that is initially directed towards the \glspl{pmt} and the reflected light because the reflected light will be visible in all \glspl{pmt} whereas only the four outer \glspl{pmt} will be able to detect direct light \cite{LArTPC_review}. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap3/PDS_box.jpg}
+    \caption{Schematic of the \gls{pds} box showing the position of the 5 \glspl{pmt} and the 4 pairs of X-ARAPUCA'S. PMT COATING?? \cite{LArTPC_review}}
+    \label{fig:pds_box}
+\end{figure}
+
 \section{MicroBooNE}\label{sec:MicroBooNE}
 
 The \gls{microboone} detector is located slightly upstream of its predecessor, \gls{miniboone}. The detectors are at 470 m and 500 m from the \gls{bnb} source respectively. The Principal design goal of \gls{microboone} is to investigate the low energy excess of events observed by \gls{miniboone} and it began its operations in 2015 were it was initially used as a stand alone detector before becoming part of the larger \gls{sbn} program.
@@ -191,3 +226,31 @@ The \gls{icarus} \gls{crt} system surrounds the detector on all sides however th
 The \gls{crt} for the vertical sides are again outside the \gls{tpc} and behind the \gls{pmt} arrays and close to the cryostat walls. The scintillator modules from the \gls{minos} experiment are being reused for this purpose. The \gls{crt} for the bottom face are the repurposed spare modules from the veto shield from the Double Chooz experiment and are located within the cryostat. Only about 50\% of the bottom face is be covered by the \gls{crt} because of limited space due to the supporting structure of the cryostat \cite{SBN_Proposal}\cite{ICARUS_CRT}.
 
 \section{SBN Physics Capabilities}
+
+The \gls{sbn} program was designed with the aim of resolving the contentious results observed by a number of experiments as was discussed in \label{subchap:Motivation for Sterile Neutrinos}. Since it was purposely planned with this in mind, the \gls{sbn} program has a number of advantages over previous experiments in the hopes of detecting \textit{eV} scale sterile neutrinos: it has a multi detector design, the near and far detector are positioned such that the oscillation signal is close to maximal for an expected set of oscillation parameters, the detectors use the same technology and have the same target medium. 
+
+The top two plots of \FigureRef{fig:osc_probability} show the expected oscillation probability for the \nue appearance channel as a function of the baseline for two sets of oscillation parameters, $(sin^22\theta_{\mu e}, ~\Delta m^2_{41}) = (0.015, ~0.3~eV^2), (0.002, ~1.5~eV^2)$ and a neutrino energy of 700 MeV. The neutrino energy corresponds to the peak energy of the \gls{bnb} and the oscillation points are chosen as the upper and lower limits of the global \nue appearance data. In both cases there is a clear difference in the oscillation probability between the near and far detector showing that the \gls{sbn} program is sensitive to oscillations within this parameter range \cite{SBN_paper}. The bottom two plots show the oscillation probability for the same two oscillation points as a function of neutrino energy for baselines of a 110 m and 600 m. The ratio of the oscillation probability at 600 m to that at 110 m is also shown. Again there is a clear difference in the oscillation probability for most energies showing that the \gls{sbn} program is sensitive to a wide range of neutrino energies \cite{SBN_paper}.
+
+The event rates in the near and far detector are correlated since both use the same interaction medium and the same technology to detect interactions. As \FigureRef{fig:osc_probability} shows, \gls{sbnd} will observe no or very few oscillated events and will give a measure of the absolute flux and interaction cross-section whereas both \gls{microboone} and \gls{icarus} are able to detect oscillated events with significant probability. Typically the \gls{bnb} flux uncertainties and interaction cross-section uncertainties are fairly large, however, comparing results from \gls{sbnd} to \gls{microboone} and \gls{icarus} and noting the correlation between the detectors allows the uncertainties to be constrained. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap3/osc_probability.png}
+    \caption{Caption \cite{SBN_paper}}
+    \label{fig:osc_probability}
+\end{figure}
+
+This main goal of the \gls{sbn} program revolves around sterile neutrino oscillation analyses, however the close proximity of the \gls{sbn} detectors and in particular \gls{sbnd} to the neutrino beam source will allows for a high statistics study of neutrino argon interactions. This will provide valuable information for future liquid argon based experiments such as \gls{dune}. \gls{sbnd} is expected to observe on the order of 2 million neutrino interactions a year which is sufficient to be able to minimise the associated uncertainty to a point such that systematic uncertainties become dominant. As the \gls{bnb} consists predominantly of \numu, most events will also be \numu based, however the \nue fraction of the \gls{bnb} is sufficient to expect 12,000 \nue events a year in \gls{sbnd} which is enough to perform both inclusive and exclusive analyses. There is also the opportunity to measure rare channels with a big increases in statistics or possibly even for the first time such as final states involving hyperons or $\nue \rightarrow \nue$ elastic scattering \cite{SBN_paper} \cite{light_dark_matter}.
+
+The large event rate and the high resolution event reconstruction provided may allow the \gls{sbn} program to be sensitive to \gls{bsm} physics other than sterile neutrino oscillations \cite{SBN_paper}. The potential areas include, but are not limited to,
+\begin{itemize}
+    \item Light Dark Matter - Assuming a dark matter particle has an associated light mediator particle which interacts with quarks, the high intensity proton beam will produce a dark matter beam alongside neutrinos. The dark matter particles will propagate to the detectors alongside the neutrinos where they may scatter of the argon nuclei. Neutrinos will however represent a large background in such search \cite{SBN_paper}. 
+    \item Large Extra Dimensions - The neutrino mass scale could be explained by the presence of additional dimensions. The right handed neutrinos would be able to propagate in the extra dimensions whilst the active neutrinos would be confined to the standard dimensions \cite{SBN_paper}. 
+    \item Heavy Sterile Neutrinos - If heavy sterile neutrinos such as those present in the seesaw-mechanism discussed in \SectionRef{sec:seesaw_mechanism} are of an MeV mass scale, they may be produced in the \gls{bnb} vie meson decay. They would then propagate along the beam line and their decay products may observed in the detectors \cite{SBN_paper}\cite{MeV_scale_sterile_neutrino}.
+    \item Dark Neutrinos - A beam neutrino interacts with an argon neucleus and scatters to a dark neutrino. The dark neutrino decays to a dark boson (and neutrino) and in turn the dark boson decays to an \positron \electron pair. This mechanism could provide an explanation to the \gls{miniboone} low energy excess \cite{SBN_paper}\cite{dark_neutrino}. 
+\end{itemize}
+
+
+
+            
+            
