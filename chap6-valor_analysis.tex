@@ -1,0 +1,90 @@
+\chapter{VALOR Analysis}
+\label{chap:VALOR}
+
+Keep numu section? Perhaps too much overlap with Rhiannon's stuff.
+
+Plots to include
+\begin{itemize}
+    \item Spline validation plots + tick table (will need to 'make these look good')
+    \item Standard spectra x3
+    \item Spectra with error envelopes (will need some work - think this was a pain cos have to force osc params so the osc sample is actually used.)
+    \item Spectra (ratios) with various oscillation params ala tech note.
+    \item contribution to sensitivity from each detector + detector combos.
+    \item Contribution from each systematic group.
+    \item Impact of various detector systematics 
+    \item Standard exclusion/allowed sensitivities with all systematics (pick some value for the detector syst).
+    \item Sensitivities with external limits.
+\end{itemize}
+
+\section{VALOR Framework}
+How VALOR works - log likelihood, monte carlo templates etc. 
+Explanation of performing fits (ASIMOV dataset) and so on.
+
+Monte Carlo Template
+
+\begin{itemize}
+    \item b - Beam configuration
+    \item d - Detector
+    \item s - Sample
+    \item m - Reaction Mode
+    \item r - A bin in reconstructed space
+    \item t - A bin in true space
+\end{itemize}
+
+\begin{equation}
+    T = T_{d;b;s;m}(r, t)
+\end{equation}
+
+Physics parameters, $\vec{\theta}$ and systematic parameters, $\vec{f}$.
+
+$N^{MC} = \mbox{POT}_{b;d}^{data}/\mbox{POT}_{b;d}^{MC}$ is the normalisation by which to scale the event rate, to account for the POT which was used to construct the sample of neutrino events with respect to the nominal POT in the analysis.
+
+\begin{equation}
+n_{d;b;s}^{pred}(r; \vec{\theta}; \vec{f}) =
+   \sum_{m} \sum_{t}  P_{d;b;m}(t; \vec{\theta}) \cdot R_{d;b;s;m}(r,t; \vec{f}) \cdot T_{d;b;s;m}(r,t)
+\label{eq:valor_npred}
+\end{equation}
+
+$P_{d;b;m}(t; \vec{\theta})$ represents the effect due to a physics hypothesis (e.g. neutrino oscillations).
+$R_{d;b;s;m}(r,t; \vec{f})$ represents the response of a \gls{mct} bin to the systematic variations
+
+
+ For $n_{d ; b ; s}^{obs}(r)$ observed events, the log likelihood, $ln~\lambda_{d;b;s}(\vec \theta, \vec f)$, is given by
+\begin{equation}
+    ln~\lambda_{d;b;s}(\vec \theta, \vec f) = - \mathlarger{\mathlarger{\sum_{b,d,s,r}}} \Bigg \{ \Big (n_{d;b;s}^{pred}(r,\vec{\theta},\vec{f})
+    - n_{d ; b ; s}^{obs}(r) \Big) + n_{d ; b ; s}^{obs}(r) \cdot ln \frac{n_{d ; b ; s}^{obs}(r)}{n_{d ; b ; s}^{p r e d}(r , \vec{\theta} , \vec{f})} \Bigg \}.
+\end{equation}
+In the limit of many samples, the quantity $-2ln~\lambda_{d;b;s}(\vec \theta, \vec f)$ has a $\chi^2$ distribution, hence calculating the log likelihood allows a goodness-of-fit test to be performed. 
+
+\textcolor{red}{Lots of other shit I don't really understand.}
+
+
+\section{\texorpdfstring{$\nu_\mu$ Disappearance Analysis}{numu Disappearance Analysis}}
+\section{\texorpdfstring{$\nu_e$ Appearance Analysis}{nue Appearance Analysis}}
+\section{\texorpdfstring{$\nu_e$ Disappearance Analysis}{nue Disappearance Analysis}}
+\section{Additional Efficiency and Energy Scale Systematics}
+
+\begin{table}[]
+\begin{adjustbox}{width=\textwidth,center}
+	\begin{tabular}{l|lllll}
+		\hline
+		& \multicolumn{5}{c}{\textbf{Applies to}}                                                                                  \\
+		\textbf{Systematic}    & \textbf{Beam} & \textbf{Detector} & \textbf{Sample}        & \textbf{Mode} & \textbf{Reco. energy bin edges}                            \\ \hline
+		$f_0 - f_7$   & FHC  & SBND     & $\nu_{\mu}$CC-like & signal/$\nu_{\mu}$CC & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, $\infty$\}      \\
+		$f_8 - f_{13}$    & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/NC               & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{14}$          & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/Dirt             & \{0, $\infty$\}                                         \\
+		$f_{15}$          & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/Cosmics          & \{0, $\infty$\}                                         \\ \hline
+		$f_{16}-f_{24}$     & FHC  & SBND     & $\nu_{e}$CC-like     & signal/$\nu_{e}$CC     & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{25} - f_{33}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/$\nu_{\mu}$CC      & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{34} - f_{42}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NC1$\gamma$        & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{43} - {f_51}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NC1$\pi^0$         & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{52} - f_{60}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NCother          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{61} - f_{66}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/Dirt             & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{67} - f_{72}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/Cosmics          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\ \hline
+		$f_{73} - f_{145}$  & \multicolumn{5}{l}{As above, but for $\mu$B}                                                                        \\ \hline
+		$f_{146} - f_{218}$ & \multicolumn{5}{l}{As above, but for ICARUS}                                                                    \\ \hline
+	\end{tabular}
+\end{adjustbox}
+\end{table}
+
+

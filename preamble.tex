@@ -6,15 +6,23 @@
 \usepackage{multirow}
 \usepackage{nicematrix}
 \usepackage{feynmf} % feynman diagrams
+\usepackage{adjustbox}
+\usepackage{arydshln}
+
+\usepackage[a4paper,
+            left=40mm,
+            right=25mm]{geometry}
 
 % glossary - add to toc and remove page numbers
 \usepackage[xindy,toc,nonumberlist]{glossaries} 
 \input{glossary}
 \makeglossaries
 
-\usepackage[a4paper,
-            left=40mm,
-            right=25mm]{geometry}
+% sort out the captions
+\captionsetup{width = \textwidth}
+\captionsetup{format = plain} %
+
+
 
 %% Using Babel allows other languages to be used and mixed-in easily
 %\usepackage[ngerman,english]{babel}
