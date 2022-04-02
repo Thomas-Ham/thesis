@@ -10,6 +10,13 @@
 \usepackage{arydshln}
 \usepackage{subcaption}
 
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{lscape}
+
 \usepackage[a4paper,
             left=40mm,
             right=25mm]{geometry}
@@ -23,7 +30,9 @@
 \captionsetup{width = \textwidth}
 \captionsetup{format = plain} %
 
-
+% Define change margin command
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
 
 %% Using Babel allows other languages to be used and mixed-in easily
 %\usepackage[ngerman,english]{babel}
