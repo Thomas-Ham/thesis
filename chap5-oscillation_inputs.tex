@@ -103,8 +103,32 @@ Link in with Energy Reco. section
   \label{table:coarse_reac_modes}
 \end{table}
 
-
+\clearpage
 \section{Flux Systematics}
+\subsection*{Optical Flux Systematics}
+The optical flux systematics are comprised of two parameters; the \textit{skin effect} and the \textit{horn current}. The horn current parameter is simply the uncertainty of the supplied current to the focusing horn. Since the current is linked to the focusing properties of the horn, uncertainty on the current leads to an uncertainty on the neutrino flux. The focusing horn is surrounded by a conductor where currents travel on the surface of the conductor. The skin effect is a measure of how much these surface currents penetrate into the conductor which in turn effect the internal fields of the conductor. Therefore, due to the skin effect, the strength of the magnetic field that particles propagating through the horn experience may vary \cite{BNB_flux}.
+
+\begin{table}[!h]
+  \renewcommand{\arraystretch}{1.4}    
+  \begin{tabular}{p{2.5cm} p{10cm} p{2cm}}
+
+    \toprule
+    Parameter & Description & Uncertainty \\ 
+    \midrule
+
+    $f_{SkinEffect}$  & Depth that the current penetrates the horn conductor & $<18 \%$\\
+
+    $f_{HornCurrent}$ & Current running in the horn conductor & $\pm 0.6 \%$\\
+    \bottomrule
+
+  \end{tabular}
+  \caption[Optical, beam focusing flux systematic parameters]{Optical systematic flux uncertainties associated with the current in the horn\cite{BNB_flux}.}
+  \label{}
+\end{table}
+\subsection*{Secondary Hadron Interaction Cross-Sections}
+The proton interaction rate in \gls{bnb} target is largely dependent on the hadronic cross-sections with the beryllium target and aluminium horn. These cross-sections are divided into three categories; elastic scattering, quasi-elastic scattering and inelastic scattering. The total cross-section, $\sigma_{TOT}$, is defined as the sum of the elastic, $\sigma_{EL}$ and inelastic, $\sigma_{INEL}$, cross-sections. The quasi-elastic cross-section, $\sigma_{QE}$, is a subset of the  $\sigma_{INEL}$ cross-section. The $\sigma_{TOT}$ variations are based on comparing calculations with neutron-nucleus measurements. The model describing $\sigma_{TOT}$ is assumed to work sufficiently well for $\pi^{\pm}$-nucleus interactions and is extended to include these interactions in addition to all nucleon-nucleus interactions. $\sigma_{INEL}$ is estimated directly from the available data and the deviations are therefore noticeably smaller than for $\sigma_{TOT}$. The variations are chosen to encompass the uncertainties in the measurements. $\sigma_{QEL}$ variations are again estimated from a combination of the available date and models. Finally, the linked relationship between the different cross-section is considered such that: 1) If  $\sigma_{INEL}$ is fixed, a variation in $\sigma_{TOT}$ will result in a variation in $\sigma_{EL}$. 2) If $\sigma_{INEL}$ is varied, the relative contribution from $\sigma_{INEL}$ and $\sigma_{EL}$ to  $\sigma_{TOT}$ (which remains constant) will vary. 3) If $\sigma_{QEL}$ is varied, the relative contribution from other inelastic process to $\sigma_{INEL}$ (which remains constant) will vary \cite{BNB_flux}.
+
+The above approach is applied for both beryllium and aluminium nuclei and the uncertainty associated with the total, quasi-elastic and inelastic cross-sections for both nucleons and pions for the two nuclei are shown in \TableRef{table:secondary_hadron_interaction_xsec}.
 
 \begin{table}[!h]
   \renewcommand{\arraystretch}{1.4}    
@@ -127,28 +151,32 @@ Link in with Energy Reco. section
     $f_{\sigma_{TOT}^{\pi}}$  & Secondary total pion cross-section in the target (Be) and horn (Al) & $\pm 11.9 \%$ & $\pm 28.7 \%$\\
     \bottomrule
   \end{tabular}
-  \caption[Hadronic secondary interaction flux systematic parameters]{The systematic uncertainties associated with secondary hadron interaction cross-sections in both the horn (Aluminium) and the target (Berylium) \cite{SBN_Proposal}}.
-  \label{}
+  \caption[Hadronic secondary interaction flux systematic parameters]{The systematic uncertainties associated with secondary hadron interaction cross-sections in both the horn (Aluminium) and the target (Beryllium) \cite{SBN_Proposal}}.
+  \label{table:secondary_hadron_interaction_xsec}
 \end{table}
 
 
-\begin{table}[!h]
-  \renewcommand{\arraystretch}{1.4}    
-  \begin{tabular}{p{2.5cm} p{10cm} p{2cm}}
+\subsection*{Hadronic Neutrino Production Flux Uncertainties}
+The majority of neutrinos in the \gls{bnb} are due to decaying particles which are a result of protons interacting with beryllium target. Understanding the neutrino flux therefore relies on understanding the production of the particles decaying to neutrinos, which are predominately pions for \numu and kaons for \nue (plus the decay of muons which in turn are produced in the meson decays). 
 
-    \toprule
-    Parameter & Description & Uncertainty \\ 
-    \midrule
+The Sanford-Wang parameterisation is used to estimate the $\pi^{\pm}$ production. It depends on the meson momentum, \textit{p}, and angle relative to the incident proton, \textit{\theta}, and also the proton momentum, $p_B$. The parametrisation is given by
 
-    $f_{SkinEffect}$  & Depth that the current penetrates the horn conductor & $<18 \%$\\
+\begin{equation}
+  \hspace{-0.35cm}
+  \label{eq:SW}
+  \frac{d^{2}\sigma}{dpd\theta} = 
+  c_{1}p^{c_{2}} 
+  \left( 1 - \frac{p}{p_{B} -c_{9}} \right)
+  \exp \left( -c_{3} \frac{p^{c_{4}}}{p_{B}^{c_{5}}} - c_{6}\theta(p - p_{B}c_{7}cos^{c_{8}}\theta) \right),
+\end{equation}
 
-    $f_{HornCurrent}$ & Current running in the horn conductor & $\pm 0.6 \%$\\
-    \bottomrule
+where parameters $c_{1 \rightarrow 9}$ are determined from the HARP (8.89 GeV/c), BNL E910 (6.4 GeV/c) and BNL E910 (12.3 GeV/c) experiments \cite{BNB_flux}.
 
-  \end{tabular}
-  \caption[Optical, beam focusing flux systematic parameters]{Optical systematic flux uncertainties associated with the current in the horn\cite{BNB_flux}.}
-  \label{}
-\end{table}
+No $k^+$ production rates exist for proton-beryllium interactions at 8.89 GeV/c which is the primary \gls{bnb} operating momentum. To estimate the $k^+$ production rate at the \gls{bnb} momentum, Feynman scaling is used to extrapolate the rate from production rates at nearby energies \cite{BNB_flux}.
+
+The major contribution that the $k^0$ makes to the BNB flux is from the decay of the $k^0_L$. The $k^0$ that are produced via strong interactions have equal contents of $k^0_L$ and $k^0_s$, therefore the production rate of $k^0_L$ can be inferred from knowing the production rate of $k^0_s$. The Sanford-Wang parametrisation is again used to estimate the production cross-section by combining data from the BNL E910 experiment at 12.3 GeV/c and 17.5 GeV/c and the KEK experiment at 12.3 GeV/c.
+
+For the $k^-$, there is minimal production data available, therefore simulations are used exclusively. The rate and spectrum of the $k^-$ are estimated by simulating 8.89 GeV/c proton-beryllium interactions \cite{BNB_flux}.
 
 \begin{table}[!h]
   \renewcommand{\arraystretch}{1.4}    
@@ -170,26 +198,40 @@ Link in with Energy Reco. section
 
     \bottomrule
   \end{tabular}
-  \caption[Hadron production flux systematic parameters]{Hadron production systematic flux uncertainties \cite{BNB_flux_TN}.}
+  \caption[Hadronic neutrino production flux systematic parameters]{Hadronic neutrino production systematic flux uncertainties \cite{BNB_flux_TN}.}
   \label{}
 \end{table}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap5/tweak_nsigma_nue/horncurrent_FluxUnisim_nuelikeCChigh_1sigma_horncurrent_FluxUnisim.png}
-    \caption[+1$\sigma$ variation comparison for the horncurrent\_FluxUnisim parameter.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the 'horncurrent\_FluxUnisim' flux systematic parameter.}
-    \label{fig:my_label}
-\end{figure}
+\subsection*{BNB POT Normalisation}
+The intensity of the proton beam is monitored by two toroids and it has been found that the two toroids agree with one another to within 2\% \cite{BNB_flux}. An additional 2\% normalisation uncertainty is applied in order to account for this \gls{pot} accounting uncertainty. This uncertainty is set so that it is fully correlated between all analysis bins.
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap5/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_flux_uncorr.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
 
+
+
+
+
+
+
+\clearpage
 \section{Interaction Systematics}
+The uncertainties associated with neutrino interactions are provided by GENIE and are implemnted using the GENIE ReWeight package. This is the case for all the interaction systematics considered here except for the \gls{mec} systematic (see \SectionRef{sec:MEC_uncertainty}). The GENIE reweighting scheme works as follows: For each quantity, \textit{P}, which has an associated uncertainty, a systematic parameter, $x_P$ is introduced. Varying $x_P$ will modify, \textit{P} such that
+\begin{equation}
+    P \rightarrow P' = P (1 + x_P . \frac{\delta P}{P}),
+\end{equation}\label{eqn:genie_reweight}
+where $\delta P$ represents the standard deviation of \textit{P}. It follows from \EquationRef{eqn:genie_reweight} that for a $x_P = 0$, $P' = P$ and for $x_P = \pm 1$, $P' = P \pm \delta P$.
 
+The two main types of interaction systematics considered in this analysis are cross-section and intranuclear hadron transport model uncertainties. 
+
+\section*{Neutrino Cross-Section uncertainties}
+\begin{equation}
+    w_\sigma^{evt} = \left(\frac{d^n\sigma'_\nu}{dK^n}\right)\Bigg/\left(\frac{d^n\sigma_\nu}{dK^n}\right)
+\end{equation}
+
+$\frac{d^n\sigma'_\nu}{dK^n}$ is the differential cross-section with varied physics parameters and  $\frac{d^n\sigma_\nu}{dK^n}$ is the nominal differential cross-section with $K^n$ being the kinematical phase space in both cases.  
+
+\cite{GENIE_manual}
+
+\subsection*{\textit{Proposal} Interaction Systematics}
 \begin{table}[h!]
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{p{1.8cm} p{10cm}>{\centering\arraybackslash}p{ 2.2cm}}
@@ -243,6 +285,8 @@ Link in with Energy Reco. section
     \label{}
 \end{table}
 
+
+\subsection*{\textit{Modern} Interaction Systematics}
 
 \begin{table}[h!]
     \renewcommand{\arraystretch}{1.4}
@@ -316,36 +360,40 @@ Link in with Energy Reco. section
     \label{}
 \end{table}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap5/tweak_nsigma_nue/genie_ccresAxial_Genie_nuelikeCChigh_1sigma_genie_ccresAxial_Genie.png}
-    \caption[+1$\sigma$ variation comparison for the genie\_ccresAxial\_Genie parameter.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the 'genie\_ccresAxial\_Genie' proposal interaction systematic parameter.}
-    \label{fig:my_label}
-\end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap5/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_proposal_xsec.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
+\subsection*{MEC uncertainty}\label{sec:MEC_uncertainty}
+A \gls{mec} uncertainty parameter which specifically affects \gls{mec} events is not included from the GENIE event generator since it was decided that the parameter was not sufficiently validated. Instead, a 100\% normalisation uncertainty is applied to all \gls{mec} events. The value of the uncertainty was chosen to be a 100\% (maximal) to ensure the effect of the \gls{mec} parameter would not be an underestimate. 
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap5/tweak_nsigma_nue/genie_ResDecayGamma_Genie_nuelikeCChigh_1sigma_genie_ResDecayGamma_Genie.png}
-    \caption[+1$\sigma$ variation comparison for the genie\_ResDecayGamma\_Genie parameter.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the 'genie\_ResDecayGamma\_Genie' modern interaction systematic parameter.}
-    \label{fig:my_label}
-\end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap5/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_modern_xsec.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
 
+\clearpage
 \section{Other Systematics}
 MEC, POT, Detector, Energy scale - maybe put some of these in above sections.
+
+\begin{table}[]
+\begin{adjustbox}{width=\textwidth,center}
+	\begin{tabular}{l lllll}
+		\hline
+		& \multicolumn{5}{c}{\textbf{Applies to}}                                                                                  \\
+		\textbf{Systematic}    & \textbf{Beam} & \textbf{Detector} & \textbf{Sample}        & \textbf{Mode} & \textbf{Reco. energy bin edges}                            \\ \hline
+		$f_0 - f_7$   & FHC  & SBND     & $\nu_{\mu}$CC-like & signal/$\nu_{\mu}$CC & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, $\infty$\}      \\
+		$f_8 - f_{13}$    & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/NC               & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{14}$          & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/Dirt             & \{0, $\infty$\}                                         \\
+		$f_{15}$          & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/Cosmics          & \{0, $\infty$\}                                         \\ \hline
+		$f_{16}-f_{24}$     & FHC  & SBND     & $\nu_{e}$CC-like     & signal/$\nu_{e}$CC     & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{25} - f_{33}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/$\nu_{\mu}$CC      & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{34} - f_{42}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NC1$\gamma$        & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{43} - {f_51}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NC1$\pi^0$         & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{52} - f_{60}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NCother          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{61} - f_{66}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/Dirt             & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{67} - f_{72}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/Cosmics          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\ \hline
+		$f_{73} - f_{145}$  & \multicolumn{5}{l}{As above, but for $\mu$B}                                                                        \\ \hline
+		$f_{146} - f_{218}$ & \multicolumn{5}{l}{As above, but for ICARUS}                                                                    \\ \hline
+	\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
 \section{Other Analysis Choices}
 All the stuff that was 'agreed' between fitters - Baseline Approximation, Binning, Spectra energy range etc.
 
