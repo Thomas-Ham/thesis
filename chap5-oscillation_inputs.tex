@@ -104,7 +104,7 @@ Link in with Energy Reco. section
 \end{table}
 
 \clearpage
-\section{Flux Systematics}
+\section{Flux Systematics}\label{sec:flux_syst}
 \subsection*{Optical Flux Systematics}
 The optical flux systematics are comprised of two parameters; the \textit{skin effect} and the \textit{horn current}. The horn current parameter is simply the uncertainty of the supplied current to the focusing horn. Since the current is linked to the focusing properties of the horn, uncertainty on the current leads to an uncertainty on the neutrino flux. The focusing horn is surrounded by a conductor where currents travel on the surface of the conductor. The skin effect is a measure of how much these surface currents penetrate into the conductor which in turn effect the internal fields of the conductor. Therefore, due to the skin effect, the strength of the magnetic field that particles propagating through the horn experience may vary \cite{BNB_flux}.
 
@@ -213,7 +213,7 @@ The intensity of the proton beam is monitored by two toroids and it has been fou
 
 
 \clearpage
-\section{Interaction Systematics}
+\section{Interaction Systematics}\label{sec:interaction_syst}
 The uncertainties associated with neutrino interactions are provided by GENIE and are implemnted using the GENIE ReWeight package. This is the case for all the interaction systematics considered here except for the \gls{mec} systematic (see \SectionRef{sec:MEC_uncertainty}). The GENIE reweighting scheme works as follows: For each quantity, \textit{P}, which has an associated uncertainty, a systematic parameter, $x_P$ is introduced. Varying $x_P$ will modify, \textit{P} such that
 \begin{equation}
     P \rightarrow P' = P (1 + x_P . \frac{\delta P}{P}),
@@ -369,18 +369,43 @@ A \gls{mec} uncertainty parameter which specifically affects \gls{mec} events is
 \clearpage
 \section{Other Systematics}
 
-Microboone wasn't included in order to save computing time + it has a minimal impact on sensitiivites (see X plot) - it would be trivial to add. 
+Efficiency systematics and energy scale systematics are not implemented in the \textit{standard} analyses because there currently isn't a good handle on how to correctly quantify them. A rigorous scheme akin to those described in \SectionRef{sec:flux_syst} and \SectionRef{sec:interaction_syst} doesn't exist, so instead in-house methods have been developed which are described below.
+
+\subsection{Efficiency Systematics}
+
+The current scheme for implementing efficiency (detector) systematics into a fit is by use of a covariance matrix where each element is defined by the systematics outlined in  \TableRef{table:efficiency_systematics}. In general, we assume that a covariance matrix $\mathcal{M}_{ij}$ is comprised of both correlated uncertainties and uncorrelated uncertainties such that
+\begin{equation}
+    \mathcal{M}_{ij} = \mathcal{M}_{ij}^{corr} + \mathcal{M}_{ij}^{uncorr},
+\end{equation}
+where $\mathcal{M}_{ij}^{corr}$ is the correlated component and $\mathcal{M}_{ij}^{uncorr}$ is the uncorrelated component. For correlated uncertainties,
+\begin{equation}
+  \mathcal{M}_{ij}^{corr}=\begin{cases}
+    \sigma_i^2, & \text{$i = j$}\\
+    C_{ij} \sigma_i \sigma_j, & \text{$i \neq j$},
+  \end{cases}
+\end{equation}
+where $C_{ij}$ represents the correlation between the off-diagonal elements and $\sigma_{i,j}$ is some percentage error associated with each systematic. In the case of fully correlated uncertainties, $C_{ij}$ reduces to one and $\sigma_i = \sigma_j$. For uncorrelated uncertainties,
+\begin{equation}
+  \mathcal{M}_{ij}^{uncorr}=\begin{cases}
+    \sigma_i^{'2}, & \text{$i = j$}\\
+    0, & \text{$i \neq j$},
+  \end{cases}
+\end{equation}
+If any correlated errors are assumed to by fully correlated, $\mathcal{M}_{ij}$ will then have diagonal elements given by $\sigma_i^2 + \sigma_i^{'2}$ and off diagonal elements given by $\sigma_i^2$.
+
+A set of example covariance matrices are shown in \FigureRef{fig:efficiency_cov_matrices}. The top left plot corresponds to a 10\% correlated error only. The remaining three plots all have a correlated error of 2\%, with some varying amounts of an uncorrelated error associated with each systematic. 
 
 \begin{figure}
     \centering
-    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_32x32_type1_cor10.00pct.root.pdf}
-    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_32x32_type2_cor2.00pct_sbnduncor0.50pct_icarusuncor0.50pct.root.pdf}
-    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_32x32_type2_cor2.00pct_sbnduncor2.00pct_icarusuncor0.50pct.root.pdf}
-    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_32x32_type3_cor2.00pct_bulkuncor0.50pct_sbndpeakEnumuCCuncor2.00pct.root.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type1_cor10.00pct.root.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type2_cor2.00pct_sbnduncor1.00pct_ubooneuncor1.00pct_icarusuncor1.00pct.root.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type2_cor2.00pct_sbnduncor2.00pct_ubooneuncor0.50pct_icarusuncor0.50pct.root.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type3_cor2.00pct_bulkuncor0.50pct_allpeakEnumuCCuncor2.00pct.root.pdf}
+    \caption{Covariance matrices produced to investigate the effects of efficiency systamatics for the \numu disappearance channel. Top left: A 10\% fully correlated error only. Top right: A 2\% fully correlated error with an additional 1\% uncorrelated error across all bins. Bottom left: A 2\% fully correlated error with an additional 2\% uncorrelated error for all \gls{sbnd} bins and a 0.5\% uncorrelated error for all \gls{microboone} and \gls{icarus} bins. Bottom right: A 2\% fully correlated error with and additional 2\% uncorrelated error for the peak energy bins (0.6 - 1.0 GeV) in each detector and a 0.5\% uncorrelated error for all other bins.}
+    \label{fig:efficiency_cov_matrices}
 \end{figure}
-Detector, Energy scale.
+
+
 
 \begin{table}[]
 \begin{adjustbox}{width=\textwidth,center}
@@ -403,8 +428,20 @@ Detector, Energy scale.
 		$f_{146} - f_{218}$ & \multicolumn{5}{l}{As above, but for ICARUS}                                                                    \\ \hline
 	\end{tabular}
 \end{adjustbox}
-\end{table}
+\end{table}\label{table:efficiency_systematics}
 
+\subsection{Energy Scale Systematic}
+
+The energy scale systematic is a global systematic to account for the fact that events are binned based on their energy. Uncertainty on the reconstructed neutrino energy means that it's possible certain events to \textit{migrate} between energy bins. Since the energy distribution of events isn't flat, this migration would in general not be uniform. If the neutrino energy were to be 'dialled-up', the number of events migrating from a given bin, $b$, to the neighbouring bin, $b + 1$, would be less than the number of events migrating from bin, $b - 1$, to $b$. This effect is shown below in \FigureRef{fig:energy_scale}. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap5/energy_scale.png}
+    \caption{Possible event migration due to uncertainty on the reconstructed neutrino energy.}
+    \label{fig:energy_scale}
+\end{figure}
+
+Since the energy scale systematic is a global one, it is applied across all energy bins, for all modes, in the form a $1 \times 1$ covariance matrix.
 
 \section{Other Analysis Choices}
 All the stuff that was 'agreed' between fitters - Baseline Approximation, Binning, Spectra energy range etc.
