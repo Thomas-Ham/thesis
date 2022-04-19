@@ -367,13 +367,13 @@ A \gls{mec} uncertainty parameter which specifically affects \gls{mec} events is
 
 
 \clearpage
-\section{Other Systematics}
+\section{Other Systematics}\label{sec:other_syst}
 
 Efficiency systematics and energy scale systematics are not implemented in the \textit{standard} analyses because there currently isn't a good handle on how to correctly quantify them. A rigorous scheme akin to those described in \SectionRef{sec:flux_syst} and \SectionRef{sec:interaction_syst} doesn't exist, so instead in-house methods have been developed which are described below.
 
-\subsection{Efficiency Systematics}
+\subsection{Efficiency Systematics}\label{sec:efficiency_syst}
 
-The current scheme for implementing efficiency (detector) systematics into a fit is by use of a covariance matrix where each element is defined by the systematics outlined in  \TableRef{table:efficiency_systematics}. In general, we assume that a covariance matrix $\mathcal{M}_{ij}$ is comprised of both correlated uncertainties and uncorrelated uncertainties such that
+The current scheme for implementing efficiency (detector) systematics into a fit is by use of a covariance matrix where each element is defined by the systematics outlined in  \TableRef{table:efficiency_systematics}. This allows for the lack of associated event reweighting schemes to be bypassed whilst still being able to capture varying uncertainties being applied to different kinematic ranges, detectors and signal or background processes in each sample. In general, we assume that a covariance matrix $\mathcal{M}_{ij}$ is comprised of both correlated and uncorrelated uncertainties such that
 \begin{equation}
     \mathcal{M}_{ij} = \mathcal{M}_{ij}^{corr} + \mathcal{M}_{ij}^{uncorr},
 \end{equation}
