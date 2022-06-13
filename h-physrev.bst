@@ -773,6 +773,8 @@ new.block
 format.btitle "title" output.check
 new.block
 "PhD thesis" format.thesis.type output.nonnull
+format.doi output
+howpublished output
 school "school" output.check
 address output
 format.date "year" output.check
