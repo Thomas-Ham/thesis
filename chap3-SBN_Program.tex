@@ -94,9 +94,44 @@ where $\xi = \alpha Q_0/E$. $\alpha$ is a free parameter and $Q$ and $Q_0$ are d
 
 
 \subsubsection{Space Charge}
-The electric field in a \gls{tpc} is usually designed to be uniform between the cathode and the anode, however, particularly for surface level detectors this often doesn't end up being the case. Cosmic muons may enter the detector ionising the argon atoms. The ionised electrons and argon ions then drift towards the anode and cathode respectively, however the drift time for the ions is much greater than the electron drift time. If the flux of cosmic muons entering the detector is sufficiently large, this results in a significant positive charge build up towards the cathode. This effect is known as \textit{space charge} and directly impacts the recombination effect since it is linked to the magnitude of local electric field as well as affecting the drifting electrons.
+The electric field in a \gls{tpc} is usually designed to be uniform between the cathode and the anode, however, particularly for surface level detectors this often doesn't end up being the case. Cosmic muons may enter the detector ionising the argon atoms. The ionised electrons and argon ions then drift towards the anode and cathode respectively, however the drift time for the ions is much greater than the electron drift time. If the flux of cosmic muons entering the detector is sufficiently large, this results in a significant positive charge build up towards the cathode. This effect is known as \textit{space charge} and directly impacts the recombination effect since it is linked to the magnitude of local electric field as well as affecting the drifting electrons \cite{microboone_sce}.
 
-\textcolor{red}{SOME SPACE CHARGE MATH?}
+The ion drift velocity, $\vec v$ is given by
+\begin{equation}
+    \vec v = \mu \vec E,
+\end{equation}
+where $\mu$ is ion mobility and $\vec E$ is the electric field. The build up of charge density, $\rho$, is given by the continuity equation,
+\begin{equation}
+    \vec \nabla \cdot \vec J + \frac{\partial p}{\partial t} = K,
+\label{eq:space_charge_continuity}
+\end{equation}
+where $\vec J = \rho \vec v$ and \textit{K} is the volume rate at which ion pairs are created \newline ($[K]~=~$~ion~pairs/volume/second) \cite{space_charge_math}. 
+
+With the simplified assumption that the build up of charge is constant (time-independent) and that the drift direction is only in the x direction which is the same as the electric field, \EquationRef{eq:space_charge_continuity} may be reduced to 
+\begin{equation}
+    \frac{d \rho v}{dx} = K.
+\label{eq:reduced_sapce_charge_continuity}
+\end{equation}
+Gauss's law states that,
+\begin{equation}
+    \nabla \cdot \vec E = \frac{\rho}{\epsilon},
+\label{eq:Gauss's_law}
+\end{equation}
+where $\epsilon$ is the dielectric constant of the medium.
+By combining \EquationRef{eq:reduced_sapce_charge_continuity} and \EquationRef{eq:Gauss's_law} it follows that
+\begin{equation}
+    \frac{dE}{dx} = \frac{Kx}{\mu E \epsilon}.
+\label{eq:sc_gauss_combo}
+\end{equation}
+By defining the coordinates of the system such that the anode is at $x = 0$ and $0 \leq x \leq D$ where \textit{D} is the position of the cathode, \EquationRef{eq:sc_gauss_combo} may be integrated via,
+\begin{equation}
+    \int_{E_A}^E E'dE' = \int_0^x \frac{Kx'}{\mu \epsilon}dx',
+\end{equation}
+where $E_A$ is the electric field at the anode and both $E'$ and $x'$ are dummy variables. This gives an x dependent electric field solution,
+\begin{equation}
+    E(x) = \sqrt{E^2_A + \frac{Kx^2}{\mu \epsilon}} = E_0 \sqrt{\left (\frac{E_A}{E_0}\right ) ^2 + \alpha^2 \frac{x^2}{D^2}},
+\end{equation}
+where $E_0 = V/D$ is the nominal electric field, \textit{V} is the difference in the voltage between the anode and cathode and $\alpha = \frac{D}{E_0}\sqrt{\frac{K}{\epsilon \mu}}$ which is a dimensionless parameter \cite{space_charge_math}.
 
 \section{Booster Neutrino Beam}\label{sec:BNB}
 The \gls{bnb} is produced by firing 8 GeV protons onto a beryllium target resulting in a secondary beam of hadrons. A toroidal focusing horn surrounds the target and focuses or defocuses charged particles depending on the sign of their charge. The focused hadrons then travel down a 50 m tunnel where most of them will decay producing muon neutrinos and small fraction of electron neutrinos. At the end of the 50 m decay region is a concrete and steel absorber designed to absorb any non-neutrino particles. A schematic of the \gls{bnb} layout is shown in \FigureRef{fig: BNB schematic}. The decay modes of the hadrons resulting in a neutrino and the corresponding branching ratios are listed in \TableRef{Table: BNB decay modes}. 
@@ -151,6 +186,228 @@ $\bar{\nu}_{e}$    & 0.05                & 0.4
 \end{figure}
 The systematic uncertainties associated with the \gls{bnb} account for an error of $\sim 9\%$ at the peak of the $\nu_\mu$ flux with a larger error for energies either side of the peak. The systematic uncertainties are mainly due to determining the rate and spectrum of neutrinos for each proton on target, determining the rate and spectrum of secondary particles produced from protons interacting with the beryllium target, the rate of hadronic interactions, the focusing properties of the magnetic horn and the beamline geometry \cite{BNB_flux}. 
 
+\section{Neutrino Interactions}\label{sec:neutrino_interactions}
+
+The following section outlines some of the most common \gls{cc} and \gls{nc} interaction processes in \gls{sbn}. The associated \gls{cc} and \gls{nc} Feynman diagrams for these processes are shown in \FigureRef{fig:CC_Feynman_diagrams} and \FigureRef{fig:NC_Feynman_diagrams} respectively. Only examples of neutrino interactions are shown, however, these may be easily adapted to the anti-neutrino case. Additionally, interaction flavours are kept general with \textit{l} representing the lepton flavour. In principle $l \in \{e, \mu, \tau\}$, however, within \gls{sbn} only the electron and muon flavours are relevant. 
+
+\subsection*{Elastic and Quasi-Elastic}
+When particles interact via elastic scattering, energy is conserved and the initial particles do not change. Since neutrinos are neutral particles that weakly interact, \gls{nc} elastic scattering being mediated by the $Z^0$ boson may occur with a neutrino scattering off a proton via
+\begin{equation}
+    \nu_l + p \rightarrow \nu_l + p.
+\end{equation}
+
+Quasi-elastic scattering is similar to elastic scattering, however charge is exchanged and therefore the interaction is mediated by the $W^+$ boson. In these interactions the incoming neutrino scatters off a neutron and is converted to it's charged lepton counterpart whilst the neutron changes to a proton via
+\begin{equation}
+    \nu_l + n \rightarrow l^- + p.
+\end{equation}
+\gls{ccqe} interactions are the most abundant in the GeV range, which is the energy range of the \gls{bnb} \cite{Measurement_of_the_Antineutrino_Double-Differential_Charged-Current_Quasi-Elastic_Scattering_Cross_Section_at_MINERvA_book}. 
+
+\subsection*{Resonant}
+At higher energies, the neutrino-nucleon interaction may cause the nucleon to be excited into a Delta resonance (Delta baryon). The Delta resonance will then decay back into a nucleon plus a pion. For \gls{cc} interaction this occurs via
+\begin{equation}
+    \nu_l + N \rightarrow l^- + \Delta \rightarrow l^- + N + \pi,
+\end{equation}
+whereas for \gls{nc} interactions this occurs via,
+\begin{equation}
+    \nu_l + N \rightarrow \nu_l + \Delta \rightarrow \nu_l + N +\pi.
+\end{equation}
+In both cases, \textit{N} represent some nucleon with $\Delta$ and $\pi$ being one of the possible Delta resonances and pions appropriate for a given interaction \cite{Measurement_of_the_Antineutrino_Double-Differential_Charged-Current_Quasi-Elastic_Scattering_Cross_Section_at_MINERvA_book} \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cross-Section_Ratio_for_Muon_Neutrinos_at_the_T2K_Near_Detector_thesis}. 
+
+\subsection*{Meson Exchange Current}
+Bound nucleon pairs may be thought of as being bound due to the exchange of virtual mesons. This exchange of mesons is known as a \gls{mec}. In this type of interaction, multiple nucleons are excited in a quasi-elastic fashion. The boson may couple to either a nucleon or the meson that's being exchanged. This leads to a number of possibilities; 1) the boson couples to the exchanged meson (pion-in-flight diagram), 2) the boson couples at the vertex between the nucleon and exchanged pion (seagull diagram), 3) the meson exchange occurs with a virtual intermediate nucleon to which the boson couples, 4) as in case 3), but the intermediate particle is a Delta resonance instead of a nucleon. Feynman diagrams of the 4 possibilities are shown in \FigureRef{fig:mec_feynman_diagrams} with the \gls{mec} diagrams shown in \FigureRef{fig:CC_Feynman_diagrams} and \FigureRef{fig:NC_Feynman_diagrams} being generic examples of the interaction \cite{Measurement_of_the_Antineutrino_Double-Differential_Charged-Current_Quasi-Elastic_Scattering_Cross_Section_at_MINERvA_book}\cite{Adjusting_neutrino_interaction_models_and_evaluating_uncertainties_using_NOvA_near_detector_data}
+\cite{Seagull_and_pion-in-flight_mec}.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap3/mec_diagrams.png}
+    \caption[Feynman diagrams of possible \gls{mec} interactions.]{Feynman diagrams of possible \gls{mec} interactions. The boson may couple to (a) the pion-in-flight, (b) the \gls{mec} vertex (seagull diagram), (c) an intermediate nucleon, (d) an intermediate Delta resonance \cite{Measurement_of_the_Antineutrino_Double-Differential_Charged-Current_Quasi-Elastic_Scattering_Cross_Section_at_MINERvA_book}.}
+    \label{fig:mec_feynman_diagrams}
+\end{figure}
+
+\newpage
+\subsection*{Deep Inelastic Scattering}
+At even higher energies than those for resonant interactions ($>\mathcal{O}$(5 GeV)), \gls{dis} interactions become dominant. In \gls{dis} interactions, the neutrino scatters off individual quarks rather than the nucleon as a whole. This results in the break-up of the nucleon, but since the strong force prevents single quarks from existing a hadronic shower \textit{X}, is produced \cite{Fundamentals_of_Neutrino_Physics_and_Astrophysics} \cite{Measurement_of_the_Antineutrino_Double-Differential_Charged-Current_Quasi-Elastic_Scattering_Cross_Section_at_MINERvA_book}. A \gls{cc} \gls{dis} interaction occurs via
+\begin{equation}
+    \nu_l + N \rightarrow l^- + X,
+\end{equation}
+whereas the \gls{nc} interaction occurs via
+\begin{equation}
+    \nu_l + N \rightarrow \nu_l + X.
+\end{equation}
+
+
+\subsection*{Coherent}
+Coherent interactions occur when the neutrino scatters off the  whole nucleus with a negligible momentum transfer. This results in a pion being produced, but leaves the target nucleus unaltered. Coherent scattering may occur for both \gls{cc} and \gls{nc} interactions via
+\begin{equation}
+    \nu_l + A \rightarrow l^- + A + \pi^+
+\end{equation}
+and
+\begin{equation}
+    \nu_l + A \rightarrow \nu_l + A + \pi^0
+\end{equation}
+respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cross-Section_Ratio_for_Muon_Neutrinos_at_the_T2K_Near_Detector_thesis}\cite{Adjusting_neutrino_interaction_models_and_evaluating_uncertainties_using_NOvA_near_detector_data}. 
+
+\newpage
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{CC QE} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$l$, labelDistance=0.3, showArrow=true, flip=false]{6.00, 8.00}{8.00, 9.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{4.00, 9.00}{6.00, 8.00}
+    \weak[color=000000, label=$W^+$, labelDistance=0.3]{6.00, 8.00}{6.00, 6.00}
+    \fermion[label=$p$, labelDistance=0.2, showArrow=true]{6.00, 6.00}{8.00, 5.00}
+    \fermion[label=$n$, labelDistance=0.3, showArrow=true]{4.00, 5.00}{6.00, 6.00}
+\end{feynman}
+}
+\end{subfigure} 
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{CC Res} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$l$, labelDistance=0.3, showArrow=true, flip=false]{6.00, 8.00}{8.00, 9.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{4.00, 9.00}{6.00, 8.00}
+    \weak[color=000000, label=$W^+$, labelDistance=0.3]{6.00, 8.00}{6.00, 6.00}
+    \fermion[label=$N$, labelDistance=0.3, showArrow=true, flip=true]{6.00, 6.00}{4.00, 5.00}
+    \dashed[label=$\Delta$, labelDistance=0.2]{6.00, 6.00}{7.00, 5.50}
+    \fermion[label=$N$, labelDistance=0.2]{7.00, 5.50}{8.00, 5.00}
+    \fermion[label=$\pi$,labelDistance=0.3]{7.00, 5.50}{8.00, 6.00}
+\end{feynman}
+}
+\end{subfigure}
+
+\vspace{1cm}
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{CC MEC} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$l$, labelDistance=0.3, showArrow=true, flip=false]{6.00, 8.00}{8.00, 9.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{4.00, 9.00}{6.00, 8.00}
+    \weak[color=000000, label=$W^+$, labelDistance=0.3]{6.00, 8.00}{6.00, 6.00}
+    \fermion[label=$n$, labelDistance=0.4, showArrow=true, flip=true]{6.00, 6.00}{4.00, 5.00}
+    \fermion[label=$p$, labelDistance=0.3]{6.00, 6.00}{8.00, 5.00}
+    \fermion[label=$p$, labelDistance=0.4]{4.00, 4.00}{6.00, 5.00}
+    \dashed[showArrow=false, label=$\pi^+$, labelDistance=0.1]{6.00, 5.00}{6.00, 6.00}
+    \fermion[label=$p$, labelDistance=0.3]{6.00, 5.00}{8.00, 4.00}
+\end{feynman}
+}
+\end{subfigure}
+\begin{subfigure}{0.3\linewidth}
+\centering \hspace{-0.6cm} \textbf{CC DIS} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$l$, labelDistance=0.3, showArrow=true, flip=false]{24.00, 12.00}{26.00, 13.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{22.00, 13.00}{24.00, 12.00}
+    \fermion[label=$N$, labelDistance=0.4]{22.00, 9.00}{23.70, 10.00}
+    \weak[color=000000, label=$W^+$, labelDistance=0.3]{24.00, 10.30}{24.00, 12.00}
+    \fermion[]{24.30, 10.00}{26.00, 10.5}
+    \fermion[]{24.30, 10.00}{26.00, 10.00}
+    \fermion[]{24.30, 10.00}{26.00, 9.5}
+    \parton{24.00,10.00}{0.30}
+    \textfeynman{26.3,10}{\textbf{X}}
+\end{feynman}
+}
+\end{subfigure}
+\hspace{-0.6cm}
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{CC Coh} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$l$, labelDistance=0.3, showArrow=true, flip=false]{24.00, 12.00}{26.00, 13.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{22.00, 13.00}{24.00, 12.00}
+    \fermion[label=$A$, labelDistance=0.4]{22.00, 9.00}{23.70, 10.00}
+    \weak[color=000000, label=$W^+$, labelDistance=0.3]{24.00, 10.30}{24.00, 12.00}
+    \fermion[label=$\pi^+$, labelDistance=0.4]{24.30, 10.00}{26.00, 10.50}
+    \fermion[label=$A$, labelDistance=0.2]{24.30, 10.00}{26.00, 9.50}
+    \parton{24.00,10.00}{0.30}
+\end{feynman}
+}
+\end{subfigure}
+\caption[Feynman diagrams of the \gls{cc} processes most commonly expected in \gls{sbn}.]{Feynman diagrams of the \gls{cc} processes most commonly expected in \gls{sbn}. $\nu_l$ corresponds to the neutrino with leptonic flavour \textit{l}, with \textit{l} typically being either an electron or a muon. $\Delta$ denotes one of the possible Delta resonances, \textit{N} denotes a nucleon, \textit{X}, denotes some set of final hadrons and \textit{A} denotes a nucleus.}
+\label{fig:CC_Feynman_diagrams}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{NC Elastic} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$\nu_l$, labelDistance=0.3]{6.00, 7.00}{8.00, 8.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{4.00, 8.00}{6.00, 7.00}
+    \weak[color=000000, label=$Z^0$, labelDistance=0.3]{6.00, 7.00}{6.00, 5.00}
+    \fermion[label=$p$, labelDistance=0.3]{4.00, 4.00}{6.00, 5.00}
+    \fermion[label=$p$, labelDistance=0.2]{6.00, 5.00}{8.00, 4.00}
+\end{feynman}
+}
+\end{subfigure}
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{NC Res} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$l$, labelDistance=0.3, showArrow=true, flip=false]{6.00, 8.00}{8.00, 9.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{4.00, 9.00}{6.00, 8.00}
+    \weak[color=000000, label=$Z^0$, labelDistance=0.3]{6.00, 8.00}{6.00, 6.00}
+    \fermion[label=$N$, labelDistance=0.3, showArrow=true, flip=true]{6.00, 6.00}{4.00, 5.00}
+    \dashed[label=$\Delta$, labelDistance=0.2]{6.00, 6.00}{7.00, 5.50}
+    \fermion[label=$N$, labelDistance=0.2]{7.00, 5.50}{8.00, 5.00}
+    \fermion[label=$\pi$,labelDistance=0.3]{7.00, 5.50}{8.00, 6.00}
+\end{feynman}
+}
+\end{subfigure}
+
+\vspace{1cm}
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{NC MEC} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$\nu_l$, labelDistance=0.3, showArrow=true, flip=false]{6.00, 8.00}{8.00, 9.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{4.00, 9.00}{6.00, 8.00}
+    \weak[color=000000, label=$Z^0$, labelDistance=0.3]{6.00, 8.00}{6.00, 6.00}
+    \fermion[label=$n$, labelDistance=0.4, showArrow=true, flip=true]{6.00, 6.00}{4.00, 5.00}
+    \fermion[label=$n$, labelDistance=0.3]{6.00, 6.00}{8.00, 5.00}
+    \fermion[label=$p$, labelDistance=0.4]{4.00, 4.00}{6.00, 5.00}
+    \dashed[showArrow=false, label=$\pi^0$, labelDistance=0.1]{6.00, 5.00}{6.00, 6.00}
+    \fermion[label=$p$, labelDistance=0.3]{6.00, 5.00}{8.00, 4.00}
+\end{feynman}
+}
+\end{subfigure}
+\begin{subfigure}{0.3\linewidth}
+\centering \hspace{-0.6cm}\textbf{NC DIS} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$\nu_l$, labelDistance=0.3, showArrow=true, flip=false]{24.00, 12.00}{26.00, 13.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{22.00, 13.00}{24.00, 12.00}
+    \fermion[label=$N$, labelDistance=0.4]{22.00, 9.00}{23.70, 10.00}
+    \weak[color=000000, label=$Z^0$, labelDistance=0.3]{24.00, 10.30}{24.00, 12.00}
+    \fermion[]{24.30, 10.00}{26.00, 10.50}
+    \fermion[]{24.30, 10.00}{26.00, 10.00}
+    \fermion[]{24.30, 10.00}{26.00, 9.50}
+    \parton{24.00,10.00}{0.30}
+    \textfeynman{26.3,10}{\textbf{X}}
+\end{feynman}
+}
+\end{subfigure}
+\hspace{-0.6cm}
+\begin{subfigure}{0.3\linewidth}
+\centering \textbf{NC Coh} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$\nu_l$, labelDistance=0.3, showArrow=true, flip=false]{24.00, 12.00}{26.00, 13.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{22.00, 13.00}{24.00, 12.00}
+    \fermion[label=$A$, labelDistance=0.4]{22.00, 9.00}{23.70, 10.00}
+    \weak[color=000000, label=$Z^0$, labelDistance=0.3]{24.00, 10.30}{24.00, 12.00}
+    \fermion[label=$\pi^0$, labelDistance=0.4]{24.30, 10.00}{26.00, 10.50}
+    \fermion[label=$A$, labelDistance=0.2]{24.30, 10.00}{26.00, 9.50}
+    \parton{24.00,10.00}{0.30}
+\end{feynman}
+}
+\end{subfigure}
+\caption[Feynman diagrams of the \gls{nc} processes most commonly expected in \gls{sbn}.]{Feynman diagrams of the \gls{nc} processes most commonly expected in \gls{sbn}. $\nu_l$ corresponds to the neutrino with leptonic flavour \textit{l}, with \textit{l} typically being either an electron or a muon. $\Delta$ denotes one of the possible Delta resonances, \textit{N} denotes a nucleon, \textit{X}, denotes some set of final hadrons and \textit{A} denotes a nucleus.}
+\label{fig:NC_Feynman_diagrams}
+\end{figure}
 
 
 \section{SBND}\label{sec:SBND}

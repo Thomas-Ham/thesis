@@ -1,10 +1,11 @@
 \chapter{VALOR Analysis}
 \label{chap:VALOR}
 
+\textcolor{red}{STAR PLOT? DOESN'T LOOK AESTHETICALLY PLEASING + MAY BRING UP QUESTION I DON'T HAVE GOOD ANSWERS TOO.. }
+
 \section{VALOR Framework}\label{sec:VALOR_framework}
 
-The \gls{valor} framework is neutrino fitting framework. It was first developed for the \gls{t2k} experiment, but has since been adapted to also cover \gls{dune} and the \gls{sbn} program \cite{VALOR}.
-
+The \gls{valor} framework is a neutrino fitting framework that was first developed for the \gls{t2k} experiment, but has since been adapted to also cover \gls{dune} and the \gls{sbn} program \cite{VALOR}.
 
 The data inputs used for an oscillation analysis are mainly provided in the form of \glspl{mct}, which provide a mapping between true and reconstructed variables. These \glspl{mct}, \textit{T}, encapsulate a number of quantities describing a given event and are listed below,
 
@@ -41,7 +42,7 @@ In the limit of many samples, quantities of the form $-2ln~\lambda$ have a $\chi
 \textcolor{red}{Lots of other shit I don't really understand.}
 
 
-In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \gls{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. In the case of oscillation analyses this corresponds to the case where no oscillation are observed which is the null-hypothesis. For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
+In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \gls{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. The exclusion region corresponds to the region of parameter space where the null-hypothesis is excluded with a given confidence whereas the allowed region corresponds to the region of parameter space which is allowed for a given confidence for some set of injected oscillation parameters. In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillation are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal.  For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
 
 \begin{table}[h!]
 \begin{tabular}{lcc}
@@ -66,7 +67,7 @@ $\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
 \end{table}
 
 
-\section{Systemtic Uncertainties}
+\section{Systemtic Uncertainties}\label{sec:systematic_validation}
 Before the flux and interaction systematics contained in the input files can be consumed by \gls{valor}, they first need to be processed. Depending on whether a given systematic parameter is entirely uncorrelated or not, this is done in two different ways. For the uncorrelated parameters, this is done by constructing a set of associated response functions which represent the impact on the event rate that tweaking a given systematics parameter will have. For a given systematic parameter, individual response functions are constructed for each combination of \textit{d, b, s, m, r} and \textit{t}. Each response function is a 13 knot spline which nominally represents the change in event rate from parameter variations ranging from [-3, +3]$\sigma$ in 0.5$\sigma$ intervals. The response functions are constructed by first identifying the 12 universes which have a variation closest to each of the non-zero $\sigma$ intervals and then taking the ratio of the event rate from the selected universe in a 2D (r, t) bin to the nominal events rate in that bin. By definition there will be a knot at 0$\sigma$ with a response of 1, however, in most cases the remaining 12 knots will not be exactly at 0.5$\sigma$ intervals. 
 
 For the case of correlated parameters, it is not straightforward to construct response functions as was done for the uncorrelated parameters because any variations will be due to multiple parameters. These parameters are instead represented by a covariance matrix. Matrices of this type, $\mathbf{C_{ij}}$, are constructed such that,
@@ -84,56 +85,34 @@ In order to establish that the systematic parameters are being correctly handled
     \item Generate N toy samples (typically 500 in order to match the total number of universes) with some set of systematic parameters randomly tweaked. The one sigma spread from all the toys is found. This is done for both \gls{valor} and for the universe files and the results are compared. 
 \end{enumerate}
 
-An example of the $+1\sigma$ \textit{horncurrent\_FluxUnisim} variation for the \nue appearance sample in \gls{sbnd} from the \gls{valor} response functions and the universes is shown in \FigureRef{fig:+1sigma_horncurrent}. (Note: the terms \textit{spline} and \textit{response function} are used interchangeably). In this example there is perfect agreement between variations seen by \gls{valor} and the universes. A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} is shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue appearance channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $sin^22\theta_{\mu e} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples is needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
+As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}, \textit{genie\_ccresAxial} and \textit{genie\_ResDecayGamma} from the \nue sample in \gls{sbnd} between the \gls{valor} response functions and the universes is shown in \FigureRef{fig:+1sigma_variations}. (Note: the terms \textit{spline} and \textit{response function} are used interchangeably). A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} is shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $sin^22\theta_{\mu e} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples are needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
 
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/tweak_nsigma_nue/horncurrent_FluxUnisim_nuelikeCChigh_1sigma_horncurrent_FluxUnisim.png}
-    \caption[+1$\sigma$ variation comparison for the horncurrent\_FluxUnisim parameter.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the 'horncurrent\_FluxUnisim' flux systematic parameter.}
-    \label{fig:+1sigma_horncurrent}
+\begin{figure}[h!]
+    \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_nsigma_nue/horncurrent_FluxUnisim_nuelikeCChigh_1sigma_horncurrent_FluxUnisim.png}
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/tweak_nsigma_nue/genie_ccresAxial_Genie_nuelikeCChigh_1sigma_genie_ccresAxial_Genie.png}
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/tweak_nsigma_nue/genie_ResDecayGamma_Genie_nuelikeCChigh_1sigma_genie_ResDecayGamma_Genie.png}
+  \captionsetup{width=0.49\textwidth}
+  \parbox[b]{0.49\textwidth}%
+  {
+   \caption[+1$\sigma$ variation comparison for the horncurrent\_FluxUnisim, genie\_ccresAxial and genie\_ResDecayGamma parameters.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the horncurrent\_FluxUnisim flux systematic parameter, the genie\_ccresAxial proposal interaction paramater and the genie\_ResDecayGamma modern interaction parameter. The horncurrent\_FluxUnisim parameter shows perfect agreement between \gls{valor} and the universes whereas both the genie\_ccresAxial and genie\_ResDecayGamma parameters only have an event rate difference of 2. \\\\\\\\\\}
+   \label{fig:+1sigma_variations}}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_flux_uncorr.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
+\FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from \gls{valor} and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using the response functions in \gls{valor} and the analagous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios. There are some minor differences between the variation in \gls{valor} and the universes, however, event perfect agreement isn't expected since the 1$\sigma$ variations are found by taking the average from many toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
+
+\begin{figure}[h!]
+    \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_flux_uncorr.pdf}
+    \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_proposal_xsec.pdf}
+    \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_modern_xsec.pdf}
+  \captionsetup{width=0.49\textwidth}
+  \parbox[b]{0.49\textwidth}%
+  {
+   \caption[The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematics.]{The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematic parameters. \textcolor{red}{NEED TO SORT OUT PLOT LABELS} \\\\\\\\\\}
+   \label{fig:1sigma_variations_toys}}
 \end{figure}
 
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/tweak_nsigma_nue/genie_ccresAxial_Genie_nuelikeCChigh_1sigma_genie_ccresAxial_Genie.png}
-    \caption[+1$\sigma$ variation comparison for the genie\_ccresAxial\_Genie parameter.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the 'genie\_ccresAxial\_Genie' proposal interaction systematic parameter.}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_proposal_xsec.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/tweak_nsigma_nue/genie_ResDecayGamma_Genie_nuelikeCChigh_1sigma_genie_ResDecayGamma_Genie.png}
-    \caption[+1$\sigma$ variation comparison for the genie\_ResDecayGamma\_Genie parameter.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the 'genie\_ResDecayGamma\_Genie' modern interaction systematic parameter.}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_modern_xsec.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\section{\texorpdfstring{$\nu_\mu$ Disappearance Analysis}{numu Disappearance Analysis}}
 \newpage
-
-\section{\texorpdfstring{$\nue$ Analysis}{nue Analysis}} 
+\section{\texorpdfstring{$\nue$ Analysis}{nue Analysis}}\label{sec:nue_analysis}
 
 As was mentioned in \SectionRef{sec:sterile_neutrino_oscillations}, there are two oscillations channels associated with \nue; \nue appearance and \nue disappearance. Since the only difference between these channels is due to oscillations, the nominal event rates are common between the two. 
 
@@ -348,7 +327,7 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN CC Inclusive reconstructed neutrino energy spectra.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom)
+    \caption[SBN \nue CC inclusive reconstructed neutrino energy spectra.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom)
     reconstructed neutrino energy spectra constructed from the samples of $\nue$~CC~inclusive events. The spectra are broken down into the
     contributions from each neutrino interaction mode.\\\\\\}
     \label{fig:nominal_nue_spectra} 
@@ -370,7 +349,7 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/spectra/envelopes/icarus_pre_post_fit_nue.pdf}
-    \caption[ICARUS \nue CC inclusive neutrino energy spectra with a a 1$\sigma$ prefit and postfit envelope.]{ICARUS integrated reconstructed neutrino energy spectrum constructed from the samples of \nue~CC~inclusive events. The $1\sigma$ prefit envelope is shown as well as a $1\sigma$ postfit envelope based on a SBND fit. The reduction in size of the error envelope when going from prefit to postfit shows the impact of SBND on improving the accuracy of the ICARUS prediction.}
+    \caption[ICARUS \nue CC inclusive neutrino energy spectra with a 1$\sigma$ prefit and postfit envelope.]{ICARUS integrated reconstructed neutrino energy spectrum constructed from the samples of \nue~CC~inclusive events. The $1\sigma$ prefit envelope is shown as well as a $1\sigma$ postfit envelope based on a SBND fit. The reduction in size of the error envelope when going from prefit to postfit shows the impact of SBND on improving the accuracy of the ICARUS prediction.}
     \label{fig:icarus_pre_post_fit}
 \end{figure}
 
@@ -386,7 +365,7 @@ The \nue appearance channel is concerned with oscillations from \numu to \nue an
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN CC Inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu e} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the change in event rate.\\\\\\}
+    \caption[SBN \nue appearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu e} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the increase in event rate.\\\\\\}
     \label{fig:nue_spectra_with_osc_overlay} 
   }
 \end{figure}
@@ -439,7 +418,7 @@ The complete \nue appearance exclusion sensitivities and allowed regions for bot
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/overlays/valor_overlays_nue_app.pdf}
-    \caption[\nue appearance contours with external limits.]{\nue appearance exclusion contours and allowed regions for the stat only case and with flux and interaction systematic uncertainties included. External limits from the \gls{lsnd} and \gls{karmen} experiments have been overlayed (The confidence intervals for each contour are shown in the legend and it should be noted that those from external limits are not the same as those from the contours produced for the \gls{sbn} program \cite{LSND_KARMEN_nue_app_contour}.}
+    \caption[\nue appearance contours with external limits.]{\nue appearance exclusion contours and allowed regions for the stat only case and with flux and interaction systematic uncertainties included. External limits from the \gls{lsnd} and \gls{karmen} experiments have been overlayed \cite{LSND_KARMEN_nue_app_contour}. (The confidence intervals for each contour are shown in the legend and it should be noted that those from external limits are not the same as those from the contours produced for the \gls{sbn} program.)}
     \label{fig:nue_app_global_sensitivity}
 \end{figure}
 
@@ -456,7 +435,7 @@ Mirroring the \nue appearance channel, the \nue disappearance channel observes a
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN CC Inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{ee} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the change in event rate.\\\\\\}
+    \caption[SBN \nue disappearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{ee} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the decrease in event rate.\\\\\\}
     \label{fig:nue_disapp_spectra} 
   }
 \end{figure}
@@ -473,6 +452,7 @@ The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the $\nue$
     \label{fig:nue_disapp_spectra_ratios}
 \end{figure}
 
+\newpage
 Similar to \FigureRef{fig:nue_sensitivity_detector_contribution}, \FigureRef{fig:nue_disapp_sensitivity_detector_contribution} shows the \nue disappearance sensitivity from individual detectors and combinations of multiple detectors for both the statistical-only case (Left) and the case with flux and interaction systematics (Right). Again, \gls{sbnd} dominates the sensitivity at high mass splitting whereas \gls{icarus} is dominant for low mass splitting with the emphasis being on the improvement to the overall sensitivity when fits from all three \gls{sbn} detectors are combined.
 
 \begin{figure}[h!]
@@ -493,12 +473,45 @@ The relative contribution of the different systematic groups to the overall excl
     \label{fig:nue_app_syst_groups}
 \end{figure}
 
+\newpage
+The complete \nue disappearance exclusion sensitivities and allowed regions for both the statistical only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:nue_disapp_global_sensitivity} for the entire \gls{sbn} program alongside external limits from the ND280 detector which serves as one of the near detectors as part of the \gls{t2k} experiment \cite{t2k_experiment}. The results for the \gls{sbn} program are shown at a 5$\sigma$ confidence level whereas the allowed region from the \gls{t2k} experiment is shown at both 68\% and 90\% confidence level and the exclusion contour is at a 95\% confidence level \cite{T2K_nue_disapp_contour}. The results from \gls{sbn} exclude a substantial portion of the \gls{t2k} allowed region with the exclusion limits at high $\Delta m^2_{41}$ not being as strong for the current comparison. 
+
 \begin{figure}
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/overlays/valor_overlays_nue_disapp.pdf}
-    \caption[\nue disappearance contours with external limits.]{\nue disappearance exclusion contours and allowed regions for the stat only case and with flux and interaction systematic uncertainties included. External limits from the \gls{t2k} experiments have been overlayed (The confidence intervals for each contour are shown in the legend and it should be noted that those from external limits are not the same as those from the contours produced by the \gls{valor} framework \cite{T2K_nue_disapp_contour}.}
-    \label{fig:my_label}
+    \caption[\nue disappearance contours with external limits.]{\nue disappearance exclusion contours and allowed regions for the stat only case and with flux and interaction systematic uncertainties included. External limits from the \gls{t2k} experiments have been overlayed \cite{T2K_nue_disapp_contour}. (The confidence intervals for each contour are shown in the legend and it should be noted that those from external limits are not the same as those from the contours produced for the \gls{sbn} program.)}
+    \label{fig:nue_disapp_global_sensitivity}
 \end{figure}
+
+\newpage
+\section{\texorpdfstring{$\nu_\mu$ Disappearance Analysis}{numu Disappearance Analysis}}
+
+A similar analysis and validation to that described in  \SectionRef{sec:systematic_validation} and \SectionRef{sec:nue_analysis} that was performed for the two \nue channels was also done for the \numu disappearance channel.
+
+The nominal event rate breakdown for each of the detectors is shown in \FigureRef{fig:numu_disapp_spectra} where an integrated spectrum with oscillation parameters $sin^22\theta_{\mu \mu} = 0.072$, $\Delta m^2_{41} = 1.32 \text{ eV}^2$ has been overlayed. The overall magnitude of the event rate is several order of magnitude greater than that for \nue owing to the fact that the \gls{bnb} consists predominantly of \numu. As was the case for \nue disappearance, the reduction in events for \gls{sbnd} is relatively small whereas for \gls{microboone} and \gls{icarus} it is much more significant.
+
+The complete \numu disappearance exclusion sensitivities and allowed regions for both the statistical only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:numu_disapp_global_sensitivity} for the entire \gls{sbn} program alongside external limits from \gls{minos} and its successor \gls{minos}+, combined results from \gls{sciboone} and \gls{miniboone} and the IceCube experiment \cite{MINOS+} \cite{MiniBooNE/SciBooNE_numu_disapp_contour} \cite{IceCube_numu_disapp_contour}. The results for the \gls{sbn} program are shown at a 5$\sigma$ confidence level whereas the exclusion region from the \gls{minos}/\gls{minos}+, \gls{sciboone}/\gls{miniboone} and IceCube experiments are shown at the 90\% confidence. The IceCube experiment also shows an allowed region at the 99\% confidence level. The results from \gls{sbn} show a stronger sensitivity to that obtained be \gls{miniboone}/\gls{sciboone} for all mass splitting values. The exclusion contour is also comparable to that from \gls{minos}/\gls{minos}+ for $\Delta m^2_{41} \gtrsim 1\text{eV}^2$, however below this value \gls{minos}/\gls{minos}+ provides a stronger limit. The exclusion contour from IceCube again provides a stronger limit at $\Delta m^2_{41} \lesssim 1\text{eV}^2$, but for higher values, \gls{sbn} expects to improve on the results from IceCube. The allowed region from IceCube intersect the one from \gls{sbn} so they aren't fully compatible. 
+
+\begin{figure}[h!]
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/numu_disapp_overlay_dmsq_1.32_sinsq2th_0.072_spectrum_sbn_nd_BNB_FHC_0_modes.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/numu_disapp_overlay_dmsq_1.32_sinsq2th_0.072_spectrum_sbn_uboone_BNB_FHC_1_modes.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/numu_disapp_overlay_dmsq_1.32_sinsq2th_0.072_spectrum_sbn_icarus_BNB_FHC_2_modes.pdf}}
+  \captionsetup{width=0.49\textwidth}
+  \parbox[b]{0.49\textwidth}%
+  {
+    \caption[SBN \numu CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The breakdown of the nominal \numu disappearance spectra overlayed with an integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu \mu} = 0.072$ and $\Delta m^2_{41} = 1.32$~eV$^2$ showing the decrease in event rate.\\\\\\}
+    \label{fig:numu_disapp_spectra} 
+  }
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/overlays/valor_overlays_numu_disapp.pdf}
+    \caption[\numu disappearance contours with external limits.]{\numu disappearance exclusion contours and allowed regions for the stat only case and with flux and interaction systematic uncertainties included. External limits from the MINOS/MINOS+, MiniBooNE/SciBooNE and IceCube experiments have been overlayed \cite{MINOS_numu_disapp_contour}\cite{MiniBooNE/SciBooNE_numu_disapp_contour}\cite{IceCube_numu_disapp_contour}. (The confidence intervals for each contour are shown in the legend and it should be noted that those from external limits are not the same as those from the contours produced for the \gls{sbn} program.)}
+    \label{fig:numu_disapp_global_sensitivity}
+\end{figure}
+
+For a complete discussion of the \numu disappearance channel, see \cite{Rhiannon's_thesis}.
 
 \clearpage
 \section{Additional Efficiency and Energy Scale Systematics}
@@ -510,17 +523,20 @@ As was mentioned in \SectionRef{sec:other_syst}, efficiency systematics are not 
     \item Uncorrelated errors only applied to a single detector at a time.
     \item A poorly constrained uncorrelated error on a single set of bins.
 \end{enumerate}
-The uncertainties applied from efficiency covariance matrices are applied in addition to the flux and interaction systematics. 
+Unless otherwise stated, the uncertainties from efficiency covariance matrices are applied in addition to the flux and interaction systematics. 
 
-\subsection{Impact of efficiency systematics on \numu disappearance sensitivities}
+The study of the impact of different efficiency uncertainties was first done for the \numu channel because it was expected that there would be a greater impact than for either of the \nue channels. This is because the typical event rate for the \numu channel is several order of magnitude greater than that of \nue meaning that the \numu channel is systematics limited whereas the \nue channels may tend towards being statistics limited. Once a contour becomes statistics limited, continuing to apply additional systematic uncertainties will begin to have diminishing impacts. 
 
-The impact of fully correlated uncertainties up to 10\% are shown on the left of \FigureRef{fig:numu_corr_uncorr_error} whilst keeping the uncorrelated uncertainty at 0\%. The right plot shows the impact of increasing the uncorrelated uncertainties uniformly across all bins (with a fixed correlated uncertainty of 2\%). It's clear that the correlated uncertainty has a relatively small impact and that any reduction in sensitivities will be largely dominated by the uncorrelated uncertainty. 
+\subsection{\texorpdfstring{Impact of efficiency systematics on \numu disappearance sensitivities}{Impact of efficiency systematics on numu disappearance sensitivities}}
+
+
+The impact of fully correlated uncertainties up to 10\% are shown on the left of \FigureRef{fig:numu_corr_uncorr_error} whilst keeping the uncorrelated uncertainty at 0\%. The right plot shows the impact of increasing the uncorrelated uncertainties uniformly across all bins with a fixed correlated uncertainty of 2\%. It follows that for even relatively large correlated uncertainties the impact on the sensitivity is minor and that any reduction in sensitivities will be largely dominated by the uncorrelated uncertainty. 
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_Xpct_cor.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_2pct_cor_Xpct_uncor.pdf}
-    \caption[\numu disapp impact of correlated and uncorrelated efficiency syatematics.]{The impact on the \numu disappearance exclusion sensitivity by applying various fully correlated uncertainties to all bins (Left) and by applying 2\% fully correlated uncertainty with additional uncorrelated errors across all bins (Right). }
+    \caption[Impact of correlated and uncorrelated efficiency systematics on the \numu disappearance channel.]{The impact on the \numu disappearance exclusion sensitivity by applying fully correlated uncertainties ranging from 1\% to 10\% to all bins (Left) and by applying a fixed 2\% fully correlated uncertainty with additional uncorrelated uncertainty ranging from 0.5\% to 2\% across all bins (Right). }
     \label{fig:numu_corr_uncorr_error}
 \end{figure}
 
@@ -529,17 +545,18 @@ The impact of fully correlated uncertainties up to 10\% are shown on the left of
 \begin{figure}[!h]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_2pct_uncor_per_detector.pdf}
-    \caption[\numu disapp with a 2\% uncorrelated efficiency systematic for one detector only.]{The impact on the \numu disappearance exclusion sensitivity by applying a 2\% uncorrelated efficiency uncertainty to a single one of the three \gls{sbn} detectors.}
+    \caption[Impact of a 2\% uncorrelated efficiency systematic on the \numu disappearance channel for each individual detector.]{The impact on the \numu disappearance exclusion sensitivity by applying a 2\% uncorrelated efficiency uncertainty to a single one of the three \gls{sbn} detectors.}
     \label{fig:numu_uncorr_det}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_2pct_cor_2pct_X_05pct_other_per_detector_uncor.pdf}
-    \caption[\numu disapp with a 2\% uncorrelated efficiency systematic for one detector and 0.5\% for the other two.]{The impact on the \numu disappearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 2\% uncorrelated uncertainty for one of detectors and a 0.5\% uncorrelated uncertainty for the other two detectors. This is repeated for each of the detectors. The associated covariance matrix used for the case where \glspl{sbnd} uncorrelated uncertainty was set to 2\% is shown in the bottom left plot of \FigureRef{fig:efficiency_cov_matrices}}.
+    \caption[Impact of a 2\% uncorrelated efficiency systematic for one detector and 0.5\% for the other two on the \numu disappearance channel.]{The impact on the \numu disappearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 2\% uncorrelated uncertainty for one of detectors and a 0.5\% uncorrelated uncertainty for the other two detectors. This is repeated for each of the detectors. The associated covariance matrix used for the case where \glspl{sbnd} uncorrelated uncertainty was set to 2\% is shown in the bottom left plot of \FigureRef{fig:efficiency_cov_matrices}.}
     \label{fig:numu_uncorr}
 \end{figure}
 
+\newpage
 Instead of exploring the impact from fully uncorrelated uncertainties or a constant uncorrelated uncertainty across all bins in a detector, \FigureRef{fig:numu_bulk_uncorr} considers the case where a single set of bins are poorly constrained. The sets of bins considered are,
 \begin{itemize}
     \item CC signal below the peak energy ($< 0.6$ GeV),
@@ -558,58 +575,66 @@ In each case, the uncorrelated uncertainty for the bins of interest are set to 2
 \end{figure}
 
 
+\clearpage
+\subsection{\texorpdfstring{Impact of efficiency systematics on \nue appearance sensitivities}{Impact of efficiency systematics on nue appearance sensitivities}}
 
-\subsection{Impact of efficiency systematics on \nue appearance sensitivities}
+In order to gauge the contribution of some typical efficiency uncertainty, \FigureRef{fig:nue_app_syst_groups+efficiency} shows the impact on the \nue appearance sensitivity from individual sets of systematic parameters as in \FigureRef{fig:nue_app_syst_group_sensitivities} but with the addition of a 2\% correlated + 2\% uncorrelated efficiency uncertainty. The impact of the efficiency uncertainty is comparable to the proposal interaction systematics having the smallest contribution to the sensitivity. 
 
-Minimal impact when combined with other systs. Is this cos nue is stats limited (where are numu is syst limited)? Will double check. 
-
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/nue_app_syst_groups+det.pdf}
     \caption[\nue app sensitivity reduction from different systematic groups with a (2+2)\% efficiency uncertainty.]{The reduction in the \nue appearance sensitivity from the stat-only contour when including each set of systematic parameters in the fits. Similar to \FigureRef{fig:nue_app_syst_groups} but with the addition of a 2\% correlated and 2\% uncorrelated efficiency uncertainty.}
-    \label{fig:my_label}
+    \label{fig:nue_app_syst_groups+efficiency}
 \end{figure}
 
-\begin{figure}
+The reduction in sensitivity from applying a 10\% correlated uncertainty and a 2\% correlated + 2\% uncorrelated uncertainty are shown in \FigureRef{fig:nue_app_corr_uncorr_error}. Since a correlated error of 10\% has a close to negligible impact, the results from applying correlated uncertainties less than 10\% as was done for the \numu channel have been omitted. Similarly, applying smaller uncorrelated uncertainties would again only have a minor impact so these have also been omitted.  
+
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_app_cor_uncor.pdf}
     \caption[Impact of correlated and uncorrelated efficiency systematics on the \nue appearance sensitivity.]{The impact on the \nue appearance exclusion sensitivity by applying a 10\% fully correlated efficiency uncertainty to all bins and by applying 2\% fully correlated + 2\% uncorrelated efficiency uncertainty.}
-    \label{fig:my_label}
+    \label{fig:nue_app_corr_uncorr_error}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_app_2pct_cor_05pct_bulk_2pct_X_uncor.pdf}
-    \caption[\nue disapp with poorly constrained efficiency systematic for a set of bins.]{The impact on the \nue appearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 0.5\% uncorrelated uncertainty for all but a single set of bins where the uncorrelated uncertainty is set to 2\%. The 'peak' energy bins are defined as those covering an energy range of [0.6,~1.0] GeV. The 'high' and 'low' energy bins are defined as those covering energies above and below the peak energy respectively and the 'bkg' bins are all the bins associated with background events. The set of bins of interest are applied to each of the three detectors.}
-    
-    \label{fig:my_label}
-\end{figure}
+\FigureRef{fig:nue_app_uncorrelated_per_detector} asses the impact of a 2\% correlated uncertainty which is applied to each detector one at a time. Applying the uncertainty to \gls{microboone} and \gls{icarus} appears to have a negligible impact across all $\Delta m^2_{41}$ values. \gls{sbnd} has a relatively small impact at high $\Delta m^2_{41}$ values which resembles the loss in sensitivity that was seen by applying a 2\% correlated + 2\% uncorrelated uncertainty across all bins in \FigureRef{fig:nue_app_corr_uncorr_error}. It follows that any reduction in sensitivity due to efficiency uncertainties is driven by \gls{sbnd}. Since \gls{sbnd} is most sensitive to large $\Delta m^2_{41}$ values and has higher statistics than \gls{microboone} and \gls{icarus}, the results are consistent with the idea that \nue channel is close to becoming statistics limited. 
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_app_2pct_uncor_per_detector.pdf}
     \caption[\nue app with a 2\% uncorrelated efficiency systematic for one detector only.]{The impact on the \nue appearance exclusion sensitivity by applying a 2\% uncorrelated efficiency uncertainty to a single one of the three \gls{sbn} detectors.}
-    
-    \label{fig:my_label}
+    \label{fig:nue_app_uncorrelated_per_detector}
 \end{figure}
 
-\subsection{Impact of efficiency systematics on \nue disappearance sensitivities}
+The impact of having a set of bins with a poorly constrained uncertainty was also studied using the same scheme that was outlined for the \numu case. Similar results were observed and are shown in \FigureRef{fig:nue_app_bulk_uncertainty}, albeit the change in sensitivity is much less prominent than for the \numu case. The background and low energy bins have the smallest impact with almost no visible difference whereas the peak and high energy bins do show some small reduction in the sensitivity. 
 
-\begin{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_app_2pct_cor_05pct_bulk_2pct_X_uncor.pdf}
+    \caption[\nue disapp with poorly constrained efficiency systematic for a set of bins.]{The impact on the \nue appearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 0.5\% uncorrelated uncertainty for all but a single set of bins where the uncorrelated uncertainty is set to 2\%. The 'peak' energy bins are defined as those covering an energy range of [0.6,~1.0] GeV. The 'high' and 'low' energy bins are defined as those covering energies above and below the peak energy respectively and the 'bkg' bins are all the bins associated with background events. The set of bins of interest are applied to each of the three detectors.}
+    \label{fig:nue_app_bulk_uncertainty}
+\end{figure}
+
+
+
+\clearpage
+
+\subsection{\texorpdfstring{Impact of efficiency systematics on \nue disappearance sensitivities}{Impact of efficiency systematics on nue disappearance sensitivities}}
+
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/nue_disapp_syst_groups+det.pdf}
      \caption[\nue disapp sensitivity reduction from different systematic groups with a (2+2)\% efficiency uncertainty.]{The reduction in the \nue disappearance sensitivity from the stat-only contour when including each set of systematic parameters in the fits. Similar to \FigureRef{fig:nue_disapp_syst_groups} but with the addition of a 2\% correlated and 2\% uncorrelated efficiency uncertainty.}
-    \label{fig:my_label}
+    \label{fig:nue_disapp_syst_groups}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_disapp_cor_uncor.pdf}
     \caption[Impact of correlated and uncorrelated efficiency systematics on the \nue disappearance sensitivity.]{The impact on the \nue disappearance exclusion sensitivity by applying a 10\% fully correlated efficiency uncertainty to all bins and by applying 2\% fully correlated + 2\% uncorrelated efficiency uncertainty.}
     \label{fig:my_label}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_disapp_2pct_cor_05pct_bulk_2pct_X_uncor.pdf}
     \caption[\nue disapp with poorly constrained efficiency systematic for a set of bins.]{The impact on the \nue disappearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 0.5\% uncorrelated uncertainty for all but a single set of bins where the uncorrelated uncertainty is set to 2\%. The 'peak' energy bins are defined as those covering an energy range of [0.6,~1.0] GeV. The 'high' and 'low' energy bins are defined as those covering energies above and below the peak energy respectively and the 'bkg' bins are all the bins associated with background events. The set of bins of interest are applied to each of the three detectors.}
@@ -617,7 +642,7 @@ Minimal impact when combined with other systs. Is this cos nue is stats limited 
     \label{fig:my_label}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_disapp_2pct_uncor_per_detector.pdf}
     \caption[\nue disapp with a 2\% uncorrelated efficiency systematic for one detector only.]{The impact on the \nue disappearance exclusion sensitivity by applying a 2\% uncorrelated efficiency uncertainty to a single one of the three \gls{sbn} detectors.}
