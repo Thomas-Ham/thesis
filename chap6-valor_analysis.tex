@@ -1,8 +1,6 @@
 \chapter{VALOR Analysis}
 \label{chap:VALOR}
 
-\textcolor{red}{STAR PLOT? DOESN'T LOOK AESTHETICALLY PLEASING + MAY BRING UP QUESTION I DON'T HAVE GOOD ANSWERS TOO.. }
-
 \section{VALOR Framework}\label{sec:VALOR_framework}
 
 The \gls{valor} framework is a neutrino fitting framework that was first developed for the \gls{t2k} experiment, but has since been adapted to also cover \gls{dune} and the \gls{sbn} program \cite{VALOR}.
@@ -110,6 +108,18 @@ As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}
    \caption[The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematics.]{The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematic parameters. \textcolor{red}{NEED TO SORT OUT PLOT LABELS} \\\\\\\\\\}
    \label{fig:1sigma_variations_toys}}
 \end{figure}
+
+\subsection{Impact of systematic uncertainties}
+
+\textcolor{red}{STAR PLOT? DOESN'T LOOK AESTHETICALLY PLEASING. MAYBE SOME KIND OF PULL PLOT INSTEAD? GLOSS OVER WHY SOME PARAMS HAVE BIG/SMALL IMPACT - IT'S JUST WHAT COMES OUT OF THE FIT..}
+
+To assess the impact of the different systematic parameters on the oscillation parameters the following study is performed;
+\begin{enumerate}
+    \item Generate a toy experiment with a given oscillation signal with a single systematic parameter, $f_i$, set to $\pm 1\sigma$ from it's nominal value and all other systematic parameters are set to their nominal value.
+    \item Perform a fit on the toy experiment with $f_i$ fixed to its nominal value. Both the oscillation parameters and all the systematic parameters are initially set to their nominal value and are allowed to float with the exception of $f_i$. The other systematic parameters are allowed to float in order to obtain the best possible agreement between the fit and the toy experiment.
+    \item Steps 1. and 2. are then repeated for all \textit{i} systematic parameters of interest. Both the +1 and -1 $\sigma$ variations should be performed for each systematic parameter since the effect on the oscillation parameters is typically not symmetric.  
+\end{enumerate}
+If $f_i$ were allowed to float it would be expected that the fit would be able to recover the same oscillation parameters used in the toy experiment since the same \gls{mc} was used for the toy experiment and the fit. By fixing $f_i$ to its nominal value in the fit, the fit is forced to make a mistake. This results in the fit remapping the changes in $f_i$ to the oscillation parameters (and the other systematic parameters). 
 
 \newpage
 \section{\texorpdfstring{$\nue$ Analysis}{nue Analysis}}\label{sec:nue_analysis}
@@ -470,7 +480,7 @@ The relative contribution of the different systematic groups to the overall excl
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_disapp_syst_groups.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_disapp_syst_groups_ratios.pdf}
     \caption[\nue app sensitivity reduction from different systematic groups.]{The left plot shows the reduction in sensitivity from the stat-only contour when including each set of systematic parameters in the fits. The right plot shows the relative location of each systematic contour in $\sin^{2}2\theta_{\mu e}$ space, with respect to the statistical-only case for the active region of $\Delta m_{41}^{2}$ phase space.}
-    \label{fig:nue_app_syst_groups}
+    \label{fig:nue_disapp_syst_groups}
 \end{figure}
 
 \newpage
@@ -620,11 +630,13 @@ The impact of having a set of bins with a poorly constrained uncertainty was als
 
 \subsection{\texorpdfstring{Impact of efficiency systematics on \nue disappearance sensitivities}{Impact of efficiency systematics on nue disappearance sensitivities}}
 
+As was done for \nue appearance, \FigureRef{fig:nue_disapp_syst_groups_detector} shows the impact from \nue disappearance sensitivity from individual sets of systematic parameters as in \FigureRef{fig:nue_disapp_syst_groups} but with the addition of a 2\% correlated + 2\% uncorrelated efficiency uncertainty. The efficiency uncertainty shows the smallest reduction in sensitivity across all ranges of $\Delta m_{41}^2 \gtrsim 3$ and is comparable to the other systematic sets at $\Delta m_{41}^2$ values below $\sim 3$.
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/nue_disapp_syst_groups+det.pdf}
      \caption[\nue disapp sensitivity reduction from different systematic groups with a (2+2)\% efficiency uncertainty.]{The reduction in the \nue disappearance sensitivity from the stat-only contour when including each set of systematic parameters in the fits. Similar to \FigureRef{fig:nue_disapp_syst_groups} but with the addition of a 2\% correlated and 2\% uncorrelated efficiency uncertainty.}
-    \label{fig:nue_disapp_syst_groups}
+    \label{fig:nue_disapp_syst_groups_detector}
 \end{figure}
 
 \begin{figure}[h!]

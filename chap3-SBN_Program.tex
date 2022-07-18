@@ -1,9 +1,5 @@
 \chapter{The Short Baseline Neutrino Program}
 \label{chap:SBN Program}
-Results from LSND, MiniBooNE etc. at odds with null results from e.g. KARMEN and MINOS.. Need a definitive test.
-
-Good stepping stone for DUNE - similar design (LArTPC)
-
 
 \section{SBN Program Overview}
 
@@ -67,7 +63,7 @@ In the presence of an electric field, the electron mobility is no longer given b
 In general, the diffusion in the transverse direction is greater than the diffusion in the longitudinal direction \cite{LArTPC_book} \cite{diffusion}.
 
 \subsubsection{Electron Lifetime}
- Electron lifetime is a measure of the free electrons lost due to attachment to impurities in the liquid argon whilst drifting across the detector \cite{ArgoNeuT_electron_lifetime_paper}. Naturally the electron lifetime, $\tau_{e}$, is coupled to the purity of the argon and is defined as 
+ Electron lifetime is a measure of the free electrons lost due to attachment to impurities in the liquid argon whilst drifting across the detector \cite{ArgoNeuT_electron_lifetime_paper}. Naturally, the electron lifetime, $\tau_{e}$, is coupled to the purity of the argon and is defined as 
  \begin{equation}
      \tau_{e} = 1/k_e,
  \end{equation}
@@ -96,11 +92,11 @@ where $\xi = \alpha Q_0/E$. $\alpha$ is a free parameter and $Q$ and $Q_0$ are d
 \subsubsection{Space Charge}
 The electric field in a \gls{tpc} is usually designed to be uniform between the cathode and the anode, however, particularly for surface level detectors this often doesn't end up being the case. Cosmic muons may enter the detector ionising the argon atoms. The ionised electrons and argon ions then drift towards the anode and cathode respectively, however the drift time for the ions is much greater than the electron drift time. If the flux of cosmic muons entering the detector is sufficiently large, this results in a significant positive charge build up towards the cathode. This effect is known as \textit{space charge} and directly impacts the recombination effect since it is linked to the magnitude of local electric field as well as affecting the drifting electrons \cite{microboone_sce}.
 
-The ion drift velocity, $\vec v$ is given by
+The ion drift velocity, $\vec v$, is given by
 \begin{equation}
     \vec v = \mu \vec E,
 \end{equation}
-where $\mu$ is ion mobility and $\vec E$ is the electric field. The build up of charge density, $\rho$, is given by the continuity equation,
+where $\mu$ is the ion mobility and $\vec E$ is the electric field. The build up of charge density, $\rho$, is given by the continuity equation,
 \begin{equation}
     \vec \nabla \cdot \vec J + \frac{\partial p}{\partial t} = K,
 \label{eq:space_charge_continuity}
@@ -409,9 +405,10 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 \label{fig:NC_Feynman_diagrams}
 \end{figure}
 
+\textcolor{red}{FIGURE SHOWING THE TOTAL (+ BREAKDOWN) NEUTRINO CC CROSS-SECTION AS A FUNCTION OF ENERGY. IS THERE AN UPDATED VERSION THAT INCLUDES MEC? - CAN'T FIND ONE ONLINE.. IS THERE A NC VERSION TOO?}
 
 \section{SBND}\label{sec:SBND}
-\gls{sbnd} was purposely designed to be the near detector of the \gls{sbn} program and has an active volume with dimensions (4, 4, 5) m containing 112 tons of liquid argon. It consists of two \glspl{tpc}, where the central shared cathode sits in the middle of the detector with an anode either side as is shown in \FigureRef{fig:sbnd_schematic}. Each of the \glspl{apa} consist of three wire planes where the first and second induction plane are orientated at $\pm 60^{\circ}$ to the vertical and the collection plane is vertical. In all cases, the wire plane spacing and the wire pitch are 3 mm. The nominal electric field in each of the \glspl{tpc} is 500 V/m. 
+\gls{sbnd} was purposely designed to be the near detector of the \gls{sbn} program and has an active volume with dimensions (4, 4, 5) m containing 112 tons of liquid argon. It consists of two \glspl{tpc}, where the central shared cathode sits in the middle of the detector with an anode either side as is shown in \FigureRef{fig:sbnd_schematic}. Each of the \glspl{apa} consist of three wire planes where the first and second induction plane are orientated at $\pm 60^{\circ}$ to the vertical and the collection plane is vertical. In all cases, the wire plane spacing and the wire pitch are 3 mm. The nominal electric field in each of the \glspl{tpc} is 500 V/m \cite{SBN_Proposal}. 
 
 \begin{figure}[!h]
     \centering
@@ -420,7 +417,9 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
     \label{fig:sbnd_schematic}
 \end{figure}
 
-\gls{sbnd} is considered to be a surface level detector with no overburden. Consequently, the cosmic ray flux will be significant with an average of 3 cosmic rays seen in each neutrino event \cite{SBN_Proposal}. This will be the most abundant background in \gls{sbnd} and therefore it will be crucial to be able to identify the cosmic ray muons. In order to do this, \gls{sbnd} will use a \gls{crt} system which consists of a total of 7 panels, one for each side of the detector plus an additional one for the top face as this is where most of the cosmic rays will be entering the detector from. \FigureRef{fig:sbnd_crt} shows how the \gls{crt} panels will be positioned. Each \gls{crt} plane consists of two layers, where one layer is comprised of 2$\times$5 X-oriented modules and the other layer is comprised of 2$\times$4 Y-oriented modules. Each of these modules is comprised of 16 scintillator strips which are in turn attached to \glspl{sipm}. The orthogonal two layer setup coupled with the \gls{sipm} readout allows the the location of an interaction in the \gls{crt} to be determined \cite{sbnd_crt}. The \gls{crt} system monitors the crossing time and coordinates of the particles and compares them with the information from the light detection system and the beam time rejecting the events identifies as cosmic muons. \cite{microboone_crt}.
+\subsection*{Cosmic Ray Tagger}
+
+\gls{sbnd} is considered to be a surface level detector with no overburden. Consequently, the cosmic ray flux will be significant with an average of 3 cosmic rays seen in each neutrino event \cite{SBN_Proposal}. This will be the most abundant background in \gls{sbnd} and therefore it will be crucial to be able to identify the cosmic ray muons. In order to do this, \gls{sbnd} will use a \gls{crt} system which consists of a total of 7 panels, one for each side of the detector plus an additional one for the top face as this is where most of the cosmic rays will be entering the detector from. \FigureRef{fig:sbnd_crt} shows how the \gls{crt} panels will be positioned. Each \gls{crt} plane consists of two layers, where one layer is comprised of 2$\times$5 X-oriented modules and the other layer is comprised of 2$\times$4 Y-oriented modules. Each of these modules is comprised of 16 scintillator strips which are in turn attached to \glspl{sipm}. The orthogonal two layer setup coupled with the \gls{sipm} readout allows the location of an interaction in the \gls{crt} to be determined \cite{sbnd_crt}. The \gls{crt} system monitors the crossing time and coordinates of the particles and compares them with the information from the light detection system and the beam time rejecting the events identifies as cosmic muons. \cite{microboone_crt}.
 
 \begin{figure}[!h]
     \centering
@@ -431,7 +430,7 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 
 \textcolor{red}{READOUT ELECTRONICS?? KNOW LITERALLY NOTHING ABOUT THIS..}
 
-%\subsection{Photon Detection System}
+\subsection*{Photon Detection System}
 The \gls{pds} consists of a total of 24 \textit{boxes}, 12 of which will be mounted behind each \gls{apa}. Each box houses 5 \glspl{pmt} and 8 \glspl{arapuca} (specifically, X-ARAPUCA's are used which are an advancement over the initial \gls{arapuca} design) as shown in \FigureRef{fig:pds_box}. The 4 outer \glspl{pmt} of each box are coated with \gls{tpb} whilst the central one remains uncoated. The scintillation light produced has wavelengths in the \gls{vuv} region, however the \glspl{pmt} are only able to detect visible light. The \gls{tpb} coating shifts the wavelength of the \gls{vuv} light into the visible region allowing it to be detected. Therefore, the coated \glspl{pmt} are sensitive to both visible and \gls{vuv} light whilst the uncoated \glspl{pmt} are only sensitive to visible light \cite{LArTPC_review}. 
 
 \glspl{arapuca} are a novel light trap which consist of a box where the internal surfaces are highly reflective. The surface of the \gls{arapuca} which faces the incoming light consists of dichroic filter with a wavelength shifter either side of the filter. The wavelength of the light which is incident on the outermost shifter is shifted such that it may pass through the dichroic filter and after passing through the filter the light is again wavelength shifted so that it may no longer pass through the filter and thus remains trapped in the \gls{arapuca}. A schematic of the \gls{arapuca} design is shown on the left of \FigureRef{fig:arapuca}. The inside of the \gls{arapuca} module contains a \gls{sipm} photo-sensor in order to detect the light. Due to the highly reflective nature of the inside of the \gls{arapuca}, only a small region needs to be exposed to a photo-sensor in order to detect the trapped photons \cite{ARAPUCA}. The X-ARAPUCA improves on the initial design by replacing the inner wavelength shifter with an acrylic slab with the wavelength shifter implanted in the slab and the photo-sensor being directly attached to the slab. Light entering the X-ARAPUCA may be detected in same way as was done in the original \gls{arapuca} (\FigureRef{fig:arapuca}: Left), however the photons may also become trapped in the slab by total internal reflection and travel within the slab to the photo-sensor (\FigureRef{fig:arapuca}: Middle) or if the light enters at a large angle, the photons may become trapped between the surface of the slab and the filter and will travel to the photo-sensor without ever entering the slab (\FigureRef{fig:arapuca}: Right). The middle scenario of \FigureRef{fig:arapuca} represents a direct improvement over the original \gls{arapuca} design because the number of reflections on the internal sides of the X-ARAPUCA module is reduced which in turn increases the photon detection efficiency \cite{X-ARAPUCA}. 
@@ -454,7 +453,7 @@ Another component of the \gls{pds} is covering each side of the \gls{cpa} with a
 
 \section{MicroBooNE}\label{sec:MicroBooNE}
 
-The \gls{microboone} detector is located slightly upstream of its predecessor, \gls{miniboone}. The detectors are at 470 m and 500 m from the \gls{bnb} source respectively. The Principal design goal of \gls{microboone} is to investigate the low energy excess of events observed by \gls{miniboone} and it began its operations in 2015 were it was initially used as a stand alone detector before becoming part of the larger \gls{sbn} program \cite{microboone_detector}.
+The \gls{microboone} detector is located slightly upstream of its predecessor, \gls{miniboone}. The detectors are at 470 m and 541 m from the \gls{bnb} source respectively. The Principal design goal of \gls{microboone} is to investigate the low energy excess of events observed by \gls{miniboone} and it began its operations in 2015 were it was initially used as a stand alone detector before becoming part of the larger \gls{sbn} program \cite{microboone_detector}.
 
 \begin{figure}[h!]
     \centering
@@ -521,7 +520,7 @@ The large event rate and the high resolution event reconstruction provided may a
 \begin{itemize}
     \item Light Dark Matter - Assuming a dark matter particle has an associated light mediator particle which interacts with quarks, the high intensity proton beam will produce a dark matter beam alongside neutrinos. The dark matter particles will propagate to the detectors alongside the neutrinos where they may scatter off the argon nuclei. Neutrinos will however represent a large background in such search \cite{SBN_paper}. 
     \item Large Extra Dimensions - The neutrino mass scale could be explained by the presence of additional dimensions. The right handed neutrinos would be able to propagate in the extra dimensions whilst the active neutrinos would be confined to the standard dimensions \cite{SBN_paper}. 
-    \item Heavy Sterile Neutrinos - If heavy sterile neutrinos such as those present in the seesaw-mechanism discussed in \SectionRef{sec:seesaw_mechanism} are of an MeV mass scale, they may be produced in the \gls{bnb} vie meson decay. They would then propagate along the beam line and their decay products may observed in the detectors \cite{SBN_paper}\cite{MeV_scale_sterile_neutrino}.
+    \item Heavy Sterile Neutrinos - If heavy sterile neutrinos such as those present in the seesaw-mechanism discussed in \SectionRef{sec:seesaw_mechanism} are of an MeV mass scale, they may be produced in the \gls{bnb} vie meson decay. They would then propagate along the beam line and their decay products may be observed in the detectors \cite{SBN_paper}\cite{MeV_scale_sterile_neutrino}.
     \item Dark Neutrinos - A beam neutrino interacts with an argon neucleus and scatters to a dark neutrino. The dark neutrino decays to a dark boson (and neutrino) and in turn the dark boson decays to an \positron \electron pair. This mechanism could provide an explanation to the \gls{miniboone} low energy excess \cite{SBN_paper}\cite{dark_neutrino}. 
 \end{itemize}
 
