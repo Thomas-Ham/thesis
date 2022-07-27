@@ -37,10 +37,7 @@ In the limit of many samples, quantities of the form $-2ln~\lambda$ have a $\chi
     \chi^2_{tot} = -2(ln~\lambda_{d;b;s}(\vec{\theta}, \vec{f}) + ln~\lambda_{syst}(\vec{f})).
 \end{equation}
 
-\textcolor{red}{Lots of other shit I don't really understand.}
-
-
-In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \gls{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. The exclusion region corresponds to the region of parameter space where the null-hypothesis is excluded with a given confidence whereas the allowed region corresponds to the region of parameter space which is allowed for a given confidence for some set of injected oscillation parameters. In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillation are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal.  For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
+In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \glspl{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. The exclusion region corresponds to the region of parameter space where the null-hypothesis is excluded with a given confidence whereas the allowed region corresponds to the region of parameter space which is allowed for a given confidence for some set of injected oscillation parameters. In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillation are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal.  For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
 
 \begin{table}[h!]
 \begin{tabular}{lcc}
@@ -96,7 +93,7 @@ As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}
    \label{fig:+1sigma_variations}}
 \end{figure}
 
-\FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from \gls{valor} and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using the response functions in \gls{valor} and the analagous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios. There are some minor differences between the variation in \gls{valor} and the universes, however, event perfect agreement isn't expected since the 1$\sigma$ variations are found by taking the average from many toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
+\FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from \gls{valor} and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using \gls{valor} and the analogous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios. There are some minor differences between the variation in \gls{valor} and the universes, however, event perfect agreement isn't expected since the 1$\sigma$ variations are found by taking the average from many toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
 
 \begin{figure}[h!]
     \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_flux_uncorr.pdf}
@@ -111,7 +108,7 @@ As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}
 
 \subsection{Impact of systematic uncertainties}
 
-\textcolor{red}{STAR PLOT? DOESN'T LOOK AESTHETICALLY PLEASING. MAYBE SOME KIND OF PULL PLOT INSTEAD? GLOSS OVER WHY SOME PARAMS HAVE BIG/SMALL IMPACT - IT'S JUST WHAT COMES OUT OF THE FIT..}
+\textcolor{red}{Not sure where best to put this section? Here or along with the sensitivity curves.}
 
 To assess the impact of the different systematic parameters on the oscillation parameters the following study is performed;
 \begin{enumerate}
@@ -120,6 +117,30 @@ To assess the impact of the different systematic parameters on the oscillation p
     \item Steps 1. and 2. are then repeated for all \textit{i} systematic parameters of interest. Both the +1 and -1 $\sigma$ variations should be performed for each systematic parameter since the effect on the oscillation parameters is typically not symmetric.  
 \end{enumerate}
 If $f_i$ were allowed to float it would be expected that the fit would be able to recover the same oscillation parameters used in the toy experiment since the same \gls{mc} was used for the toy experiment and the fit. By fixing $f_i$ to its nominal value in the fit, the fit is forced to make a mistake. This results in the fit remapping the changes in $f_i$ to the oscillation parameters (and the other systematic parameters). 
+
+This study was performed for the \nue appearance and disappearance channels and includes the results from all uncorrelated systematic parameters. The results are shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls} respectively. For both oscillation parameters, the ratio of their value after performing the fit to their nominal value, $\mathcal{R}$, are shown after having varied $f_i$ by $\pm 1 \sigma$. The ratios shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls} are always $\geq 1$ by construction since $\mathcal{R}$ is defined as,
+\begin{equation}
+    \mathcal{R} = \begin{cases}
+    \frac{\zeta_{fit}}{\zeta_{nom}}, & \text{if } \zeta_{fit} > \zeta_{nom} \\
+    \frac{\zeta_{nom}}{\zeta_{fit}}, &\text{if } \zeta_{nom} > \zeta_{fit},
+    \end{cases}
+\end{equation}
+where $\zeta \in \{sin^22\theta, \Delta m^2_{41}\}$ and the subscript \textit{nom} and \textit{fit} refer to the nominal value of the oscillation parameters and the values after performing the fit respectively. The arrows are colour coded such that black corresponds to the case where $\zeta_{fit} > \zeta_{nom}$ and red corresponds to the case where $\zeta_{nom} > \zeta_{fit}$.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/star_plot/nue_app_pulls.pdf}
+    \caption[\nue appearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue appearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
+    \label{fig:nue_app_osc_param_pulls}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/star_plot/nue_dsisapp_pulls.pdf}
+    \caption[\nue disappearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue disappearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
+    \label{fig:nue_disapp_osc_param_pulls}
+\end{figure}
+
 
 \newpage
 \section{\texorpdfstring{$\nue$ Analysis}{nue Analysis}}\label{sec:nue_analysis}
@@ -524,6 +545,30 @@ The complete \numu disappearance exclusion sensitivities and allowed regions for
 For a complete discussion of the \numu disappearance channel, see \cite{Rhiannon's_thesis}.
 
 \clearpage
+
+\section{\texorpdfstring{Estimating the impact of shower energy reconstruction on the \nue sensitivities.}{Estimating the impact of shower energy reconstruction on the nue sensitivities.}}
+
+The reconstructed neutrino energy used in the analyses shown so far is based on truth information where smearing has been applied to emulate a reconstructed value. 
+
+Since the reconstructed \nue energy will be driven by the reconstructed \gls{em} shower energy, if the simplification that any imperfections in the reconstruction are only due to the \gls{em} shower energy, the findings from \SectionRef{chap:Energy_Reco} may be used to estimate a reconstructed neutrino energy from the true value. This directly links the work from \SectionRef{chap:Energy_Reco} to the oscillation analysis and allows for an estimate on the sensitivities depending on the accuracy of the shower energy reconstruction. The key results from \SectionRef{chap:Energy_Reco} that are relevant in this case are; 
+\begin{itemize}
+    \item A mean $\sim$20\% bias in the reconstructed energy.
+    \item A $\sim$30\% resolution in the reconstructed energy.
+    \item Bias increases for low energy showering particles.
+    \item Bias and resolution increase for showers at large angles to the beamline.
+\end{itemize}
+
+\textcolor{red}{Reference plots showing this points}
+The mean bias of $\sim 15\%$ and resolution of $\sim 30\%$ have been estimated from FIG XXX. 
+
+To understand the impact of the reconstructed neutrino energy (and in turn the importance of reconstructing \gls{em} showers), the true neutrino energy, $E_{\nu, true}$, is tweaked in a number of different ways in order to encompass some or all of the effects listed above. This tweaked value is used to emulate the reconstructed neutrino energy, $E_{\nu, reco}$. The different possibilities for $E_{\nu, reco}$ were calculated as follows;
+\begin{enumerate}
+    \item Apply a flat bias of XXX to $E_{\nu, true}$ for all events.
+    \item Apply a flat bias of XXX to events with $E_{\nu, true} < something$ and a flat bias of YYY for all other events.
+    \item Randomly apply a bias that is normally distributed around the mean bias with a standard deviation of XXX to $E_{\nu, true}$ for each event.
+    \item Consider an unrealistic (worst case) scenario where all the showers are at some large angle to the beam line instead of being predominantly forward going. 
+\end{enumerate}
+
 \section{Additional Efficiency and Energy Scale Systematics}
 
 As was mentioned in \SectionRef{sec:other_syst}, efficiency systematics are not currently included in the \textit{standard} analyses. In order to get a measure of the possible impact of efficiency systematics on the sensitivity, various covariance matrices were produced following the scheme outlined in \SectionRef{sec:efficiency_syst}. Matrices were produced to investigate the impact of;
