@@ -2,9 +2,7 @@
 \label{chap:Energy_Reco}
 \section{Motivation for Improving the Shower Energy Reconstruction}
 
-Important for the selections - directly used as one of the cuts. 
-EM showers is the driving factor in obtaining Enu reco.
-
+The \gls{em} shower energy is an important quantity that is used in a number of areas especially in the context of a \nue analysis. In the \nue event selection (which is detailed in \SectionRef{sec:nue_selection}) a direct cut based on the shower energy is applied to the events. Another use is in calculating the reconstructed electron neutrino energy (which is used when constructing contours in the oscillation analysis. See \SectionRef{sec:VALOR_framework}). Generally this is done by summing up the energy of all the outgoing products of a neutrino interaction to which the shower energy is expected to make the dominant contribution.
 
 \section{Event Production and Reconstruction in LArSoft}\label{sec:Event Production and Reconstruction in LArSoft}
 
@@ -128,7 +126,7 @@ Generally the validation is performed on a shower-hit level. This means that for
 
 \subsection{General Validation of a BNB Sample}
 
-In order to validate the reconstruction methods, an $e^- + \pi^+$ vertex sample with \gls{bnb}-like properties was produced where the electron is the showering particle. \textcolor{red}{WHY DO WE USE VERTEX SAMPLE?? HELPS PANDORA, BUT WHY..}
+In order to validate the reconstruction methods, an $e^- + \pi^+$ vertex sample with \gls{bnb}-like properties was produced where the electron is the showering particle. \textcolor{red}{WHY DO WE USE VERTEX SAMPLE?? HELPS PANDORA, BUT WHY..} Unless otherwise stated, all the validation has been performed using the collection plane. 
 
 The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_level} for all three methods where the true energy has been calculated from the shower hits. The results from the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} are similar and show good agreement between true and reconstructed energies across the whole energy range whereas the \textit{Shower Num Electrons Energy tool} tends to overestimate the hit energies. \FigureRef{fig:reco_vs_true_showeringE} is similar, but instead the true energy is the energy of the showering electron. This gives a measure of the bias each method can expect due to the inefficiencies mentioned above. Both the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} underestimate the true energy of the showering electron as is expected. The \textit{Shower Num Electrons Energy tool} shows better agreement due to systematically applying a higher energy to individual hits which compensates for other inefficiencies. 
 
@@ -140,8 +138,8 @@ The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_lev
     \captionsetup{width=0.45\textwidth}
     \parbox[b]{0.49\textwidth}%
   {
-    \caption[Reconstructed vs true shower energy. The true energy has been evaluated from the hits of each shower.]
-    {Reconstructed vs true shower energy. The true energy has been evaluated from the hits of each shower. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\}
+    \caption[True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower.]
+    {True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\}
     \label{fig:reco_vs_true_hit_level}}
 \end{figure}
 
@@ -154,19 +152,38 @@ The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_lev
     \captionsetup{width=0.45\textwidth}
     \parbox[b]{0.49\textwidth}%
   {
-    \caption[Reconstructed vs true shower energy. The true energy is the energy of the showering electron.]
-    {Reconstructed vs true shower energy. The true energy is the energy of the showering electron. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\}
+    \caption[True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron.]
+    {True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\}
     \label{fig:reco_vs_true_showeringE}}
 \end{figure}
 
-A comparison of the fractional energy resolution, which is defined as $\frac{Reco - True}{True}$, is shown in \FigureRef{fig:fractional_energy_resolution_hit_level}.
+A comparison of the fractional energy resolution, which is defined as $\frac{Reco - True}{True}$, is shown in \FigureRef{fig:fractional_energy_resolution} for both true energies. When comparing with the true energy of the hits, the \textit{Shower ESTAR Energy tool} peaks quite tightly around zero as does the \textit{Shower Linear Energy tool} however its peak is a little broader. The \textit{Shower Num Electron Energy tool} peak to the right of the zero line again indicating that the reconstructed quantity is an overestimate. All three distributions peak to the left of the zero line when comparing with the true energy of the showering particle with the \textit{Shower Num Electrons Energy tool} giving the closest result. 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width = \largefigwidth]{figures-chap4/bias_cheat_plane_2_all.pdf}
-    \includegraphics[width = \largefigwidth]{figures-chap4/bias_cheat_plane_2_all.pdf}
-    \caption[Comparison of the reconstructed fractional shower energy resolution.]{Comparison of the reconstructed fractional shower energy resolution for the \textit{Shower Linear Energy tool}, the \textit{Shower Num Electrons Energy tool} and the \textit{Shower ESTAR Energy tool}. Left: Using the true energy of the hits. Right: Using the true energy of the showering particle.}
-    \label{fig:fractional_energy_resolution_hit_level}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/bias_cheat_plane_2_all.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/bias_cheat_plane_2_all_showeringE.pdf}
+    \caption[Comparison of the fractional shower energy resolution.]{Comparison of the fractional shower energy resolution for the \textit{Shower Linear Energy tool}, the \textit{Shower Num Electrons Energy tool} and the \textit{Shower ESTAR Energy tool}. Left: Using the true energy of the hits. Right: Using the true energy of the showering particle.}
+    \label{fig:fractional_energy_resolution}
+\end{figure}
+
+To confirm that the reconstruction performance is comparable across all wire planes, the true vs reconstructed energy was also plotted for the two induction planes using the ESTAR method. This is shown in \FigureRef{fig:true_vs_reco_for_induction_planes} where the comparison has been made with the true energy of the hits.
+
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.49\textwidth]{}
+    \includegraphics[width = 0.49\textwidth]{}
+    \caption[True vs reconstructed energy from a showering electron for the two induction planes. The true energy has been evaluated from the hits of each shower.]{True vs reconstructed energy from a showering electron for the first induction plane (Left) and the second induction plane (Right). The true energy has been evaluated from the hits of each shower.}
+    \label{fig:true_vs_reco_for_induction_planes}
+\end{figure}
+
+Since photons also produce \gls{em} showers, a \gls{bnb}-like $\gamma + \pi^+$ sample was produced to verify that the reconstruction works equally well in this case. \FigureRef{} shows this using the ESTAR method with the hits from the collection plane. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.49\textwidth]{}
+    \caption[True vs reconstructed energy from a showering photon. The true energy has been evaluated from the hits of each shower.]{True vs reconstructed energy from a showering photon using hits from the collection plane. The true energy has been evaluated from the hits of each shower.}
+    \label{fig:true_vs_reco_for_induction_planes}
 \end{figure}
 
 \clearpage
@@ -195,28 +212,49 @@ In order to verify this, an  $e^- + \pi^+$ sample was produced with the electron
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_thetaXZ_cheating_electron_vertex_plane2_cut.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_thetaXZ_showeringE_cheating_electron_vertex_plane2_cut.pdf}
-    \caption[Shower energy reconstruction performance as a function of $\theta_{xz}$.]{Shower energy reconstruction performance as a function of $\theta_{xz}$. Left: true energy is calculated from the hits. Right: true energy is the energy of the showering electron.}
+    \caption[The fractional energy resolutions as a function of $\theta_{xz}$.]{The fractional energy resolutions as a function of $\theta_{xz}$ using the ESTAR method. Left: true energy is calculated from the hits. Right: true energy is the energy of the showering electron.}
     \label{fig:reconstruction_as_a_function_of_angle}
 \end{figure}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_thetaXZ_cheating_electron_vertex_plane2_cut_ESTAR_profile.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_thetaXZ_cheating_electron_vertex_plane2_cut_showeringE_ESTAR_profile.pdf}
+    \caption[Profile histograms of the fractional energy resolution as a function of $\theta_{xz}$.]{Profile histograms of the fractional energy resolution as a function of $\theta_{xz}$ using the ESTAR method. The profile histograms are constructed from \FigureRef{fig:reconstruction_as_a_function_of_angle} and the y-axis error bars are the standard deviations.  Left: true energy is calculated from the hits. Right: true energy is the energy of the showering electron.}
+    \label{fig:reconstruction_as_a_function_of_angle_profile}
+\end{figure}
 
-
+\clearpage
 \subsection{Performance as a Function of Energy}
 The electromagnetic showers produced in \gls{sbnd} from the \gls{bnb} are expected to have energies up to around a GeV. 
 Since the energy range is relatively broad, the reconstruction performance is evaluated as a function of the energy in order to confirm that the reconstruction methods work sufficiently well for all energies. As was the case for the angular dependence, the performance as a function of energy is expected to be similar across the different reconstruction methods with the only difference being in the actual reconstruction performance. 
 
-\newpage
-Other Validation stuff to do?
-\begin{itemize}
-    \item Use photon sample?
-    \item validate for each individual plane and then best plane?
-    \item Look at all showers in an event and compare with total showering energy. 
-\end{itemize}
+On the whole, the fractional resolution is observed to be fairly constant across all energies when comparing with both the true energy of the hits and the true energy of the showering particle as can be seen in \FigureRef{fig:reconstruction_as_a_function_of_energy}. The fractional energy resolution is slightly lower at the lowest energies especially when comparing with the true energy of the showering particle. This is highlighted in \FigureRef{fig:reconstruction_as_a_function_of_energy_profile} which shows the profile histograms of the fractional energy resolution as a function of true energy and can likely be explained by a greater fraction of the hits not passing the threshold cut. 
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_energy_cheating_electron_vertex_plane2_ESTAR.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_energy_cheating_electron_vertex_plane2_ESTAR_showeringE.pdf}
+    \caption[The fractional energy resolutions as a function of true energy.]{The fractional energy resolutions as a function of true energy using the ESTAR method. Left: true energy is calculated from the hits. Right: true energy is the energy of the showering electron.}
+    \label{fig:reconstruction_as_a_function_of_energy}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_energy_cheating_electron_vertex_plane2_ESTAR_profile.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/frac_res_vs_energy_cheating_electron_vertex_plane2_ESTAR_showeringE_profile.pdf}
+    \caption[Profile histograms of the fractional energy resolution as a function of true energy.]{Profile histograms of the fractional energy resolution as a function of true energy using the ESTAR method. The profile histograms are constructed from \FigureRef{fig:reconstruction_as_a_function_of_energy} and the y-axis error bars are the standard deviations.  Left: true energy is calculated from the hits. Right: true energy is the energy of the showering electron.}
+    \label{fig:reconstruction_as_a_function_of_energy_profile}
+\end{figure}
+
+
+
+\newpage
 
 \section{Summary + outstanding issues etc}
 
