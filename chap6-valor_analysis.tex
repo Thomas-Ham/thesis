@@ -32,12 +32,12 @@ An additional penalty term is applied to account for the systematic parameters w
 \end{equation}
 where $\vec{f}_0$ is a vector containing the nominal value of all the systematic parameters and \textbf{V} is a covariance matrix containing the uncertainties of the systematic parameters \cite{VALOR_dune}. 
 
-In the limit of many samples, quantities of the form $-2ln~\lambda$ have a $\chi^2$ distribution, hence calculating the log likelihood allows a goodness-of-fit test to be performed. The total goodness-of-fit value is therefore given by,
+In the limit of many samples, quantities of the form $-2ln~\lambda$ have a $\chi^2$ distribution, hence calculating the log likelihood allows a goodness-of-fit test to be performed \cite{introduction_to_mathematical_statistics_book}. The total goodness-of-fit value is therefore given by,
 \begin{equation}
     \chi^2_{tot} = -2(ln~\lambda_{d;b;s}(\vec{\theta}, \vec{f}) + ln~\lambda_{syst}(\vec{f})).
 \end{equation}
 
-In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \glspl{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. The exclusion region corresponds to the region of parameter space where the null-hypothesis is excluded with a given confidence whereas the allowed region corresponds to the region of parameter space which is allowed for a given confidence for some set of injected oscillation parameters. In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillation are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal.  For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
+In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \glspl{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. The exclusion region corresponds to the region of parameter space where the null-hypothesis is excluded with a given confidence whereas the allowed region corresponds to the region of parameter space which is allowed for a given confidence for some set of injected oscillation parameters. In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillation are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal.  For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
 
 \begin{table}[h!]
 \begin{tabular}{lcc}
@@ -57,7 +57,7 @@ In order to create confidence regions, fits are performed between a certain \tex
  Confidence level & 68\% & 90\% & 95\% & 99\% & 3$\sigma$ & 5$\sigma$ \\ \hline
 $\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
 \end{tabular}
-\caption[$\chi^2_{critical}$ values for various confidence levels.]{The $\chi^2_{critical}$ values corresponding to various confidence levels which are commonly used when performing sensitivity studies.}
+\caption[$\chi^2_{critical}$ values for various confidence levels.]{The $\chi^2_{critical}$ values corresponding to various confidence levels which are commonly used when performing sensitivity studies. The confidence levels and $\chi^2_{critical}$ are related via $CL = \int_0^{\chi^2_{critical}} \frac{e^{-x/2}x^{u/2-1}}{2^{u/2}\Gamma(u/2)} dx$, where \textit{u} is the degrees of freedom (in this case 1) and $\Gamma$ is the Gamma function \cite{critical_chi2_book}.}
 \label{table:critical_chi2_values}
 \end{table}
 
@@ -546,7 +546,7 @@ For a complete discussion of the \numu disappearance channel, see \cite{Rhiannon
 
 \clearpage
 
-\section{\texorpdfstring{Estimating the impact of shower energy reconstruction on the \nue sensitivities.}{Estimating the impact of shower energy reconstruction on the nue sensitivities.}}
+\section{\texorpdfstring{Estimating the impact of shower energy reconstruction on the \nue sensitivities.}{Estimating the impact of shower energy reconstruction on the nue sensitivities}}
 
 The reconstructed neutrino energy used in the analyses shown so far is based on truth information where smearing has been applied to emulate a reconstructed value. 
 
@@ -638,7 +638,7 @@ In order to gauge the contribution of some typical efficiency uncertainty, \Figu
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/nue_app_syst_groups+det.pdf}
-    \caption[\nue app sensitivity reduction from different systematic groups with a (2+2)\% efficiency uncertainty.]{The reduction in the \nue appearance sensitivity from the stat-only contour when including each set of systematic parameters in the fits. Similar to \FigureRef{fig:nue_app_syst_groups} but with the addition of a 2\% correlated and 2\% uncorrelated efficiency uncertainty.}
+    \caption[\nue app sensitivity reduction from different systematic groups with a (2+2)\% efficiency uncertainty.]{The reduction in the \nue appearance sensitivity from the stat-only contour when including each set of systematic parameters in the fits. Similar to \FigureRef{fig:nue_app_syst_group_sensitivities} but with the addition of a 2\% correlated and 2\% uncorrelated efficiency uncertainty.}
     \label{fig:nue_app_syst_groups+efficiency}
 \end{figure}
 
@@ -651,7 +651,7 @@ The reduction in sensitivity from applying a 10\% correlated uncertainty and a 2
     \label{fig:nue_app_corr_uncorr_error}
 \end{figure}
 
-\FigureRef{fig:nue_app_uncorrelated_per_detector} asses the impact of a 2\% correlated uncertainty which is applied to each detector one at a time. Applying the uncertainty to \gls{microboone} and \gls{icarus} appears to have a negligible impact across all $\Delta m^2_{41}$ values. \gls{sbnd} has a relatively small impact at high $\Delta m^2_{41}$ values which resembles the loss in sensitivity that was seen by applying a 2\% correlated + 2\% uncorrelated uncertainty across all bins in \FigureRef{fig:nue_app_corr_uncorr_error}. It follows that any reduction in sensitivity due to efficiency uncertainties is driven by \gls{sbnd}. Since \gls{sbnd} is most sensitive to large $\Delta m^2_{41}$ values and has higher statistics than \gls{microboone} and \gls{icarus}, the results are consistent with the idea that \nue channel is close to becoming statistics limited. 
+\FigureRef{fig:nue_app_uncorrelated_per_detector} asses the impact of a 2\% uncorrelated uncertainty which is applied to each detector one at a time. Applying the uncertainty to \gls{microboone} and \gls{icarus} appears to have a negligible impact across all $\Delta m^2_{41}$ values. \gls{sbnd} has a relatively small impact at high $\Delta m^2_{41}$ values which resembles the loss in sensitivity that was seen by applying a 2\% correlated + 2\% uncorrelated uncertainty across all bins in \FigureRef{fig:nue_app_corr_uncorr_error}. It follows that any reduction in sensitivity due to efficiency uncertainties is driven by \gls{sbnd}. Since \gls{sbnd} is most sensitive to large $\Delta m^2_{41}$ values and has higher statistics than \gls{microboone} and \gls{icarus}, the results are consistent with the idea that \nue channel is close to becoming statistics limited. 
 
 \begin{figure}[h!]
     \centering
@@ -684,27 +684,34 @@ As was done for \nue appearance, \FigureRef{fig:nue_disapp_syst_groups_detector}
     \label{fig:nue_disapp_syst_groups_detector}
 \end{figure}
 
+Mirroring what was done for \nue appearance, \FigureRef{fig:nue_disapp_corr_uncorr} shows the impact of applying a 10\% correlated error and a 2\% correlated + 2\% uncorrelated error. The correlated error again has an almost negligible impact and whilst the uncorrelated error has a larger impact it is still relatively small. 
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_disapp_cor_uncor.pdf}
     \caption[Impact of correlated and uncorrelated efficiency systematics on the \nue disappearance sensitivity.]{The impact on the \nue disappearance exclusion sensitivity by applying a 10\% fully correlated efficiency uncertainty to all bins and by applying 2\% fully correlated + 2\% uncorrelated efficiency uncertainty.}
-    \label{fig:my_label}
+    \label{fig:nue_disapp_corr_uncorr}
 \end{figure}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_disapp_2pct_cor_05pct_bulk_2pct_X_uncor.pdf}
-    \caption[\nue disapp with poorly constrained efficiency systematic for a set of bins.]{The impact on the \nue disappearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 0.5\% uncorrelated uncertainty for all but a single set of bins where the uncorrelated uncertainty is set to 2\%. The 'peak' energy bins are defined as those covering an energy range of [0.6,~1.0] GeV. The 'high' and 'low' energy bins are defined as those covering energies above and below the peak energy respectively and the 'bkg' bins are all the bins associated with background events. The set of bins of interest are applied to each of the three detectors.}
-    
-    \label{fig:my_label}
-\end{figure}
+A 2\% uncorrelated uncertainty is then applied to each detector one at a time. \FigureRef{fig:nue_disapp_uncorrelated_per_detector} shows that majority of the reduction is due to \gls{sbnd} at above $\Delta m_{41}^2 \sim 10$ (where \gls{sbnd} is dominant). Both \gls{microboone} and \gls{icarus} only have a minimal impact for any $\Delta m^2_{41}$ values. This is consistent with what is shown in \FigureRef{fig:nue_disapp_corr_uncorr}. 
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_disapp_2pct_uncor_per_detector.pdf}
     \caption[\nue disapp with a 2\% uncorrelated efficiency systematic for one detector only.]{The impact on the \nue disappearance exclusion sensitivity by applying a 2\% uncorrelated efficiency uncertainty to a single one of the three \gls{sbn} detectors.}
-    \label{fig:my_label}
+    \label{fig:nue_disapp_uncorrelated_per_detector}
 \end{figure}
+
+\newpage
+Finally, the impact of having a set of poorly constrained bins is investigated in \FigureRef{fig:nue_disapp_bulk_uncertainty}. Similar to the \nue appearance case, the low energy and background bins only have a minimal impact, whereas the peak and high energy bins show a slightly larger impact but far less prominent than for the \numu channel. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/nue_disapp_2pct_cor_05pct_bulk_2pct_X_uncor.pdf}
+    \caption[\nue disapp with poorly constrained efficiency systematic for a set of bins.]{The impact on the \nue disappearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 0.5\% uncorrelated uncertainty for all but a single set of bins where the uncorrelated uncertainty is set to 2\%. The 'peak' energy bins are defined as those covering an energy range of [0.6,~1.0] GeV. The 'high' and 'low' energy bins are defined as those covering energies above and below the peak energy respectively and the 'bkg' bins are all the bins associated with background events. The set of bins of interest are applied to each of the three detectors.}
+    \label{fig:nue_disapp_bulk_uncertainty}
+\end{figure}
+
 
 
 

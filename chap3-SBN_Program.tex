@@ -7,10 +7,10 @@
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap3/SBN_program.jpg}
     \caption[SBN map.]{A view of the Fermilab complex highlighting the position of the \gls{sbn} detectors \cite{SBN_paper}.}
-    \label{fig:my_label}
+    \label{fig:sbn_complex}
 \end{figure}
 
-The \gls{sbn} program is comprised of three distinct \gls{lartpc} type detectors located at the \gls{fnal}. The three detectors are \gls{sbnd}, \gls{microboone} and \gls{icarus} and all three lie along the axis of the \gls{bnb}. In order to minimise systematic uncertainties, the three detectors share many of the same technologies, the details of which are discussed in \SectionRef{sec:SBND} (\gls{sbnd}), \SectionRef{sec:MicroBooNE} (\gls{microboone}) and \SectionRef{sec:ICARUS} (\gls{icarus}). The \gls{bnb} consist predominantly of muon neutrinos with energies of the order 1 GeV and is discussed in detail in \SectionRef{sec:BNB}. The three detectors are positioned at 110m, 470m and 600m from the neutrino beam source respectively \cite{SBN_paper}. 
+The \gls{sbn} program is comprised of three distinct \gls{lartpc} type detectors located at \gls{fermilab}. The three detectors are \gls{sbnd}, \gls{microboone} and \gls{icarus} and all three lie along the axis of the \gls{bnb}. In order to minimise systematic uncertainties, the three detectors share many of the same technologies, the details of which are discussed in \SectionRef{sec:SBND} (\gls{sbnd}), \SectionRef{sec:MicroBooNE} (\gls{microboone}) and \SectionRef{sec:ICARUS} (\gls{icarus}). The \gls{bnb} consists predominantly of muon neutrinos with energies of the order 1 GeV and is discussed in detail in \SectionRef{sec:BNB}. The three detectors are positioned at 110m, 470m and 600m from the neutrino beam source respectively \cite{SBN_paper}. 
 
 One of the primary aims of the \gls{sbn} program is to provide a definitive test to either confirm or refute the existence of light sterile neutrinos which have been hinted at by a number of experiments discussed in \SectionRef{subchap:Motivation for Sterile Neutrinos}. Other major aims of the \gls{sbn} program include investigating neutrino argon cross sections and developing large scale \gls{lartpc} technologies. The close proximity of \gls{sbnd} to the \gls{bnb} source means that \gls{sbnd} will observe neutrino argon interactions with high statistics allowing statistical uncertainties to be minimised and will allow for the exploration of rare channels such as neutrino-electron scattering. Both the development of \gls{lartpc} technology and an improved understanding of neutrino interaction cross-sections will be invaluable for future neutrino experiments such as the \gls{dune} \cite{SBN_paper}.
 
@@ -45,13 +45,13 @@ Despite the many desirable properties of liquid argon, there are still a number 
 
 \subsubsection{Diffusion}
 
-Diffusion is the process in which the drifting electrons do not drift in such a way that they will continue to perfectly represent the initial image of an event. That is to say that the electrons will disperse as they drift in the detector. This happens in both the transverse and longitudinal directions with respect to the direction of the electric field and impacts the spatial resolution of the detector. 
+Diffusion is the process in which the drifting electrons do not drift in such a way that they will continue to perfectly represent the initial image of an event. That is to say that the electrons will disperse as they drift in the detector. This happens in both the transverse and longitudinal directions with respect to the direction of the electric field and impacts the spatial resolution of the detector \cite{LArTPC_book}. 
 
 For the case of a zero electric field and with the electrons in thermal equilibrium, the diffusion is isotropic and the diffusion coefficient, \textit{D}, is given by the Einstein relation such that
 \begin{equation}
     D = \frac{kT}{e}\mu_0,
 \end{equation}
-where \textit{k} is Boltzmann's constant, \textit{T} is the temperature, \textit{e} is the elementary charge and $\mu_0$ is the electron mobility (for the case of no electric field).
+where \textit{k} is Boltzmann's constant, \textit{T} is the temperature, \textit{e} is the elementary charge and $\mu_0$ is the electron mobility (for the case of no electric field) \cite{LArTPC_book}.
 
 In the presence of an electric field, the electron mobility is no longer given by $\mu_0$, but instead by $\mu$ and the electrons are no longer in thermal equilibrium. The diffusion also becomes anisotropic, leading to distinct diffusion coefficients for the longitudinal and transverse directions, $D_L$ and $D_T$ respectively which are given by
 \begin{equation}
@@ -71,7 +71,7 @@ In general, the diffusion in the transverse direction is greater than the diffus
  \begin{equation}
      Q = Q_{0}e^{-t/\tau_e},
  \end{equation}
-where $Q$ is the charge remaining after correcting for electron lifetime, $Q_0$ is the initial charge and $t$ is the drift time. 
+where $Q$ is the charge remaining after correcting for electron lifetime, $Q_0$ is the initial charge and $t$ is the drift time \cite{ArgoNeuT_electron_lifetime_paper}. 
  
 \subsubsection{Recombination}
 When argon atoms are ionised, the resulting ionised electron may immediately recombine with a nearby argon ion instead of being separated by the electric field in the detector. This is known as the recombination effect and the magnitude of the effect is largely determined by the local electric field. A number of different approaches to model the recombination effect exist, however for liquid argon detectors a form of the box model or Jaff\'{e} model are usually used \cite{LArTPC_book}.
@@ -130,7 +130,7 @@ where $E_A$ is the electric field at the anode and both $E'$ and $x'$ are dummy 
 where $E_0 = V/D$ is the nominal electric field, \textit{V} is the difference in the voltage between the anode and cathode and $\alpha = \frac{D}{E_0}\sqrt{\frac{K}{\epsilon \mu}}$ which is a dimensionless parameter \cite{space_charge_math}.
 
 \section{Booster Neutrino Beam}\label{sec:BNB}
-The \gls{bnb} is produced by firing 8 GeV protons onto a beryllium target resulting in a secondary beam of hadrons. A toroidal focusing horn surrounds the target and focuses or defocuses charged particles depending on the sign of their charge. The focused hadrons then travel down a 50 m tunnel where most of them will decay producing muon neutrinos and small fraction of electron neutrinos. At the end of the 50 m decay region is a concrete and steel absorber designed to absorb any non-neutrino particles. A schematic of the \gls{bnb} layout is shown in \FigureRef{fig: BNB schematic}. The decay modes of the hadrons resulting in a neutrino and the corresponding branching ratios are listed in \TableRef{Table: BNB decay modes}. 
+The \gls{bnb} is produced by firing 8 GeV protons onto a beryllium target resulting in a secondary beam of hadrons \cite{FNAL_proton_accelerator}. A toroidal focusing horn surrounds the target and focuses or defocuses charged particles depending on the sign of their charge. The focused hadrons then travel down a 50 m tunnel where most of them will decay producing muon neutrinos and small fraction of electron neutrinos. At the end of the 50 m decay region is a concrete and steel absorber designed to absorb any non-neutrino particles \cite{SciBooNE_BNB_description}. A schematic of the \gls{bnb} layout is shown in \FigureRef{fig: BNB schematic}. The decay modes of the hadrons resulting in a neutrino and the corresponding branching ratios are listed in \TableRef{Table: BNB decay modes}. 
 
 \begin{figure}
     \centering
@@ -158,7 +158,7 @@ $\mu^+$                   & $e^+ + \nu_e + \bar{\nu}_e$       & 100
 \end{table}
 
 \newpage
-A current of 174 kA is supplied to the magnetic horn in 143 $\mu$s pulses which corresponds to the frequency of the incident protons. The direction of the current may be reversed allowing for the focusing of positively or negatively charged particles. Since the charge of the decaying hadrons is linked to the type of neutrino produced, the ability to focus both positively and negatively charged particles allows the \gls{bnb} to run in neutrino or anti-neutrino mode. Pions are the primary particle produced from the incident protons hence the \gls{bnb} is muon (anti-)neutrino dominated. The percentage neutrino flavour composition of the \gls{bnb} is given in \TableRef{Table: BNB composition} for both neutrino and anti-neutrino mode.
+A current of 174 kA is supplied to the magnetic horn in 143 $\mu$s pulses which corresponds to the frequency of the incident protons. The direction of the current may be reversed allowing for the focusing of positively or negatively charged particles. Since the charge of the decaying hadrons is linked to the type of neutrino produced, the ability to focus both positively and negatively charged particles allows the \gls{bnb} to run in neutrino or anti-neutrino mode \cite{BNB_flux}. Pions are the primary particle produced from the incident protons hence the \gls{bnb} is muon (anti-)neutrino dominated. The percentage neutrino flavour composition of the \gls{bnb} is given in \TableRef{Table: BNB composition} for both neutrino and anti-neutrino mode.
 
 
 \begin{table}[h]
@@ -343,7 +343,7 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 \centering \textbf{NC Res} \\ \vspace{0.3cm}
 \resizebox{\linewidth}{4cm}{
 \begin{feynman}
-    \fermion[label=$l$, labelDistance=0.3, showArrow=true, flip=false]{6.00, 8.00}{8.00, 9.00}
+    \fermion[label=$\nu_l$, labelDistance=0.3, showArrow=true, flip=false]{6.00, 8.00}{8.00, 9.00}
     \fermion[label=$\nu_l$, labelDistance=0.2]{4.00, 9.00}{6.00, 8.00}
     \weak[color=000000, label=$Z^0$, labelDistance=0.3]{6.00, 8.00}{6.00, 6.00}
     \fermion[label=$N$, labelDistance=0.3, showArrow=true, flip=true]{6.00, 6.00}{4.00, 5.00}
@@ -468,7 +468,7 @@ The \gls{microboone} detector is located slightly upstream of its predecessor, \
 
 The \gls{microboone} detector consists of a single \gls{tpc} enclosed within a cryostat as is shown in \FigureRef{fig:microboone}. The \gls{tpc} has dimensions of (2.560, 2.325, 10.368)~m and is orientated such that the z direction is along the neutrino beam line with the cathode to the left of the beam and the anode to the right. The active volume is defined as the volume enclosed by the \gls{lartpc} field cage which has a liquid argon mass of 90 tonnes out of a total 170 tonnes. The \gls{apa} consists of three wire planes with the wires on the two induction planes orientated at $\pm 60^{\circ}$ to the vertical and the wires of the collection plane orientated vertically. Both the wire plane spacing and the wire pitch of each plane is 3 mm. Unlike \gls{sbnd} and \gls{icarus}, the nominal electric field in \gls{microboone} is 273 V/cm. The light collection system consists of a series of 32 \glspl{pmt} and 4 lightguide paddles which are located directly behind the anode planes. The lightguides have a large collection area and their purpose is to guide light to the \glspl{pmt} (the lightguide paddles were disfavoured once the ARAPUCA technology was developed.)\cite{microboone_detector}.
 
-\gls{microboone} is also considered a surface level detector being only $\sim 6$ m underground and as there is no overburden present, a large flux of cosmic rays are observed. A \gls{crt} system similar to the one described in \SectionRef{sec:SBND} for \gls{sbnd} was implemented. The \gls{crt} system consists of 73 scintillating modules, however it is only sensitive to the four sides of the X and Y coordinates of the detector. 
+\gls{microboone} is also considered a surface level detector being only $\sim 6$ m underground and as there is no overburden present, a large flux of cosmic rays are observed. A \gls{crt} system similar to the one described in \SectionRef{sec:SBND} for \gls{sbnd} was implemented. The \gls{crt} system consists of 73 scintillating modules, however it is only sensitive to the four sides of the X and Y coordinates of the detector \cite{microboone_crt}. 
 
 
 
@@ -479,7 +479,7 @@ The \gls{microboone} detector consists of a single \gls{tpc} enclosed within a c
 
 \section{ICARUS}\label{sec:ICARUS}
 
-The \gls{icarus} detector was first operated in 2010 and  located at the Gran Sasso National Laboratory in Italy where it was used to detect events from cosmic rays and from the neutrino beam which is directed from CERN to Gran Sasso. In 2013 the decommissioning process began and the detector was taken to CERN for refurbishment before making its way to \gls{fnal} and becoming part of the \gls{sbn} program \cite{SBN_Proposal}.
+The \gls{icarus} detector was first operated in 2010 and  located at the Gran Sasso National Laboratory in Italy where it was used to detect events from cosmic rays and from the neutrino beam which is directed from CERN to Gran Sasso. In 2013 the decommissioning process began and the detector was taken to CERN for refurbishment before making its way to \gls{fermilab} and becoming part of the \gls{sbn} program \cite{SBN_Proposal}.
 
 The \gls{icarus} detector consists of two \textit{modules} within a single cryostat with each module containing two \glspl{tpc}. A schematic of this design is shown in \FigureRef{fig:icarus}. Similar to \gls{sbnd}, the two \glspl{tpc} within each module share a common cathode. The dimensions of each module are (3.6, 3.9, 19.6) m and the cryostat contains 760 tonnes of liquid argon with an active volume of 476 tonnes.  Again, the \glspl{apa} consists of three wire planes with a wire plane spacing and wire pitch of 3 mm. In contrast to \gls{sbnd} and \gls{microboone} however, the wire planes are orientated at 0$^\circ$ for the first induction plane and at $\pm 60^\circ$ for the second induction plane and the collection plane. The choice of having a horizontal wire plane is due to \gls{icarus} being initially designed to detect cosmic rays which would predominantly enter the detector from above and therefore be travelling perpendicular to the horizontal. The nominal electric field in each of the \glspl{tpc} is 500 V/m \cite{SBN_Proposal}. 
 
@@ -497,26 +497,27 @@ The \gls{crt} for the vertical sides are again outside the \gls{tpc} and behind 
 
 \section{SBN Physics Capabilities}
 
-The \gls{sbn} program was designed with the aim of resolving the contentious results observed by a number of experiments as was discussed in \SectionRef{subchap:Motivation for Sterile Neutrinos}. Since it was purposely planned with this in mind, the \gls{sbn} program has a number of advantages over previous experiments in the hopes of detecting eV scale sterile neutrinos: it has a multi detector design, the near and far detector are positioned such that the oscillation signal is close to maximal for an expected set of oscillation parameters, the detectors use the same technology and have the same target medium. 
+The \gls{sbn} program was designed with the aim of resolving the contentious results observed by a number of experiments as was discussed in \SectionRef{subchap:Motivation for Sterile Neutrinos}. Since it was purposely planned with this in mind, the \gls{sbn} program has a number of advantages over previous experiments in the hopes of detecting eV scale sterile neutrinos: it has a multi detector design, the near and far detector are positioned such that the oscillation signal is close to maximal for an expected set of oscillation parameters, the detectors use the same technology and have the same target medium \cite{SBN_paper}. 
 
 The top two plots of \FigureRef{fig:osc_probability} show the expected oscillation probability for the \nue appearance channel as a function of the baseline for two sets of oscillation parameters, $(sin^22\theta_{\mu e}, ~\Delta m^2_{41}) = (0.015, ~0.3~\text{eV}^2), (0.002, ~1.5~\text{eV}^2)$ and a neutrino energy of 700 MeV. The neutrino energy corresponds to the peak energy of the \gls{bnb} and the oscillation points are chosen as the upper and lower limits of the global \nue appearance data. In both cases there is a clear difference in the oscillation probability between the near and far detector showing that the \gls{sbn} program is sensitive to oscillations within this parameter range \cite{SBN_paper}. The bottom two plots show the oscillation probability for the same two oscillation points as a function of neutrino energy for baselines of 110 m and 600 m. The ratio of the oscillation probability at 600 m to that at 110 m is also shown. Again there is a clear difference in the oscillation probability for most energies showing that the \gls{sbn} program is sensitive to a wide range of neutrino energies \cite{SBN_paper}. The \nue appearance oscillation sensitivity constructed at the time of the proposal is shown in \FigureRef{fig:SBN_proposal_sensitivity}. These contours include the relevant backgrounds and systematic uncertainties with the exception of detector systematics. 
 
 The event rates in the near and far detector are correlated since both use the same interaction medium and the same technology to detect interactions. As \FigureRef{fig:osc_probability} shows, \gls{sbnd} will observe no or very few oscillated events and will give a measure of the absolute flux and interaction cross-section whereas both \gls{microboone} and \gls{icarus} are able to detect oscillated events with significant probability. Typically the \gls{bnb} flux uncertainties and interaction cross-section uncertainties are fairly large, however, comparing results from \gls{sbnd} to \gls{microboone} and \gls{icarus} and noting the correlation between the detectors allows the uncertainties to be constrained \cite{SBN_paper}. 
 
-\begin{figure}[!h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap3/osc_probability.png}
     \caption[SBN oscillation probability.]{The oscillation paramters used in the two left and right plots are $(sin^22\theta_{\mu e}, ~\Delta m^2_{41}) = (0.015, ~0.3~\text{eV}^2), (0.002, ~1.5~\text{eV}^2)$ respectively. Top: The oscillation probability as a function of the baseline for the \nue appearance channel. A neutrino energy of 700 MeV is used in both cases. Bottom: The oscillation probability is shown as a function of neutrino energy in both the near and far detector. Additionally, the ratio of the oscillation probabilities between the two detectors is also shown. \cite{SBN_paper}}
     \label{fig:osc_probability}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap3/SBN_proposal_sensitivity.png}
-    \caption[\nue appearance\gls{sbn} proposal sensitivity.]{The expcted \nue appearance sensitivity from the \gls{sbn} program using inputs constructed at the time of the \gls{sbn} proposal. Limits from \gls{lsnd} and global best fit results are also shown \cite{SBN_Proposal}.}
+    \caption[\nue appearance \gls{sbn} proposal sensitivity.]{The expcted \nue appearance sensitivity from the \gls{sbn} program using inputs constructed at the time of the \gls{sbn} proposal. Limits from \gls{lsnd} and global best fit results are also shown \cite{SBN_Proposal}.}
     \label{fig:SBN_proposal_sensitivity}
 \end{figure}
 
+\newpage
 This main goal of the \gls{sbn} program revolves around sterile neutrino oscillation analyses, however the close proximity of the \gls{sbn} detectors and in particular \gls{sbnd} to the neutrino beam source will allow for a high statistics study of neutrino argon interactions. This will provide valuable information for future liquid argon based experiments such as \gls{dune}. \gls{sbnd} is expected to observe on the order of 2 million neutrino interactions a year which is sufficient to be able to minimise the associated uncertainty to a point such that systematic uncertainties become dominant. As the \gls{bnb} consists predominantly of \numu, most events will also be \numu based, however the \nue fraction of the \gls{bnb} is sufficient to expect 12,000 \nue events a year in \gls{sbnd} which is enough to perform both inclusive and exclusive analyses. There is also the opportunity to measure rare channels with a big increases in statistics or possibly even for the first time such as final states involving hyperons or $\nue \rightarrow \nue$ elastic scattering \cite{SBN_paper} \cite{light_dark_matter}.
 
 The large event rate and the high resolution event reconstruction provided may allow the \gls{sbn} program to be sensitive to \gls{bsm} physics other than sterile neutrino oscillations \cite{SBN_paper}. The potential areas include, but are not limited to,

@@ -2,28 +2,34 @@
 \label{chap:Energy_Reco}
 \section{Motivation for Improving the Shower Energy Reconstruction}
 
-The \gls{em} shower energy is an important quantity that is used in a number of areas especially in the context of a \nue analysis. In the \nue event selection (which is detailed in \SectionRef{sec:nue_selection}) a direct cut based on the shower energy is applied to the events. Another use is in calculating the reconstructed electron neutrino energy (which is used when constructing contours in the oscillation analysis. See \SectionRef{sec:VALOR_framework}). Generally this is done by summing up the energy of all the outgoing products of a neutrino interaction to which the shower energy is expected to make the dominant contribution.
+The \gls{em} shower energy is an important quantity that is used in a number of areas especially in the context of a \nue analysis. In the \nue event selection (which is detailed in \SectionRef{sec:nue_selection}) a direct cut based on the shower energy is applied to the events. Another use is in calculating the reconstructed electron neutrino energy (which is used when constructing contours in the oscillation analysis. See \SectionRef{sec:VALOR_framework}). Generally this is done by summing up the energy of all the outgoing products of a neutrino interaction to which (for \nue \gls{ccqe} interactions) the shower energy is expected to make the dominant contribution \cite{neutrino_energy_reconstruction}.
 
 \section{Event Production and Reconstruction in LArSoft}\label{sec:Event Production and Reconstruction in LArSoft}
 
-Use vertex sample - make life easier for Pandora.
-
-\gls{mc} event production and analysis is performed using the \gls{larsoft} framework which interfaces with a number of other frameworks such as \gls{genie} for event generation, \gls{geant4} for event simulation and Pandora for event reconstruction. \gls{larsoft} has been designed to work for many liquid argon based neutrino experiments including \gls{sbn} with many of the underlying algorithms being common to all experiments \cite{larsoft}\cite{larsoft_paper}.
+\gls{mc} event production and analysis is performed using the \gls{larsoft} framework which interfaces with a number of other frameworks such as \gls{genie} for event generation, \gls{geant4} for event simulation and Pandora for event reconstruction \cite{GENIE}\cite{Geant4_website}\cite{Geant4_paper}\cite{Pandora_paper}. \gls{larsoft} has been designed to work for many liquid argon based neutrino experiments, including \gls{sbn}, with many of the underlying algorithms being common to all experiments \cite{larsoft}\cite{larsoft_paper}.
 
 Reconstructed quantities are the main focus of this section and these are typically derived from the reconstructed charge which is obtained in the following steps;
-\begin{itemize}
+\begin{enumerate}
     \item Drifting electrons induce current on a wire.
     \item Extract the signal on the wire from the E-field and any noise. 
     \item A hit finding algorithm identifies any significant waveforms and classifies these as hits across a certain time window (number of ticks). 
     \item The Pandora pattern recognition software clusters the hits together such that they represent an individual particle. This is initially done in 2D, followed by matching the clusters between the wire planes in order to produce 3D clusters.
     \item The lineage of the particles is identified and the particles are classified as either track or shower like.
-\end{itemize}
+\end{enumerate}
 
-A number of different hit finding algorithms exist, but the default one used by \gls{larsoft} is the \textit{GausHitFinder}. Once the algorithm has identified a waveform that peaks above some threshold (the threshold in \gls{sbnd} is 10 \gls{adc} counts), it attempts to fit one or more Gaussians to the waveform. For each peak, the centre and width are identified and these values are used to produce the associated Gaussian fit. For most cases the GausHitFinder works well, but two areas where it can struggle are resolving hits which are closely spaced and fitting a Gaussian to waveforms that are not well represented by a Gaussian. The latter tends to occur when charge is directed towards the wire planes (e.g. from a shower that was produced at a large angle to the beam line instead of being mostly forward going) which causes a long pulse train on but a few wires. This results in long waveforms where the \gls{adc} count is above threshold for many ticks and is without a clear central peak. These long waveforms may be better represented by a series of N-Gaussians, however, this is still far from perfect and fitting a large number of peaks can appreciably increase computing time \cite{gaushitfinder}. 
+A number of different hit finding algorithms exist, but the default one used by \gls{larsoft} is the \textit{GausHitFinder}. Once the algorithm has identified a waveform that peaks above some threshold (the threshold in \gls{sbnd} is 10 \gls{adc} counts), it attempts to fit one or more Gaussians to the waveform. For each peak, the centre and width are identified and these values are used to produce the associated Gaussian fit. For most cases the GausHitFinder works well, but two areas where it can struggle are resolving hits which are closely spaced and fitting a Gaussian to waveforms that are not well represented by a Gaussian. The latter tends to occur when charge is directed towards the wire planes (e.g. from a shower that was produced at a large angle to the beam line instead of being mostly forward going) which causes a long pulse train on but a few wires. This results in long waveforms where the \gls{adc} count is above threshold for many ticks and is without a clear central peak. These long waveforms may be better represented by a series of N-Gaussians, however, this is still far from perfect and fitting a large number of peaks can appreciably increase computing time \cite{gaushitfinder}. \FigureRef{fig:fitted_waveforms} shows examples of some waveforms in blue along with the attempted Gaussian fit in red. The top plot shows an example waveform that is well represented by a Gaussian, whereas in the bottom plot there is a long waveform with a number of different peaks to which the \textit{GausHitFinder} has attempted to fit a single Gaussian. This long waveform is not representative of a single Gaussian and therefore the associated reconstructed charge will deviate significantly from the true value.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap4/good_gauss_fit.png}
+    \includegraphics[width = \largefigwidth]{figures-chap4/bad_gauss_fit.png}
+    \caption[Example of well and poorly fitted waveform.]{Waveforms (blue) that have been fitted with a Gaussian (red) from the \textit{GausHitFinder}. Top: an example of a waveform that is well represented by a Gaussian. Bottom: an example of waveform that is not well represented by a Gaussian.}
+    \label{fig:fitted_waveforms}
+\end{figure}
 
 \section{Overview of Shower Energy Reconstruction in SBND}\label{subchap:shower reco overview}
 
-Currently, there are three algorithms available for reconstructing \gls{em} shower energy within \gls{sbnd} as part of the \textit{LArPandoraShower} suite of tools, each of which are described below. Regardless of the algorithm used, the initial approach is the same for all three methods which is as follows,
+Currently, there are three algorithms available for reconstructing \gls{em} shower energy within \gls{sbnd} as part of the \textit{LArPandoraShower} suite of tools, each of which is described below. Regardless of the algorithm used, the initial approach is the same for all three methods which is as follows,
 \begin{enumerate}
     \item Identify the hits associated with a given wire plane.
     \item Integrate the hits to obtain the associated charge in \gls{adc} units whilst correcting for electron lifetime. 
@@ -66,14 +72,12 @@ The first shower energy reconstruction method developed was the \textit{Shower L
     \label{fig:linear lookup curve}
 \end{figure}
 
-
-
-To estimate the reconstructed shower energy, the charge found to be associated with a shower would be used to directly read off the associated energy from the linear calibration. A further recombination correction is not required as it has already been accounted for in the charge to energy conversion. The peformance of the \textit{Shower Linear Energy tool} is shown in \FigureRef{fig:linear_kGeVelectrons}, however, it has been largely disfavoured since the development of the two other reconstruction tools. 
+To estimate the reconstructed shower energy, the charge found to be associated with a shower would be used to directly read off the associated energy from the linear calibration. A further recombination correction is not required as it has already been accounted for in the charge to energy conversion. The \textit{Shower Linear Energy tool} has been largely disfavoured since the development of the two other reconstruction tools. 
 
 \subsection{Number of Electrons to Energy}\label{subchap:kGeVToElectrons}
-The \textit{Shower Num Electrons Energy tool} was developed to move away from being reliant on in-house calibration curves and instead use the pre-existing calibration available in the \Gls{sbnd} portion of the \Gls{larsoft} framework. This has the advantage of being much more flexible to physics changes. For example a change in the recombination correction could be investigated by changing a single number, whereas, for the \textit{Shower Linear Energy tool}, the calibration curves would have to be regenerated. The number of electrons are found from the \gls{adc} charge and are then directly converted to energy using a \textit{GeVToElectrons} scale factor which is the inverse of the energy required to ionise an argon atom. With this method a correction to account for recombination is still required. A nominal recombination value of 0.64 is used for all hits. 
+The \textit{Shower Num Electrons Energy tool} was developed to move away from being reliant on in-house calibration curves and instead use the pre-existing calibration available in the \Gls{sbnd} portion of the \Gls{larsoft} framework. This has the advantage of being much more flexible to physics changes. For example a change in the recombination correction could be investigated by changing a single number, whereas, for the \textit{Shower Linear Energy tool}, the calibration curves would have to be regenerated. The number of electrons are found from the \gls{adc} charge and are then directly converted to energy using a \textit{GeVToElectrons} scale factor which is the inverse of the energy required to ionise an argon atom. A nominal recombination value of 0.64 is assumed which is applied to all hits.
 
-The nominal recombination value was calculated by simulating electrons with a large (effectively infinite) lifetime and turning off any diffusion effects. The only thing remaining that may impact the collected energy is the recombination effect and therefore taking the ratio between the collected and deposited energy will give a value for the recombination value. For electrons, it was found that the recombination value was fairly constant at a value of 0.64 across a broad range of energies \cite{recombination_0.64}. 
+The nominal recombination value was calculated by simulating electrons with a large (effectively infinite) lifetime and turning off any diffusion effects. The only thing remaining that may impact the collected energy is the recombination effect and therefore taking the ratio between the collected and deposited energy will give a value for the recombination effect. For electrons, it was found that the recombination effect was fairly constant at a value of 0.64 across a broad range of energies \cite{recombination_0.64}. 
 
 
 
@@ -91,7 +95,6 @@ where $\frac{dE}{dx}$ is the deposited energy per unit length, $\frac{dQ}{dx}$ i
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap4/ratio_plot_oldmethod_trueshoweringparticle.pdf}
     \caption{Caption}
-    \label{fig:my_label}
 \end{figure}
 
 
@@ -109,20 +112,21 @@ The \textit{Shower ESTAR Energy tool} combines the ESTAR database provided by th
 
 $\frac{dE}{dx}$ values may be calculated by dividing the energy by the track length for each entry in the ESTAR database. The deposited charge, \textit{Q}, can then found by using \EquationRef{eqn:ModBox} to find $\frac{dQ}{dx}$ and multiplying by the track length, \textit{dx}. This now allows the collected charge and energy to be related. If $\mathcal{E}$ in \EquationRef{eqn:ModBox} is taken to be a variable, the above process may be repeated whilst iterating over a set values of $\mathcal{E}$. This results in a 3D curve relating both the deposited charge and electric field to energy as is shown in \FigureRef{fig:ESTAR lookup curve}. The energy may then be interpolated from the collected charge and the appropriate electric field. As with the \textit{Shower Linear Energy tool}, a direct correction for recombination isn't needed as it is again accounted for in the lookup curve. 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width = 0.8\textwidth]{figures-chap4/ESTAR_lookup_curve.pdf}
-    \caption{ESTAR Lookup Curve}
+    \caption[ESTAR lookup curve.]{ESTAR lookup curve generated from the ESTAR database and the Modified Box Recombination Model.}
     \label{fig:ESTAR lookup curve}
 \end{figure}
 
+\newpage
 \section{Shower Energy Reconstruction Performance}
 
-In order to assess the performance of the different reconstruction methods, a comparison with \textit{truth} information is performed. Depending on the approach, a few other inefficiencies should be considered, namely that the hit reconstruction and Pandora pattern recognition aren't perfect. This results in hits missing due to not being reconstructed plus the addition of the clusters that Pandora produces being incomplete. Therefore, there are typically fewer hits than there would be if the the shower in question were to be perfectly reconstructed. Reconstructing the energy of the showering particle, is desirable for a number of analyses, however, due to these issues, it is not realistic to expect agreement to within a few percent. Improving the hit reconstruction or the pattern recognition within Pandora would clearly help, but it's likely that a non-negligible bias would remain. Work on Pandora and the hit reconstruction is, however, beyond the scope of this section and addressing any remaining bias between true and reco is beyond reconstruction work as a whole. 
+In order to assess the performance of the different reconstruction methods, a comparison with \textit{truth} information is performed. Depending on the approach, a few other inefficiencies should be considered, namely that the hit reconstruction and Pandora pattern recognition aren't perfect \cite{Pandora_paper}. This results in hits missing due to not being reconstructed plus the addition of the clusters that Pandora produces being incomplete. Therefore, there are typically fewer hits than there would be if the the shower in question were to be perfectly reconstructed. Reconstructing the energy of the showering particle, is desirable for a number of analyses, however, due to these issues, it is not realistic to expect agreement to within a few percent. Improving the hit reconstruction or the pattern recognition within Pandora would clearly help, but it's likely that a non-negligible bias would remain. Work on Pandora and the hit reconstruction is, however, beyond the scope of this section and addressing any remaining bias between true and reco is beyond reconstruction work as a whole. 
 
 To purely gauge the performance of a given reconstruction method, it is probably best to compare the truth and reconstructed energy of a shower by only considering the available hits. This way, the reconstruction method is only validated from the available information and is decoupled from any other inefficiencies. However, additional care must be taken when using the true energy of the hits. What is considered a hit is user defined in that the width that defines a hit is a parameter that may be changed. Therefore, the true energy associated with a hit is dependant on the chosen width. Within \gls{larsoft}, the default width of a hit is $1\sigma$ which is chosen to try and find a balance between covering a sufficient amount of charge whilst still being able to resolve multiple hits which are closely spaced. Unless otherwise stated, the definition of a hit will be left at the default width of $1\sigma$. 
 
-Generally the validation is performed on a shower-hit level. This means that for a given shower, the energy of each hit is reconstructed and then the summed together to obtain the energy of the shower. The exception to this is in the case of the \textit{Linear Energy tool}. During its development, it was customary to sum up the charge of all the hits and then convert to energy. This is why the calibration curve in \FigureRef{fig:linear lookup curve} has energies on the order of a shower level and not a hit level (individual hit energies are usually $\lesssim 5$ MeV).
+Generally the validation is performed on a shower-hit level. This means that for a given shower, the energy of each hit is reconstructed and then the summed together to obtain the energy of the shower. The exception to this is in the case of the \textit{Linear Energy tool}. During its development, it was customary to sum up the charge of all the hits and then convert to energy. This is why the calibration curve in \FigureRef{fig:linear lookup curve} has energies on the order of a shower level and not a hit level (individual hit energies are usually $\lesssim 5$ MeV) and also why it's possible to evaluate shower energies above 1000 MeV using the ESTAR method. 
 
 \subsection{General Validation of a BNB Sample}
 
@@ -157,6 +161,7 @@ The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_lev
     \label{fig:reco_vs_true_showeringE}}
 \end{figure}
 
+\newpage
 A comparison of the fractional energy resolution, which is defined as $\frac{Reco - True}{True}$, is shown in \FigureRef{fig:fractional_energy_resolution} for both true energies. When comparing with the true energy of the hits, the \textit{Shower ESTAR Energy tool} peaks quite tightly around zero as does the \textit{Shower Linear Energy tool} however its peak is a little broader. The \textit{Shower Num Electron Energy tool} peak to the right of the zero line again indicating that the reconstructed quantity is an overestimate. All three distributions peak to the left of the zero line when comparing with the true energy of the showering particle with the \textit{Shower Num Electrons Energy tool} giving the closest result. 
 
 \begin{figure}[h!]
@@ -167,23 +172,24 @@ A comparison of the fractional energy resolution, which is defined as $\frac{Rec
     \label{fig:fractional_energy_resolution}
 \end{figure}
 
+\newpage
 To confirm that the reconstruction performance is comparable across all wire planes, the true vs reconstructed energy was also plotted for the two induction planes using the ESTAR method. This is shown in \FigureRef{fig:true_vs_reco_for_induction_planes} where the comparison has been made with the true energy of the hits.
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
-    \includegraphics[width = 0.49\textwidth]{}
-    \includegraphics[width = 0.49\textwidth]{}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/true_vs_reco_plane0_ESTAR.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/true_vs_reco_plane1_ESTAR.pdf}
     \caption[True vs reconstructed energy from a showering electron for the two induction planes. The true energy has been evaluated from the hits of each shower.]{True vs reconstructed energy from a showering electron for the first induction plane (Left) and the second induction plane (Right). The true energy has been evaluated from the hits of each shower.}
     \label{fig:true_vs_reco_for_induction_planes}
 \end{figure}
 
-Since photons also produce \gls{em} showers, a \gls{bnb}-like $\gamma + \pi^+$ sample was produced to verify that the reconstruction works equally well in this case. \FigureRef{} shows this using the ESTAR method with the hits from the collection plane. 
+Since photons also produce \gls{em} showers, a \gls{bnb}-like $\gamma + \pi^+$ sample was produced to verify that the reconstruction works equally well in this case. \FigureRef{fig:true_vs_reco_photon_sample} shows this using the ESTAR method with the hits from the collection plane. 
 
 \begin{figure}
     \centering
-    \includegraphics[width = 0.49\textwidth]{}
+    \includegraphics[width = \largefigwidth]{figures-chap4/true_vs_reco_photon_ESTAR.pdf}
     \caption[True vs reconstructed energy from a showering photon. The true energy has been evaluated from the hits of each shower.]{True vs reconstructed energy from a showering photon using hits from the collection plane. The true energy has been evaluated from the hits of each shower.}
-    \label{fig:true_vs_reco_for_induction_planes}
+    \label{fig:true_vs_reco_photon_sample}
 \end{figure}
 
 \clearpage
@@ -191,7 +197,7 @@ Since photons also produce \gls{em} showers, a \gls{bnb}-like $\gamma + \pi^+$ s
 
 From a \gls{bnb} neutrino sample, most of the showers are expected to be predominantly forward going. A fraction of showers will however be directed at large angles to the beamline. As was mentioned in \SectionRef{sec:Event Production and Reconstruction in LArSoft}, showers directed towards the wire planes tend to produce waveforms which are not well represented by Gaussians. Since the GausHitFinder has trouble applying a suitable fit to these cases, a degradation in the reconstruction performance is expected as a function of angle.
 
-In order to verify this, an  $e^- + \pi^+$ sample was produced with the electron being directed in all $\theta_{xz}$ angles. Otherwise, this sample is also \gls{bnb}-like. $\theta_{xz}$ is the angle between the beamline and the positive x-direction and is defined in terms of \glspl{sbnd} coordinate system which is shown in \FigureRef{fig:sbnd_coordinate_system}. The reconstruction performance is shown in \FigureRef{fig:reconstruction_as_a_function_of_angle} using the ESTAR method for both definitions of true energy. As is expected, a degradation in the reconstruction performance is observed in both cases as $\theta_{xz}$ tends away from 0. It should be noted that the degradation's are in opposite directions which may be explained by the fact that at large angles, the reconstruction method tends to overestimate the energy of the available hits, but the hit reconstruction and/or clustering also suffer, so the overall fraction of hits representing the shower is reduced. Both the \textit{Shower Linear Energy tool} and \textit{Shower Num Electrons Energy tool} have a constant recombination correction and therefore the conversion from charge to energy is linear. The \textit{Shower ESTAR Energy tool} isn't perfectly linear but it is close, especially in the region up to $\mathcal{O}(10 \text{ MeV})$. Therefore, there is essentially no angular dependence so results akin to \FigureRef{fig:reconstruction_as_a_function_of_angle} for the \textit{Shower Linear Energy tool} and the \textit{Shower Num of Electrons Energy tool} would look almost identical only with the y-axis scaled appropriately. 
+In order to verify this, an  $e^- + \pi^+$ sample was produced with the electron being directed in all $\theta_{xz}$ angles. Otherwise, this sample is also \gls{bnb}-like. $\theta_{xz}$ is the angle between the beamline and the positive x-direction and is defined in terms of \glspl{sbnd} coordinate system which is shown in \FigureRef{fig:sbnd_coordinate_system}. The reconstruction performance is shown in \FigureRef{fig:reconstruction_as_a_function_of_angle} using the ESTAR method for both definitions of true energy. Profile histograms of \FigureRef{fig:reconstruction_as_a_function_of_angle} are shown in \FigureRef{fig:reconstruction_as_a_function_of_angle_profile} where the y-axis error bars are the standard deviations. As is expected, a degradation in the reconstruction performance is observed in both cases as $\theta_{xz}$ tends away from 0. It should be noted that the degradation's are in opposite directions which may be explained by the fact that at large angles, the reconstruction method tends to overestimate the energy of the available hits, but the hit reconstruction and/or clustering also suffer, so the overall fraction of hits representing the shower is reduced. Both the \textit{Shower Linear Energy tool} and \textit{Shower Num Electrons Energy tool} have a constant recombination correction and therefore the conversion from charge to energy is linear. The \textit{Shower ESTAR Energy tool} isn't perfectly linear but it is close, especially in the region up to $\mathcal{O}(10 \text{ MeV})$. Therefore, there is essentially no angular variation among the three methods so results akin to \FigureRef{fig:reconstruction_as_a_function_of_angle} for the \textit{Shower Linear Energy tool} and the \textit{Shower Num of Electrons Energy tool} would look almost identical only with the y-axis scaled appropriately. 
 \begin{figure}[h!]
     \centering
     
@@ -207,7 +213,7 @@ In order to verify this, an  $e^- + \pi^+$ sample was produced with the electron
 
     \end{tikzpicture}
 
-    \caption[\glspl{sbnd} coordinate system]{\glspl{sbnd} coordinate system. The origin is located at the centre of the upstream face of the detector which is defined to be at (0, 200, 0) cm with the \textit{z} direction being along the beamline.}
+    \caption[\glspl{sbnd} coordinate system.]{\glspl{sbnd} coordinate system. The origin is located at the centre of the upstream face of the detector which is defined to be at (0, 200, 0) cm with the \textit{z} direction being along the beamline.}
     \label{fig:sbnd_coordinate_system}
 \end{figure}
 
@@ -228,10 +234,8 @@ In order to verify this, an  $e^- + \pi^+$ sample was produced with the electron
     \label{fig:reconstruction_as_a_function_of_angle_profile}
 \end{figure}
 
-\clearpage
 \subsection{Performance as a Function of Energy}
-The electromagnetic showers produced in \gls{sbnd} from the \gls{bnb} are expected to have energies up to around a GeV. 
-Since the energy range is relatively broad, the reconstruction performance is evaluated as a function of the energy in order to confirm that the reconstruction methods work sufficiently well for all energies. As was the case for the angular dependence, the performance as a function of energy is expected to be similar across the different reconstruction methods with the only difference being in the actual reconstruction performance. 
+The \gls{em} showers produced in \gls{sbnd} from the \gls{bnb} are expected to have energies up to around a GeV. Since the energy range is relatively broad, the reconstruction performance is evaluated as a function of the energy in order to confirm that the reconstruction methods work sufficiently well for all energies. As was the case for the angular dependence, the performance as a function of true energy is expected to be similar across the different reconstruction methods with the only difference being in the actual reconstruction performance. 
 
 On the whole, the fractional resolution is observed to be fairly constant across all energies when comparing with both the true energy of the hits and the true energy of the showering particle as can be seen in \FigureRef{fig:reconstruction_as_a_function_of_energy}. The fractional energy resolution is slightly lower at the lowest energies especially when comparing with the true energy of the showering particle. This is highlighted in \FigureRef{fig:reconstruction_as_a_function_of_energy_profile} which shows the profile histograms of the fractional energy resolution as a function of true energy and can likely be explained by a greater fraction of the hits not passing the threshold cut. 
 
@@ -258,23 +262,16 @@ On the whole, the fractional resolution is observed to be fairly constant across
 
 \section{Summary + outstanding issues etc}
 
+The \gls{em} shower reconstruction algorithms have been demonstrated to work consistently across all three wire planes in \gls{sbnd} for showers originating from both electrons and photons. The reconstructed energy obtained from the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} show good agreement with the true energy of $1 \sigma$ width hits with the \textit{Shower ESTAR Energy tool} performing slightly better. The \textit{Shower Num Electrons Energy tool} systematically assigns a slightly higher energy to each of the hits. All three methods underestimate the true energy of the showering particle due to inefficiencies in the hit reconstruction and Pandora's pattern recognition plus the expected presence of an overall bias. The \textit{Shower Num Electrons Energy tool} has the closest agreement with the true energy of the showering particle due to assigning higher energies to the individual hits.
+
+The reconstruction performance is fairly consistent across all shower energies that are expected to be seen by the \gls{bnb}. There is however a slight dip in performance at the lowest energies when comparing with the true energy of the showering particle. This is due to a greater percentage of hits having energies below the threshold value. The reconstruction performance also degrades as the angle at which showers are produced to the beamline increases. This isn't expected to be much of a concern as the majority of showers will be forward going. 
+
+
+
+
 Why getting dE/dx is hard (page 17).
 Using muons as calibration
 Energy bias corrections
 https://inspirehep.net/files/f10063871db4836eb6ad935fcf761e7d
 
-Energy Reco - Things to include.
 
-\begin{itemize}
-	\item Motivation (why do we care?)
-	\item Explain choices - use vertex sample because it helps pandora. Only considering largest shower (most hits) from each event. 
-	\item Overview of the very first method that was being used. Use muons to generate lookup curve. Get linear relationship between deposited charge and energy. Plagiarise Dom's thesis on this..  
-	\item Change method so we convert the deposited charge to number of electrons and then convert the number of electrons to energy using the appropriate calibration/scale factors. Apply correction for electron lifetime as before and also correct for recombination. Previously recombination correction was 'baked' into the look-up curve. No way to correct for it directly - whenever we would change the \textit{physics} we would need to regenerate the look-up curve. With this method it's possible to tweak the recombination correction directly. 
-	\item Not straight forward to calculate the recombination directly - let's use and average value for all showers - explain recombination study. 
-	\item Consider SCE - explain what SC is.
-	\item How do we account for SCE? Get map of the E-field in the detector (not uniform because of SC). Using the nominal value of the recombination and E-field, calculate a nominal dE/dx (not straightforward to calculate directly) which we assume remains constant. Can now use the Modified Box model to weak the recombination correction by feeding the local E-field (which depends on the location in the detector) back into the modified box model. Finally, find the (charge weighted) centre of the shower using the space points and use the local E-field at this point to calculate the recombination factor at this location. 
-	\item No reason we can't do a per-hit analysis. Redo everything as before for each individual hit and then sum to get the energy of the shower. Should give better results since the recombination correction is more accurate now. 
-	\item We have the ability to attempt to correct for the SCE as mentioned, but are limited by not knowing the dE/dx. So correcting the SCE without this caveat becomes tricky.. Try a new approach developed by ArgoNeuT - use the ESTAR database. The ESTAR database gives us the stopping power of (dE/dx) of electrons in various materials (including lAr) in a range of energies and is based partly from data. Combining this with the modified box recombination model, we can again create a lookup curve of energy vs deposited charge with the recombination correction baked in. Since the modified box model depends on the E-Field, we can treat this as a variable and create a 3D lookup curve of energy vs E-Field vs deposited charge which will allow us to correct for SC. 
-	\item \textit{True} energy debacle.. We have the true energy of the showering particle and the true energy of all the hits in a given shower. Originally we used the true energy of the showering particle for comparison (in hindsight this seems like a stupid idea..) and the kGeVtoElectrons method clearly outperformed ESTAR. Swapping to the true hit energies, ESTAR does better. What was happening (i think) is that kGeVToElectrons over estimates the hit energies, so when comparing with the true showering particle this method give a better result because we're papering over the cracks due to the pattern recognition and hit inefficiencies. ESATR method gives a better result for individual hit energies so highlights the failing of the patter rec and hit inefficiencies when comparing with the showering particle. 
-	\item Why some results are shit.. Pandora pattern recognition (clustering) is far from perfect - can use Pandora in cheating mode to overcome this. There are hit inefficiencies i.e. hit reconstruction isn't perfect - haven't ever \textit{cheated} this, dunno if it's an option. The actual impact from SC is pretty minimal but it also impacts Pandora's pattern recognition. This can a have a big impact - what Pandora initially recognised as one big shower may be interpreted as 2+ smaller showers after applying SC (and vice-versa). Also, an object classified as a shower may instead be classified as a track after applying SC. Since we're only considering the largest shower for each event, this effects mean SC can appear to have a impact. 
-\end{itemize}

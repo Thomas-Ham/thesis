@@ -14,7 +14,7 @@ In order to perform an oscillation analysis, a number of inputs and analysis cho
 
 The events used in this oscillation analysis are truth based with a \textit{pseudo reconstruction} applied. Work on the reconstruction is still in progress and at the time of writing hasn't been sufficiently completed for it to be possible to generate a fully reconstructed event sample. The pseudo reconstruction involves applying energy smearing and a series of cuts to try and emulate a fully reconstructed sample. The details of the cuts that were applied to each of the analyses are discussed in \SectionRef{sec:event_selection}.
 
-Both the events for the \numu and \nue sample were generated using GENIEv3 (specifically the G1810a0211a tune) and then propagated through GEANT4  using the \gls{larsoft} framework \cite{GENIE}. For the \numu sample, this involved generating $\sim$1,000,000 intrinsic \numu events in each detector. The \nue sample is a little more involved since in addition to generating an intrinsic sample, an oscillated $\numu \rightarrow \nue$ sample, a dirt sample and a cosmic sample also needed to be produced. The oscillated sample is used to mimic the $\nue$ appearance signal whereas the dirt and cosmic samples are backgrounds. The other major background associated with a $\nue$ analysis involves $\numu$. A dedicated sample was not produced to emulate this, but instead, the events from the $\numu$ production were also run through the $\nue$ selection. Table \ref{T:nue_production} outlines the number of events produced for the \nue sample for each sub-sample for each detector. The dirt events were produced with an additional filter at the generation stage which discarded any events where a shower above 10 MeV in the active volume was not present. This filter was used in order to remove any delta rays. Only about 1\% of dirt events would pass this filter so the number of dirt events used in the $\nue$ selection was $\sim$100,000. 
+Both the events for the \numu and \nue sample were generated using \gls{genie}v3 (specifically the G1810a0211a tune) and then propagated through \gls{geant4} using the \gls{larsoft} framework \cite{GENIE}\cite{Geant4_website}\cite{larsoft}. For the \numu sample, this involved generating $\sim$1,000,000 intrinsic \numu events in each detector. The \nue sample is a little more involved since in addition to generating an intrinsic sample, an oscillated $\numu \rightarrow \nue$ sample, a dirt sample and a cosmic sample also needed to be produced. The oscillated sample is used to mimic the $\nue$ appearance signal whereas the dirt and cosmic samples are backgrounds. The other major background associated with a $\nue$ analysis involves $\numu$. A dedicated sample was not produced to emulate this, but instead, the events from the $\numu$ production were also run through the $\nue$ selection. Table \ref{T:nue_production} outlines the number of events produced for the \nue sample for each sub-sample for each detector. The dirt events were produced with an additional filter at the generation stage which discarded any events where a shower above 10 MeV in the active volume was not present. This filter was used in order to remove any delta rays. Only about 1\% of dirt events would pass this filter so the number of dirt events used in the $\nue$ selection was $\sim$100,000. 
 
 
 \begin{table}[h!]
@@ -31,7 +31,7 @@ Cosmic           & $\sim$100,000
 \caption[Events generated as part of the \nue sample.]{The number of events initially produced for each sample in each of the three SBN detectors as part of the $\nue$ analysis.}
 \end{table}\label{T:nue_production}
 
-The actual number of real \numu events expected in \gls{sbnd} is well over 5 million for about 3 years of data taking. Generating this many events isn't feasible as part of a \gls{mc} production, hence the above number of events were generated. The \gls{mc} events produced have an associated \gls{pot} so the number of events may be scaled to the nominal \gls{pot} of each experiment. For \gls{sbnd} and \gls{icarus} the nominal \gls{pot} is $6.6 \times 10^{20}$ which corresponds to around 3 years of data taking.  Since \gls{microboone} has already been collecting data for some time, the nominal \gls{pot} is $1.32 \times 10^{21}$. Due to scaling the generated event rate to the nominal \gls{pot} this results in non-integer number of events as is seen for example in \TableRef{table:sbnd_nue_event_rate}.
+The actual number of real \numu events expected in \gls{sbnd} is well over 5 million for about 3 years of data taking \cite{sbnd_pot}. Generating this many events isn't feasible as part of a \gls{mc} production, hence the above number of events were generated. The \gls{mc} events produced have an associated \gls{pot} so the number of events may be scaled to the nominal \gls{pot} of each experiment. For \gls{sbnd} and \gls{icarus} the nominal \gls{pot} is $6.6 \times 10^{20}$ which corresponds to around 3 years of data taking.  Since \gls{microboone} has already been collecting data for some time, the nominal \gls{pot} is $1.32 \times 10^{21}$. Due to scaling the generated event rate to the nominal \gls{pot} this results in non-integer number of events as is seen for example in \TableRef{table:sbnd_nue_event_rate}.
 
 \section{Event Selection}\label{sec:event_selection}
 \textcolor{red}{Link in with Energy Reco. section}
@@ -148,11 +148,11 @@ The reaction modes define the type of neutrino-nucleus interaction. They are cat
 
 \clearpage
 \section{Systematic Uncertainties}\label{sec:syst_uncertainties}
-The majority of flux and interaction systematics considered are provided by the \gls{microboone} and GENIE reweight schemes respectively. The two exceptions are the \gls{pot} normalisation and \gls{mec} uncertainty which are handled separately as described below. For each \gls{mc} event, both reweight packages generate \textit{N} associated \textit{universes} where the given parameters are randomly varied within their limits. This allows changes in event rate spectra to be related to systematic parameter variations. The systematic parameters considered are described below along with a table quoting their estimated uncertainty. 
+The majority of flux and interaction systematics considered are provided by the \gls{microboone} and GENIE reweight schemes respectively \cite{BNB_flux}\cite{GENIE_manual}. The two exceptions are the \gls{pot} normalisation and \gls{mec} uncertainty which are handled separately as described below. For each \gls{mc} event, both reweight packages generate \textit{N} associated \textit{universes} where the given parameters are randomly varied within their limits. This allows changes in event rate spectra to be related to systematic parameter variations. The systematic parameters considered are described below along with a table quoting their estimated uncertainty. 
 
 \subsection{Flux Systematics}\label{sec:flux_syst}
 
-The flux systematics are generally all grouped together, however, there are 3 distinct sets with different origins as part of the \gls{microboone} reweight scheme which are detailed below plus the additional \gls{pot} normalisation. 
+The flux systematics are generally all grouped together, however, there are 3 distinct sets with different origins as part of the \gls{miniboone} reweight scheme which are detailed below plus the additional \gls{pot} normalisation. 
 
 \subsubsection*{Optical Flux Systematics}
 The optical flux systematics are comprised of two parameters; the \textit{skin effect} and the \textit{horn current}. The horn current parameter is simply the uncertainty of the supplied current to the focusing horn. Since the current is linked to the focusing properties of the horn, uncertainty on the current leads to an uncertainty on the neutrino flux. The focusing horn is surrounded by a conductor where currents travel on the surface of the conductor. The skin effect is a measure of how much these surface currents penetrate into the conductor which in turn affects the internal fields of the conductor. Therefore, due to the skin effect, the strength of the magnetic field that particles propagating through the horn experience may vary \cite{BNB_flux}.
@@ -172,7 +172,6 @@ The optical flux systematics are comprised of two parameters; the \textit{skin e
 
   \end{tabular}
   \caption[Optical, beam focusing flux systematic parameters.]{Optical systematic flux uncertainties associated with the current in the horn\cite{BNB_flux}.}
-  \label{}
 \end{table}
 
 \newpage
@@ -249,7 +248,6 @@ For the $k^-$, there is minimal production data available, therefore, simulation
     \bottomrule
   \end{tabular}
   \caption[Hadronic neutrino production flux systematic parameters.]{Hadronic neutrino production systematic flux uncertainties \cite{BNB_flux_TN}.}
-  \label{}
 \end{table}
 
 \subsubsection*{BNB POT Normalisation}

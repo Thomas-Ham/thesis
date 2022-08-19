@@ -6,6 +6,7 @@ booktitle
 chapter
 collaboration
 doi 
+isbn
 edition
 editor
 howpublished
