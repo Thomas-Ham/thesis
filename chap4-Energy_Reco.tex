@@ -8,7 +8,7 @@ The \gls{em} shower energy is an important quantity that is used in a number of 
 
 \gls{mc} event production and analysis is performed using the \gls{larsoft} framework which interfaces with a number of other frameworks such as \gls{genie} for event generation, \gls{geant4} for event simulation and Pandora for event reconstruction \cite{GENIE}\cite{Geant4_website}\cite{Geant4_paper}\cite{Pandora_paper}. \gls{larsoft} has been designed to work for many liquid argon based neutrino experiments, including \gls{sbn}, with many of the underlying algorithms being common to all experiments \cite{larsoft}\cite{larsoft_paper}.
 
-Reconstructed quantities are the main focus of this section and these are typically derived from the reconstructed charge which is obtained in the following steps;
+Reconstructed quantities are the main focus of this chapter and these are typically derived from the reconstructed charge which is obtained in the following steps;
 \begin{enumerate}
     \item Drifting electrons induce current on a wire.
     \item Extract the signal on the wire from the E-field and any noise. 
@@ -23,7 +23,7 @@ A number of different hit finding algorithms exist, but the default one used by 
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap4/good_gauss_fit.png}
     \includegraphics[width = \largefigwidth]{figures-chap4/bad_gauss_fit.png}
-    \caption[Example of well and poorly fitted waveform.]{Waveforms (blue) that have been fitted with a Gaussian (red) from the \textit{GausHitFinder}. Top: an example of a waveform that is well represented by a Gaussian. Bottom: an example of waveform that is not well represented by a Gaussian.}
+    \caption[Example of a well and poorly fitted waveform.]{Waveforms (blue) that have been fitted with a Gaussian (red) from the \textit{GausHitFinder}. Top: an example of a waveform that is well represented by a Gaussian. Bottom: an example of waveform that is not well represented by a Gaussian.}
     \label{fig:fitted_waveforms}
 \end{figure}
 
@@ -36,7 +36,7 @@ Currently, there are three algorithms available for reconstructing \gls{em} show
     \item Convert the charge in \gls{adc} units to a conventional charge (number of electrons) using the calibration constant which is part of the calorimetry algorithm (This step was not performed in the case of the \textit{Linear Energy tool}). 
 \end{enumerate}
 
-Once the charge of a hit has been determined, the final steps which involve converting the charge to energy becomes method dependent. The other major detector effect that still needs to be considered is recombination, which is modelled by the Modified Box Recombination Model and given by  
+Once the charge of a hit has been determined, the final steps which involve converting the charge to energy become method dependent. The other major detector effect that still needs to be considered is recombination, which is modelled by the Modified Box Recombination Model and given by  
 \begin{equation}\label{eqn:ModBox}
     \frac{dE}{dx} = \frac{\exp{(\frac{\beta}{\rho \mathcal{E}} W_{ion}.\frac{dQ}{dx}}) - \alpha}{\frac{\beta}{\rho \mathcal{E}}},
 \end{equation}
@@ -143,7 +143,7 @@ The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_lev
     \parbox[b]{0.49\textwidth}%
   {
     \caption[True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower.]
-    {True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\}
+    {True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\\\\\}
     \label{fig:reco_vs_true_hit_level}}
 \end{figure}
 
@@ -157,7 +157,7 @@ The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_lev
     \parbox[b]{0.49\textwidth}%
   {
     \caption[True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron.]
-    {True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\}
+    {True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\\\\\}
     \label{fig:reco_vs_true_showeringE}}
 \end{figure}
 

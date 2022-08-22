@@ -34,7 +34,6 @@ Cosmic           & $\sim$100,000
 The actual number of real \numu events expected in \gls{sbnd} is well over 5 million for about 3 years of data taking \cite{sbnd_pot}. Generating this many events isn't feasible as part of a \gls{mc} production, hence the above number of events were generated. The \gls{mc} events produced have an associated \gls{pot} so the number of events may be scaled to the nominal \gls{pot} of each experiment. For \gls{sbnd} and \gls{icarus} the nominal \gls{pot} is $6.6 \times 10^{20}$ which corresponds to around 3 years of data taking.  Since \gls{microboone} has already been collecting data for some time, the nominal \gls{pot} is $1.32 \times 10^{21}$. Due to scaling the generated event rate to the nominal \gls{pot} this results in non-integer number of events as is seen for example in \TableRef{table:sbnd_nue_event_rate}.
 
 \section{Event Selection}\label{sec:event_selection}
-\textcolor{red}{Link in with Energy Reco. section}
 
 The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps for each of the analyses are outlined below and are performed for each associated event. 
 
@@ -471,7 +470,7 @@ Efficiency systematics and energy scale systematics are not implemented in the \
 
 \subsubsection*{Efficiency Systematics}\label{sec:efficiency_syst}
 
-The current scheme for implementing efficiency (detector) systematics into a fit is by use of a covariance matrix where each element is defined by the systematics outlined in  \TableRef{table:efficiency_systematics}. This allows for the lack of associated event reweighting schemes to be bypassed whilst still being able to capture varying uncertainties being applied to different kinematic ranges, detectors and signal or background processes in each sample. In general, we assume that a covariance matrix $\mathcal{M}_{ij}$ is comprised of both correlated and uncorrelated uncertainties such that
+The current scheme for implementing efficiency (detector) systematics into a fit is by use of a covariance matrix where each element is defined by the systematics outlined in  \TableRef{table:efficiency_systematics}. This allows for the lack of associated event reweighting schemes to be bypassed whilst still being able to capture varying uncertainties being applied to different kinematic ranges, detectors and signal or background processes in each sample. In general, it is assumed that a covariance matrix $\mathcal{M}_{ij}$ is comprised of both correlated and uncorrelated uncertainties such that
 \begin{equation}
     \mathcal{M}_{ij} = \mathcal{M}_{ij}^{corr} + \mathcal{M}_{ij}^{uncorr},
 \end{equation}
