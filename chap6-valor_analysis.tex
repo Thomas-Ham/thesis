@@ -80,7 +80,7 @@ In order to establish that the systematic parameters are being correctly handled
     \item Generate N toy samples (typically 500 in order to match the total number of universes) with some set of systematic parameters randomly tweaked. The one sigma spread from all the toys is found. This is done for both \gls{valor} and for the universe files and the results are compared. 
 \end{enumerate}
 
-As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}, \textit{genie\_ccresAxial} and \textit{genie\_ResDecayGamma} from the \nue sample in \gls{sbnd} between the \gls{valor} response functions and the universes is shown in \FigureRef{fig:+1sigma_variations}. (Note: the terms \textit{spline} and \textit{response function} are used interchangeably). A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} is shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $sin^22\theta_{\mu e} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples are needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
+As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}, \newline \textit{genie\_ccresAxial} and \textit{genie\_ResDecayGamma} from the \nue sample in \gls{sbnd} between the \gls{valor} response functions and the universes is shown in \FigureRef{fig:+1sigma_variations}. (Note: the terms \textit{spline} and \textit{response function} are used interchangeably). A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} is shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $sin^22\theta_{\mu e} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples are needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
 
 \begin{figure}[h!]
     \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_nsigma_nue/horncurrent_FluxUnisim_nuelikeCChigh_1sigma_horncurrent_FluxUnisim.png}
@@ -89,8 +89,9 @@ As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-   \caption[+1$\sigma$ variation comparison for the horncurrent\_FluxUnisim, genie\_ccresAxial and genie\_ResDecayGamma parameters.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the horncurrent\_FluxUnisim flux systematic parameter, the genie\_ccresAxial proposal interaction paramater and the genie\_ResDecayGamma modern interaction parameter. The horncurrent\_FluxUnisim parameter shows perfect agreement between \gls{valor} and the universes whereas both the genie\_ccresAxial and genie\_ResDecayGamma parameters only have an event rate difference of 2. \\\\\\\\}
+   \caption[+1$\sigma$ variation comparison for the horncurrent\_FluxUnisim, genie\_ccresAxial and genie\_ResDecayGamma parameters.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the horncurrent flux systematic parameter, the ccresAxial proposal interaction paramater and the ResDecayGamma modern interaction parameter. The horncurrent parameter shows perfect agreement between \gls{valor} and the universes whereas both the ccresAxial and ResDecayGamma parameters only have an event rate difference of 2. \\\phantom{.}\\
    \label{fig:+1sigma_variations}}
+   }
 \end{figure}
 
 \FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from \gls{valor} and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using \gls{valor} and the analogous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios. There are some minor differences between the variation in \gls{valor} and the universes, however, event perfect agreement isn't expected since the 1$\sigma$ variations are found by taking the average from many toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
@@ -118,7 +119,8 @@ As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}
   \captionsetup{width=0.45\textwidth}
   \parbox[b]{0.45\textwidth}%
   {
-   \caption[The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematics.]{The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematic parameters.  \\\\\\\\}
+   \caption[The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematics.]{The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematic parameters.  \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
+   \label{fig:1sigma_variations_toys}}
   }
 \end{figure}
 
@@ -377,7 +379,7 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
   {
     \caption[SBN \nue CC inclusive reconstructed neutrino energy spectra.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom)
     reconstructed neutrino energy spectra constructed from the samples of $\nue$~CC~inclusive events. The spectra are broken down into the
-    contributions from each neutrino interaction mode.\\\\\\\\}
+    contributions from each neutrino interaction mode.\\ \phantom{.}\\}
     \label{fig:nominal_nue_spectra} 
   }
 \end{figure}
@@ -389,7 +391,7 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue CC inclusive reconstructed neutrino energy spectra with a 1$\sigma$ prefit envelopes.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom) integrated reconstructed neutrino energy spectra constructed from the samples of $\nue$~CC~inclusive events. A 1$\sigma$ prefit uncertainty envelope from the flux and interaction systematics is also shown. \\\\\\\\}
+    \caption[SBN \nue CC inclusive reconstructed neutrino energy spectra with a 1$\sigma$ prefit envelopes.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom) integrated reconstructed neutrino energy spectra constructed from the samples of $\nue$~CC~inclusive events. A 1$\sigma$ prefit uncertainty envelope from the flux and interaction systematics is also shown. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:nominal_nue_spectra_1sigma_enevelope} 
   }
 \end{figure}
@@ -414,7 +416,7 @@ The \nue appearance channel is concerned with oscillations from \numu to \nue an
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue appearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu e} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the increase in event rate. \\\\\\\\
+    \caption[SBN \nue appearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu e} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the increase in event rate. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
     \label{fig:nue_spectra_with_osc_overlay}}
     }
 \end{figure}
@@ -485,7 +487,7 @@ Mirroring the \nue appearance channel, the \nue disappearance channel observes a
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue disappearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{ee} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the decrease in event rate.\\\\\\\\}
+    \caption[SBN \nue disappearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{ee} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:nue_disapp_spectra} 
   }
 \end{figure}
@@ -549,7 +551,7 @@ The complete \numu disappearance exclusion sensitivities and allowed regions for
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \numu CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The breakdown of the nominal \numu disappearance spectra overlayed with an integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu \mu} = 0.072$ and $\Delta m^2_{41} = 1.32$~eV$^2$ showing the decrease in event rate.\\\\\\\\}
+    \caption[SBN \numu CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The breakdown of the nominal \numu disappearance spectra overlayed with an integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu \mu} = 0.072$ and $\Delta m^2_{41} = 1.32$~eV$^2$ showing the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:numu_disapp_spectra} 
   }
 \end{figure}

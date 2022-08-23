@@ -6,11 +6,11 @@
 %documentclass[hyperpdf,nobind,draft,hidefrontback]{hepthesis}
 
 %%For Cambridge soft-bound version
-%\documentclass[hyperpdf,bindnopdf]{hepthesis}
+\documentclass[hyperpdf,bind]{hepthesis}
 %% For Cambridge hard-bound version (must be one-sided)
 %\documentclass[hyperpdf,oneside]{hepthesis}
 %%Get rid of warnings about list of figures and tables but also remove from ToC
-\documentclass[hyperpdf,oneside,notlot,notlof]{hepthesis}
+%\documentclass[hyperpdf,oneside,notlot,notlof]{hepthesis}
 
 %% Load special font packages here if you wish
 %\usepackage{lmodern}
@@ -35,7 +35,7 @@
 \@ifpackageloaded{hyperref}{%
 \hypersetup{%
   pdftitle = {Search for Sterile Neutrinos at the SBN program},
-  pdfsubject = {Andy Buckley's PhD thesis},
+  pdfsubject = {PhD thesis},
   pdfkeywords = {LHCb, B, physics, LHC, heavy flavour},
   pdfauthor = {\textcopyright\ Thomas Ham}
 }}{}
@@ -55,20 +55,20 @@
 %% Start the content body of the thesis
 \begin{mainmatter}
   %% Actually, more semantic chapter filenames are better, like "chap-bgtheory.tex"
-  %\input{chap1-introduction}
-  %\input{chap2-motivation_for_steriles}
-  %\input{chap3-SBN_Program}
-  %\input{chap4-Energy_Reco}
+  \input{chap1-introduction}
+  \input{chap2-motivation_for_steriles}
+  \input{chap3-SBN_Program}
+  \input{chap4-Energy_Reco}
   \input{chap5-oscillation_inputs}
   \input{chap6-valor_analysis}
-  %\input{chap7-Conclusion}
+  \input{chap7-Conclusion}
   %% To ignore a specific chapter while working on another, making the build faster, comment it out:
   %\input{chap4}
 \end{mainmatter}
 
 %% Produce the appendices
 \begin{appendices}
-  %\input{appendices}
+  \input{appendices}
 \end{appendices}
 
 %% Produce the un-numbered back matter (e.g. colophon,

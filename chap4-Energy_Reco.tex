@@ -64,7 +64,7 @@ The first shower energy reconstruction method developed was the \textit{Shower L
 %    \captionof{figure}{The linear relationship between deposited charge and energy. Produced from a sample of muons used for calibrating the \textit{Shower Linear Energy tool.}}
 %    \label{fig:linear lookup curve}
 %\end{center}
-\newpage
+
 \begin{figure}[h]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap4/linear_energy_lookup_curve1.png}
@@ -78,11 +78,6 @@ To estimate the reconstructed shower energy, the charge found to be associated w
 The \textit{Shower Num Electrons Energy tool} was developed to move away from being reliant on in-house calibration curves and instead use the pre-existing calibration available in the \Gls{sbnd} portion of the \Gls{larsoft} framework. This has the advantage of being much more flexible to physics changes. For example a change in the recombination correction could be investigated by changing a single number, whereas, for the \textit{Shower Linear Energy tool}, the calibration curves would have to be regenerated. The number of electrons are found from the \gls{adc} charge and are then directly converted to energy using a \textit{GeVToElectrons} scale factor which is the inverse of the energy required to ionise an argon atom. A nominal recombination value of 0.64 is assumed which is applied to all hits.
 
 The nominal recombination value was calculated by simulating electrons with a large (effectively infinite) lifetime and turning off any diffusion effects. The only thing remaining that may impact the collected energy is the recombination effect and therefore taking the ratio between the collected and deposited energy will give a value for the recombination effect. For electrons, it was found that the recombination effect was fairly constant at a value of 0.64 across a broad range of energies \cite{recombination_0.64}. 
-
-
-
-\newpage
-
 
 \begin{comment}
 
@@ -119,7 +114,7 @@ $\frac{dE}{dx}$ values may be calculated by dividing the energy by the track len
     \label{fig:ESTAR lookup curve}
 \end{figure}
 
-\newpage
+
 \section{Shower Energy Reconstruction Performance}
 
 In order to assess the performance of the different reconstruction methods, a comparison with \textit{truth} information is performed. Depending on the approach, a few other inefficiencies should be considered, namely that the hit reconstruction and Pandora pattern recognition aren't perfect \cite{Pandora_paper}. This results in hits missing due to not being reconstructed plus the addition of the clusters that Pandora produces being incomplete. Therefore, there are typically fewer hits than there would be if the the shower in question were to be perfectly reconstructed. Reconstructing the energy of the showering particle, is desirable for a number of analyses, however, due to these issues, it is not realistic to expect agreement to within a few percent. Improving the hit reconstruction or the pattern recognition within Pandora would clearly help, but it's likely that a non-negligible bias would remain. Work on Pandora and the hit reconstruction is, however, beyond the scope of this section and addressing any remaining bias between true and reco is beyond reconstruction work as a whole. 
@@ -143,7 +138,7 @@ The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_lev
     \parbox[b]{0.49\textwidth}%
   {
     \caption[True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower.]
-    {True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\\\\\}
+    {True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\}
     \label{fig:reco_vs_true_hit_level}}
 \end{figure}
 
@@ -157,7 +152,7 @@ The true vs reconstructed energy is shown in \FigureRef{fig:reco_vs_true_hit_lev
     \parbox[b]{0.49\textwidth}%
   {
     \caption[True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron.]
-    {True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\\\\\\\}
+    {True vs reconstructed energy from a showering electron. The true energy is the energy of the showering electron. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\}
     \label{fig:reco_vs_true_showeringE}}
 \end{figure}
 

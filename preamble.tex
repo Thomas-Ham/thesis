@@ -10,7 +10,6 @@
 \usepackage{adjustbox}
 \usepackage{arydshln}
 \usepackage{subcaption}
-
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -20,10 +19,16 @@
 \usetikzlibrary{angles, quotes}
 \usepackage{parskip}
 %\usepackage{indentfirst}
+\usepackage[en-GB]{datetime2}
+\makeatletter
+\newcommand{\monthyeardate}{%
+  \DTMenglishmonthname{\@dtm@month}, \@dtm@year
+}
+\makeatother
 
 \usepackage[a4paper,
-            left=30mm,
-            right=20mm]{geometry}
+            left=40mm,
+            right=25mm]{geometry}
 
 % glossary - add to toc and remove page numbers
 \usepackage[xindy,toc,nonumberlist]{glossaries} 
