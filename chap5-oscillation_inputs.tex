@@ -40,7 +40,7 @@ The event selections are performed in order to first identify \numu or \nue-like
 \subsection{\texorpdfstring{$\nu_\mu$ Selection}{numu Selection}}\label{sec:numu_selection}
 
 \begin{enumerate}
-  \item Remove any events whose true interaction vertex is not located in the fiducial volume.
+  \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
   \item If no muon or charged pion track are produced, remove the event. A muon corresponds to a \gls{cc} signal event whereas a charged pion is possibly due to \gls{nc} background events. 
   \item If the primary track has a true kinetic energy less than 21 MeV, remove the event.
   \item If the primary track has a length less than 50 cm and is fully contained in the detector, remove the event.
@@ -54,7 +54,7 @@ The $\nue$ selection follows a similar basis to the $\numu$ selection described 
 \subsubsection*{Beam induced active volume events}
 
 \begin{enumerate}
-  \item Remove any events whose true interaction vertex is not located in the fiducial volume.
+  \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
   \item Showers arising from the vertex are identified and the reconstructed energy is found from smearing the ionisation deposition. If more than one shower with energy above 100 MeV exists, the event is removed. This removes neutral pion events where the pion decays into two photon showers. 
   \item If there is only one photon candidate in the event, a conversion gap cut is applied. If the vertex is deemed visible, due to the presence of at least 50 MeV of hadronic kinetic energy, and the photon starts to shower further than 3 cm from the vertex the event is removed.
   \item Remaining photons undergo a dE/dx cut resulting in a 94\% background rejection.

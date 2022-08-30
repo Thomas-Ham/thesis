@@ -37,6 +37,10 @@ The general design of a single chamber \gls{lartpc} is shown in \FigureRef{fig:l
     \caption[Schematic of LArTPC detector.]{A schematic of the operating principle of a \gls{lartpc} detector. A neutrino interacts in the argon producing secondary particles. The electric field across the \gls{tpc} causes charged particles to drift towards the wire planes where their energy deposits are recorded. \cite{Design_and_Construction_of_the_MicroBooNE_Detector}}
     \label{fig:lartpc}
 \end{figure}
+
+Along with the global volume of a detector which is defined by it's dimensions, there are usually two other volumes associated with \glspl{lartpc}; the \textit{active} volume and the \textit{fiducial} volume. The active volume is defined as the volume which is enclosed within the \gls{tpc} which is the volume of the detector which allows for event detection. The fiducial volume is not directly defined by the physical design of the detector, but is instead the region within the active volume where event reconstruction is thought to be well understood. Events occurring right at the edge of the \gls{tpc} may be difficult to reconstruct and are therefore poorly understood. Additionally, background events tend to occur close to the edge of the \gls{tpc}, so by only considering events within the fiducial volume, the percentage of well understood signal events is maximised \cite{PDG_fiducial_vol}. The active and fiducial volumes used in each of the \gls{sbn} detectors is defined in \AppendixRef{app:Detector_Volumes}.
+
+
 \newpage
 
 \subsection{Detector effects}
@@ -409,8 +413,6 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 
 \section{SBND}\label{sec:SBND}
 
-\textcolor{red}{DETAILS ON FIDUCIAL VOLUMES ETC.}
-
 \gls{sbnd} was purposely designed to be the near detector of the \gls{sbn} program and has an active volume with dimensions (4, 4, 5) m containing 112 tons of liquid argon. It consists of two \glspl{tpc}, where the central shared cathode sits in the middle of the detector with an anode either side as is shown in \FigureRef{fig:sbnd_schematic}. Each of the \glspl{apa} consist of three wire planes where the first and second induction plane are orientated at $\pm 60^{\circ}$ to the vertical and the collection plane is vertical. In all cases, the wire plane spacing and the wire pitch are 3 mm. The nominal electric field in each of the \glspl{tpc} is 500 V/m \cite{SBN_Proposal}. 
 
 \begin{figure}[!h]
@@ -471,12 +473,6 @@ The \gls{microboone} detector consists of a single \gls{tpc} enclosed within a c
 \gls{microboone} is also considered a surface level detector being only $\sim 6$ m underground and as there is no overburden present, a large flux of cosmic rays are observed. A \gls{crt} system similar to the one described in \SectionRef{sec:SBND} for \gls{sbnd} was implemented. The \gls{crt} system consists of 73 scintillating modules, however it is only sensitive to the four sides of the X and Y coordinates of the detector \cite{microboone_crt}. 
 
 
-
-
-
-
-
-
 \section{ICARUS}\label{sec:ICARUS}
 
 The \gls{icarus} detector was first operated in 2010 and  located at the Gran Sasso National Laboratory in Italy where it was used to detect events from cosmic rays and from the neutrino beam which is directed from CERN to Gran Sasso. In 2013 the decommissioning process began and the detector was taken to CERN for refurbishment before making its way to \gls{fermilab} and becoming part of the \gls{sbn} program \cite{SBN_Proposal}.
@@ -494,6 +490,7 @@ The light collection system for \gls{icarus} is comprised of a series of 74 \gls
 
 The \gls{icarus} \gls{crt} system surrounds the detector on all sides however the actual position is not always the same due to design choices. The \gls{crt} on the top most side which experiences the highest flux of cosmic rays, is located outside the \gls{tpc}, about 3m from the top face above the readout electronics. It consists of two planes of scintillating modules with the readout coming from the same electronics board as is used by \gls{sbnd}.
 The \gls{crt} for the vertical sides are again outside the \gls{tpc} and behind the \gls{pmt} arrays and close to the cryostat walls. The scintillator modules from the \gls{minos} experiment are being reused for this purpose. The \gls{crt} for the bottom face are the repurposed spare modules from the veto shield from the Double Chooz experiment and are located within the cryostat. Only about 50\% of the bottom face is be covered by the \gls{crt} because of limited space due to the supporting structure of the cryostat \cite{SBN_Proposal}\cite{ICARUS_CRT}.
+
 
 \section{SBN Physics Capabilities}
 
