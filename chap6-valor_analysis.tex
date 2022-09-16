@@ -42,7 +42,7 @@ In order to create confidence regions, fits are performed between a certain \tex
 \begin{table}[h!]
 \begin{tabular}{lcc}
 \multicolumn{1}{c}{\multirow{2}{*}{Analysis Channel}} & \multicolumn{2}{c}{Phase Space Considered} \\
-\multicolumn{1}{c}{} & $sin^22\theta$ & $\Delta m_{41}^2$ \\ \hline
+\multicolumn{1}{c}{} & $\sin^2{2\theta}$ & $\Delta m_{41}^2$ \\ \hline
 \numu Disappearance & $\theta_{\mu\mu}$: [10$^{-3}$ -- 1] & [10$^{-2}$ -- 10$^2$] e$V^2$ \\
 \nue Appearance & $\theta_{\mu e}$: [10$^{-5}$ -- 1] & [10$^{-2}$ -- 10$^2$] e$V^2$ \\
 \nue Disappearance & $\theta_{ee}$: [10$^{-2}$ -- 1] & [10$^{-2}$ -- 10$^2$] e$V^2$
@@ -63,7 +63,7 @@ $\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
 
 \newpage
 \section{Systemtic Uncertainties}\label{sec:systematic_validation}
-Before the flux and interaction systematics contained in the input files can be consumed by \gls{valor}, they first need to be processed. Depending on whether a given systematic parameter is entirely uncorrelated or not, this is done in two different ways. For the uncorrelated parameters, this is done by constructing a set of associated response functions which represent the impact on the event rate that tweaking a given systematics parameter will have. For a given systematic parameter, individual response functions are constructed for each combination of \textit{d, b, s, m, r} and \textit{t}. Each response function is a 13 knot spline which nominally represents the change in event rate from parameter variations ranging from [-3, +3]$\sigma$ in 0.5$\sigma$ intervals. The response functions are constructed by first identifying the 12 universes which have a variation closest to each of the non-zero $\sigma$ intervals and then taking the ratio of the event rate from the selected universe in a 2D (r, t) bin to the nominal events rate in that bin. By definition there will be a knot at 0$\sigma$ with a response of 1, however, in most cases the remaining 12 knots will not be exactly at 0.5$\sigma$ intervals. 
+Before the flux and interaction systematics contained in the input files can be consumed by \gls{valor}, they first need to be processed. Depending on whether a given systematic parameter is entirely uncorrelated or not, this is done in two different ways. For the uncorrelated parameters, this is done by constructing a set of associated response functions which represent the impact on the event rate that tweaking a given systematics parameter will have. For a given systematic parameter, individual response functions are constructed for each combination of \textit{d, b, s, m, r} and \textit{t}. Each response function is a 13 knot spline which nominally represents the change in event rate from parameter variations ranging from \mbox{[-3, +3]$\sigma$} in 0.5$\sigma$ intervals. The response functions are constructed by first identifying the 12 universes which have a variation closest to each of the non-zero $\sigma$ intervals and then taking the ratio of the event rate from the selected universe in a \mbox{2D (r, t)} bin to the nominal events rate in that bin. By definition there will be a knot at 0$\sigma$ with a response of 1, however, in most cases the remaining 12 knots will not be exactly at 0.5$\sigma$ intervals. 
 
 For the case of correlated parameters, it is not straightforward to construct response functions as was done for the uncorrelated parameters because any variations will be due to multiple parameters. These parameters are instead represented by a covariance matrix. Matrices of this type, $\mathbf{C_{ij}}$, are constructed such that,
 \begin{equation}
@@ -80,7 +80,7 @@ In order to establish that the systematic parameters are being correctly handled
     \item Generate N toy samples (typically 500 in order to match the total number of universes) with some set of systematic parameters randomly tweaked. The one sigma spread from all the toys is found. This is done for both \gls{valor} and for the universe files and the results are compared. 
 \end{enumerate}
 
-As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}, \newline \textit{genie\_ccresAxial} and \textit{genie\_ResDecayGamma} from the \nue sample in \gls{sbnd} between the \gls{valor} response functions and the universes is shown in \FigureRef{fig:+1sigma_variations}. (Note: the terms \textit{spline} and \textit{response function} are used interchangeably). A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} is shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $sin^22\theta_{\mu e} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples are needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
+As an example, the $+1\sigma$ variation for the \mbox{\textit{horncurrent\_FluxUnisim}}, \newline \mbox{\textit{genie\_ccresAxial}} and \mbox{\textit{genie\_ResDecayGamma}} parameters from the \nue sample in \gls{sbnd} between the \gls{valor} response functions and the universes are shown in \FigureRef{fig:+1sigma_variations}\footnote{The terms \textit{spline} and \textit{response function} are used interchangeably.}. A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} are shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $\sin^2{2\theta_{\mu e}} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples are needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
 
 \begin{figure}[h!]
     \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_nsigma_nue/horncurrent_FluxUnisim_nuelikeCChigh_1sigma_horncurrent_FluxUnisim.png}
@@ -104,16 +104,16 @@ As an example, the $+1\sigma$ variation for the \textit{horncurrent\_FluxUnisim}
     \end{comment}
     \begin{tikzpicture}
     \node at (0,0) {\includegraphics[width = 0.45\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_flux_uncorr.pdf}};
-    \draw [fill=white, draw=white] (-2.5,3)--(1,3)--(1,4)--(-2.5,4)--cycle;
+    \draw [fill=white, draw=white] (-2.5,3)--(1,3)--(1,3.5)--(-2.5,3.5)--cycle;
     \end{tikzpicture}
     %\includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_flux_uncorr.pdf}
     \begin{tikzpicture}
     \node at (0,0) {\includegraphics[width = 0.45\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_proposal_xsec.pdf}};
-     \draw [fill=white, draw=white] (-2.5,3)--(1,3)--(1,4)--(-2.5,4)--cycle;
+     \draw [fill=white, draw=white] (-2.5,3)--(1,3)--(1,3.5)--(-2.5,3.5)--cycle;
     \end{tikzpicture}
     \begin{tikzpicture}
     \node at (0,0) {\includegraphics[width = 0.45\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_pdf_N_nue/universe_valor_double_ratios_SBND_modern_xsec.pdf}};
-     \draw [fill=white, draw=white] (-2.5,3)--(1,3)--(1,4)--(-2.5,4)--cycle;
+     \draw [fill=white, draw=white] (-2.5,3)--(1,3)--(1,3.5)--(-2.5,3.5)--cycle;
     \end{tikzpicture}
     \vspace{0.1\textwidth}
   \captionsetup{width=0.45\textwidth}
@@ -137,14 +137,16 @@ To assess the impact of the different systematic parameters on the oscillation p
 \end{enumerate}
 If $f_i$ were allowed to float it would be expected that the fit would be able to recover the same oscillation parameters used in the toy experiment since the same \gls{mc} was used for the toy experiment and the fit. By fixing $f_i$ to its nominal value in the fit, the fit is forced to make a mistake. This results in the fit remapping the changes in $f_i$ to the oscillation parameters (and the other systematic parameters). 
 
-This study was performed for the \nue appearance and disappearance channels and includes the results from all uncorrelated systematic parameters. The results are shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls} respectively. For both oscillation parameters, the ratio of their value after performing the fit to their nominal value, $\mathcal{R}$, are shown after having varied $f_i$ by $\pm 1 \sigma$. The ratios shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls} are always $\geq 1$ by construction since $\mathcal{R}$ is defined as,
+This study was performed for the \nue appearance and disappearance channels using oscillation parameters $\sin^2{2\theta}_{\mu e} = 0.003$, 
+$\Delta m^2_{41} = 1.32$ eV$^2$ and 
+$\sin^2{2\theta}_{ee} = 0.4$, $\Delta m^2_{41} = 3$ eV$^2$ respectively and includes the results from all uncorrelated systematic parameters. The results are shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls}. For both oscillation parameters, the ratio of their value after performing the fit to their nominal value, $\mathcal{R}$, are shown after having varied $f_i$ by $\pm 1 \sigma$. The ratios shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls} are always $\geq 1$ by construction since $\mathcal{R}$ is defined as,
 \begin{equation}
     \mathcal{R} = \begin{cases}
     \frac{\zeta_{fit}}{\zeta_{nom}}, & \text{if } \zeta_{fit} > \zeta_{nom} \\
     \frac{\zeta_{nom}}{\zeta_{fit}}, &\text{if } \zeta_{nom} > \zeta_{fit},
     \end{cases}
 \end{equation}
-where $\zeta \in \{sin^22\theta, \Delta m^2_{41}\}$ and the subscript \textit{nom} and \textit{fit} refer to the nominal value of the oscillation parameters and the values after performing the fit respectively. The arrows are colour coded such that black corresponds to the case where $\zeta_{fit} > \zeta_{nom}$ and red corresponds to the case where $\zeta_{nom} > \zeta_{fit}$.
+where $\zeta \in \{\sin^2{2\theta}, \Delta m^2_{41}\}$ and the subscript \textit{nom} and \textit{fit} refer to the nominal value of the oscillation parameters and the values after performing the fit respectively. The arrows are colour coded such that black corresponds to the case where $\zeta_{fit} > \zeta_{nom}$ and red corresponds to the case where $\zeta_{nom} > \zeta_{fit}$.
 
 \begin{figure}[h!]
     \centering
@@ -160,7 +162,23 @@ where $\zeta \in \{sin^22\theta, \Delta m^2_{41}\}$ and the subscript \textit{no
     \label{fig:nue_disapp_osc_param_pulls}
 \end{figure}
 
+The impact of the ccresVector, ccresAxial, IntraNukeNcex and pioninexsec parameter on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least on parameter from each systematic subgroup. Similarly, the ccresVector, ccresAxial, IntraNukePIcex and expskin parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_app_single_param.pdf}
+    \includegraphics[width =0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_app_single_param_ratio.pdf}
+    \caption[\nue appearance exclusion contours with inclusion of a single systematic parameter at a time.]{Left: \nue appearance exclusion contours with inclusion of a single systematic parameter at a time. The systematic parameters considered are ccresVector, ccresAxial, IntraNukeNcex and pioninexsec. Right: The ratio of the exclusion contours with the inclusion of a systematic parameter the statistical only contour.}
+    \label{fig:nue_app_single_param}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_disapp_single_param.pdf}
+    \includegraphics[width =0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_disapp_single_param_ratio.pdf}
+    \caption[\nue disappearance exclusion contours with inclusion of a single systematic parameter at a time.]{Left: \nue disappearance exclusion contours with inclusion of a single systematic parameter at a time. The systematic parameters considered are ccresVector, ccresAxial, IntraNukeNcex and pioninexsec. Right: The ratio of the exclusion contours with the inclusion of a systematic parameter the statistical only contour.}
+    \label{fig::nue_disapp_single_param}
+\end{figure}
 \clearpage
 \section{\texorpdfstring{$\nue$ Analysis}{nue Analysis}}\label{sec:nue_analysis}
 
@@ -172,11 +190,11 @@ Similar to \FigureRef{fig:nominal_nue_spectra}, \FigureRef{fig:nominal_nue_spect
 
 \newpage
 \begin{table}
-\section*{sbn\_nd\_\_BNB\_FHC\_\_nuelikeCChigh}
+%\section*{sbn\_nd\_\_BNB\_FHC\_\_nuelikeCChigh}
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular} {  l r  r  r  r  r  r  r  r  }
 \hline
-              & $\nu_{\mu} \rightarrow \nu_{\mu}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{\mu}$ & $\nu_{e} \rightarrow \nu_{e}$ & $\bar{\nu}_{e} \rightarrow \bar{\nu}_{e}$ & $\nu_{\mu} \rightarrow \nu_{e}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{e}$ & Non-neutrino         & Total                \\ \hline\hline
+              & $\numu \rightarrow \numu$ & $\numubar \rightarrow \numubar$ & $\nue \rightarrow \nue$ & $\nuebar \rightarrow \nuebar$ & $\numu \rightarrow \nue$ & $\numubar \rightarrow \nuebar$ & Non-neutrino         & Total                \\ \hline\hline
  CCQE         & 17.042               & 0.000                & 5957.806             & 166.618              & 0.000                & 0.000                & N/A                  & 6141.467     
         \\ \hline
  CCMEC        & 1.149                & 0.000                & 1432.965             & 59.724               & 0.000                & 0.000                & N/A                  & 1493.837     
@@ -241,11 +259,11 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
 
 \newpage
 \begin{table}
-\section*{sbn\_uboone\_\_BNB\_FHC\_\_nuelikeCChigh}
+%\section*{sbn\_uboone\_\_BNB\_FHC\_\_nuelikeCChigh}
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular} {l r r r r r r r r}
 \hline
-              & $\nu_{\mu} \rightarrow \nu_{\mu}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{\mu}$ & $\nu_{e} \rightarrow \nu_{e}$ & $\bar{\nu}_{e} \rightarrow \bar{\nu}_{e}$ & $\nu_{\mu} \rightarrow \nu_{e}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{e}$ & Non-neutrino         & Total                \\ \hline\hline
+              & $\numu \rightarrow \numu$ & $\numubar \rightarrow \numubar$ & $\nue \rightarrow \nue$ & $\nuebar \rightarrow \nuebar$ & $\numu \rightarrow \nue$ & $\numubar \rightarrow \nuebar$ & Non-neutrino         & Total                \\ \hline\hline
  CCQE         & 4.222                & 0.000                & 384.923              & 10.384               & 0.000                & 0.000                & N/A                  & 399.529      
         \\ \hline
  CCMEC        & 0.056                & 0.000                & 93.873               & 3.658                & 0.000                & 0.000                & N/A                  & 97.586       
@@ -310,11 +328,11 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
 
 \newpage
 \begin{table}
-\section*{sbn\_icarus\_\_BNB\_FHC\_\_nuelikeCChigh}
+%\section*{sbn\_icarus\_\_BNB\_FHC\_\_nuelikeCChigh}
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular} {l r r r r r r r r}
 \hline
-              & $\nu_{\mu} \rightarrow \nu_{\mu}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{\mu}$ & $\nu_{e} \rightarrow \nu_{e}$ & $\bar{\nu}_{e} \rightarrow \bar{\nu}_{e}$ & $\nu_{\mu} \rightarrow \nu_{e}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{e}$ & Non-neutrino         & Total                \\ \hline\hline
+              & $\numu \rightarrow \numu$ & $\numubar \rightarrow \numubar$ & $\nue \rightarrow \nue$ & $\nuebar \rightarrow \nuebar$ & $\numu \rightarrow \nue$ & $\numubar \rightarrow \nuebar$ & Non-neutrino         & Total                \\ \hline\hline
  CCQE         & 4.642                & 0.000                & 727.942              & 19.303               & 0.000                & 0.000                & N/A                  & 751.887      
         \\ \hline
  CCMEC        & 0.214                & 0.000                & 176.496              & 7.062                & 0.000                & 0.000                & N/A                  & 183.773      
@@ -404,9 +422,9 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
 \end{figure}
 
 \clearpage
-\subsection{\texorpdfstring{$\nu_e$ Appearance Analysis}{nue Appearance Analysis}}\label{sec:nue_app}
+\subsection{\texorpdfstring{\nue Appearance Analysis}{nue Appearance Analysis}}\label{sec:nue_app}
 
-The \nue appearance channel is concerned with oscillations from \numu to \nue and since the oscillation channels are currently considered as stand-alone analyses, an increase in the event rate is expected. This is shown in \FigureRef{fig:nue_spectra_with_osc_overlay} where the nominal event rate breakdown is shown as in \FigureRef{fig:nominal_nue_spectra}, but overlayed with and integrated spectrum that was produced with oscillation parameters $sin^22\theta_{\mu e} = 0.003$ and $\Delta m^2_{41} = 1.32 \text{ eV}^2$. The oscillation signal seen for these parameters in \gls{sbnd} is small whereas for \gls{microboone} and \gls{icarus} it is substantial which is consistent with what is seen in \FigureRef{fig:osc_probability}. This highlights the fact that \gls{sbnd} will largely be used to constrain parameters due to observing no or very few oscillated events with the oscillation signal being largely left to \gls{microboone} and \gls{icarus}. 
+The \nue appearance channel is concerned with oscillations from \numu to \nue and since the oscillation channels are currently considered as stand-alone analyses, an increase in the event rate is expected. This is shown in \FigureRef{fig:nue_spectra_with_osc_overlay} where the nominal event rate breakdown is shown as in \FigureRef{fig:nominal_nue_spectra}, but overlayed with and integrated spectrum that was produced with oscillation parameters $\sin^2{2\theta_{\mu e}} = 0.003$ and $\Delta m^2_{41} = 1.32 \text{ eV}^2$. The oscillation signal seen for these parameters in \gls{sbnd} is small whereas for \gls{microboone} and \gls{icarus} it is substantial which is consistent with what is seen in \FigureRef{fig:osc_probability}. This highlights the fact that \gls{sbnd} will largely be used to constrain parameters due to observing no or very few oscillated events with the oscillation signal being largely left to \gls{microboone} and \gls{icarus}. 
 
 
 \begin{figure}[h!]
@@ -416,13 +434,13 @@ The \nue appearance channel is concerned with oscillations from \numu to \nue an
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue appearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu e} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the increase in event rate. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
+    \caption[SBN \nue appearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{\mu e}} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the increase in event rate. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
     \label{fig:nue_spectra_with_osc_overlay}}
     }
 \end{figure}
 
 \newpage
-The top left plot of Figure~\ref{fig:Nue_app_spectra_ratios} shows the $\nue$ appearance stat only exclusion contour and allowed region from fits combining all three \gls{sbn} detectors. The injected point $\Delta m^2_{41} = 1.32$ eV$^2$, $sin^22\theta_{\mu e} = 0.003$, used when producing the allowed region is shown along with two further points on the exclusion contour at $\Delta m^2_{41} = 1$ eV$^2$, $sin^22\theta_{\mu e} = 0.0014$ and $\Delta m^2_{41} = 100$ eV$^2$, $sin^22\theta_{\mu e} = 0.0005$. $\nue$ appearance spectra are produced using oscillation parameters corresponding to each of these three points for each of the three SBN detectors. The ratio of each of these oscillated spectra to the nominal for each detector are shown in the the remaining plots in Figure~\ref{fig:Nue_app_spectra_ratios} and highlight the expected oscillation signal.
+The top left plot of Figure~\ref{fig:Nue_app_spectra_ratios} shows the \nue appearance stat only exclusion contour and allowed region from fits combining all three \gls{sbn} detectors. The injected point $\Delta m^2_{41} = 1.32$ eV$^2$, $\sin^2{2\theta_{\mu e}} = 0.003$, used when producing the allowed region is shown along with two further points on the exclusion contour at $\Delta m^2_{41} = 1$ eV$^2$, $\sin^2{2\theta_{\mu e}} = 0.0014$ and $\Delta m^2_{41} = 100$ eV$^2$, $\sin^2{2\theta_{\mu e}} = 0.0005$. \nue appearance spectra are produced using oscillation parameters corresponding to each of these three points for each of the three SBN detectors. The ratio of each of these oscillated spectra to the nominal for each detector are shown in the the remaining plots in Figure~\ref{fig:Nue_app_spectra_ratios} and highlight the expected oscillation signal.
 
 
 \begin{figure}[h!]
@@ -431,7 +449,7 @@ The top left plot of Figure~\ref{fig:Nue_app_spectra_ratios} shows the $\nue$ ap
     \includegraphics[width = 0.49\textwidth]{figures-chap6/spectra/nue_app_spectra_ratio_sbnd.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/spectra/nue_app_spectra_ratio_uboone.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/spectra/nue_app_spectra_ratio_icarus.pdf}
-    \caption[Ratio of \nue appearance spectra with the oscillation parameters shown on the statistical only contour.]{$\nue$ appearance stat-only exclusion contour and allowed region. The injected point at $sin^22\theta_{\mu e} = 0.003$, $\Delta m^2_{41}$ = 1.32 eV$^2$ used for the allowed region is shown along with two further points at $sin^22\theta_{\mu e} = 0.0014$, $\Delta m^2_{41}$ = 1 eV$^2$ and   $sin^22\theta_{\mu e} = 0.0005$, $\Delta m^2_{41}$ = 100 eV$^2$ (top left). The ratio of spectra with oscillation parameters corresponding to the three points mentioned versus nominal are shown for sbnd (top right), MicroBooNE (bottom left) and ICARUS (bottom right).}
+    \caption[Ratio of \nue appearance spectra with the oscillation parameters shown on the statistical only contour.]{\nue appearance stat-only exclusion contour and allowed region. The injected point at $\sin^2{2\theta_{\mu e}} = 0.003$, $\Delta m^2_{41}$ = 1.32 eV$^2$ used for the allowed region is shown along with two further points at $\sin^2{2\theta_{\mu e}} = 0.0014$, $\Delta m^2_{41}$ = 1 eV$^2$ and   $\sin^2{2\theta_{\mu e}} = 0.0005$, $\Delta m^2_{41}$ = 100 eV$^2$ (top left). The ratio of spectra with oscillation parameters corresponding to the three points mentioned versus nominal are shown for sbnd (top right), MicroBooNE (bottom left) and ICARUS (bottom right).}
     \label{fig:Nue_app_spectra_ratios}
 \end{figure}
 
@@ -450,11 +468,11 @@ When producing sensitivity contours, the fits may be generated for an individual
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_app_detector_combinations_stat_only.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_app_detector_combinations_stat+syst.pdf}
-    \caption[\nue appearance sensitivities from different detector combinations.]{Contributions to the SBN $\nu_e$ appearance sterile oscillation sensitivity from each detector and combinations of detectors in the SBN program. The statistical-only plots in the left-hand figure show that SBND is most sensitive to the region $\Delta m_{41}^{2} >$ $\sim$3 eV$^{2}$and ICARUS is most sensitive to $\Delta m_{41}^{2} <$ $\sim$3 eV$^{2}$. The right-hand figure includes flux and interaction systematic parameters and highlights the considerable improvement in the oscillation sensitivity when including multiple detectors in the fits.}
+    \caption[\nue appearance sensitivities from different detector combinations.]{Contributions to the SBN \nue appearance sterile oscillation sensitivity from each detector and combinations of detectors in the SBN program. The statistical-only plots in the left-hand figure show that SBND is most sensitive to the region $\Delta m_{41}^{2} >$ $\sim$3 eV$^{2}$and ICARUS is most sensitive to $\Delta m_{41}^{2} <$ $\sim$3 eV$^{2}$. The right-hand figure includes flux and interaction systematic parameters and highlights the considerable improvement in the oscillation sensitivity when including multiple detectors in the fits.}
     \label{fig:nue_sensitivity_detector_contribution}
 \end{figure}
 
-The previous plot showing contours including systematic uncertainties simply included all the flux and interaction systemtatics outlined in \SectionRef{sec:syst_uncertainties}, however, it is possible to apply only certain systematics at a time. The left plot of  \FigureRef{fig:nue_app_syst_group_sensitivities} shows the reduction in sensitivity when individually applying the flux, proposal interaction, modern interaction and all the interaction systematics compared to the statistical only case. This allows for the impact of the different systematic groups to be assessed. The right hand plot of \FigureRef{fig:nue_app_syst_group_sensitivities} shows the ratio of the exclusion contours to the statistical only case. This gives a clearer measure of the impact on the sensitivity in $sin^22\theta_{\mu e}$ space. It follows that the interaction systematics have the biggest impact on the sensitivity which in turn are dominated by the modern set of interaction parameters. The proposal set of interaction parameters have the smallest impact with the magnitude of the impact from the flux parameters being somewhere in between the two sets of interaction parameters. 
+The previously discussed figures showing contours including systematic uncertainties simply included all the flux and interaction systemtatics outlined in \SectionRef{sec:syst_uncertainties}, however, it is possible to apply only certain systematics at a time. The left plot of  \FigureRef{fig:nue_app_syst_group_sensitivities} shows the reduction in sensitivity when individually applying the flux, proposal interaction, modern interaction and all the interaction systematics compared to the statistical only case. This allows for the impact of the different systematic groups to be assessed. The right hand plot of \FigureRef{fig:nue_app_syst_group_sensitivities} shows the ratio of the exclusion contours to the statistical only case. This gives a clearer measure of the impact on the sensitivity in $\sin^2{2\theta_{\mu e}}$ space. It follows that the interaction systematics have the biggest impact on the sensitivity which in turn are dominated by the modern set of interaction parameters. The proposal set of interaction parameters have the smallest impact with the magnitude of the impact from the flux parameters being somewhere in between the two sets of interaction parameters. 
 
 \begin{figure}[h!]
     \centering
@@ -476,9 +494,9 @@ The complete \nue appearance exclusion sensitivities and allowed regions for bot
 
 
 \clearpage
-\subsection{\texorpdfstring{$\nu_e$ Disappearance Analysis}{nue Disappearance Analysis}}
+\subsection{\texorpdfstring{\nue Disappearance Analysis}{nue Disappearance Analysis}}
 
-Mirroring the \nue appearance channel, the \nue disappearance channel observes a reduction in the nominal \nue event rate. This is shown in \FigureRef{fig:nue_disapp_spectra} where the integrated spectrum produced with oscillation parameters $sin^22\theta_{ee} = 0.4$ and $\Delta m^2_{41} = 3 \text{ eV}^2$ has been overlayed onto the breakdown of the nominal spectrum for each of the three detectors. As is the case for \nue appearance, the oscillation signal is relatively small in \gls{sbnd} whereas both \gls{microboone} and \gls{icarus} observe a much more significant signal. 
+Mirroring the \nue appearance channel, the \nue disappearance channel observes a reduction in the nominal \nue event rate. This is shown in \FigureRef{fig:nue_disapp_spectra} where the integrated spectrum produced with oscillation parameters $\sin^2{2\theta_{ee}} = 0.4$ and $\Delta m^2_{41} = 3 \text{ eV}^2$ has been overlayed onto the breakdown of the nominal spectrum for each of the three detectors. As is the case for \nue appearance, the oscillation signal is relatively small in \gls{sbnd} whereas both \gls{microboone} and \gls{icarus} observe a much more significant signal. 
 
 \begin{figure}[h!]
   {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/nue_disapp_dmsq_3_sinsq_0.4_overlay_spectrum_sbn_nd_BNB_FHC_0_modes.pdf}}
@@ -487,12 +505,12 @@ Mirroring the \nue appearance channel, the \nue disappearance channel observes a
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue disappearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{ee} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
+    \caption[SBN \nue disappearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{ee}} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:nue_disapp_spectra} 
   }
 \end{figure}
 
-The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the $\nue$ disappearance stat only exclusion contour and allowed region from fits combining all three \gls{sbn} detectors. The injected point $\Delta m^2_{41} = 3$~eV$^2$, $sin^22\theta_{\mu e} = 0.4$, used when producing the allowed region is shown along with two further points on the exclusion contour at $\Delta m^2_{41} = 1$ eV$^2$, $sin^22\theta_{\mu e} = 0.29$ and $\Delta m^2_{41} = 100$~eV$^2$, $sin^22\theta_{\mu e} = 0.085$. $\nue$ disappearance spectra are produced using oscillation parameters corresponding to each of these three points for each of the three SBN detectors. The ratio of each of these oscillated spectra to the nominal for each detector are shown in the the remaining plots in Figure~\ref{fig:nue_disapp_spectra_ratios} and highlight the expected oscillation signal.
+The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the \nue disappearance stat only exclusion contour and allowed region from fits combining all three \gls{sbn} detectors. The injected point \mbox{$\Delta m^2_{41} = 3$~eV$^2$}, $\sin^2{2\theta_{\mu e}} = 0.4$, used when producing the allowed region is shown along with two further points on the exclusion contour at \mbox{$\Delta m^2_{41} = 1$ eV$^2$}, $\sin^2{2\theta_{\mu e}} = 0.29$ and $\Delta m^2_{41} = 100$~eV$^2$, $\sin^2{2\theta_{\mu e}} = 0.085$. \nue disappearance spectra are produced using oscillation parameters corresponding to each of these three points for each of the three SBN detectors. The ratio of each of these oscillated spectra to the nominal for each detector are shown in the the remaining plots in Figure~\ref{fig:nue_disapp_spectra_ratios} and highlight the expected oscillation signal.
 
 \begin{figure}[h!]
     \centering
@@ -500,7 +518,7 @@ The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the $\nue$
     \includegraphics[width = 0.49\textwidth]{figures-chap6/spectra/nue_disapp_spectra_ratio_sbnd.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/spectra/nue_disapp_spectra_ratio_uboone.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/spectra/nue_disapp_spectra_ratio_icarus.pdf}
-    \caption[Ratio of \nue disappearance spectra with the oscillation parameters shown on the statistical only contour.]{$\nue$ disappearance stat-only exclusion contour and allowed region. The injected point at $sin^22\theta_{ee} = 0.4$, $\Delta m^2_{41}$ = 3 eV$^2$ used for the allowed region is shown along with two further points at $sin^22\theta_{ee} = 0.29$, $\Delta m^2_{41}$ = 1 eV$^2$ and   $sin^22\theta_{ee} = 0.085$, $\Delta m^2_{41}$ = 100 eV$^2$ (top left). The ratio of spectra with oscillation parameters corresponding to the three points mentioned versus nominal are shown for \gls{sbnd} (top right), MicroBooNE (bottom left) and ICARUS (bottom right).}
+    \caption[Ratio of \nue disappearance spectra with the oscillation parameters shown on the statistical only contour.]{\nue disappearance stat-only exclusion contour and allowed region. The injected point at $\sin^2{2\theta_{ee}} = 0.4$, $\Delta m^2_{41}$ = 3 eV$^2$ used for the allowed region is shown along with two further points at $\sin^2{2\theta_{ee}} = 0.29$, $\Delta m^2_{41}$ = 1 eV$^2$ and \mbox{$\sin^2{2\theta_{ee}} = 0.085$}, \mbox{$\Delta m^2_{41}$ = 100 eV$^2$} (top left). The ratio of spectra with oscillation parameters corresponding to the three points mentioned versus nominal are shown for \gls{sbnd} (top right), MicroBooNE (bottom left) and ICARUS (bottom right).}
     \label{fig:nue_disapp_spectra_ratios}
 \end{figure}
 
@@ -511,7 +529,7 @@ Similar to \FigureRef{fig:nue_sensitivity_detector_contribution}, \FigureRef{fig
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_disapp_detector_combinations_stat-only.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_disapp_detector_combinations_stat+syst.pdf}
-    \caption[\nue disappearance sensitivities from different detector combinations.]{Contributions to the SBN $\nu_e$ disappearance sterile oscillation sensitivity from each detector and combinations of detectors in the SBN program produced. The statistical-only plots in the left-hand figure show that SBND is most sensitive to the region $\Delta m_{41}^{2} > 3$~eV$^{2}$ and ICARUS is most sensitive below $\Delta m_{41}^{2} < 3$~eV$^{2}$. The right-hand figure includes flux and interaction systematic parameters and highlights the considerable improvement in the oscillation sensitivity when including multiple detectors in the fits.}
+    \caption[\nue disappearance sensitivities from different detector combinations.]{Contributions to the SBN \nue disappearance sterile oscillation sensitivity from each detector and combinations of detectors in the SBN program produced. The statistical-only plots in the left-hand figure show that SBND is most sensitive to the region $\Delta m_{41}^{2} > 3$~eV$^{2}$ and ICARUS is most sensitive below $\Delta m_{41}^{2} < 3$~eV$^{2}$. The right-hand figure includes flux and interaction systematic parameters and highlights the considerable improvement in the oscillation sensitivity when including multiple detectors in the fits.}
     \label{fig:nue_disapp_sensitivity_detector_contribution}
 \end{figure}
 
@@ -521,7 +539,7 @@ The relative contribution of the different systematic groups to the overall excl
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_disapp_syst_groups.pdf}
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/nue_disapp_syst_groups_ratios.pdf}
-    \caption[\nue app sensitivity reduction from different systematic groups.]{The left plot shows the reduction in sensitivity from the stat-only contour when including each set of systematic parameters in the fits. The right plot shows the relative location of each systematic contour in $\sin^{2}2\theta_{\mu e}$ space, with respect to the statistical-only case for the active region of $\Delta m_{41}^{2}$ phase space.}
+    \caption[\nue app sensitivity reduction from different systematic groups.]{The left plot shows the reduction in sensitivity from the stat-only contour when including each set of systematic parameters in the fits. The right plot shows the relative location of each systematic contour in $\sin^{2}2\theta_{ee}$ space, with respect to the statistical-only case for the active region of $\Delta m_{41}^{2}$ phase space.}
     \label{fig:nue_disapp_syst_groups}
 \end{figure}
 
@@ -536,11 +554,57 @@ The complete \nue disappearance exclusion sensitivities and allowed regions for 
 \end{figure}
 
 \newpage
-\section{\texorpdfstring{$\nu_\mu$ Disappearance Analysis}{numu Disappearance Analysis}}
+\subsection{\texorpdfstring{\nue Sensitivities Based on Shower Energy Reconstruction}{nue Sensitivities Based on Shower Energy Reconstruction}}
+
+The reconstructed neutrino energy used in the analyses shown so far is based on truth information where smearing has been applied to emulate a reconstructed value. 
+
+To better motivate the reconstructed energy used, the results from \ChapterRef{chap:Energy_Reco} have been used to tweak the true energy of the showering particles (electrons or photons) to emulate a reconstructed energy based on the reconstruction performance that has been observed with the currently available tools. Since only the reconstructed shower energy was actively investigated here, any non-showering particles continue to have their reconstructed energy estimated by directly smearing the true energy. 
+
+The two cases considered for estimating the reconstructed energy of the showering particle are,
+\begin{itemize}
+    \item A flat negative bias of 20\% is applied to the true energy for all particles.
+    \item A flat negative bias applied to the true energy along with an additional variation to emulate the resolution of the reconstruction performance. The magnitude of the bias and the width of the resolution are functions of the true energy. The resolution was emulated by randomly choosing a number based on a Gaussian with a given standard deviation. The three categories used depending on the true energy are shown in \TableRef{table:variable_bias}.
+
+    \begin{table}[h!]
+    \begin{tabular}{ccc}
+    E [MeV] & Bias & \sigma \\ \hline
+    E $<$ 100 & 40\% & 0.15 \\
+    100 $\leq$ E $<$ 200 & 30\% & 0.125 \\
+    E $>$ 200 & 20\% & 0.1
+    \end{tabular}
+    \caption[The variable bias and resolution used to emulate reconstructed energy.]{The variable bias and resolution used to emulate reconstructed energy.}
+    \label{table:variable_bias}
+    \end{table}
+
+\end{itemize}
+The simplistic approach of applying a flat 20\% bias was motivated by the conservative results from \FigureRef{fig:fractional_energy_resolution} which shows that the typical bias is of order 20\%. The more involved process of applying an energy dependent bias and resolution are motivated by \FigureRef{fig:reconstruction_as_a_function_of_energy_profile}. It can be seen that above energies of $\sim 200$ MeV, the bias and standard deviation remain fairly constant, but at energies below this, the bias and resolution increase as the energy decreases. 
+
+The full \nue event selection as described in \SectionRef{sec:nue_selection} was repeated but with the above changes applied. The events from these selections were then used to produce exclusion contours using the same systematic uncertainties as previously described. The overall event rate from the selections using the reconstructed information motivated by \ChapterRef{chap:Energy_Reco} is lower than than the traditional method which relied on energy smearing. 
+
+The exclusion contours comparing the three selections are shown on the left of \FigureRef{fig:nue_app_bias} and \FigureRef{fig:nue_disapp_bias} for \nue appearance and disappearance respectively. The difference between the three exclusion contours is relatively minor and therefore the ratios of the contours to the contour from the original selection are shown on the right of their respective figures. Since the event rate is reduced in the updated selections, it is expected that the overall exclusion sensitivity would also be reduced. This indeed the case for most values of $\Delta m^2_{41}$ with only a couple of areas where the selection with the flat 20\% bias appears to improve the sensitivity.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/bias/nue_app_03d1.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/bias/nue_app_03d1_ratio.pdf}
+    \caption[\nue appearance exclusion contours using events from the selection motivated by \gls{em} shower reconstruction.]{Left: \nue appearance exclusion contours with flux and interaction uncertainties using events from the original selection and the ones motivated by results from \gls{em} shower reconstruction. Right: The ratio of the exclusion contours to the contour from the original selection.}
+    \label{fig:nue_app_bias}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/bias/nue_disapp_03d1.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/bias/nue_disapp_03d1_ratio.pdf}
+    \caption[\nue disappearance exclusion contours using events from the selection motivated by \gls{em} shower reconstruction.]{Left: \nue disappearance exclusion contours with flux and interaction uncertainties using events from the original selection and the ones motivated by results from \gls{em} shower reconstruction. Right: The ratio of the exclusion contours to the contour from the original selection.}
+    \label{fig:nue_disapp_bias}
+\end{figure}
+
+\newpage
+\section{\texorpdfstring{\numu Disappearance Analysis}{numu Disappearance Analysis}}
 
 A similar analysis and validation to that described in  \SectionRef{sec:systematic_validation} and \SectionRef{sec:nue_analysis} that was performed for the two \nue channels was also done for the \numu disappearance channel.
 
-The nominal event rate breakdown for each of the detectors is shown in \FigureRef{fig:numu_disapp_spectra} where an integrated spectrum with oscillation parameters $sin^22\theta_{\mu \mu} = 0.072$, $\Delta m^2_{41} = 1.32 \text{ eV}^2$ has been overlayed. The overall magnitude of the event rate is several order of magnitude greater than that for \nue owing to the fact that the \gls{bnb} consists predominantly of \numu. As was the case for \nue disappearance, the reduction in events for \gls{sbnd} is relatively small whereas for \gls{microboone} and \gls{icarus} it is much more significant.
+The nominal event rate breakdown for each of the detectors is shown in \FigureRef{fig:numu_disapp_spectra} where an integrated spectrum with oscillation parameters $\sin^2{2\theta_{\mu \mu}} = 0.072$, $\Delta m^2_{41} = 1.32 \text{ eV}^2$ has been overlayed. The overall magnitude of the event rate is several order of magnitude greater than that for \nue owing to the fact that the \gls{bnb} consists predominantly of \numu. As was the case for \nue disappearance, the reduction in events for \gls{sbnd} is relatively small whereas for \gls{microboone} and \gls{icarus} it is much more significant.
 
 The complete \numu disappearance exclusion sensitivities and allowed regions for both the statistical only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:numu_disapp_global_sensitivity} for the entire \gls{sbn} program alongside external limits from \gls{minos} and its successor \gls{minos}+, combined results from \gls{sciboone} and \gls{miniboone} and the IceCube experiment \cite{MINOS+} \cite{MiniBooNE/SciBooNE_numu_disapp_contour} \cite{IceCube_numu_disapp_contour}. The results for the \gls{sbn} program are shown at a 5$\sigma$ confidence level whereas the exclusion region from the \gls{minos}/\gls{minos}+, \gls{sciboone}/\gls{miniboone} and IceCube experiments are shown at the 90\% confidence. The IceCube experiment also shows an allowed region at the 99\% confidence level. The results from \gls{sbn} show a stronger sensitivity to that obtained be \gls{miniboone}/\gls{sciboone} for all mass splitting values. The exclusion contour is also comparable to that from \gls{minos}/\gls{minos}+ for $\Delta m^2_{41} \gtrsim 1\text{ eV}^2$, however below this value \gls{minos}/\gls{minos}+ provides a stronger limit. The exclusion contour from IceCube again provides a stronger limit at $\Delta m^2_{41} \lesssim 1\text{ eV}^2$, but for higher values, \gls{sbn} expects to improve on the results from IceCube. The allowed region from IceCube intersect the one from \gls{sbn} so they aren't fully compatible. 
 
@@ -551,7 +615,7 @@ The complete \numu disappearance exclusion sensitivities and allowed regions for
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \numu CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The breakdown of the nominal \numu disappearance spectra overlayed with an integrated oscillated spectrum with oscillation parameters, $sin^22\theta_{\mu \mu} = 0.072$ and $\Delta m^2_{41} = 1.32$~eV$^2$ showing the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
+    \caption[SBN \numu CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The breakdown of the nominal \numu disappearance spectra overlayed with an integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{\mu \mu}} = 0.072$ and $\Delta m^2_{41} = 1.32$~eV$^2$ showing the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:numu_disapp_spectra} 
   }
 \end{figure}
@@ -566,29 +630,6 @@ The complete \numu disappearance exclusion sensitivities and allowed regions for
 For a complete discussion of the \numu disappearance channel, see \cite{Rhiannon's_thesis}.
 
 \clearpage
-
-\section{\texorpdfstring{Estimating the impact of shower energy reconstruction on the \nue sensitivities.}{Estimating the impact of shower energy reconstruction on the nue sensitivities}}
-
-The reconstructed neutrino energy used in the analyses shown so far is based on truth information where smearing has been applied to emulate a reconstructed value. 
-
-Since the reconstructed \nue energy will be driven by the reconstructed \gls{em} shower energy, if the simplification that any imperfections in the reconstruction are only due to the \gls{em} shower energy, the findings from \SectionRef{chap:Energy_Reco} may be used to estimate a reconstructed neutrino energy from the true value. This directly links the work from \SectionRef{chap:Energy_Reco} to the oscillation analysis and allows for an estimate on the sensitivities depending on the accuracy of the shower energy reconstruction. The key results from \SectionRef{chap:Energy_Reco} that are relevant in this case are; 
-\begin{itemize}
-    \item A mean $\sim$20\% bias in the reconstructed energy.
-    \item A $\sim$30\% resolution in the reconstructed energy.
-    \item Bias increases for low energy showering particles.
-    \item Bias and resolution increase for showers at large angles to the beamline.
-\end{itemize}
-
-\textcolor{red}{Reference plots showing this points}
-The mean bias of $\sim 15\%$ and resolution of $\sim 30\%$ have been estimated from FIG XXX. 
-
-To understand the impact of the reconstructed neutrino energy (and in turn the importance of reconstructing \gls{em} showers), the true neutrino energy, $E_{\nu, true}$, is tweaked in a number of different ways in order to encompass some or all of the effects listed above. This tweaked value is used to emulate the reconstructed neutrino energy, $E_{\nu, reco}$. The different possibilities for $E_{\nu, reco}$ were calculated as follows;
-\begin{enumerate}
-    \item Apply a flat bias of XXX to $E_{\nu, true}$ for all events.
-    \item Apply a flat bias of XXX to events with $E_{\nu, true} < something$ and a flat bias of YYY for all other events.
-    \item Randomly apply a bias that is normally distributed around the mean bias with a standard deviation of XXX to $E_{\nu, true}$ for each event.
-    \item Consider an unrealistic (worst case) scenario where all the showers are at some large angle to the beam line instead of being predominantly forward going. 
-\end{enumerate}
 
 \section{Additional Efficiency and Energy Scale Systematics}
 

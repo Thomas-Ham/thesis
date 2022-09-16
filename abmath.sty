@@ -6,6 +6,7 @@
 %% --------------------------------------------------------------
 
 %% Stuff I commonly use
+\DeclareRobustCommand{\nubar}{\bar{\nu}}
 \DeclareRobustCommand{\nue}{\nu_{e}}
 \DeclareRobustCommand{\numu}{\nu_{\mu}}
 \DeclareRobustCommand{\nutau}{\nu_{\tau}}
@@ -21,6 +22,8 @@
 \DeclareRobustCommand{\electron}{e^-}
 \DeclareRobustCommand{\positron}{e^+}
 %% Oustide math mode
+\let\@Oldnubar\nubar%
+\renewcommand{\nubar}{\mymath{\@Oldnubar}\xspace}%
 \let\@Oldnue\nue%
 \renewcommand{\nue}{\mymath{\@Oldnue}\xspace}%
 \let\@Oldnumu\numu%

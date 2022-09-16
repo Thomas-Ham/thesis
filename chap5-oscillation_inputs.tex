@@ -23,7 +23,7 @@ Sample        & \begin{tabular}[c]{@{}c@{}}Events Produced\end{tabular} \\ \hlin
 
 Intrinsic $\nue$ & $\sim$1,000,000      \\
 Oscillated $\nu$ & $\sim$1,000,000      \\
-$\numu$          & {Used $\nu_{\mu}$ sample}  \\
+$\numu$          & {Used \numu sample}  \\
 Dirt             & $\sim$10,000,000        \\
 Cosmic           & $\sim$100,000             
 
@@ -37,7 +37,7 @@ The actual number of real \numu events expected in \gls{sbnd} is well over 5 mil
 
 The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps for each of the analyses are outlined below and are performed for each associated event. 
 
-\subsection{\texorpdfstring{$\nu_\mu$ Selection}{numu Selection}}\label{sec:numu_selection}
+\subsection{\texorpdfstring{\numu Selection}{numu Selection}}\label{sec:numu_selection}
 
 \begin{enumerate}
   \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
@@ -48,7 +48,7 @@ The event selections are performed in order to first identify \numu or \nue-like
  \item A weight of 0.8 is applied to all selected events to account for an assumed 80\% reconstruction efficiency \cite{Rhiannon's_thesis}. 
 \end{enumerate}
 
-\subsection{\texorpdfstring{$\nu_e$ Selection}{nue Selection}}\label{sec:nue_selection}
+\subsection{\texorpdfstring{\nue Selection}{nue Selection}}\label{sec:nue_selection}
 The $\nue$ selection follows a similar basis to the $\numu$ selection described in section \ref{sec:numu_selection}, however different criteria for the selection were applied to beam induced TPC events, dirt events and cosmic events, each of which are outlined below. 
 
 \subsubsection*{Beam induced active volume events}
@@ -56,7 +56,7 @@ The $\nue$ selection follows a similar basis to the $\numu$ selection described 
 \begin{enumerate}
   \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
   \item Showers arising from the vertex are identified and the reconstructed energy is found from smearing the ionisation deposition. If more than one shower with energy above 100 MeV exists, the event is removed. This removes neutral pion events where the pion decays into two photon showers. 
-  \item If there is only one photon candidate in the event, a conversion gap cut is applied. If the vertex is deemed visible, due to the presence of at least 50 MeV of hadronic kinetic energy, and the photon starts to shower further than 3 cm from the vertex the event is removed.
+  \item If there is only one photon candidate in the event, a conversion gap cut is applied. If the vertex is deemed visible, due to the presence of at least \mbox{50 MeV} of hadronic kinetic energy, and the photon starts to shower further than 3 cm from the vertex the event is removed.
   \item Remaining photons undergo a dE/dx cut resulting in a 94\% background rejection.
   \item If a misidentified photon originates from a resonant $\numu$ CC interaction, the muon lepton is identified. Events where a muon travels greater than 1 m are assumed to be from $\numu$ CC interactions and the event is removed. 
   \item Events where the shower has an energy less than 200 MeV are removed.
@@ -124,15 +124,15 @@ The reaction modes define the type of neutrino-nucleus interaction. They are cat
   
     \toprule
     \multicolumn{2}{c}{\textit{Coarse Reaction Modes}} \\
-    $\numu$, $\numubar$ & $\nue$, $\nuebar$ \\
+    \numu, \numubar & \nue, \nuebar \\
     \midrule
-    $\numu$ CC QE          & \nue CC QE          \\ 
-    $\numu$ CC MEC         & \nue CC MEC         \\ 
-    $\numu$ CC 1$\pi$      & \nue CC 1$\pi$      \\ 
-    $\numu$ CC 2$\pi$      & \nue CC 2$\pi$      \\ 
-    $\numu$ CC Other       & \nue CC Other       \\ 
-    $\numubar$ CC          & \nuebar CC          \\
-    $\nue$ \& $\nuebar$ CC & \numu CC            \\
+    \numu CC QE          & \nue CC QE          \\ 
+    \numu CC MEC         & \nue CC MEC         \\ 
+    \numu CC 1$\pi$      & \nue CC 1$\pi$      \\ 
+    \numu CC 2$\pi$      & \nue CC 2$\pi$      \\ 
+    \numu CC Other       & \nue CC Other       \\ 
+    \numubar CC          & \nuebar CC          \\
+    \nue \& \nuebar CC & \numu CC            \\
     NC                     & \numubar CC         \\
     \textit{Cosmic}        & Oscillated \nue CC  \\
     \textit{Dirt}          & NC 0\pi             \\
@@ -200,7 +200,7 @@ The above approach is applied for both beryllium and aluminium nuclei and the un
     $f_{\sigma_{TOT}^{\pi}}$  & Secondary total pion cross-section in the target (Be) and horn (Al) & $\pm 11.9 \%$ & $\pm 28.7 \%$\\
     \bottomrule
   \end{tabular}
-  \caption[Hadronic secondary interaction flux systematic parameters.]{The systematic uncertainties associated with secondary hadron interaction cross-sections in both the horn (Aluminium) and the target (Beryllium) \cite{SBN_Proposal}}.
+  \caption[Hadronic secondary interaction flux systematic parameters.]{The systematic uncertainties associated with secondary hadron interaction cross-sections in both the horn (Aluminium) and the target (Beryllium) \cite{SBN_Proposal}.}
   \label{table:secondary_hadron_interaction_xsec}
 \end{table}
 
@@ -216,13 +216,13 @@ The Sanford-Wang parameterisation is used to estimate the $\pi^{\pm}$ production
   \frac{d^{2}\sigma}{dpd\theta} = 
   c_{1}p^{c_{2}} 
   \left( 1 - \frac{p}{p_{B} -c_{9}} \right)
-  \exp \left( -c_{3} \frac{p^{c_{4}}}{p_{B}^{c_{5}}} - c_{6}\theta(p - p_{B}c_{7}cos^{c_{8}}\theta) \right),
+  \exp \left( -c_{3} \frac{p^{c_{4}}}{p_{B}^{c_{5}}} - c_{6}\theta(p - p_{B}c_{7}\cos^{c_{8}}{\theta}) \right),
 \end{equation}
 where parameters $c_{1 \rightarrow 9}$ are determined from the HARP (8.89 GeV/c), BNL E910 (6.4 GeV/c) and BNL E910 (12.3 GeV/c) experiments \cite{BNB_flux}.
 
 No $k^+$ production rates exist for proton-beryllium interactions at 8.89 GeV/c which is the primary \gls{bnb} operating momentum. To estimate the $k^+$ production rate at the \gls{bnb} momentum, Feynman scaling is used to extrapolate the rate from production rates at nearby energies \cite{BNB_flux}.
 
-The major contribution that the $k^0$ makes to the BNB flux is from the decay of the $k^0_L$. The $k^0$ that are produced via strong interactions have equal contents of $k^0_L$ and $k^0_s$, therefore the production rate of $k^0_L$ can be inferred from knowing the production rate of $k^0_s$. The Sanford-Wang parametrisation is again used to estimate the production cross-section by combining data from the BNL E910 experiment at 12.3 GeV/c and 17.5 GeV/c and the KEK experiment at 12.3 GeV/c.
+The major contribution that the $k^0$ makes to the BNB flux is from the decay of the $k^0_L$. The $k^0$ that are produced via strong interactions have equal contents of $k^0_L$ and $k^0_s$, therefore the production rate of $k^0_L$ can be inferred from knowing the production rate of $k^0_s$. The Sanford-Wang parametrisation is again used to estimate the production cross-section by combining data from the BNL E910 experiment at 12.3 GeV/c and 17.5 GeV/c and the KEK experiment at \mbox{12.3 GeV/c}.
 
 For the $k^-$, there is minimal production data available, therefore, simulations are used exclusively. The rate and spectrum of the $k^-$ are estimated by simulating 8.89 GeV/c proton-beryllium interactions \cite{BNB_flux}.
 \renewcommand{\arraystretch}{1.4}    
@@ -232,7 +232,7 @@ For the $k^-$, there is minimal production data available, therefore, simulation
   \begin{tabular}{p{2cm} p{3.5cm} p{1.6cm} p{1.6cm} p{1.6cm} p{1.6cm}}
     \toprule
     \multirow{2}{*}{Parameter} & \multirow{2}{*}{$\nu$ production} & \multicolumn{4}{c}{Uncertainty} \\
-    && \multicolumn{1}{c}{$\nu_{\mu}$} & \multicolumn{1}{c}{$\bar{\nu}_{\mu}$} & \multicolumn{1}{c}{$\nu_{e}$} & \multicolumn{1}{c}{$\bar{\nu}_{e}$} \\
+    && \multicolumn{1}{c}{\numu} & \multicolumn{1}{c}{\numubar} & \multicolumn{1}{c}{\nue} & \multicolumn{1}{c}{\nuebar} \\
     \midrule
 
     $f_{\pi^{+}}$ & Mechanism: $\pi^{+}$ & $ \pm 11.7 \%$ & $ \pm 1.0 \%$ & $ \pm 10.7 \%$ & $ \pm 0.03 \%$ \\
@@ -351,13 +351,13 @@ The proposal systematics only included a set of cross-section parameters which a
          
          $f_{nR_{\nu p}^{CC2\pi}}$ & Non-Res bkg normalisation in $\nu p$ CC2$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} n}^{CC1\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} n$ CC1$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar n}^{CC1\pi}}$ & Non-Res bkg normalisation in $\nubar n$ CC1$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} p}^{CC1\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} p$ CC1$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar p}^{CC1\pi}}$ & Non-Res bkg normalisation in $\nubar p$ CC1$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} n}^{CC2\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} n$ CC2$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar n}^{CC2\pi}}$ & Non-Res bkg normalisation in $\nubar n$ CC2$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} p}^{CC2\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} p$ CC2$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar p}^{CC2\pi}}$ & Non-Res bkg normalisation in $\nubar p$ CC2$\pi$ reactions & $\pm 50\%$ \\
         
          $f_{nR_{\nu n}^{NC1\pi}}$ & Non-Res bkg normalisation in $\nu n$ NC1$\pi$ reactions & $\pm 50\%$ \\
          
@@ -367,13 +367,13 @@ The proposal systematics only included a set of cross-section parameters which a
          
          $f_{nR_{\nu p}^{NC2\pi}}$ & Non-Res bkg normalisation in $\nu p$ NC2$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} n}^{NC1\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} n$ NC1$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar n}^{NC1\pi}}$ & Non-Res bkg normalisation in $\nubar n$ NC1$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} p}^{NC1\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} p$ NC1$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar p}^{NC1\pi}}$ & Non-Res bkg normalisation in $\nubar p$ NC1$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} n}^{NC2\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} n$ NC2$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar n}^{NC2\pi}}$ & Non-Res bkg normalisation in $\nubar n$ NC2$\pi$ reactions & $\pm 50\%$ \\
          
-         $f_{nR_{\bar{\nu} p}^{NC2\pi}}$ & Non-Res bkg normalisation in $\bar{\nu} p$ NC2$\pi$ reactions & $\pm 50\%$ \\
+         $f_{nR_{\nubar p}^{NC2\pi}}$ & Non-Res bkg normalisation in $\nubar p$ NC2$\pi$ reactions & $\pm 50\%$ \\
         
         \bottomrule
         
@@ -498,17 +498,17 @@ If any correlated errors are assumed to by fully correlated, $\mathcal{M}_{ij}$ 
 		\hline
 		& \multicolumn{5}{c}{\textbf{Applies to}}                                                                                  \\
 		\textbf{Systematic}    & \textbf{Beam} & \textbf{Detector} & \textbf{Sample}        & \textbf{Mode} & \textbf{Reco. energy bin edges}                            \\ \hline
-		$f_0 - f_7$   & FHC  & SBND     & $\nu_{\mu}$CC-like & signal/$\nu_{\mu}$CC & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, $\infty$\}      \\
-		$f_8 - f_{13}$    & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/NC               & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
-		$f_{14}$          & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/Dirt             & \{0, $\infty$\}                                         \\
-		$f_{15}$          & FHC  & SBND     & $\nu_{\mu}$CC-like   & bkg/Cosmics          & \{0, $\infty$\}                                         \\ \hline
-		$f_{16}-f_{24}$     & FHC  & SBND     & $\nu_{e}$CC-like     & signal/$\nu_{e}$CC     & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
-		$f_{25} - f_{33}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/$\nu_{\mu}$CC      & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
-		$f_{34} - f_{42}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NC1$\gamma$        & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
-		$f_{43} - {f_51}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NC1$\pi^0$         & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
-		$f_{52} - f_{60}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/NCother          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
-		$f_{61} - f_{66}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/Dirt             & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
-		$f_{67} - f_{72}$   & FHC  & SBND     & $\nu_{e}$CC-like     & bkg/Cosmics          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\ \hline
+		$f_0 - f_7$   & FHC  & SBND     & $\numu$CC-like & signal/$\numu$CC & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, $\infty$\}      \\
+		$f_8 - f_{13}$    & FHC  & SBND     & $\numu$CC-like   & bkg/NC               & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{14}$          & FHC  & SBND     & $\numu$CC-like   & bkg/Dirt             & \{0, $\infty$\}                                         \\
+		$f_{15}$          & FHC  & SBND     & $\numu$CC-like   & bkg/Cosmics          & \{0, $\infty$\}                                         \\ \hline
+		$f_{16}-f_{24}$     & FHC  & SBND     & $\nue$CC-like     & signal/$\nue$CC     & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{25} - f_{33}$   & FHC  & SBND     & $\nue$CC-like     & bkg/$\numu$CC      & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{34} - f_{42}$   & FHC  & SBND     & $\nue$CC-like     & bkg/NC1$\gamma$        & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{43} - {f_51}$   & FHC  & SBND     & $\nue$CC-like     & bkg/NC1$\pi^0$         & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{52} - f_{60}$   & FHC  & SBND     & $\nue$CC-like     & bkg/NCother          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{61} - f_{66}$   & FHC  & SBND     & $\nue$CC-like     & bkg/Dirt             & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{67} - f_{72}$   & FHC  & SBND     & $\nue$CC-like     & bkg/Cosmics          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\ \hline
 		$f_{73} - f_{145}$  & \multicolumn{5}{l}{As above, but for $\mu$B}                                                                        \\ \hline
 		$f_{146} - f_{218}$ & \multicolumn{5}{l}{As above, but for ICARUS}                                                                    \\ \hline
 	\end{tabular}
@@ -552,7 +552,7 @@ All the stuff that was 'agreed' between fitters - Baseline Approximation, Binnin
 \subsection{Baseline}
 As is shown in \EquationRef{eqn:sterile_osc_prob}, the baseline is one of the components that drives the oscillation probability. For long baseline experiments, it's not uncommon for fitting frameworks to simply use some average value for the baseline since factors such as the interaction point in the detector or the position at which a particle decays into a neutrino would only change the average baseline for the experiment by a negligible amount. However, for short baseline experiments such as \gls{sbn}, these factors may change the baseline significantly. 
 
-In an attempt to minimise computing resources, the true baseline was not initially used, but instead, several approximations to the baseline were tried. To begin with, the average baseline of each \gls{sbn} detector was used for all neutrino energies. This was calculated from the true baseline distribution of \numu events in each detector which are shown in \FigureRef{fig:numu_baseline}. Secondly, a 4-knot spline (named spline V1) for each detector was defined in order to try and better approximate the baseline. This method was improved upon by producing a spline for each of the true energy bins (named spline V2) which are defined in \SectionRef{sec:binning}. In order to establish the impact of any baseline approximations on the oscillation probability, the oscillation probability was plotted as a function of true neutrino energy with the oscillation parameters $sin^22\theta_{\mu\mu} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$. This oscillation point was chosen to ensure that a region where rapid oscillations occur was being investigated, which would highlight the effect of any baseline choices. The oscillation probabilities as a function of energy are shown in \FigureRef{fig:baseline_osc_probability} for the four different baselines described. It was eventually decided that any approximation would be insufficient and that the true baseline should be used. 
+In an attempt to minimise computing resources, the true baseline was not initially used, but instead, several approximations to the baseline were tried. To begin with, the average baseline of each \gls{sbn} detector was used for all neutrino energies. This was calculated from the true baseline distribution of \numu events in each detector which are shown in \FigureRef{fig:numu_baseline}. Secondly, a 4-knot spline (named spline V1) for each detector was defined in order to try and better approximate the baseline. This method was improved upon by producing a spline for each of the true energy bins (named spline V2) which are defined in \SectionRef{sec:binning}. In order to establish the impact of any baseline approximations on the oscillation probability, the oscillation probability was plotted as a function of true neutrino energy with the oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$. This oscillation point was chosen to ensure that a region where rapid oscillations occur was being investigated, which would highlight the effect of any baseline choices. The oscillation probabilities as a function of energy are shown in \FigureRef{fig:baseline_osc_probability} for the four different baselines described. It was eventually decided that any approximation would be insufficient and that the true baseline should be used. 
 
 The studies of the baseline approximations were done in the context of the \numu disappearance channel. For the \nue channels, different approximations should be applied, since the true baseline distribution is not the same as for \numu. In principle, within the \nue sample, different approximations should be applied to the different sub-samples since the baseline distribution is not the same for all the sub-samples. This was never done since it was decided that the true baseline should be used. Each individual sample used to construct the overall \nue event sample has its own baseline distribution due to the particles which contribute to each sample decaying at different points along the beamline. The baseline distribution for the intrinsic \nue, oscillated \nue and the overall \nue sample from combining all the sub-samples together is shown in \FigureRef{fig:nue_baseline_dist} for each of the \gls{sbn} detectors. It should be noted that the baseline distributions for oscillated \nue sample from \FigureRef{fig:nue_baseline_dist} and the \numu sample from \FigureRef{fig:numu_baseline} are comparable. This is due to the initial parameters describing the oscillated sample being the same as for the \numu sample. The only difference being the neutrino oscillations from \numu to \nue which isn't something that affects the baseline.
 
@@ -585,7 +585,7 @@ The studies of the baseline approximations were done in the context of the \numu
     \includegraphics[width = 0.32\textwidth]{figures-chap5/osc_prob_sbnd.pdf}
     \includegraphics[width = 0.32\textwidth]{figures-chap5/osc_prob_uboone.pdf}
     \includegraphics[width = 0.32\textwidth]{figures-chap5/osc_prob_icarus.pdf}
-    \caption[Oscillation probability for different baseline parametrisations.]{The oscillation probability as a function of true neutrino energy for the \numu disappearance sample with oscillation parameters $sin^22\theta_{\mu\mu} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$ in each \gls{sbn} detector. The results from using each baseline parametrisation are shown.}
+    \caption[Oscillation probability for different baseline parametrisations.]{The oscillation probability as a function of true neutrino energy for the \numu disappearance sample with oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$ in each \gls{sbn} detector. The results from using each baseline parametrisation are shown.}
     \label{fig:baseline_osc_probability}
 \end{figure}
 
@@ -593,7 +593,7 @@ The studies of the baseline approximations were done in the context of the \numu
 \subsection{Binning}\label{sec:binning}
 The energy binning schemes used to construct the \glspl{mct} are the same across each of the three detectors, however, the scheme used is different for the \numu and \nue analyses. Furthermore, there are separate schemes for both the true and reconstructed energies. Each of the binning schemes is outlined below. 
 
-The $\nu_\mu$ edge-to-edge binning has 21 bins in reconstructed neutrino energy which are bounded as follows:
+The \numu edge-to-edge binning has 21 bins in reconstructed neutrino energy which are bounded as follows:
 \begin{itemize}
     \item 1 bin from 0.00-0.20 GeV,
     \item 2 0.10-GeV bins from 0.20-0.40 GeV,
@@ -603,7 +603,7 @@ The $\nu_\mu$ edge-to-edge binning has 21 bins in reconstructed neutrino energy 
     \item 1 bin from 3.00-10.00 GeV.
 \end{itemize}
 
-The $\nu_\mu$ edge-to-edge binning has 22 bins in true neutrino energy which are bounded as follows:
+The \numu edge-to-edge binning has 22 bins in true neutrino energy which are bounded as follows:
 \begin{itemize}
     \item 1 bin from 0.00-0.30 GeV,
     \item 3 0.10-GeV bins from 0.30-0.60 GeV,
@@ -614,7 +614,7 @@ The $\nu_\mu$ edge-to-edge binning has 22 bins in true neutrino energy which are
     \item 1 bin from 5.00-10.00 GeV.
 \end{itemize}
 
-The $\nu_e$ edge-to-edge binning has 12 bins in reconstructed neutrino energy which are bounded as follows:
+The \nue edge-to-edge binning has 12 bins in reconstructed neutrino energy which are bounded as follows:
 \begin{itemize}
     \item 1 0.35-GeV bin from 0.00-0.35 GeV,
     \item 5 0.15-GeV bins from 0.35-1.10 GeV,
@@ -624,7 +624,7 @@ The $\nu_e$ edge-to-edge binning has 12 bins in reconstructed neutrino energy wh
     \item 1 bin from 3.00-10.00 GeV.
 \end{itemize}
 
-The $\nu_e$ edge-to-edge binning has 33 bins in true neutrino energy which are bounded as follows:
+The \nue edge-to-edge binning has 33 bins in true neutrino energy which are bounded as follows:
 \begin{itemize}
     \item 2 0.25-GeV bin from 0.00-0.50 GeV,
     \item 15 0.05-GeV bins from 0.50-1.25 GeV,
