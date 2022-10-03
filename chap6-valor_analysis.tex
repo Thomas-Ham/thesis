@@ -3,41 +3,46 @@
 
 \section{VALOR Framework}\label{sec:VALOR_framework}
 
-The \gls{valor} framework is a neutrino fitting framework that was first developed for the \gls{t2k} experiment, but has since been adapted to also cover \gls{dune} and the \gls{sbn} program \cite{VALOR}.
+The VALOR framework is a neutrino fitting framework that was first developed for the \gls{t2k} experiment, but has since been adapted to also cover, Hyper-K, \gls{dune} and the \gls{sbn} program \cite{VALOR}.
+
+Performing an analysis within VALOR involves a number of physics parameters that define a physics hypothesis (e.g. neutrino oscillations) and the relevant systematic uncertainties. Event rate predictions are constructed for the associated detector, beam and event sample. These predictions are constructed as a function of a kinematical variable for either a nominal scenario or with variations due to a physics hypothesis and/or systematic uncertainties. This approach allows for joint oscillation and systematic fits to be constructed from a binned likelihood fitting approach for a given event topology. Fits may be performed for individual detectors or for a combination of multiple detectors and may include any number of systematic parameters. 
 
 The data inputs used for an oscillation analysis are mainly provided in the form of \glspl{mct}, which provide a mapping between true and reconstructed variables. These \glspl{mct}, \textit{T}, encapsulate a number of quantities describing a given event and are listed below,
 
 \begin{itemize}
-    \item b - Beam configuration
-    \item d - Detector
-    \item s - Sample
-    \item m - Reaction Mode
-    \item r - A bin in reconstructed space
-    \item t - A bin in true space, 
+    \item[b] -- Beam configuration e.g. neutrino or anti-neutrino mode,
+    \item[d] -- Detector e.g. \gls{sbnd}, \gls{microboone} or \gls{icarus},
+    \item[s] \raggedright -- Topological event selection e.g. \nue CC-like or \numu CC-like,
+    \item[m] \raggedright -- True Reaction Mode e.g. \nue~CC1$\pi^{\pm}$, \nue~NC2$\pi^0$,
+    \item[r] -- A bin in multi-dimensional reconstructed kinematic space e.g. $E_{\nu, reco}$,
+    \item[t] -- A bin in multi-dimensional true kinematic space e.g. $E_{\nu, true}$,
 \end{itemize}
+
 with $T = T_{d;b;s;m}(r, t)$. By combining \textit{T} with the necessary physics parameters, $\vec{\theta}$, and systematic parameters, $\vec{f}$, the predicted event rate, $n^{pred}_{d;b;s}$, may be expressed as
 \begin{equation}
 n_{d;b;s}^{pred}(r; \vec{\theta}; \vec{f}) =
    \sum_{m} \sum_{t}  P_{d;b;m}(t; \vec{\theta}) \cdot R_{d;b;s;m}(r,t; \vec{f}) \cdot T_{d;b;s;m}(r,t) \cdot N^{MC},
    \label{eq:valor_npred}
 \end{equation}
-where $P_{d;b;m}(t; \vec{\theta})$ represents the effect due to a physics hypothesis (e.g. neutrino oscillations), $R_{d;b;s;m}(r,t; \vec{f})$ represents the response of a \gls{mct} bin to the systematic variations and $N^{MC} = \mbox{POT}_{b;d}^{data}/\mbox{POT}_{b;d}^{MC}$, which is the normalisation by which to scale the event rate to account for the POT which was used to construct the sample of neutrino events with respect to the nominal POT in the analysis. For $n_{d ; b ; s}^{obs}(r)$ observed events, the log likelihood, $ln~\lambda_{d;b;s}(\vec \theta, \vec f)$, is given by
+where $P_{d;b;m}(t; \vec{\theta})$ represents the effect due to a physics hypothesis (e.g. neutrino oscillations), $R_{d;b;s;m}(r,t; \vec{f})$ represents the response of a \gls{mct} bin to the systematic variations and $N^{MC} = \mbox{POT}_{b;d}^{data}/\mbox{POT}_{b;d}^{MC}$, which is the normalisation by which to scale the event rate to account for the POT which was used to construct the sample of neutrino events with respect to the nominal POT in the analysis. The dependence of $P_{d;b;m}(t; \vec{\theta})$ on \textit{d} and \textit{b} is due to \textit{d} and \textit{b} encapsulating the baseline information which is a component of the oscillation probability. The unoscillated \gls{cc} \gls{mct} are weighted by the appropriate oscillation probability, $P_{\nu_{\alpha} \rightarrow \nu_{\beta}}$, to reflect the change in event rate due to neutrino oscillations. The \gls{nc} \gls{mct} are left unweighted since they remain unchanged due to flavour oscillations. This distinction between \gls{cc} and \gls{nc} is encapsulated by \textit{m}, hence, $P_{d;b;m}(t; \vec{\theta})$ is required to also be dependent on \textit{m}. 
+
+For $n_{d ; b ; s}^{obs}(r)$ observed events, the log likelihood, $ln~\lambda_{d;b;s}(\vec \theta, \vec f)$, is given by
 \begin{equation}
     ln~\lambda_{d;b;s}(\vec \theta, \vec f) = - \mathlarger{\mathlarger{\sum_{b,d,s,r}}} \Bigg \{ \Big (n_{d;b;s}^{pred}(r,\vec{\theta},\vec{f})
     - n_{d ; b ; s}^{obs}(r) \Big) + n_{d ; b ; s}^{obs}(r) \cdot ln \frac{n_{d ; b ; s}^{obs}(r)}{n_{d ; b ; s}^{p r e d}(r , \vec{\theta} , \vec{f})} \Bigg \}.
 \end{equation}
-An additional penalty term is applied to account for the systematic parameters which is defined as,
+An additional term is applied to predict deviations from the nominal values of systematic parameters which is defined as,
 \begin{equation}
     ln~\lambda_{syst}(\vec{f}) = -\frac{1}{2} (\vec{f} - \vec{f}_0)^T \mathbf{V^{-1}} (\vec{f} - \vec{f}_0),
 \end{equation}
 where $\vec{f}_0$ is a vector containing the nominal value of all the systematic parameters and \textbf{V} is a covariance matrix containing the uncertainties of the systematic parameters \cite{VALOR_dune}. 
 
-In the limit of many samples, quantities of the form $-2ln~\lambda$ have a $\chi^2$ distribution, hence calculating the log likelihood allows a goodness-of-fit test to be performed \cite{introduction_to_mathematical_statistics_book}. The total goodness-of-fit value is therefore given by,
+In the limit of large statistics, quantities of the form $-2ln~\lambda$ have a $\chi^2$ distribution, hence calculating the log likelihood allows a goodness-of-fit test to be performed \cite{introduction_to_mathematical_statistics_book}. The total goodness-of-fit value is therefore given by,
 \begin{equation}
     \chi^2_{tot} = -2(ln~\lambda_{d;b;s}(\vec{\theta}, \vec{f}) + ln~\lambda_{syst}(\vec{f})).
 \end{equation}
 
-In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \glspl{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. The exclusion region corresponds to the region of parameter space where the null-hypothesis is excluded with a given confidence whereas the allowed region corresponds to the region of parameter space which is allowed for a given confidence for some set of injected oscillation parameters. In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillation are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal.  For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
+In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and the corresponding \glspl{mct}. The Asimov dataset is a dataset where all parameters are set to their nominal values. It has been shown that in the same limit as the $\chi^2$ approximation (in the limit of large statistics), the median of many toy \gls{mc} experiments is equivalent to the Asimov dataset. This allows the significance of a given hypothesis to be compared to the median one whilst only requiring one \textit{toy} experiment instead of needing to compute many toy \gls{mc} experiments \cite{Asimov_dataset}. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. The exclusion region corresponds to the region of parameter space where the null-hypothesis is excluded with a given confidence whereas the allowed region corresponds to the region of parameter space which is allowed for a given confidence for some set of injected oscillation parameters. In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillation are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal.  For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having a sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Once a fit has been performed for each of the $40 \times 40$ points, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours of different confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}.
 
 \begin{table}[h!]
 \begin{tabular}{lcc}
@@ -62,8 +67,8 @@ $\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
 \end{table}
 
 \newpage
-\section{Systemtic Uncertainties}\label{sec:systematic_validation}
-Before the flux and interaction systematics contained in the input files can be consumed by \gls{valor}, they first need to be processed. Depending on whether a given systematic parameter is entirely uncorrelated or not, this is done in two different ways. For the uncorrelated parameters, this is done by constructing a set of associated response functions which represent the impact on the event rate that tweaking a given systematics parameter will have. For a given systematic parameter, individual response functions are constructed for each combination of \textit{d, b, s, m, r} and \textit{t}. Each response function is a 13 knot spline which nominally represents the change in event rate from parameter variations ranging from \mbox{[-3, +3]$\sigma$} in 0.5$\sigma$ intervals. The response functions are constructed by first identifying the 12 universes which have a variation closest to each of the non-zero $\sigma$ intervals and then taking the ratio of the event rate from the selected universe in a \mbox{2D (r, t)} bin to the nominal events rate in that bin. By definition there will be a knot at 0$\sigma$ with a response of 1, however, in most cases the remaining 12 knots will not be exactly at 0.5$\sigma$ intervals. 
+\section{Systematic Uncertainties}\label{sec:systematic_validation}
+Before the flux and interaction systematics contained in the input files can be consumed by VALOR, they first need to be processed. Depending on whether a given systematic parameter is entirely uncorrelated or not, this is done in two different ways. For the uncorrelated parameters, this is done by constructing a set of associated response functions which represent the impact on the event rate that tweaking a given systematics parameter will have. For a given systematic parameter, individual response functions are constructed for each combination of \textit{d, b, s, m, r} and \textit{t}. Each response function is a 13 knot spline which nominally represents the change in event rate from parameter variations ranging from \mbox{[-3, +3]$\sigma$} in 0.5$\sigma$ intervals. The response functions are constructed by first identifying the 12 universes which have a variation closest to each of the non-zero $\sigma$ intervals and then taking the ratio of the event rate from the selected universe in a \mbox{2D (r, t)} bin to the nominal events rate in that bin. By definition there will be a knot at 0$\sigma$ with a response of 1, however, in most cases the remaining 12 knots will not be exactly at 0.5$\sigma$ intervals. 
 
 For the case of correlated parameters, it is not straightforward to construct response functions as was done for the uncorrelated parameters because any variations will be due to multiple parameters. These parameters are instead represented by a covariance matrix. Matrices of this type, $\mathbf{C_{ij}}$, are constructed such that,
 \begin{equation}
@@ -74,13 +79,13 @@ where \textit{U} is the number of universes, $N_{i,j}^{u}$ is the event rate in 
 bin $i$ or $j$.
 
 \subsection{Validating Systematic Uncertainties}
-In order to establish that the systematic parameters are being correctly handled within \gls{valor}, a comparison between the event rate variations as seen by \gls{valor} and those obtained directly from the universe files is performed. This is done in two different ways; 
+In order to establish that the systematic parameters are being correctly handled within VALOR, a comparison between the event rate variations as seen by VALOR and those obtained directly from the universe files is performed. This is done in two different ways; 
 \begin{enumerate}
-    \item Tweak the nominal spectra using the response functions within \gls{valor} for a single systematic parameter and then compare with the spectra that were obtained directly from the universe files.
-    \item Generate N toy samples (typically 500 in order to match the total number of universes) with some set of systematic parameters randomly tweaked. The one sigma spread from all the toys is found. This is done for both \gls{valor} and for the universe files and the results are compared. 
+    \item Tweak the nominal spectra using the response functions within VALOR for a single systematic parameter and then compare with the spectra that were obtained directly from the universe files.
+    \item Generate N toy samples (typically 500 in order to match the total number of universes) with some set of systematic parameters randomly tweaked. The one sigma spread from all the toys is found. This is done for both VALOR and for the universe files and the results are compared. 
 \end{enumerate}
 
-As an example, the $+1\sigma$ variation for the \mbox{\textit{horncurrent\_FluxUnisim}}, \newline \mbox{\textit{genie\_ccresAxial}} and \mbox{\textit{genie\_ResDecayGamma}} parameters from the \nue sample in \gls{sbnd} between the \gls{valor} response functions and the universes are shown in \FigureRef{fig:+1sigma_variations}\footnote{The terms \textit{spline} and \textit{response function} are used interchangeably.}. A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} are shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $\sin^2{2\theta_{\mu e}} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples are needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
+As an example, the $+1\sigma$ variation for the $f_{HornCurrent}$, $f_{M_A^{CCRes}}$ and $f_{\Delta \rightarrow N \gamma}$ parameters from the \nue sample in \gls{sbnd} between the VALOR response functions and the universes are shown in \FigureRef{fig:+1sigma_variations}\footnote{The terms \textit{spline} and \textit{response function} are used interchangeably.}. A complete list of the $+3\sigma$ variation comparisons for all the uncorrelated systematic parameters in \gls{sbnd} are shown for the \nue appearance channel in \AppendixRef{app:single_parameter_variations}. In all cases there is either perfect agreement or differences of only up to a few tens of events. It should be noted that the event rate shown in the spectra used for validating the systematic parameters for the \nue channel is several orders of magnitude greater than the nominal event rates as seen in for example \FigureRef{fig:nominal_nue_spectra}. This is due to manually setting the oscillation parameters to $\sin^2{2\theta_{\mu e}} = 1$ and $\Delta m_{41}^2 = 100$ eV$^2$ which ensures that many of the events from the oscillated $\numu \rightarrow \nue$ sub-sample are processed which is required because the response functions are indexed by mode and therefore contributions from all the sub-samples are needed. Since oscillation and systematic effects commute, this approach is sufficient to correctly produce a complete a set of response functions. In the nominal event rate spectra the assumption is that no oscillation occur so no events from the oscillated sample are included hence the much lower event rate. 
 
 \begin{figure}[h!]
     \includegraphics[width = 0.49\textwidth, height = 0.56184\textwidth]{figures-chap6/tweak_nsigma_nue/horncurrent_FluxUnisim_nuelikeCChigh_1sigma_horncurrent_FluxUnisim.png}
@@ -89,12 +94,12 @@ As an example, the $+1\sigma$ variation for the \mbox{\textit{horncurrent\_FluxU
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-   \caption[+1$\sigma$ variation comparison for the horncurrent\_FluxUnisim, genie\_ccresAxial and genie\_ResDecayGamma parameters.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the horncurrent flux systematic parameter, the ccresAxial proposal interaction paramater and the ResDecayGamma modern interaction parameter. The horncurrent parameter shows perfect agreement between \gls{valor} and the universes whereas both the ccresAxial and ResDecayGamma parameters only have an event rate difference of 2. \\\phantom{.}\\
+   \caption[+1$\sigma$ variation comparison for the $f_{HornCurrent}$, $f_{M_A^{CCRes}}$ and $f_{\Delta \rightarrow N \gamma}$ parameters.]{A comparison of the +1$\sigma$ variation from the response functions in VALOR and the universes for the $f_{HornCurrent}$, $f_{M_A^{CCRes}}$ and $f_{\Delta \rightarrow N \gamma}$ parameters. The $f_{HornCurrent}$ parameter shows perfect agreement between VALOR and the universes whereas both the $f_{M_A^{CCRes}}$ and $f_{\Delta \rightarrow N \gamma}$ parameters only have an event rate difference of 2. \\\phantom{.}\\
    \label{fig:+1sigma_variations}}
    }
 \end{figure}
 
-\FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from \gls{valor} and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using \gls{valor} and the analogous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios. There are some minor differences between the variation in \gls{valor} and the universes, however, event perfect agreement isn't expected since the 1$\sigma$ variations are found by taking the average from many toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
+\FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from VALOR and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using VALOR and the analogous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios. There are some minor differences between the variation in VALOR and the universes, however, event perfect agreement isn't expected since the 1$\sigma$ variations are found by taking the average from many toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
 
 
 
@@ -119,7 +124,7 @@ As an example, the $+1\sigma$ variation for the \mbox{\textit{horncurrent\_FluxU
   \captionsetup{width=0.45\textwidth}
   \parbox[b]{0.45\textwidth}%
   {
-   \caption[The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematics.]{The ratio between the $\pm 1 \sigma$ variation from \gls{valor} and the universes for the flux, proposal interaction and modern interaction set of systematic parameters.  \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
+   \caption[The ratio between the $\pm 1 \sigma$ variation from VALOR. and the universes for the flux, proposal interaction and modern interaction set of systematics.]{The ratio between the $\pm 1 \sigma$ variation from VALOR and the universes for the flux, proposal interaction and modern interaction set of systematic parameters.  \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
    \label{fig:1sigma_variations_toys}}
   }
 \end{figure}
@@ -162,7 +167,7 @@ where $\zeta \in \{\sin^2{2\theta}, \Delta m^2_{41}\}$ and the subscript \textit
     \label{fig:nue_disapp_osc_param_pulls}
 \end{figure}
 
-The impact of the ccresVector, ccresAxial, IntraNukeNcex and pioninexsec parameter on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least on parameter from each systematic subgroup. Similarly, the ccresVector, ccresAxial, IntraNukePIcex and expskin parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}.
+The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ parameter on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least on parameter from each systematic subgroup. Similarly, the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}.
 
 \begin{figure}[h!]
     \centering
@@ -194,58 +199,34 @@ Similar to \FigureRef{fig:nominal_nue_spectra}, \FigureRef{fig:nominal_nue_spect
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular} {  l r  r  r  r  r  r  r  r  }
 \hline
-              & $\numu \rightarrow \numu$ & $\numubar \rightarrow \numubar$ & $\nue \rightarrow \nue$ & $\nuebar \rightarrow \nuebar$ & $\numu \rightarrow \nue$ & $\numubar \rightarrow \nuebar$ & Non-neutrino         & Total                \\ \hline\hline
- CCQE         & 17.042               & 0.000                & 5957.806             & 166.618              & 0.000                & 0.000                & N/A                  & 6141.467     
-        \\ \hline
- CCMEC        & 1.149                & 0.000                & 1432.965             & 59.724               & 0.000                & 0.000                & N/A                  & 1493.837     
-        \\ \hline
- CC1piC       & 234.568              & 0.000                & 2859.852             & 112.421              & 0.000                & 0.000                & N/A                  & 3206.841     
-        \\ \hline
- CC1pi0       & 230.739              & 0.000                & 513.830              & 14.641               & 0.000                & 0.000                & N/A                  & 759.209      
-        \\ \hline
- CC2piC       & 19.340               & 0.000                & 293.304              & 7.915                & 0.000                & 0.000                & N/A                  & 320.559      
-        \\ \hline
- CC2pi0       & 5.170                & 0.000                & 24.094               & 0.640                & 0.000                & 0.000                & N/A                  & 29.904       
-        \\ \hline
- CC1pi01piC   & 37.148               & 0.000                & 187.022              & 6.956                & 0.000                & 0.000                & N/A                  & 231.125      
-        \\ \hline
- CCcoherent   & 0.000                & 0.000                & 38.137               & 3.758                & 0.000                & 0.000                & N/A                  & 41.894       
-        \\ \hline
- CCnuEEl      & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- CCother      & 20.680               & 0.000                & 270.868              & 8.315                & 0.000                & 0.000                & N/A                  & 299.863      
-        \\ \hline
- NCEL         & 3.447                & 0.000                & 0.034                & 0.000                & N/A                  & N/A                  & N/A                  & 3.480        
-        \\ \hline
- NCMEC        & 0.574                & 0.000                & 0.005                & 0.000                & N/A                  & N/A                  & N/A                  & 0.579        
-        \\ \hline
- NC1piC       & 135.571              & 0.000                & 0.839                & 0.034                & N/A                  & N/A                  & N/A                  & 136.444      
-        \\ \hline
- NC1pi0       & 772.639              & 0.000                & 5.539                & 0.211                & N/A                  & N/A                  & N/A                  & 778.389      
-        \\ \hline
- NC2piC       & 2.298                & 0.000                & 0.142                & 0.000                & N/A                  & N/A                  & N/A                  & 2.440        
-        \\ \hline
- NC2pi0       & 6.893                & 0.000                & 0.114                & 0.005                & N/A                  & N/A                  & N/A                  & 7.012        
-        \\ \hline
- NC1pi01piC   & 16.085               & 0.000                & 0.409                & 0.024                & N/A                  & N/A                  & N/A                  & 16.518       
-        \\ \hline
-NCcoherent   & 76.785               & 0.000                & 0.384                & 0.062                & N/A                  & N/A                  & N/A                  & 77.231       
-        \\ \hline
- NC1Gamma     & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- NCnuEEl      & 181.910              & 0.000                & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 181.910      
-        \\ \hline
- NCother      & 49.977               & 0.000                & 0.520                & 0.010                & N/A                  & N/A                  & N/A                  & 50.507       
-        \\ \hline
- nuEEl        & N/A                  & N/A                  & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & 0.000        
-        \\ \hline
- cosmic       & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.315                & 0.315        
-        \\ \hline
- dirt         & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 33.926               & 33.926       
-        \\ \hline
+              & $\nu_{\mu} \rightarrow \nu_{\mu}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{\mu}$ & $\nu_{e} \rightarrow \nu_{e}$ & $\bar{\nu}_{e} \rightarrow \bar{\nu}_{e}$ & $\nu_{\mu} \rightarrow \nu_{e}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{e}$ & Non-neutrino         & Total                \\ \hline\hline
+ CCQE         & 17.0                 & 0.0                  & 5957.8               & 166.6                & 0.0                  & 0.0                  & N/A                  & 6141.5               \\ \hline
+ CCMEC        & 1.1                  & 0.0                  & 1433.0               & 59.7                 & 0.0                  & 0.0                  & N/A                  & 1493.8               \\ \hline
+ CC1$\pi^{\pm}$ & 234.6                & 0.0                  & 2859.9               & 112.4                & 0.0                  & 0.0                  & N/A                  & 3206.8               \\ \hline
+ CC1$\pi^{0}$   & 230.7                & 0.0                  & 513.8                & 14.6                 & 0.0                  & 0.0                  & N/A                  & 759.2                \\ \hline
+ CC2$\pi^{\pm}$ & 19.3                 & 0.0                  & 293.3                & 7.9                  & 0.0                  & 0.0                  & N/A                  & 320.6                \\ \hline
+ CC2$\pi^{0}$   & 5.2                  & 0.0                  & 24.1                 & 0.6                  & 0.0                  & 0.0                  & N/A                  & 29.9                 \\ \hline
+ CC1$\pi^{0}1\pi^{\pm}$ & 37.1                 & 0.0                  & 187.0                & 7.0                  & 0.0                  & 0.0                  & N/A                  & 231.1                \\ \hline
+ CCcoherent   & 0.0                  & 0.0                  & 38.1                 & 3.8                  & 0.0                  & 0.0                  & N/A                  & 41.9                 \\ \hline
+ CC\nue\text{El} & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ CCother      & 20.7                 & 0.0                  & 270.9                & 8.3                  & 0.0                  & 0.0                  & N/A                  & 299.9                \\ \hline
+ NCEL         & 3.4                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 3.5                  \\ \hline
+ NCMEC        & 0.6                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.6                  \\ \hline
+ NC1$\pi^{\pm}$ & 135.6                & 0.0                  & 0.8                  & 0.0                  & N/A                  & N/A                  & N/A                  & 136.4                \\ \hline
+ NC1$\pi^{0}$   & 772.6                & 0.0                  & 5.5                  & 0.2                  & N/A                  & N/A                  & N/A                  & 778.4                \\ \hline
+ NC2$\pi^{\pm}$ & 2.3                  & 0.0                  & 0.1                  & 0.0                  & N/A                  & N/A                  & N/A                  & 2.4                  \\ \hline
+ NC2$\pi^{0}$   & 6.9                  & 0.0                  & 0.1                  & 0.0                  & N/A                  & N/A                  & N/A                  & 7.0                  \\ \hline
+ NC1$\pi^{0}1\pi^{\pm}$ & 16.1                 & 0.0                  & 0.4                  & 0.0                  & N/A                  & N/A                  & N/A                  & 16.5                 \\ \hline
+ NCcoherent   & 76.8                 & 0.0                  & 0.4                  & 0.1                  & N/A                  & N/A                  & N/A                  & 77.2                 \\ \hline
+ NC1$\gamma$    & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ NC\nue\text{El} & 181.9                & 0.0                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 181.9                \\ \hline
+ NCother      & 50.0                 & 0.0                  & 0.5                  & 0.0                  & N/A                  & N/A                  & N/A                  & 50.5                 \\ \hline
+ \nue\text{El} & N/A                  & N/A                  & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & 0.0                  \\ \hline
+ cosmic       & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.3                  & 0.3                  \\ \hline
+ dirt         & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 33.9                 & 33.9                 \\ \hline
 \hline
- Total        & 1812.015             & 0.000                & 11585.864            & 381.332              & 0.000                & 0.000                & 34.241               & 13813.452    
-        \\ \hline
+ Total        & 1812.0               & 0.0                  & 11585.9              & 381.3                & 0.0                  & 0.0                  & 34.2                 & 13813.5              \\ \hline
+
 
 \end{tabular}
 \end{adjustbox}
@@ -263,58 +244,36 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular} {l r r r r r r r r}
 \hline
-              & $\numu \rightarrow \numu$ & $\numubar \rightarrow \numubar$ & $\nue \rightarrow \nue$ & $\nuebar \rightarrow \nuebar$ & $\numu \rightarrow \nue$ & $\numubar \rightarrow \nuebar$ & Non-neutrino         & Total                \\ \hline\hline
- CCQE         & 4.222                & 0.000                & 384.923              & 10.384               & 0.000                & 0.000                & N/A                  & 399.529      
-        \\ \hline
- CCMEC        & 0.056                & 0.000                & 93.873               & 3.658                & 0.000                & 0.000                & N/A                  & 97.586       
-        \\ \hline
- CC1piC       & 18.857               & 0.000                & 196.808              & 7.537                & 0.000                & 0.000                & N/A                  & 223.202      
-        \\ \hline
- CC1pi0       & 19.062               & 1.041                & 35.502               & 1.133                & 0.000                & 0.000                & N/A                  & 56.739       
-        \\ \hline
- CC2piC       & 1.004                & 0.000                & 21.942               & 0.566                & 0.000                & 0.000                & N/A                  & 23.513       
-        \\ \hline
- CC2pi0       & 3.292                & 0.000                & 1.882                & 0.057                & 0.000                & 0.000                & N/A                  & 5.230        
-        \\ \hline
- CC1pi01piC   & 7.160                & 0.000                & 13.600               & 0.606                & 0.000                & 0.000                & N/A                  & 21.366       
-        \\ \hline
- CCcoherent   & 0.000                & 0.000                & 2.650                & 0.374                & 0.000                & 0.000                & N/A                  & 3.023        
-        \\ \hline
- CCnuEEl      & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- CCother      & 3.310                & 0.000                & 19.133               & 0.442                & 0.000                & 0.000                & N/A                  & 22.885       
-        \\ \hline
- NCEL         & 0.335                & 0.000                & 0.003                & 0.000                & N/A                  & N/A                  & N/A                  & 0.337        
-        \\ \hline
- NCMEC        & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- NC1piC       & 13.911               & 0.000                & 0.066                & 0.002                & N/A                  & N/A                  & N/A                  & 13.979       
-        \\ \hline
- NC1pi0       & 59.306               & 1.004                & 0.384                & 0.015                & N/A                  & N/A                  & N/A                  & 60.710       
-        \\ \hline
- NC2piC       & 0.669                & 0.000                & 0.007                & 0.000                & N/A                  & N/A                  & N/A                  & 0.677        
-        \\ \hline
- NC2pi0       & 0.669                & 0.056                & 0.009                & 0.000                & N/A                  & N/A                  & N/A                  & 0.734        
-        \\ \hline
- NC1pi01piC   & 2.269                & 0.000                & 0.020                & 0.001                & N/A                  & N/A                  & N/A                  & 2.290        
-        \\ \hline
- NCcoherent   & 5.505                & 0.223                & 0.033                & 0.003                & N/A                  & N/A                  & N/A                  & 5.764        
-        \\ \hline
- NC1Gamma     & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- NCnuEEl      & 14.878               & 0.000                & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 14.878       
-        \\ \hline
- NCother      & 3.292                & 0.000                & 0.049                & 0.001                & N/A                  & N/A                  & N/A                  & 3.342        
-        \\ \hline
- nuEEl        & N/A                  & N/A                  & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & 0.000        
-        \\ \hline
- cosmic       & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.000                & 0.000        
-        \\ \hline
- dirt         & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 14.780               & 14.780       
-        \\ \hline
+
+              & $\nu_{\mu} \rightarrow \nu_{\mu}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{\mu}$ & $\nu_{e} \rightarrow \nu_{e}$ & $\bar{\nu}_{e} \rightarrow \bar{\nu}_{e}$ & $\nu_{\mu} \rightarrow \nu_{e}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{e}$ & Non-neutrino         & Total                \\ \hline\hline
+ CCQE         & 4.2                  & 0.0                  & 384.9                & 10.4                 & 0.0                  & 0.0                  & N/A                  & 399.5                \\ \hline
+ CCMEC        & 0.1                  & 0.0                  & 93.9                 & 3.7                  & 0.0                  & 0.0                  & N/A                  & 97.6                 \\ \hline
+ CC1$\pi^{\pm}$ & 18.9                 & 0.0                  & 196.8                & 7.5                  & 0.0                  & 0.0                  & N/A                  & 223.2                \\ \hline
+ CC1$\pi^{0}$   & 19.1                 & 1.0                  & 35.5                 & 1.1                  & 0.0                  & 0.0                  & N/A                  & 56.7                 \\ \hline
+ CC2$\pi^{\pm}$ & 1.0                  & 0.0                  & 21.9                 & 0.6                  & 0.0                  & 0.0                  & N/A                  & 23.5                 \\ \hline
+ CC2$\pi^{0}$   & 3.3                  & 0.0                  & 1.9                  & 0.1                  & 0.0                  & 0.0                  & N/A                  & 5.2                  \\ \hline
+ CC1$\pi^{0}1\pi^{\pm}$ & 7.2                  & 0.0                  & 13.6                 & 0.6                  & 0.0                  & 0.0                  & N/A                  & 21.4                 \\ \hline
+ CCcoherent   & 0.0                  & 0.0                  & 2.6                  & 0.4                  & 0.0                  & 0.0                  & N/A                  & 3.0                  \\ \hline
+ CC\nue\text{El} & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ CCother      & 3.3                  & 0.0                  & 19.1                 & 0.4                  & 0.0                  & 0.0                  & N/A                  & 22.9                 \\ \hline
+ NCEL         & 0.3                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.3                  \\ \hline
+ NCMEC        & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ NC1$\pi^{\pm}$ & 13.9                 & 0.0                  & 0.1                  & 0.0                  & N/A                  & N/A                  & N/A                  & 14.0                 \\ \hline
+ NC1$\pi^{0}$   & 59.3                 & 1.0                  & 0.4                  & 0.0                  & N/A                  & N/A                  & N/A                  & 60.7                 \\ \hline
+ NC2$\pi^{\pm}$ & 0.7                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.7                  \\ \hline
+ NC2$\pi^{0}$   & 0.7                  & 0.1                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.7                  \\ \hline
+ NC1$\pi^{0}1\pi^{\pm}$ & 2.3                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 2.3                  \\ \hline
+ NCcoherent   & 5.5                  & 0.2                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 5.8                  \\ \hline
+ NC1$\gamma$    & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ NC\nue\text{El} & 14.9                 & 0.0                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 14.9                 \\ \hline
+ NCother      & 3.3                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 3.3                  \\ \hline
+ \nue\text{El} & N/A                  & N/A                  & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & 0.0                  \\ \hline
+ cosmic       & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.0                  & 0.0                  \\ \hline
+ dirt         & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 14.8                 & 14.8                 \\ \hline
 \hline
- Total        & 157.796              & 2.325                & 770.886              & 24.778               & 0.000                & 0.000                & 14.780               & 970.564      
-        \\ \hline
+Total        & 157.8                & 2.3                  & 770.9                & 24.8                 & 0.0                  & 0.0                  & 14.8                 & 970.6            
+
+       \\ \hline
 
 \end{tabular}
 \end{adjustbox}
@@ -332,52 +291,36 @@ NCcoherent   & 76.785               & 0.000                & 0.384              
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular} {l r r r r r r r r}
 \hline
-              & $\numu \rightarrow \numu$ & $\numubar \rightarrow \numubar$ & $\nue \rightarrow \nue$ & $\nuebar \rightarrow \nuebar$ & $\numu \rightarrow \nue$ & $\numubar \rightarrow \nuebar$ & Non-neutrino         & Total                \\ \hline\hline
- CCQE         & 4.642                & 0.000                & 727.942              & 19.303               & 0.000                & 0.000                & N/A                  & 751.887      
-        \\ \hline
- CCMEC        & 0.214                & 0.000                & 176.496              & 7.062                & 0.000                & 0.000                & N/A                  & 183.773      
-        \\ \hline
- CC1piC       & 37.383               & 0.214                & 372.300              & 12.894               & 0.000                & 0.000                & N/A                  & 422.790      
-        \\ \hline
- CC1pi0       & 25.814               & 0.107                & 64.840               & 2.157                & 0.000                & 0.000                & N/A                  & 92.919       
-        \\ \hline
- CC2piC       & 4.856                & 0.107                & 39.379               & 1.019                & 0.000                & 0.000                & N/A                  & 45.361       
-        \\ \hline
- CC2pi0       & 2.856                & 0.107                & 3.558                & 0.071                & 0.000                & 0.000                & N/A                  & 6.592        
-        \\ \hline
- CC1pi01piC   & 7.534                & 0.000                & 25.844               & 1.080                & 0.000                & 0.000                & N/A                  & 34.458       
-        \\ \hline
- CCcoherent   & 0.000                & 0.000                & 4.953                & 0.462                & 0.000                & 0.000                & N/A                  & 5.415        
-        \\ \hline
- CCnuEEl      & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- CCother      & 2.785                & 0.000                & 36.924               & 0.818                & 0.000                & 0.000                & N/A                  & 40.526       
-        \\ \hline
- NCEL         & 0.536                & 0.000                & 0.005                & 0.000                & N/A                  & N/A                  & N/A                  & 0.541        
-        \\ \hline
- NCMEC        & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- NC1piC       & 17.709               & 0.214                & 0.130                & 0.006                & N/A                  & N/A                  & N/A                  & 18.059       
-        \\ \hline
- NC1pi0       & 108.506              & 0.750                & 0.705                & 0.023                & N/A                  & N/A                  & N/A                  & 109.984      
-        \\ \hline
- NC2piC       & 0.750                & 0.000                & 0.006                & 0.000                & N/A                  & N/A                  & N/A                  & 0.756        
-        \\ \hline
- NC2pi0       & 0.857                & 0.000                & 0.013                & 0.000                & N/A                  & N/A                  & N/A                  & 0.870        
-        \\ \hline
- NC1pi01piC   & 3.428                & 0.107                & 0.056                & 0.001                & N/A                  & N/A                  & N/A                  & 3.592        
-        \\ \hline
- NCcoherent   & 11.318               & 0.428                & 0.057                & 0.006                & N/A                  & N/A                  & N/A                  & 11.810       
-        \\ \hline
- NC1Gamma     & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & N/A                  & N/A                  & 0.000        
-        \\ \hline
- NCnuEEl      & 17.852               & 0.000                & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 17.852               \\ \hline
- NCother      & 7.998                & 0.000                & 0.079                & 0.003                & N/A                  & N/A                  & N/A                  & 8.080                \\ \hline
- nuEEl        & N/A                  & N/A                  & 0.000                & 0.000                & 0.000                & 0.000                & N/A                  & 0.000                \\ \hline
- cosmic       & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 2.253                & 2.253                \\ \hline
- dirt         & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 24.120               & 24.120               \\ \hline
+
+              & $\nu_{\mu} \rightarrow \nu_{\mu}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{\mu}$ & $\nu_{e} \rightarrow \nu_{e}$ & $\bar{\nu}_{e} \rightarrow \bar{\nu}_{e}$ & $\nu_{\mu} \rightarrow \nu_{e}$ & $\bar{\nu}_{\mu} \rightarrow \bar{\nu}_{e}$ & Non-neutrino         & Total                \\ \hline\hline
+ CCQE         & 4.6                  & 0.0                  & 727.9                & 19.3                 & 0.0                  & 0.0                  & N/A                  & 751.9                \\ \hline
+ CCMEC        & 0.2                  & 0.0                  & 176.5                & 7.1                  & 0.0                  & 0.0                  & N/A                  & 183.8                \\ \hline
+ CC1$\pi^{\pm}$ & 37.4                 & 0.2                  & 372.3                & 12.9                 & 0.0                  & 0.0                  & N/A                  & 422.8                \\ \hline
+ CC1$\pi^{0}$   & 25.8                 & 0.1                  & 64.8                 & 2.2                  & 0.0                  & 0.0                  & N/A                  & 92.9                 \\ \hline
+ CC2$\pi^{\pm}$ & 4.9                  & 0.1                  & 39.4                 & 1.0                  & 0.0                  & 0.0                  & N/A                  & 45.4                 \\ \hline
+ CC2$\pi^{0}$   & 2.9                  & 0.1                  & 3.6                  & 0.1                  & 0.0                  & 0.0                  & N/A                  & 6.6                  \\ \hline
+ CC1$\pi^{0}1\pi^{\pm}$ & 7.5                  & 0.0                  & 25.8                 & 1.1                  & 0.0                  & 0.0                  & N/A                  & 34.5                 \\ \hline
+ CCcoherent   & 0.0                  & 0.0                  & 5.0                  & 0.5                  & 0.0                  & 0.0                  & N/A                  & 5.4                  \\ \hline
+ CC\nue\text{El} & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ CCother      & 2.8                  & 0.0                  & 36.9                 & 0.8                  & 0.0                  & 0.0                  & N/A                  & 40.5                 \\ \hline
+ NCEL         & 0.5                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.5                  \\ \hline
+ NCMEC        & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ NC1$\pi^{\pm}$ & 17.7                 & 0.2                  & 0.1                  & 0.0                  & N/A                  & N/A                  & N/A                  & 18.1                 \\ \hline
+ NC1$\pi^{0}$   & 108.5                & 0.7                  & 0.7                  & 0.0                  & N/A                  & N/A                  & N/A                  & 110.0                \\ \hline
+ NC2$\pi^{\pm}$ & 0.7                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.8                  \\ \hline
+ NC2$\pi^{0}$   & 0.9                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.9                  \\ \hline
+ NC1$\pi^{0}1\pi^{\pm}$ & 3.4                  & 0.1                  & 0.1                  & 0.0                  & N/A                  & N/A                  & N/A                  & 3.6                  \\ \hline
+ NCcoherent   & 11.3                 & 0.4                  & 0.1                  & 0.0                  & N/A                  & N/A                  & N/A                  & 11.8                 \\ \hline
+ NC1$\gamma$    & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & N/A                  & N/A                  & 0.0                  \\ \hline
+ NC\nue\text{El} & 17.9                 & 0.0                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 17.9                 \\ \hline
+ NCother      & 8.0                  & 0.0                  & 0.1                  & 0.0                  & N/A                  & N/A                  & N/A                  & 8.1                  \\ \hline
+ \nue\text{El} & N/A                  & N/A                  & 0.0                  & 0.0                  & 0.0                  & 0.0                  & N/A                  & 0.0                  \\ \hline
+ cosmic       & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 2.3                  & 2.3                  \\ \hline
+ dirt         & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & N/A                  & 24.1                 & 24.1                 \\ \hline
 \hline
- Total        & 255.037              & 2.035                & 1453.287             & 44.905               & 0.000                & 0.000                & 26.373               & 1781.637             \\ \hline
+ Total        & 255.0                & 2.0                  & 1453.3               & 44.9                 & 0.0                  & 0.0                  & 26.4                 & 1781.6       
+
+ \\ \hline
 
 \end{tabular}
 \end{adjustbox}

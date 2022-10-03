@@ -9,10 +9,12 @@ Thesis submitted in accordance with the requirements of the University of Liverp
 
 %% Acknowledgements
 \begin{acknowledgements}
+\begin{comment}
   Acknowledgements\dots \\
   Costas \\
   VALOR group as a whole \\
   Dom \& Ornella for the reco work
+\end{comment}
 \end{acknowledgements}
 
 %% Abstract
@@ -26,7 +28,7 @@ Thesis submitted in accordance with the requirements of the University of Liverp
 \begin{declaration}
   Declaration
   \vspace*{1cm}
-  
+  \begin{comment}
   Chapters 2 - Historical neutrino overview, obviously not my own work. \\
   Chapter 3 - LArTPC physics and SBN program overview. Small contribution to work on the PDS system, otherwise not my work. \\
   Chapter 4 - Many people work on Larsoft / Reconstruction. Shower Linear Energy tool originally worked on by Dom. Other two tools developed by me. \\
@@ -36,6 +38,7 @@ Thesis submitted in accordance with the requirements of the University of Liverp
   %\begin{flushright}
   %  Name??
   %\end{flushright}
+  \end{comment}
 \end{declaration}
 
 
@@ -63,12 +66,16 @@ Thesis submitted in accordance with the requirements of the University of Liverp
 \glsaddall 
 \printglossaries
 
+% Have the short form for glossary entries in the list of tables and figures
+\glsunsetall
+
 %% I prefer to put these tables here rather than making the
 %% front matter seemingly interminable. No-one cares, anyway!
 \listoffigures
 \listoftables
 
-
+% Reset the glossary so the definitions start after list of tables and figures
+\glsresetall
 
 
 

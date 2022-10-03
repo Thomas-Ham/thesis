@@ -1,20 +1,20 @@
 \chapter{Sterile Neutrino Oscillation Inputs Within SBN}
 \label{chap:osc_inputs}
 
-In order to perform an oscillation analysis, a number of inputs and analysis choices are required. Typically this involves generating some event sample in each detector for a given analysis, applying a physics hypothesis and some set of systematic uncertainties. A fit comparing the observed and predicted event rate is then performed giving the confidence level of the applied physics hypothesis. This is summarised in \FigureRef{fig:analysis_paradigm} which shows the generic overview of the procedure coupled with the different components. Many of these items are common to all oscillation analyses and are agnostic to the fitting framework. The remainder of this chapter highlights some of the key inputs to the oscillation analysis along with some of the decisions that were made. The actual analysis results are detailed in \SectionRef{chap:VALOR} in addition to explaining how the \gls{valor} framework processes or consumes these inputs where appropriate.
+In order to perform an oscillation analysis, a number of inputs and analysis choices are required. Typically this involves generating some event sample in each detector for a given analysis, applying a physics hypothesis and some set of systematic uncertainties. A fit comparing the observed and predicted event rate is then performed giving the confidence level of the applied physics hypothesis. This is summarised in \FigureRef{fig:analysis_paradigm} which shows the generic overview of the procedure coupled with the different components. Many of these items are common to all oscillation analyses and are agnostic to the fitting framework. The remainder of this chapter highlights some of the key inputs to the oscillation analysis along with some of the decisions that were made. The actual analysis results are detailed in \SectionRef{chap:VALOR} in addition to explaining how the VALOR framework processes or consumes these inputs where appropriate.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width = \largefigwidth]{figures-chap5/valor_analysis.png}
+    \includegraphics[width = \textwidth]{figures-chap5/valor_analysis.png}
     \caption[SBN Oscillation analysis paradigm.]{Overview of the SBN oscillation analysis paradigm. A given model for the neutrino oscillation, detector, neutrino flux and neutrino cross-section are combined with the appropriate data to give the prediction for the respective detector. Individual detector predictions may be combined to give an overall \gls{sbn} prediction. }
     \label{fig:analysis_paradigm}
 \end{figure}
 
-\section{Event Production}
+\section{Monte Carlo Event Production}
 
 The events used in this oscillation analysis are truth based with a \textit{pseudo reconstruction} applied. Work on the reconstruction is still in progress and at the time of writing hasn't been sufficiently completed for it to be possible to generate a fully reconstructed event sample. The pseudo reconstruction involves applying energy smearing and a series of cuts to try and emulate a fully reconstructed sample. The details of the cuts that were applied to each of the analyses are discussed in \SectionRef{sec:event_selection}.
 
-Both the events for the \numu and \nue sample were generated using \gls{genie}v3 (specifically the G1810a0211a tune) and then propagated through \gls{geant4} using the \gls{larsoft} framework \cite{GENIE}\cite{Geant4_website}\cite{larsoft}. For the \numu sample, this involved generating $\sim$1,000,000 intrinsic \numu events in each detector. The \nue sample is a little more involved since in addition to generating an intrinsic sample, an oscillated $\numu \rightarrow \nue$ sample, a dirt sample and a cosmic sample also needed to be produced. The oscillated sample is used to mimic the $\nue$ appearance signal whereas the dirt and cosmic samples are backgrounds. The other major background associated with a $\nue$ analysis involves $\numu$. A dedicated sample was not produced to emulate this, but instead, the events from the $\numu$ production were also run through the $\nue$ selection. Table \ref{T:nue_production} outlines the number of events produced for the \nue sample for each sub-sample for each detector. The dirt events were produced with an additional filter at the generation stage which discarded any events where a shower above 10 MeV in the active volume was not present. This filter was used in order to remove any delta rays. Only about 1\% of dirt events would pass this filter so the number of dirt events used in the $\nue$ selection was $\sim$100,000. 
+Both the events for the \numu and \nue sample were generated using \gls{genie}v3 (specifically the G18\_10a\_02\_11a tune) and then propagated through \gls{geant4} using the \gls{larsoft} framework \cite{GENIE}\cite{GENIE_V3_Paper}\cite{GENIE_tune}\cite{Geant4_website}\cite{larsoft}. For the \numu sample, this involved generating $\sim$1,000,000 intrinsic \numu events in each detector. The \nue sample is a little more involved since in addition to generating an intrinsic sample, an oscillated $\numu \rightarrow \nue$ sample, a dirt sample and a cosmic sample also needed to be produced. The oscillated sample is used to mimic the $\nue$ appearance signal whereas the dirt and cosmic samples are backgrounds. The other major background associated with a $\nue$ analysis involves $\numu$. A dedicated sample was not produced to emulate this, but instead, the events from the $\numu$ production were also run through the $\nue$ selection. Table \ref{T:nue_production} outlines the number of events produced for the \nue sample for each sub-sample for each detector. The dirt events were produced with an additional filter at the generation stage which discarded any events where a shower above 10 MeV in the active volume was not present. This filter was used in order to remove any delta rays. Only about 1\% of dirt events would pass this filter so the number of dirt events used in the $\nue$ selection was $\sim$100,000. 
 
 
 \begin{table}[h!]
@@ -36,6 +36,8 @@ The actual number of real \numu events expected in \gls{sbnd} is well over 5 mil
 \section{Event Selection}\label{sec:event_selection}
 
 The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps for each of the analyses are outlined below and are performed for each associated event. 
+
+The goal of both selections is to produce a $\nu_{\mu, e}$ \gls{cc} inclusive sample. 
 
 \subsection{\texorpdfstring{\numu Selection}{numu Selection}}\label{sec:numu_selection}
 
@@ -448,7 +450,7 @@ The modern systematics include an additonal set of cross-section parameters whic
         
          $f_{R^{Inel}_{N}}$     &  Inelastic rescattering fraction for nucleons & $ \pm 40 \% $ \\
         
-         $f_{R^{\pi}_{N}}$      &  Oion-production rescattering fraction for nucleons & $ \pm 20 \% $ \\
+         $f_{R^{\pi}_{N}}$      &  Pion-production rescattering fraction for nucleons & $ \pm 20 \% $ \\
         
          $f_{R^{Abs}_{N}}$      &  Absorption fraction for nucleons & $ \pm 20 \% $ \\
 
