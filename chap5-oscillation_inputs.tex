@@ -12,7 +12,7 @@ In order to perform an oscillation analysis, a number of inputs and analysis cho
 
 \section{Monte Carlo Event Production}
 
-The events used in this oscillation analysis are truth based with a \textit{pseudo reconstruction} applied. Work on the reconstruction is still in progress and at the time of writing hasn't been sufficiently completed for it to be possible to generate a fully reconstructed event sample. The pseudo reconstruction involves applying energy smearing and a series of cuts to try and emulate a fully reconstructed sample. The details of the cuts that were applied to each of the analyses are discussed in \SectionRef{sec:event_selection}.
+The events used in this oscillation analysis are truth based with a \textit{pseudo reconstruction} applied. Work on the reconstruction is still in progress and at the time of writing hasn't been sufficiently completed for it to be possible to generate a fully reconstructed event sample. The pseudo reconstruction involves applying energy smearing and a series of cuts to try and emulate a fully reconstructed sample. The details of the cuts and smearing that were applied to each of the analyses are discussed in \SectionRef{sec:event_selection}.
 
 Both the events for the \numu and \nue sample were generated using \gls{genie}v3 (specifically the G18\_10a\_02\_11a tune) and then propagated through \gls{geant4} using the \gls{larsoft} framework \cite{GENIE}\cite{GENIE_V3_Paper}\cite{GENIE_tune}\cite{Geant4_website}\cite{larsoft}. For the \numu sample, this involved generating $\sim$1,000,000 intrinsic \numu events in each detector. The \nue sample is a little more involved since in addition to generating an intrinsic sample, an oscillated $\numu \rightarrow \nue$ sample, a dirt sample and a cosmic sample also needed to be produced. The oscillated sample is used to mimic the $\nue$ appearance signal whereas the dirt and cosmic samples are backgrounds. The other major background associated with a $\nue$ analysis involves $\numu$. A dedicated sample was not produced to emulate this, but instead, the events from the $\numu$ production were also run through the $\nue$ selection. Table \ref{T:nue_production} outlines the number of events produced for the \nue sample for each sub-sample for each detector. The dirt events were produced with an additional filter at the generation stage which discarded any events where a shower above 10 MeV in the active volume was not present. This filter was used in order to remove any delta rays. Only about 1\% of dirt events would pass this filter so the number of dirt events used in the $\nue$ selection was $\sim$100,000. 
 
@@ -35,22 +35,26 @@ The actual number of real \numu events expected in \gls{sbnd} is well over 5 mil
 
 \section{Event Selection}\label{sec:event_selection}
 
-The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps for each of the analyses are outlined below and are performed for each associated event. 
-
-The goal of both selections is to produce a $\nu_{\mu, e}$ \gls{cc} inclusive sample. 
+The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps to produce a $\nu_{\mu, e}$ \gls{cc} inclusive sample for each of the analyses are outlined below and are performed for each associated event. 
 
 \subsection{\texorpdfstring{\numu Selection}{numu Selection}}\label{sec:numu_selection}
+
+To emulate reconstructed energies, the true energy of particles are smeared. For primary tracks (which is the leading muon in the final state) contained in the active volume, the true energy is smeared by scaling the energy with a Gaussian which has a standard deviation of 0.02. If the primary track is not contained, the energy is instead smeared by a Gaussian with a standard deviation that is given by $-A\lnOfbraces{BL}$,
+where \textit{L} is the track length and $A = 0.102$ and $B = 0.000612$ cm$^{-1}$. Parameters \textit{A} and \textit{B} were chosen based on the work of \cite{ICARUS_muon_smearing}. Non-primary tracks with a true energy of less than 21 MeV are removed (21 MeV is the kinetic energy threshold for reconstructing tracks \cite{SBN_Proposal}) and any remaining tracks are smeared with a Gaussian which has a standard deviation of 0.05 \cite{SBN_Proposal}. An additional condition that the minimum smeared energy is 0 MeV is applied which ensures that negative energies may not occur. The selection citeria for the \numu sample are as follows:
 
 \begin{enumerate}
   \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
   \item If no muon or charged pion track are produced, remove the event. A muon corresponds to a \gls{cc} signal event whereas a charged pion is possibly due to \gls{nc} background events. 
   \item If the primary track has a true kinetic energy less than 21 MeV, remove the event.
   \item If the primary track has a length less than 50 cm and is fully contained in the detector, remove the event.
-  \item If the primary track exits the detector and has a length less than 100 cm, remove the event.
- \item A weight of 0.8 is applied to all selected events to account for an assumed 80\% reconstruction efficiency \cite{Rhiannon's_thesis}. 
+  \item If the primary track exits the detector and has a length less than 100 cm, remove the event. For muons exiting the active volume, the energy is estimated via multiple scatterings of the track and in order to measure the multiple scattering with sufficient resolution a minimum track length of a 100 cm is required.
+ \item A weight of 0.8 is applied to all selected events to account for an assumed 80\% reconstruction efficiency \cite{SBN_Proposal}. 
 \end{enumerate}
 
 \subsection{\texorpdfstring{\nue Selection}{nue Selection}}\label{sec:nue_selection}
+
+The values used to determine the degree of energy smearing for the \nue sample are a different to the \numu sample. The energy of electron and photon showers are smeared with Gaussian that has a standard deviation of $0.15/\sqrt{E_{true}}$. Contained muons are smeared with a Gaussian that has a standard deviation of 0.15 whereas the smearing of non-contained muons is not considered. Finally, the hadrons are smeared with a Gaussian that has a standard deviation of 0.05 \cite{SBN_Proposal}. The same condition ensuring that negative energies are not allowed is again applied.
+
 The $\nue$ selection follows a similar basis to the $\numu$ selection described in section \ref{sec:numu_selection}, however different criteria for the selection were applied to beam induced TPC events, dirt events and cosmic events, each of which are outlined below. 
 
 \subsubsection*{Beam induced active volume events}
@@ -58,7 +62,7 @@ The $\nue$ selection follows a similar basis to the $\numu$ selection described 
 \begin{enumerate}
   \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
   \item Showers arising from the vertex are identified and the reconstructed energy is found from smearing the ionisation deposition. If more than one shower with energy above 100 MeV exists, the event is removed. This removes neutral pion events where the pion decays into two photon showers. 
-  \item If there is only one photon candidate in the event, a conversion gap cut is applied. If the vertex is deemed visible, due to the presence of at least \mbox{50 MeV} of hadronic kinetic energy, and the photon starts to shower further than 3 cm from the vertex the event is removed.
+  \item If there is only one photon candidate in the event, a conversion gap cut is applied. The conversion gap is defined as the distance between the neutrino interaction vertex and the start position of an \gls{em} shower. If the vertex is deemed visible, due to the presence of at least \mbox{50 MeV} of hadronic kinetic energy, and the photon starts to shower further than 3 cm from the vertex the event is removed.
   \item Remaining photons undergo a dE/dx cut resulting in a 94\% background rejection.
   \item If a misidentified photon originates from a resonant $\numu$ CC interaction, the muon lepton is identified. Events where a muon travels greater than 1 m are assumed to be from $\numu$ CC interactions and the event is removed. 
   \item Events where the shower has an energy less than 200 MeV are removed.
@@ -79,9 +83,6 @@ A largely separate analysis is applied for cosmic events which is as follows:
     \item Events below a reconstructed energy of 200 MeV are removed.
     \item A topological cosmic cylinder cut is applied to cosmic photons which originate from cosmic muons that pass through the TPC. These can be removed by a fiducial volume cut corresponding to a cylinder of radius 15 cm around the cosmic muon \cite{Dom's_thesis}. 
 \end{enumerate}
-
-
-
 
 \section{Reaction Modes}
 The reaction modes define the type of neutrino-nucleus interaction. They are categorised in terms of two sets: The \textit{fine} reaction modes outline the complete list of all possible reaction modes whereas the \textit{coarse} reaction modes define a broader class of interaction which encompass one or more fine reaction mode. The fine reaction modes are listed in \TableRef{table:fine_reac_modes} and are typically used at the analysis level. The coarse reaction modes used depend on the analysis channel and are listed in \TableRef{table:coarse_reac_modes}. They are usually only used when displaying data such as in a breakdown of event rate spectra since using the complete list of reaction modes would be impractical. 
@@ -249,7 +250,7 @@ For the $k^-$, there is minimal production data available, therefore, simulation
 
     \bottomrule
   \end{tabular}
-  \caption[Hadronic neutrino production flux systematic parameters.]{Hadronic neutrino production systematic flux uncertainties \cite{BNB_flux_TN}.}
+  \caption[Hadronic neutrino production flux systematic parameters.]{Hadronic neutrino production systematic flux uncertainties \cite{BNB_flux_TN}.}\label{table:corr_flux}
 \end{table}
 
 \subsubsection*{BNB POT Normalisation}

@@ -69,9 +69,34 @@ ICARUS TPC 4 & 214.39 -- 339.39 & -148.41 -- 118.41 & -879.95 -- 829.95
 \caption[The active and fiducial volumes of the \gls{sbn} detectors.]{The dimensions defining the active and fiducial volumes for each \gls{sbn} detector using their respective coordinate systems.} \label{table:active_and_fiducial_volumes}
 \end{table}
 
+\chapter{Reconstruction Performance}
+\label{app:reconstruction_performance}
 
+The figures in \ChapterRef{chap:Energy_Reco} showing the reconstruction performance were produced whilst running Pandora in cheating mode in order to decouple the reconstruction methods from inefficiencies within the pattern recognition. If Pandora is instead used without cheating mode enabled, the resolution of the reconstruction algorithms is expected to worsen owing to the fact that the number of hits associated with true and reconstructed information is no longer in perfect agreement. 
 
+With cheating mode no longer enabled in Pandora, the true vs reconstructed energy is shown for all three planes using the ESTAR method in \FigureRef{fig:ESTAR_true_vs_reco_no_cheat}. The fractional resolution from the collection plane is shown in \FigureRef{fig:frac_res_no_cheat} for all three reconstruction methods.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/non_cheat/ESTAR_plane0_true_vs_reco.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/non_cheat/ESTAR_plane1_true_vs_reco.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/non_cheat/ESTAR_plane2_true_vs_reco.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption[True vs reconstructed energy from the ESTAR method without using Pandora in cheating mode.]
+    {True vs reconstructed energy from a showering electron. The true energy has been evaluated from the hits of each shower. Pandora was not run in cheating mode. Top Left: Induction plane 0, Top Right: Induction plane 1 and Bottom Left: Collection plane. \\}
+    \label{fig:ESTAR_true_vs_reco_no_cheat}}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap4/non_cheat/ESTAR_plane2_frac_res.pdf}
+    \caption[Fractional resolution of the shower energy with Pandora being run not in cheating mode.]{Comparison of the fractional energy resolution from a showering electron for the Shower Linear Energy tool, the Shower Num Electrons Energy tool and the Shower ESTAR Energy tool. The true energy is taken to be the true energy of the available hits and for the reconstruction, Pandora was run whilst not in cheating mode.}
+    \label{fig:frac_res_no_cheat}
+\end{figure}
+
+Comparing \FigureRef{fig:ESTAR_true_vs_reco_no_cheat} to the ESTAR plot in \FigureRef{fig:reco_vs_true_hit_level} and \FigureRef{fig:true_vs_reco_for_induction_planes}, it can be seen that the resolution has degraded by disabling cheating mode in Pandora. Similarly, in \FigureRef{fig:frac_res_no_cheat}, each of the distributions has a noticeable tail in the negative x-direction which isn't present in the distributions shown in \FigureRef{fig:fractional_energy_resolution}.
 
 %% Big appendixes should be split off into separate files, just like chapters
 %\input{app-myreallybigappendix}
