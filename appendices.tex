@@ -1,7 +1,7 @@
 %% The "\appendix" call has already been made in the declaration
 %% of the "appendices" environment (see thesis.tex).
-\chapter{Pointless extras}
-\label{app:Pointless}
+%\chapter{Pointless extras}
+%\label{app:Pointless}
 
 \chapter{Single Parameter Variations}\label{app:single_parameter_variations}
 
@@ -98,6 +98,92 @@ With cheating mode no longer enabled in Pandora, the true vs reconstructed energ
 \end{figure}
 
 Comparing \FigureRef{fig:ESTAR_true_vs_reco_no_cheat} to the ESTAR plot in \FigureRef{fig:reco_vs_true_hit_level} and \FigureRef{fig:true_vs_reco_for_induction_planes}, it can be seen that the resolution has degraded by disabling cheating mode in Pandora. Similarly, in \FigureRef{fig:frac_res_no_cheat}, each of the distributions has a noticeable tail in the negative x-direction which isn't present in the distributions shown in \FigureRef{fig:fractional_energy_resolution}.
+
+
+\chapter{\texorpdfstring{\numu Disappearance Analysis}{numu Disappearance Analysis}}\label{app:numu_disapp}
+
+A similar analysis and validation to that described in  \SectionRef{sec:systematic_validation} and \SectionRef{sec:nue_analysis} that was performed for the two \nue channels was also done for the \numu disappearance channel.
+
+The nominal event rate breakdown for each of the detectors is shown in \FigureRef{fig:numu_disapp_spectra} where an integrated spectrum with oscillation parameters $\sin^2{2\theta_{\mu \mu}} = 0.072$, $\Delta m^2_{41} = 1.32 \text{ eV}^2$ has been overlayed. The overall magnitude of the event rate is several order of magnitude greater than that for \nue owing to the fact that the \gls{bnb} consists predominantly of \numu. As was the case for \nue disappearance, the reduction in events for \gls{sbnd} is relatively small whereas for \gls{microboone} and \gls{icarus} it is much more significant.
+
+The complete \numu disappearance exclusion sensitivities and allowed regions for both the statistical only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:numu_disapp_global_sensitivity} for the entire \gls{sbn} program alongside external limits from \gls{minos} and its successor \gls{minos}+, combined results from \gls{sciboone} and \gls{miniboone} and the IceCube experiment \cite{MINOS+} \cite{MiniBooNE/SciBooNE_numu_disapp_contour} \cite{IceCube_numu_disapp_contour}. The results for the \gls{sbn} program are shown at a 5$\sigma$ confidence level whereas the exclusion region from the \gls{minos}/\gls{minos}+, \gls{sciboone}/\gls{miniboone} and IceCube experiments are shown at the 90\% confidence. The IceCube experiment also shows an allowed region at the 99\% confidence level. The results from \gls{sbn} show a stronger sensitivity to that obtained be \gls{miniboone}/\gls{sciboone} for all mass splitting values. The exclusion contour is also comparable to that from \gls{minos}/\gls{minos}+ for $\Delta m^2_{41} \gtrsim 1\text{ eV}^2$, however below this value \gls{minos}/\gls{minos}+ provides a stronger limit. The exclusion contour from IceCube again provides a stronger limit at $\Delta m^2_{41} \lesssim 1\text{ eV}^2$, but for higher values, \gls{sbn} expects to improve on the results from IceCube. The allowed region from IceCube intersect the one from \gls{sbn} so they aren't fully compatible. 
+
+\begin{figure}[h!]
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/numu_disapp_overlay_dmsq_1.32_sinsq2th_0.072_spectrum_sbn_nd_BNB_FHC_0_modes.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/numu_disapp_overlay_dmsq_1.32_sinsq2th_0.072_spectrum_sbn_uboone_BNB_FHC_1_modes.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/numu_disapp_overlay_dmsq_1.32_sinsq2th_0.072_spectrum_sbn_icarus_BNB_FHC_2_modes.pdf}}
+  \captionsetup{width=0.49\textwidth}
+  \parbox[b]{0.49\textwidth}%
+  {
+    \caption[SBN \numu CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The breakdown of the nominal \numu disappearance spectra overlayed with an integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{\mu \mu}} = 0.072$ and $\Delta m^2_{41} = 1.32$~eV$^2$ showing the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
+    \label{fig:numu_disapp_spectra} 
+  }
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/overlays/valor_overlays_numu_disapp.pdf}
+    \caption[\numu disappearance contours with external limits.]{\numu disappearance exclusion contours and allowed regions for the stat only case and with flux and interaction systematic uncertainties included. External limits from the MINOS/MINOS+, MiniBooNE/SciBooNE and IceCube experiments have been overlayed \cite{MINOS_numu_disapp_contour}\cite{MiniBooNE/SciBooNE_numu_disapp_contour}\cite{IceCube_numu_disapp_contour}. (The confidence intervals for each contour are shown in the legend and it should be noted that those from external limits are not the same as those from the contours produced for the \gls{sbn} program.)}
+    \label{fig:numu_disapp_global_sensitivity}
+\end{figure}
+
+\newpage
+
+For a complete discussion of the \numu disappearance channel, see \cite{Rhiannon's_thesis}.
+
+
+\section*{\texorpdfstring{Impact of Efficiency Systematics on \numu Disappearance Sensitivities}{Impact of Efficiency Systematics on numu Disappearance Sensitivities}}
+
+
+The impact of fully correlated uncertainties up to 10\% are shown on the left of \FigureRef{fig:numu_corr_uncorr_error} whilst keeping the uncorrelated uncertainty at 0\%. The right plot shows the impact of increasing the uncorrelated uncertainties uniformly across all bins with a fixed correlated uncertainty of 2\%. It follows that for even relatively large correlated uncertainties the impact on the sensitivity is minor and that any reduction in sensitivities will be largely dominated by the uncorrelated uncertainty. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_Xpct_cor.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_2pct_cor_Xpct_uncor.pdf}
+    \caption[Impact of correlated and uncorrelated efficiency systematics on the \numu disappearance channel.]{The impact on the \numu disappearance exclusion sensitivity by applying fully correlated uncertainties ranging from 1\% to 10\% to all bins (Left) and by applying a fixed 2\% fully correlated uncertainty with additional uncorrelated uncertainty ranging from 0.5\% to 2\% across all bins (Right). }
+    \label{fig:numu_corr_uncorr_error}
+\end{figure}
+
+\FigureRef{fig:numu_uncorr_det} shows the impact of applying a 2\% uncorrelated uncertainty only to each of the \gls{sbn} detectors one at a time. The \gls{microboone} detector has a minor impact at around $\Delta m ^2_{41} = 10$ eV$^2$ and close to no impact at small and large $\Delta m ^2_{41}$ values. The \gls{icarus} detector has a larger impact for most $\Delta m ^2_{41}$ values but again only has a minor contribution at very large $\Delta m ^2_{41}$ values. Across most $\Delta m ^2_{41}$ values greater than $\sim$0.5 eV$^2$, \gls{sbnd} dominates the sensitivity. At values below 0.5 eV$^2$ the reduction in sensitivity due to \gls{sbnd} and \gls{icarus} are comparable. This point is emphasised in \FigureRef{fig:numu_uncorr} where the fully correlated uncertainty is fixed at 2\% and the uncorrelated uncertainty is set to 2\% for one of the three \gls{sbn} detectors whilst being set to 0.5\% for the other two detectors. The contour where \glspl{sbnd} uncorrelated uncertainty is set to 2\% looks similar to the corresponding contour in \FigureRef{fig:numu_uncorr_det}. It has been shown that the uncorrelated component of the uncertainty has a large impact when compared to the correlated component and that any efficiency uncertainties impact \gls{sbnd} more than the other two detectors so this result ought to be expected. Similarly, the two contours where uncorrelated uncertainty is set to 2\% for \gls{microboone} and \gls{icarus} are pulled towards the \gls{sbnd} contour since despite it having a smaller associated uncorrelated uncertainty, it will still contribute significantly. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_2pct_uncor_per_detector.pdf}
+    \caption[Impact of a 2\% uncorrelated efficiency systematic on the \numu disappearance channel for each individual detector.]{The impact on the \numu disappearance exclusion sensitivity by applying a 2\% uncorrelated efficiency uncertainty to a single one of the three \gls{sbn} detectors.}
+    \label{fig:numu_uncorr_det}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_2pct_cor_2pct_X_05pct_other_per_detector_uncor.pdf}
+    \caption[Impact of a 2\% uncorrelated efficiency systematic for one detector and 0.5\% for the other two on the \numu disappearance channel.]{The impact on the \numu disappearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 2\% uncorrelated uncertainty for one of detectors and a 0.5\% uncorrelated uncertainty for the other two detectors. This is repeated for each of the detectors. The associated covariance matrix used for the case where \glspl{sbnd} uncorrelated uncertainty was set to 2\% is shown in the bottom left plot of \FigureRef{fig:efficiency_cov_matrices}.}
+    \label{fig:numu_uncorr}
+\end{figure}
+
+\newpage
+Instead of exploring the impact from fully uncorrelated uncertainties or a constant uncorrelated uncertainty across all bins in a detector, \FigureRef{fig:numu_bulk_uncorr} considers the case where a single set of bins are poorly constrained. The sets of bins considered are,
+\begin{itemize}
+    \item CC signal below the peak energy ($< 0.6$ GeV),
+    \item CC signal at the peak energy ([0.6 - 1.0] GeV),
+    \item CC signal above the peak energy ($> 1.0$ GeV),
+    \item Background.
+\end{itemize}
+In each case, the uncorrelated uncertainty for the bins of interest are set to 2\% in each of the \gls{sbn} detectors, whilst the rest of the uncorrelated uncertainties are set to 0.5\% and the fully correlated uncertainty is fixed at 2\%. Increasing the uncertainty associated with the background bins has the smallest impact whereas increasing the uncertainty for the high and low energy bins has the largest impact at large and small $\Delta m^2_{41}$ respectively. The peak energy bins also contribute significantly around $\Delta m^2_{41}$ equal to 1 eV$^2$ and 10 eV$^2$. 
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/efficiency_systematics/numu_disapp_2pct_cor_05pct_bulk_2pct_X_uncor.pdf}
+    \caption[\numu disapp with poorly constrained efficiency systematic for a set of bins.]{The impact on the \numu disappearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 0.5\% uncorrelated uncertainty for all but a single set of bins where the uncorrelated uncertainty is set to 2\%. The 'peak' energy bins are defined as those covering an energy range of [0.6,~1.0] GeV. The 'high' and 'low' energy bins are defined as those covering energies above and below the peak energy respectively and the 'bkg' bins are all the bins associated with background events. The set of bins of interest are applied to each of the three detectors and the covariance matrix for where the peak energy bins are the ones in question is shown in the bottom right plot of \FigureRef{fig:efficiency_cov_matrices}.}
+    \label{fig:numu_bulk_uncorr}
+\end{figure}
+
+
+
+
+
+
 
 %% Big appendixes should be split off into separate files, just like chapters
 %\input{app-myreallybigappendix}
