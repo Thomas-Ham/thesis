@@ -12,66 +12,82 @@ In order to perform an oscillation analysis, a number of inputs and analysis cho
 
 \section{Monte Carlo Event Production}
 
-The events used in this oscillation analysis are truth based with a \textit{pseudo reconstruction} applied. Work on the reconstruction is still in progress and at the time of writing hasn't been sufficiently completed for it to be possible to generate a fully reconstructed event sample. The pseudo reconstruction involves applying energy smearing and a series of cuts to try and emulate a fully reconstructed sample. The details of the cuts and smearing that were applied to each of the analyses are discussed in \SectionRef{sec:event_selection}.
+The events used in this oscillation analysis are truth based with a \textit{pseudo reconstruction} applied. Work on the reconstruction is still in progress and at the time of writing has not been sufficiently completed for it to be possible to generate a fully reconstructed event sample. The pseudo reconstruction involves applying energy smearing and a series of cuts to try and emulate a fully reconstructed sample. The details of the cuts and smearing that were applied to each of the analyses are discussed in \SectionRef{sec:event_selection}.
 
-Both the events for the \numu and \nue sample were generated using \gls{genie}v3 (specifically the G18\_10a\_02\_11a tune) and then propagated through \gls{geant4} using the \gls{larsoft} framework \cite{GENIE}\cite{GENIE_V3_Paper}\cite{GENIE_tune}\cite{Geant4_website}\cite{larsoft}. For the \numu sample, this involved generating $\sim$1,000,000 intrinsic \numu events in each detector. The \nue sample is a little more involved since in addition to generating an intrinsic sample, an oscillated $\numu \rightarrow \nue$ sample, a dirt sample and a cosmic sample also needed to be produced. The oscillated sample is used to mimic the $\nue$ appearance signal whereas the dirt and cosmic samples are backgrounds. The other major background associated with a $\nue$ analysis involves $\numu$. A dedicated sample was not produced to emulate this, but instead, the events from the $\numu$ production were also run through the $\nue$ selection. Table \ref{T:nue_production} outlines the number of events produced for the \nue sample for each sub-sample for each detector. The dirt events were produced with an additional filter at the generation stage which discarded any events where a shower above 10 MeV in the active volume was not present. This filter was used in order to remove any delta rays. Only about 1\% of dirt events would pass this filter so the number of dirt events used in the $\nue$ selection was $\sim$100,000. 
+Both the events for the \numu and \nue sample were generated using \gls{genie}v3 (specifically the G18\_10a\_02\_11a tune) and then propagated through \gls{geant4} using the \gls{larsoft} framework \cite{GENIE}\cite{GENIE_V3_Paper}\cite{GENIE_tune}\cite{Geant4_website}\cite{larsoft}. For the \numu sample, this involved generating $\sim$1,000,000 intrinsic \numu events in each detector. The \nue sample is a little more involved since in addition to generating an intrinsic sample, an oscillated $\numu \rightarrow \nue$ sample, a dirt sample and a cosmic sample also needed to be produced. The oscillated sample is used to mimic the $\nue$ appearance signal whereas the dirt and cosmic samples are backgrounds. The other major background associated with a $\nue$ analysis involves $\numu$. A dedicated sample was not produced to emulate this, but instead, the events from the $\numu$ production were also run through the $\nue$ selection. Table \ref{T:nue_production} outlines the number of events produced for the \nue sample for each sub-sample for each detector. Additionally, the number of events that were selected from each sample are shown for all three detectors. The dirt events were produced with an additional filter at the generation stage which discarded any events where a shower above 10 MeV in the active volume was not present. This filter was used in order to remove any delta rays. Only about 1\% of dirt events would pass this filter so the number of dirt events used in the $\nue$ selection was $\sim$100,000. 
 
 
 \begin{table}[h!]
-\begin{tabular}{c cc}
-Sample        & \begin{tabular}[c]{@{}c@{}}Events Produced\end{tabular} \\ \hline
+\begin{tabular}{c rrrr}
+\multirow{2}{*}{Sample} & \multirow{2}{*}{Produced} & \multicolumn{3}{c}{Selected} \\ & & \gls{sbnd} & \gls{microboone} & \gls{icarus}  \\ \hline
 
-Intrinsic $\nue$ & $\sim$1,000,000      \\
-Oscillated $\nu$ & $\sim$1,000,000      \\
-$\numu$          & {Used \numu sample}  \\
-Dirt             & $\sim$10,000,000        \\
-Cosmic           & $\sim$100,000             
+Intrinsic $\nue$ & $\sim$1,000,000    & ~$\sim 150,000$ & ~$\sim 140,000$ & ~$\sim 130,000$ \\
+Oscillated $\nu$ & $\sim$1,000,000    & ~$\sim 180,000$ & ~$\sim 150,000$ & ~$\sim 140,000$ \\
+$\numu$          & {Used \numu sample}& ~$\sim 2,000$ & ~$\sim 3,000$ & ~$\sim 3,000$ \\
+Dirt             & $\sim$10,000,000 & $\sim 80$ & ~$\sim 100$ & ~$\sim 300$ \\
+Cosmic           & $\sim$100,000    & ~$\sim 1$ & ~$0$ & ~$\sim 30$             
 
 \end{tabular}
-\caption[Events generated as part of the \nue sample.]{The number of events initially produced for each sample in each of the three SBN detectors as part of the $\nue$ analysis.}
+\caption[Events generated and selected as part of the \nue sample.]{The number of events produced and selected for each sub-sample of the \nue analysis. The same number of events were produced in each of the three \gls{sbn} detectors.}
 \end{table}\label{T:nue_production}
 
-The actual number of real \numu events expected in \gls{sbnd} is well over 5 million for about 3 years of data taking \cite{sbnd_pot}. Generating this many events isn't feasible as part of a \gls{mc} production, hence the above number of events were generated. The \gls{mc} events produced have an associated \gls{pot} so the number of events may be scaled to the nominal \gls{pot} of each experiment. For \gls{sbnd} and \gls{icarus} the nominal \gls{pot} is $6.6 \times 10^{20}$ which corresponds to around 3 years of data taking.  Since \gls{microboone} has already been collecting data for some time, the nominal \gls{pot} is $1.32 \times 10^{21}$. Due to scaling the generated event rate to the nominal \gls{pot} this results in non-integer number of events as is seen for example in \TableRef{table:sbnd_nue_event_rate}.
+The actual number of real \numu events expected in \gls{sbnd} is well over 5 million for about 3 years of data taking \cite{sbnd_pot}. Generating this many events is not feasible as part of a \gls{mc} production, hence the above number of events were generated. The \gls{mc} events produced have an associated \gls{pot} so the number of events may be scaled to the nominal \gls{pot} of each experiment. For \gls{sbnd} and \gls{icarus} the nominal \gls{pot} is $6.6 \times 10^{20}$ which corresponds to around 3 years of data taking.  Since \gls{microboone} has already been collecting data for some time, the nominal \gls{pot} is $1.32 \times 10^{21}$. Due to scaling the generated event rate to the nominal \gls{pot} this results in non-integer number of events as is seen for example in \TableRef{table:sbnd_nue_event_rate}.
+
+\section{Event Reconstruction}
+
+To emulate reconstructed energies, the true energy of particles are smeared. For the \numu sample the following conditions are applied. Primary tracks (which is the leading muon in the final state) contained in the active volume, have their true energy smeared by scaling the energy with a Gaussian which has a standard deviation of 0.02. If the primary track is not contained, the energy is instead smeared by a Gaussian with a standard deviation that is given by $-A\lnOfbraces{BL}$,
+where \textit{L} is the track length and $A = 0.102$ and $B = 0.000612$ cm$^{-1}$ \cite{SBN_Proposal}. This emulates the multiple scatterings of the track, but in order for the track to have sufficient resolution, a minimum track length of 100 cm is required. Parameters \textit{A} and \textit{B} were chosen based on the work of \cite{ICARUS_muon_smearing}. Non-primary tracks with a true energy of less than 21 MeV are removed (21 MeV is the kinetic energy threshold for reconstructing tracks \cite{SBN_Proposal}) and any remaining tracks are smeared with a Gaussian which has a standard deviation of 0.05 \cite{SBN_Proposal}. An additional condition that the minimum smeared energy is 0 MeV is applied which ensures that negative energies may not occur.
+
+The values used to determine the degree of energy smearing for the \nue sample are a different to the \numu sample. The energy of electron and photon showers are smeared with a Gaussian that has a standard deviation of $0.15/\sqrt{E_{true}}$. Contained muons are smeared with a Gaussian that has a standard deviation of 0.15 whereas the smearing of non-contained muons is not considered. Finally, the hadrons are smeared with a Gaussian that has a standard deviation of 0.05. If there is more than 50 MeV of hadronic activity at the vertex, the vertex is considered visible \cite{SBN_Proposal}. The same condition ensuring that negative energies are not allowed is again applied. Additionally, the reconstruction is assumed to only be sufficiently accurate for showers above 200 MeV, therefore any events with showers that do not exceed this energy threshold are removed. 
+
+When reconstructed quantities are considered, background events may mimic the key signature of signal events, resulting in events being misidentified. Some of the most common backgrounds to a \gls{cc} inclusive sample in \gls{sbn} will be due to: 
+
+\begin{itemize}
+    \item \numu sample: Charged pions which may be produced by \gls{nc} interactions will result in a track that can resemble a muon. Most of the tracks produced by pions will be relatively short at less than 50 cm. 
+    
+    \item \nue sample: Final state neutral pions which are a result of \gls{nc} interactions decay into two photon showers. 
+    \item \nue sample: If the track length is short (< 1 m) and has a single associated \gls{em} shower, \numu \gls{cc} events with a $\mu + \gamma$ in the final state may be mistaken for \nue \gls{cc} events with a $\pi + e$ in the final state.
+    \item \nue sample: Cosmic photons may produce electrons in the \gls{tpc} via pair production or Compton scattering. The cosmic photons may be produced in the atmospheric shower or by cosmic muons passing through the detector \cite{SBN_Proposal}. 
+\end{itemize}
 
 \section{Event Selection}\label{sec:event_selection}
 
-The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps to produce a $\nu_{\mu, e}$ \gls{cc} inclusive sample for each of the analyses are outlined below and are performed for each associated event. 
+%The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps are designed to try and produce a pure $\nu_{\mu, e}$ \gls{cc} inclusive sample for each of the analyses, the details of which are outlined below and are performed for each associated event. 
+
+The event selections are performed in order to first identify \numu or \nue-like interactions which form a \numu or \nue \gls{cc} inclusive sample. The selection steps are designed to produce as pure as possible \gls{cc} inclusive sample by rejecting contributions from other samples such as \gls{nc} or cosmics, the details of which are outlined below. 
 
 \subsection{\texorpdfstring{\numu Selection}{numu Selection}}\label{sec:numu_selection}
 
-To emulate reconstructed energies, the true energy of particles are smeared. For primary tracks (which is the leading muon in the final state) contained in the active volume, the true energy is smeared by scaling the energy with a Gaussian which has a standard deviation of 0.02. If the primary track is not contained, the energy is instead smeared by a Gaussian with a standard deviation that is given by $-A\lnOfbraces{BL}$,
-where \textit{L} is the track length and $A = 0.102$ and $B = 0.000612$ cm$^{-1}$. Parameters \textit{A} and \textit{B} were chosen based on the work of \cite{ICARUS_muon_smearing}. Non-primary tracks with a true energy of less than 21 MeV are removed (21 MeV is the kinetic energy threshold for reconstructing tracks \cite{SBN_Proposal}) and any remaining tracks are smeared with a Gaussian which has a standard deviation of 0.05 \cite{SBN_Proposal}. An additional condition that the minimum smeared energy is 0 MeV is applied which ensures that negative energies may not occur. The selection citeria for the \numu sample are as follows:
+ The selection criteria for the \numu sample are as follows:
 
 \begin{enumerate}
-  \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
-  \item If no muon or charged pion track are produced, remove the event. A muon corresponds to a \gls{cc} signal event whereas a charged pion is possibly due to \gls{nc} background events. 
-  \item If the primary track has a true kinetic energy less than 21 MeV, remove the event.
+  \item Remove any events whose interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
+  \item If no muon or charged pion track are produced, remove the event. %A muon corresponds to a \gls{cc} signal event whereas a charged pion is possibly due to \gls{nc} background events. 
+  %\item If the primary track has a true kinetic energy less than 21 MeV, remove the event.
   \item If the primary track has a length less than 50 cm and is fully contained in the detector, remove the event.
-  \item If the primary track exits the detector and has a length less than 100 cm, remove the event. For muons exiting the active volume, the energy is estimated via multiple scatterings of the track and in order to measure the multiple scattering with sufficient resolution a minimum track length of a 100 cm is required.
+  \item If the primary track exits the detector and has a length less than 100 cm, remove the event. %For muons exiting the active volume, the energy is estimated via multiple scatterings of the track and in order to measure the multiple scattering with sufficient resolution a minimum track length of a 100 cm is required.
  \item A weight of 0.8 is applied to all selected events to account for an assumed 80\% reconstruction efficiency \cite{SBN_Proposal}. 
 \end{enumerate}
 
 \subsection{\texorpdfstring{\nue Selection}{nue Selection}}\label{sec:nue_selection}
-
-The values used to determine the degree of energy smearing for the \nue sample are a different to the \numu sample. The energy of electron and photon showers are smeared with Gaussian that has a standard deviation of $0.15/\sqrt{E_{true}}$. Contained muons are smeared with a Gaussian that has a standard deviation of 0.15 whereas the smearing of non-contained muons is not considered. Finally, the hadrons are smeared with a Gaussian that has a standard deviation of 0.05 \cite{SBN_Proposal}. The same condition ensuring that negative energies are not allowed is again applied.
 
 The $\nue$ selection follows a similar basis to the $\numu$ selection described in section \ref{sec:numu_selection}, however different criteria for the selection were applied to beam induced TPC events, dirt events and cosmic events, each of which are outlined below. 
 
 \subsubsection*{Beam induced active volume events}
 
 \begin{enumerate}
-  \item Remove any events whose true interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
-  \item Showers arising from the vertex are identified and the reconstructed energy is found from smearing the ionisation deposition. If more than one shower with energy above 100 MeV exists, the event is removed. This removes neutral pion events where the pion decays into two photon showers. 
-  \item If there is only one photon candidate in the event, a conversion gap cut is applied. The conversion gap is defined as the distance between the neutrino interaction vertex and the start position of an \gls{em} shower. If the vertex is deemed visible, due to the presence of at least \mbox{50 MeV} of hadronic kinetic energy, and the photon starts to shower further than 3 cm from the vertex the event is removed.
-  \item Remaining photons undergo a dE/dx cut resulting in a 94\% background rejection.
+  \item Remove any events whose interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
+  \item If more than one shower arising from the vertex has an energy above a 100 MeV, the event is removed. %Showers arising from the vertex are identified and the reconstructed energy is found from smearing the ionisation deposition. If more than one shower with energy above 100 MeV exists, the event is removed. This removes neutral pion events where the pion decays into two photon showers. 
+  \item If there is only one photon candidate in the event, a conversion gap cut is applied rejecting any event where the photon shower occurs more than 3 cm from the vertex. 
+  \item A weight of 0.06 is applied to the remaining photons which undergo a dE/dx cut resulting in a 94\% background rejection.
   \item If a misidentified photon originates from a resonant $\numu$ CC interaction, the muon lepton is identified. Events where a muon travels greater than 1 m are assumed to be from $\numu$ CC interactions and the event is removed. 
-  \item Events where the shower has an energy less than 200 MeV are removed.
+  %\item Events where the shower has an energy less than 200 MeV are removed.
   \item A weight of 0.8 is applied to all selected events
 to account for an assumed 80\% reconstruction efficiency \cite{Dom's_thesis}.
 \end{enumerate}
 
 \subsubsection*{Dirt Events}
-The selection procedure for dirt events is similar to that of events occurring in the TPC outlined above. However, since the vertex for dirt events occurs outside the detector volume, the conversion gap and muon track length cuts are not undertaken \cite{Dom's_thesis}.
+The selection procedure for dirt events is similar to that of beam induced events outlined above. However, since the vertex for dirt events occurs outside the detector volume, the conversion gap and muon track length cuts are not undertaken \cite{Dom's_thesis}.
 
 \subsubsection*{Cosmic Events}
 A largely separate analysis is applied for cosmic events which is as follows:
@@ -80,7 +96,7 @@ A largely separate analysis is applied for cosmic events which is as follows:
     \item Cosmic events which occur outside the beam spill time window are removed if there is no other activity in the TPC during the beam spill time.
     \item 95\% of cosmic events occurring within the beam spill window are removed by use of the PDS and CRT systems and taking advantage of the bucket structure of the beam.
     \item Same dE/dx cut as described above. 
-    \item Events below a reconstructed energy of 200 MeV are removed.
+    %\item Events below a reconstructed energy of 200 MeV are removed.
     \item A topological cosmic cylinder cut is applied to cosmic photons which originate from cosmic muons that pass through the TPC. These can be removed by a fiducial volume cut corresponding to a cylinder of radius 15 cm around the cosmic muon \cite{Dom's_thesis}. 
 \end{enumerate}
 
@@ -99,8 +115,8 @@ The reaction modes define the type of neutrino-nucleus interaction. They are cat
     $\numu$, $\numubar$ & $\nue$, $\nuebar$ & $\numu \rightarrow \nue, \numubar \rightarrow \nuebar$ \\
     \midrule
     CC QE                      & CC QE                     & CC QE\\
-    NC~Elastic                 & NC~Elastic                & CC MEC\\ 
-    CC, NC MEC                 & CC, NC MEC                & CC 1$\pi^{\pm}$ \\  
+    NC~Elastic                 & NC~Elastic                & CC 2p2h\\ 
+    CC, NC 2p2h                 & CC, NC 2p2h                & CC 1$\pi^{\pm}$ \\  
     CC, NC 1$\pi^{\pm}$        & CC, NC 1$\pi^{\pm}$       & CC 1$\pi^{0}$ \\   
     CC, NC 1$\pi^{0}$          & CC, NC 1$\pi^{0}$         & CC 2$\pi^{\pm}$ \\   
     CC, NC 2$\pi^{\pm}$        & CC, NC 2$\pi^{\pm}$       & CC 2$\pi^{0}$ \\   
@@ -130,7 +146,7 @@ The reaction modes define the type of neutrino-nucleus interaction. They are cat
     \numu, \numubar & \nue, \nuebar \\
     \midrule
     \numu CC QE          & \nue CC QE          \\ 
-    \numu CC MEC         & \nue CC MEC         \\ 
+    \numu CC 2p2h        & \nue CC 2p2h         \\ 
     \numu CC 1$\pi$      & \nue CC 1$\pi$      \\ 
     \numu CC 2$\pi$      & \nue CC 2$\pi$      \\ 
     \numu CC Other       & \nue CC Other       \\ 
@@ -150,11 +166,11 @@ The reaction modes define the type of neutrino-nucleus interaction. They are cat
 
 \clearpage
 \section{Systematic Uncertainties}\label{sec:syst_uncertainties}
-The majority of flux and interaction systematics considered are provided by the \gls{microboone} and GENIE reweight schemes respectively \cite{BNB_flux}\cite{GENIE_manual}. The two exceptions are the \gls{pot} normalisation and \gls{mec} uncertainty which are handled separately as described below. For each \gls{mc} event, both reweight packages generate \textit{N} associated \textit{universes} where the given parameters are randomly varied within their limits. This allows changes in event rate spectra to be related to systematic parameter variations. The systematic parameters considered are described below along with a table quoting their estimated uncertainty. 
+The majority of flux and interaction systematics considered are provided by the \gls{microboone} and GENIE reweight schemes respectively \cite{BNB_flux}\cite{GENIE_manual}. The two exceptions are the \gls{pot} normalisation and \gls{2p2h} uncertainty which are handled separately as described below. For each \gls{2p2h} event, both reweight packages generate 500 associated \textit{universes} where the given parameters are randomly varied within their limits. This allows changes in event rate spectra to be related to systematic parameter variations. The systematic parameters considered are described below along with a table quoting their estimated uncertainty. 
 
 \subsection{Flux Systematics}\label{sec:flux_syst}
 
-The flux systematics are generally all grouped together, however, there are 3 distinct sets with different origins as part of the \gls{miniboone} reweight scheme which are detailed below plus the additional \gls{pot} normalisation. 
+The flux systematics are grouped into 3 distinct sets with different origins as part of the \gls{miniboone} reweight scheme which are detailed below plus the additional \gls{pot} normalisation. 
 
 \subsubsection*{Optical Flux Systematics}
 The optical flux systematics are comprised of two parameters; the \textit{skin effect} and the \textit{horn current}. The horn current parameter is simply the uncertainty of the supplied current to the focusing horn. Since the current is linked to the focusing properties of the horn, uncertainty on the current leads to an uncertainty on the neutrino flux. The focusing horn is surrounded by a conductor where currents travel on the surface of the conductor. The skin effect is a measure of how much these surface currents penetrate into the conductor which in turn affects the internal fields of the conductor. Therefore, due to the skin effect, the strength of the magnetic field that particles propagating through the horn experience may vary \cite{BNB_flux}.
@@ -178,7 +194,9 @@ The optical flux systematics are comprised of two parameters; the \textit{skin e
 
 \newpage
 \subsubsection*{Secondary Hadron Interaction Cross-Sections}
-The proton interaction rate in \gls{bnb} target is largely dependent on the hadronic cross-sections with the beryllium target and aluminium horn. These cross-sections are divided into three categories; elastic scattering, quasi-elastic scattering and inelastic scattering. The total cross-section, $\sigma_{TOT}$, is defined as the sum of the elastic, $\sigma_{EL}$ and inelastic, $\sigma_{INEL}$, cross-sections. The quasi-elastic cross-section, $\sigma_{QE}$, is a subset of the  $\sigma_{INEL}$ cross-section. The $\sigma_{TOT}$ variations are based on comparing calculations with neutron-nucleus measurements. The model describing $\sigma_{TOT}$ is assumed to work sufficiently well for $\pi^{\pm}$-nucleus interactions and is extended to include these interactions in addition to all nucleon-nucleus interactions. $\sigma_{INEL}$ is estimated directly from the available data and the deviations are therefore noticeably smaller than for $\sigma_{TOT}$. The variations are chosen to encompass the uncertainties in the measurements. $\sigma_{QEL}$ variations are again estimated from a combination of the available data and models. Finally, the linked relationship between the different cross-section is considered such that: 1) If  $\sigma_{INEL}$ is fixed, a variation in $\sigma_{TOT}$ will result in a variation in $\sigma_{EL}$. 2) If $\sigma_{INEL}$ is varied, the relative contribution from $\sigma_{INEL}$ and $\sigma_{EL}$ to  $\sigma_{TOT}$ (which remains constant) will vary. 3) If $\sigma_{QEL}$ is varied, the relative contribution from other inelastic process to $\sigma_{INEL}$ (which remains constant) will vary \cite{BNB_flux}.
+The proton interaction rate in the \gls{bnb} target is largely dependent on the hadronic cross-sections with the beryllium target and aluminium horn. %These cross-sections are divided into three categories: elastic scattering, quasi-elastic scattering and inelastic scattering.
+The total cross-section, $\sigma_{TOT}$, is defined as the sum of the elastic, $\sigma_{EL}$ and inelastic, $\sigma_{INEL}$, cross-sections, with the quasi-elastic cross-section, $\sigma_{QE}$, being a subset of the  $\sigma_{INEL}$ cross-section. The $\sigma_{TOT}$ variations are based on comparing calculations with neutron-nucleus measurements. The model describing $\sigma_{TOT}$ is assumed to work sufficiently well for $\pi^{\pm}$-nucleus interactions and is extended to include these interactions in addition to all nucleon-nucleus interactions. $\sigma_{INEL}$ is estimated directly from the available data and the deviations are therefore noticeably smaller than for $\sigma_{TOT}$. %The variations are chosen to encompass the uncertainties in the measurements. 
+$\sigma_{QEL}$ variations are again estimated from a combination of the available data and models \cite{BNB_flux}. %Finally, the linked relationship between the different cross-section is considered such that: 1) If  $\sigma_{INEL}$ is fixed, a variation in $\sigma_{TOT}$ will result in a variation in $\sigma_{EL}$. 2) If $\sigma_{INEL}$ is varied, the relative contribution from $\sigma_{INEL}$ and $\sigma_{EL}$ to  $\sigma_{TOT}$ (which remains constant) will vary. 3) If $\sigma_{QEL}$ is varied, the relative contribution from other inelastic process to $\sigma_{INEL}$ (which remains constant) will vary \cite{BNB_flux}.
 
 The above approach is applied for both beryllium and aluminium nuclei and the uncertainty associated with the total, quasi-elastic and inelastic cross-sections for both nucleons and pions for the two nuclei are shown in \TableRef{table:secondary_hadron_interaction_xsec}.
 
@@ -209,7 +227,7 @@ The above approach is applied for both beryllium and aluminium nuclei and the un
 
 \newpage
 \subsubsection*{Hadronic Neutrino Production Flux Uncertainties}
-The majority of neutrinos in the \gls{bnb} are due to decaying particles which are a result of protons interacting with the beryllium target. Understanding the neutrino flux, therefore, relies on understanding the production of the particles decaying to neutrinos, which are predominately pions for \numu and kaons for \nue (plus the decay of muons which in turn are produced in the meson decays). 
+The neutrinos in the \gls{bnb} are due to decaying particles which are a result of protons interacting with the beryllium target. Understanding the neutrino flux, therefore, relies on understanding the production of the particles decaying to neutrinos, which are predominately pions for \numu and kaons for \nue (plus the decay of muons which in turn are produced in the meson decays). 
 
 The Sanford-Wang parameterisation is used to estimate the $\pi^{\pm}$ production. It depends on the meson momentum, \textit{p}, and angle relative to the incident proton, \textit{\theta}, and also the proton momentum, $p_B$. The parametrisation is given by
 
@@ -223,11 +241,11 @@ The Sanford-Wang parameterisation is used to estimate the $\pi^{\pm}$ production
 \end{equation}
 where parameters $c_{1 \rightarrow 9}$ are determined from the HARP (8.89 GeV/c), BNL E910 (6.4 GeV/c) and BNL E910 (12.3 GeV/c) experiments \cite{BNB_flux}.
 
-No $k^+$ production rates exist for proton-beryllium interactions at 8.89 GeV/c which is the primary \gls{bnb} operating momentum. To estimate the $k^+$ production rate at the \gls{bnb} momentum, Feynman scaling is used to extrapolate the rate from production rates at nearby energies \cite{BNB_flux}.
+No $K^+$ production rates exist for proton-beryllium interactions at 8.89 GeV/c which is the primary \gls{bnb} operating momentum. To estimate the $K^+$ production rate at the \gls{bnb} momentum, Feynman scaling is used to extrapolate the rate from production rates at nearby energies \cite{BNB_flux}.
 
-The major contribution that the $k^0$ makes to the BNB flux is from the decay of the $k^0_L$. The $k^0$ that are produced via strong interactions have equal contents of $k^0_L$ and $k^0_s$, therefore the production rate of $k^0_L$ can be inferred from knowing the production rate of $k^0_s$. The Sanford-Wang parametrisation is again used to estimate the production cross-section by combining data from the BNL E910 experiment at 12.3 GeV/c and 17.5 GeV/c and the KEK experiment at \mbox{12.3 GeV/c}.
+The major contribution that the $K^0$ makes to the BNB flux is from the decay of the $K^0_L$. The $K^0$ that are produced via strong interactions have equal contents of $K^0_L$ and $K^0_s$, therefore the production rate of $K^0_L$ can be inferred from knowing the production rate of $K^0_s$. The Sanford-Wang parametrisation is again used to estimate the production cross-section by combining data from the BNL E910 experiment at 12.3 GeV/c and 17.5 GeV/c and the KEK experiment at \mbox{12.3 GeV/c}.
 
-For the $k^-$, there is minimal production data available, therefore, simulations are used exclusively. The rate and spectrum of the $k^-$ are estimated by simulating 8.89 GeV/c proton-beryllium interactions \cite{BNB_flux}.
+For the $K^-$, there is minimal production data available, therefore, simulations are used exclusively. The rate and spectrum of the $K^-$ are estimated by simulating 8.89 GeV/c proton-beryllium interactions \cite{BNB_flux}.
 \renewcommand{\arraystretch}{1.4}    
 \begin{table}[!h]
   \renewcommand{\arraystretch}{1.4}    
@@ -257,7 +275,7 @@ For the $k^-$, there is minimal production data available, therefore, simulation
 The intensity of the proton beam is monitored by two toroids and it has been found that the two toroids agree with one another to within 2\% \cite{BNB_flux}. An additional 2\% normalisation uncertainty is applied in order to account for this \gls{pot} accounting uncertainty. This uncertainty is set so that it is fully correlated between all analysis bins.
 
 \subsection{Interaction Systematics}\label{sec:interaction_syst}
-The uncertainties associated with neutrino interactions are provided by GENIE and are implemnted using the GENIE ReWeight package. This is the case for all the interaction systematics considered here except for the \gls{mec} systematic (see \SectionRef{sec:MEC_uncertainty}). The GENIE reweighting scheme works as follows: For each quantity, \textit{P}, which has an associated uncertainty, a systematic parameter, $x_P$ is introduced. Varying $x_P$ will modify, \textit{P} such that
+The uncertainties associated with neutrino interactions are provided by GENIE and are implemented using the GENIE ReWeight package. This is the case for all the interaction systematics considered here except for the \gls{2p2h} systematic which is described below. The GENIE reweighting scheme works as follows: for each quantity, \textit{P}, which has an associated uncertainty, a systematic parameter, $x_P$ is introduced. Varying $x_P$ will modify, \textit{P} such that
 \begin{equation}
     P \rightarrow P' = P (1 + x_P . \frac{\delta P}{P}),
 \label{eqn:genie_reweight}
@@ -275,14 +293,14 @@ The neutrino cross-section gives a measure of the neutrino interaction probabili
 where $\frac{d^n\sigma'_\nu}{dK^n}$ is the differential cross-section with varied physics parameters and  $\frac{d^n\sigma_\nu}{dK^n}$ is the nominal differential cross-section with $K^n$ being the kinematical phase space in both cases \cite{GENIE_manual}.
 
 \subsubsection*{Intranuclear hadron transport uncertainties}
-When hadrons are produced in the nucleus they may interact as they propagate out of the nucleus. The reinteraction in the nucleus may significantly alter the observed final state particles. There are two primary uncertainties considered with this effect: The uncertainty in the overall probability of rescattering and the uncertainty corresponding to the probability of each rescattering mode once it has been determined that rescattering will occur for a given hadron \cite{GENIE_manual}. 
+When hadrons are produced in the nucleus they may interact as they propagate out of the nucleus. The reinteraction in the nucleus may significantly alter the observed final state particles. There are two primary uncertainties considered with this effect: the uncertainty in the overall probability of rescattering and the uncertainty corresponding to the probability of each rescattering mode once it has been determined that rescattering will occur for a given hadron \cite{GENIE_manual}. 
 
 For a hadron propagating in the nucleus, the survival probability, $P_{surv}^h$, is calculated as
 \begin{equation}
     P_{surv}^h = \int e^{-r/ \lambda^h(\vec r, h, E_h)} dr,
 \label{eq:intranuclear_survival_prob}
 \end{equation}
-where the integral is evaluated along the hadron path and $\lambda^h$ is the mean free path. The probability of rescattering, $P^h_{rescat}$, is then defined as 
+where the integral is evaluated along the path the hadron takes in the nucleus and $\lambda^h$ is the mean free path. The probability of rescattering, $P^h_{rescat}$, is then defined as 
 \begin{equation}
     P_{rescat}^h = 1 - P_{surv}^h.
 \end{equation}
@@ -388,7 +406,7 @@ The proposal systematics only included a set of cross-section parameters which a
 \newpage
 \subsection*{\textit{Modern} Interaction Systematics}
 
-The modern systematics include an additonal set of cross-section parameters which are listed in \TableRef{table:modern_xsec_syst} in addition to a set of intranuclear hadron transport parameters which are listed in \TableRef{table:modern_intranuclear_syst}. Again, both tables also show the associated uncertainty of each parameter. The \gls{mec} uncertainty mentioned is also considered as part of the modern systematic parameters and is detailed below. 
+The modern systematics include an additonal set of cross-section parameters which are listed in \TableRef{table:modern_xsec_syst} in addition to a set of intranuclear hadron transport parameters which are listed in \TableRef{table:modern_intranuclear_syst}. Again, both tables also show the associated uncertainty of each parameter. The \gls{2p2h} uncertainty mentioned is also considered as part of the modern systematic parameters and is detailed below. 
 
 \begin{table}[h!]
     \renewcommand{\arraystretch}{1.4}
@@ -462,15 +480,15 @@ The modern systematics include an additonal set of cross-section parameters whic
 \end{table}
 
 \newpage
-\subsubsection*{MEC uncertainty}\label{sec:MEC_uncertainty}
-A \gls{mec} uncertainty parameter which specifically affects \gls{mec} events is not included from the GENIE event generator since it was decided that the parameter was not sufficiently validated. Instead, a 100\% normalisation uncertainty is applied to all \gls{mec} events. The value of the uncertainty was chosen to be a 100\% (maximal) to ensure the effect of the \gls{mec} parameter would not be an underestimate. 
+\subsubsection*{2p2h uncertainty}\label{sec:MEC_uncertainty}
+A \gls{2p2h} uncertainty parameter which specifically affects \gls{2p2h} events is not included from the GENIE event generator since it was decided that the parameter was not sufficiently validated. Instead, a 100\% normalisation uncertainty is applied to all \gls{2p2h} events. The value of the uncertainty was chosen to be a 100\% (maximal) to ensure the effect of the \gls{2p2h} parameter would not be an underestimate. 
 
 
 
 \clearpage
 \subsection{Other Systematics}\label{sec:other_syst}
 
-Efficiency systematics and energy scale systematics are not implemented in the \textit{standard} analyses because there currently isn't a good handle on how to correctly quantify them. A rigorous scheme akin to those described in \SectionRef{sec:flux_syst} and \SectionRef{sec:interaction_syst} doesn't exist, so instead in-house methods have been developed which are described below.
+Efficiency systematics and energy scale systematics are not implemented in the \textit{standard} analyses because there currently is not a good handle on how to correctly quantify them. A rigorous scheme akin to those described in \SectionRef{sec:flux_syst} and \SectionRef{sec:interaction_syst} does not exist, so instead in-house methods have been developed which are described below.
 
 \subsubsection*{Efficiency Systematics}\label{sec:efficiency_syst}
 
@@ -538,7 +556,7 @@ All future discussion involving correlated uncertainties should from here on be 
 \newpage
 \subsubsection*{Energy Scale Systematic}
 
-The energy scale systematic is a global systematic to account for the fact that events are binned based on their energy. Uncertainty on the reconstructed neutrino energy means that it's possible certain events to \textit{migrate} between energy bins. Since the energy distribution of events isn't flat, this migration would in general not be uniform. If the neutrino energy were to be 'dialled-up', the number of events migrating from a given bin, $b$, to the neighbouring bin, $b + 1$, would be less than the number of events migrating from bin, $b - 1$, to $b$. This effect is shown below in \FigureRef{fig:energy_scale}. 
+The energy scale systematic is a global systematic to account for the fact that events are binned based on their energy. Uncertainty on the reconstructed neutrino energy means that it's possible certain events to \textit{migrate} between energy bins. Since the energy distribution of events is not flat, this migration would in general not be uniform. If the neutrino energy were to be 'dialled-up', the number of events migrating from a given bin, $b$, to the neighbouring bin, $b + 1$, would be less than the number of events migrating from bin, $b - 1$, to $b$. This effect is shown below in \FigureRef{fig:energy_scale}. 
 
 \begin{figure}[!h]
     \centering
@@ -550,15 +568,17 @@ The energy scale systematic is a global systematic to account for the fact that 
 Since the energy scale systematic is a global one, it is applied across all energy bins, for all modes, in the form a $1 \times 1$ covariance matrix.
 
 \section{Other Analysis Choices}
-All the stuff that was 'agreed' between fitters - Baseline Approximation, Binning, Spectra energy range etc.
+
+Two other key analysis choices are the neutrino baseline parameterisation and the binning scheme used for the kinematic variable. As is shown in \EquationRef{eqn:sterile_osc_prob}, the baseline is one of the components that drives the oscillation probability and therefore any approximations to the true baseline must be chosen such that the impact to the oscillation probability is negligible. The kinematic variable used in this analysis is the energy of the neutrino for both true and reconstructed quantities.
 
 \subsection{Baseline}
-As is shown in \EquationRef{eqn:sterile_osc_prob}, the baseline is one of the components that drives the oscillation probability. For long baseline experiments, it's not uncommon for fitting frameworks to simply use some average value for the baseline since factors such as the interaction point in the detector or the position at which a particle decays into a neutrino would only change the average baseline for the experiment by a negligible amount. However, for short baseline experiments such as \gls{sbn}, these factors may change the baseline significantly. 
+For long baseline experiments, it's not uncommon for fitting frameworks to simply use some average value for the baseline since factors such as the interaction point in the detector or the position at which a particle decays into a neutrino would only change the average baseline for the experiment by a negligible amount. However, for short baseline experiments such as \gls{sbn}, these factors may change the baseline significantly. 
 
 In an attempt to minimise computing resources, the true baseline was not initially used, but instead, several approximations to the baseline were tried. To begin with, the average baseline of each \gls{sbn} detector was used for all neutrino energies. This was calculated from the true baseline distribution of \numu events in each detector which are shown in \FigureRef{fig:numu_baseline}. Secondly, a 4-knot spline (named spline V1) for each detector was defined in order to try and better approximate the baseline. This method was improved upon by producing a spline for each of the true energy bins (named spline V2) which are defined in \SectionRef{sec:binning}. In order to establish the impact of any baseline approximations on the oscillation probability, the oscillation probability was plotted as a function of true neutrino energy with the oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$. This oscillation point was chosen to ensure that a region where rapid oscillations occur was being investigated, which would highlight the effect of any baseline choices. The oscillation probabilities as a function of energy are shown in \FigureRef{fig:baseline_osc_probability} for the four different baselines described. It was eventually decided that any approximation would be insufficient and that the true baseline should be used. 
 
-The studies of the baseline approximations were done in the context of the \numu disappearance channel. For the \nue channels, different approximations should be applied, since the true baseline distribution is not the same as for \numu. In principle, within the \nue sample, different approximations should be applied to the different sub-samples since the baseline distribution is not the same for all the sub-samples. This was never done since it was decided that the true baseline should be used. Each individual sample used to construct the overall \nue event sample has its own baseline distribution due to the particles which contribute to each sample decaying at different points along the beamline. The baseline distribution for the intrinsic \nue, oscillated \nue and the overall \nue sample from combining all the sub-samples together is shown in \FigureRef{fig:nue_baseline_dist} for each of the \gls{sbn} detectors. It should be noted that the baseline distributions for oscillated \nue sample from \FigureRef{fig:nue_baseline_dist} and the \numu sample from \FigureRef{fig:numu_baseline} are comparable. This is due to the initial parameters describing the oscillated sample being the same as for the \numu sample. The only difference being the neutrino oscillations from \numu to \nue which isn't something that affects the baseline.
+The studies of the baseline approximations were done in the context of the \numu disappearance channel. For the \nue channels, different approximations should be applied, since the true baseline distribution is not the same as for \numu. In principle, within the \nue sample, different approximations should be applied to the different sub-samples since the baseline distribution is not the same for all the sub-samples. This was never done since it was decided that the true baseline should be used. Each individual sample used to construct the overall \nue event sample has its own baseline distribution due to the particles which contribute to each sample decaying at different points along the beamline. The baseline distributions for the intrinsic \nue, oscillated $\nu$ and the overall \nue sample from combining all the sub-samples together are shown in \FigureRef{fig:nue_intrinsic_baseline}, \FigureRef{fig:nue_osc_baseline} and \FigureRef{fig:nue_baseline} respectively for each of the \gls{sbn} detectors. It should be noted that the baseline distributions for oscillated \nue sample from \FigureRef{fig:nue_osc_baseline} and the \numu sample from \FigureRef{fig:numu_baseline} are comparable. This is due to the initial parameters describing the oscillated sample being the same as for the \numu sample. The only difference being the neutrino oscillations from \numu to \nue which is not something that affects the baseline.
 
+\begin{comment}
 \begin{figure}[!h]
     \centering
     \includegraphics[width = 0.32\textwidth]{figures-chap5/SBND_numu.pdf}
@@ -567,29 +587,71 @@ The studies of the baseline approximations were done in the context of the \numu
     \caption{The baseline distribution of events in the \numu sample for each of the \gls{sbn} detectors.}
     \label{fig:numu_baseline}
 \end{figure}
+\end{comment}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_numu.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_numu.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_numu.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+  {
+    \caption{The baseline distribution of events in the \numu sample for each of the \gls{sbn} detectors. \\\phantom{.}\\}
+    \label{fig:numu_baseline}}
+\end{figure}
+
+
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/SBND_intrinsic_nue.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/MicroBooNE_intrinsic_nue.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/ICARUS_intrinsic_nue.pdf} 
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/SBND_osc.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/MicroBooNE_osc.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/ICARUS_osc.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/SBND_nue.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/MicroBooNE_nue.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/ICARUS_nue.pdf}
-    \caption[\nue baseline distributions.]{The baseline distribution of events in each of the \gls{sbn} detectors for the intrinsic \nue sample (Top), the oscillated \nue sample (Middle) and the overall \nue sample (Bottom). The overall sample is comprised of the events from the intrinsic \nue, oscillated \nue, the \numu events from \FigureRef{fig:numu_baseline} passing the \nue selection and the dirt and cosmic samples (which are not explicitly shown).}
-    \label{fig:nue_baseline_dist}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_intrinsic_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_intrinsic_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_intrinsic_nue.pdf} 
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption{The baseline distribution of events in the intrinsic \nue sample for each of the \gls{sbn} detectors. \\\phantom{.}\\}
+    \label{fig:nue_intrinsic_baseline}
+    }
+  \end{figure}
+  
+  \begin{figure}
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_osc.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_osc.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_osc.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption{The baseline distribution of events in the oscillated $\numu \rightarrow \nue$ sample for each of the \gls{sbn} detectors. \\\phantom{.}\\}
+    \label{fig:nue_osc_baseline}
+    }
+  \end{figure}
+  
+  \begin{figure}
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_nue.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption[The overall \nue baseline distributions.]{The baseline distribution of events in the overall \nue sample which is comprised of events from the intrinsic \nue, oscillated $\nu$, the \numu events from passing the \nue selection and the dirt and cosmic samples (which are not explicitly shown) for each of the \gls{sbn} detectors.}
+    \label{fig:nue_baseline}
+    }
 \end{figure}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/osc_prob_sbnd.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/osc_prob_uboone.pdf}
-    \includegraphics[width = 0.32\textwidth]{figures-chap5/osc_prob_icarus.pdf}
-    \caption[Oscillation probability for different baseline parametrisations.]{The oscillation probability as a function of true neutrino energy for the \numu disappearance sample with oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$ in each \gls{sbn} detector. The results from using each baseline parametrisation are shown.}
-    \label{fig:baseline_osc_probability}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/osc_prob_sbnd.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/osc_prob_uboone.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/osc_prob_icarus.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption[Oscillation probability for different baseline parametrisations.]{The oscillation probability as a function of true neutrino energy for the \numu disappearance sample with oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$ in each \gls{sbn} detector. The results from using each baseline parametrisation are shown. \\}
+    \label{fig:baseline_osc_probability}}
 \end{figure}
 
 \clearpage

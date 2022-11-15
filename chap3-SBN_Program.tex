@@ -73,7 +73,7 @@ In general, the diffusion in the transverse direction is greater than the diffus
  \begin{equation}
      Q = Q_{0}e^{-t/\tau_e},
  \end{equation}
-where $Q$ is the charge remaining after correcting for electron lifetime, $Q_0$ is the initial charge and $t$ is the drift time \cite{ArgoNeuT_electron_lifetime_paper}. The lowest electron lifetime (during a period where the purity was considered stable) that \gls{microboone} has observed is 18.0 ms \cite{microboone_electron_lifetime}. Currently the \gls{sbnd} simulation uses a default value of 10.0 ms for electron lifetime, whereas the \gls{icarus} simulation uses a value of 15.0 ms. By requiring that the maximum charge loss is only of the order 10\%, this results in a maximum drift distance (\gls{tpc} width) of $\sim1.5$ m. 
+where $Q$ is the charge remaining after correcting for electron lifetime, $Q_0$ is the initial charge and $t$ is the drift time \cite{ArgoNeuT_electron_lifetime_paper}. The lowest electron lifetime (during a period where the purity was considered stable) that \gls{microboone} has observed is 18.0 ms \cite{microboone_electron_lifetime}. Currently, the \gls{sbnd} simulation uses a default value of 10.0 ms for the electron lifetime, whereas the \gls{icarus} simulation uses a value of 15.0 ms. By requiring that the maximum charge loss is only of the order 10\%, this results in a maximum drift distance (\gls{tpc} width) of $\sim1.5$ m. 
  
 \subsubsection{Recombination}
 When argon atoms are ionised, the resulting ionised electron may immediately recombine with a nearby argon ion instead of being separated by the electric field in the detector. This is known as the recombination effect and the magnitude of the effect is largely determined by the local electric field. A number of different approaches to model the recombination effect exist, however, for liquid argon detectors a form of the box model or Jaff\'{e} model are usually used \cite{LArTPC_book}.
@@ -93,7 +93,7 @@ where $\xi = \alpha Q_0/E$. $\alpha$ is a free parameter and $Q$ and $Q_0$ are d
 In addition to being model dependant, the exact recombination value is often presented as a function of dE/dx. For an electric field of 0.5 kV/cm, the recombination value has a maximum of $\sim0.7$ at a dE/dx value of $\sim1$ MeV/cm and falls to a minimum of $\sim0.1$ as the dE/dx value increases to $\sim30$ MeV/cm \cite{LArTPC_book}.
 
 \subsubsection{Space Charge}
-The electric field in a \gls{tpc} is usually designed to be uniform between the cathode and the anode, however, particularly for surface level detectors this often doesn't end up being the case. Cosmic muons may enter the detector ionising the argon atoms. The ionised electrons and argon ions then drift towards the anode and cathode respectively, however the drift time for the ions is much greater than the electron drift time. If the flux of cosmic muons entering the detector is sufficiently large, this results in a significant positive charge build up towards the cathode. This effect is known as \textit{space charge} and directly impacts the recombination effect since it is linked to the magnitude of local electric field as well as affecting the drifting electrons \cite{microboone_sce}.
+The electric field in a \gls{tpc} is usually designed to be uniform between the cathode and the anode, however, particularly for surface level detectors this often does not end up being the case. Cosmic muons may enter the detector ionising the argon atoms. The ionised electrons and argon ions then drift towards the anode and cathode respectively, however the drift time for the ions is much greater than the electron drift time. If the flux of cosmic muons entering the detector is sufficiently large, this results in a significant positive charge build up towards the cathode. This effect is known as \textit{space charge} and directly impacts the recombination effect since it is linked to the magnitude of local electric field as well as affecting the drifting electrons \cite{microboone_sce}.
 
 The ion drift velocity, $\vec v$, is given by
 \begin{equation}
@@ -206,7 +206,7 @@ At higher energies, the neutrino-nucleon interaction may cause the nucleon to be
 \begin{equation}
     \nu_l + N \rightarrow l^- + \Delta \rightarrow l^- + N + \pi,
 \end{equation}
-whereas for \gls{nc} interactions occur via,
+whereas \gls{nc} interactions occur via,
 \begin{equation}
     \nu_l + N \rightarrow \nu_l + \Delta \rightarrow \nu_l + N +\pi.
 \end{equation}
@@ -308,11 +308,20 @@ and
 \end{equation}
 respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cross-Section_Ratio_for_Muon_Neutrinos_at_the_T2K_Near_Detector_thesis}\cite{Adjusting_neutrino_interaction_models_and_evaluating_uncertainties_using_NOvA_near_detector_data}. 
 
+
+\subsection*{Neutrino Electron Scattering}
+Instead of scattering off the nucleus, neutrinos may also scatter off the electrons in an atom via,
+\begin{equation}
+    \nu_l + \electron \rightarrow \nu_l + \electron.
+\end{equation}
+This is an elastic process that has both a \gls{cc} and \gls{nc} component, however, for typical neutrino energies only \nue\gls{cc} interaction are kinematically allowed \cite{Fundamentals_of_Neutrino_Physics_and_Astrophysics}.
+
 %https://feynman.aivazis.com/
 \newpage
 \begin{figure}[h!]
 \centering
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
 \centering \textbf{CC QE} \\ \vspace{0.3cm}
 \resizebox{\linewidth}{4cm}{
 \begin{feynman}
@@ -324,7 +333,8 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 \end{feynman}
 }
 \end{subfigure} 
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
 \centering \textbf{CC Res} \\ \vspace{0.3cm}
 \resizebox{\linewidth}{4cm}{
 \begin{feynman}
@@ -337,7 +347,7 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
     \fermion[label=$\pi$,labelDistance=0.3]{7.00, 5.50}{8.00, 6.00}
 \end{feynman}
 }
-\end{subfigure}
+\end{subfigure}\\
 \begin{comment}
 \vspace{1cm}
 \begin{subfigure}{0.3\linewidth}
@@ -356,7 +366,8 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 }
 \end{subfigure}
 \end{comment}
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
 \centering \hspace{0cm} \textbf{CC DIS} \\ \vspace{0.3cm}
 \resizebox{1.1\linewidth}{4cm}{
 \begin{feynman}
@@ -373,7 +384,8 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 }
 \end{subfigure}
 %\hspace{-0.6cm}
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
 \centering \textbf{CC Coh} \\ \vspace{0.3cm}
 \resizebox{\linewidth}{4cm}{
 \begin{feynman}
@@ -388,13 +400,26 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 \end{feynman}
 }
 \end{subfigure}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
+\centering \textbf{CC \electron Scat} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$\electron$, labelDistance=0.3, showArrow=true, flip=false]{24.00, 12.00}{26.00, 13.00}
+    \fermion[label=$\nue$, labelDistance=0.2]{22.00, 13.00}{24.00, 12.00}
+    \weak[color=000000, label=$W^+$, labelDistance=0.3]{24.00, 10.00}{24.00, 12.00}
+    \fermion[label=$\nue$, labelDistance=0.2, showArrow=true]{24.00, 10.00}{26.00, 9.00}
+    \fermion[label=$\electron$, labelDistance=0.3, showArrow=true]{22.00, 9.00}{24.00, 10.00}
+\end{feynman}
+}
+\end{subfigure}
 \caption[Feynman diagrams of the \gls{cc} processes most commonly expected in \gls{sbn}.]{Feynman diagrams of the \gls{cc} processes most commonly expected in \gls{sbn}. $\nu_l$ corresponds to the neutrino with leptonic flavour \textit{l}, with \textit{l} typically being either an electron or a muon. $\Delta$ denotes one of the possible Delta resonances, \textit{N} denotes a nucleon, \textit{X}, denotes some set of final hadrons and \textit{A} denotes a nucleus.}
 \label{fig:CC_Feynman_diagrams}
 \end{figure}
 
 \newpage
 \begin{figure}[h!]
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
 \centering \textbf{NC Elastic} \\ \vspace{0.3cm}
 \resizebox{\linewidth}{4cm}{
 \begin{feynman}
@@ -406,7 +431,7 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 \end{feynman}
 }
 \end{subfigure}
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
 \centering \textbf{NC Res} \\ \vspace{0.3cm}
 \resizebox{\linewidth}{4cm}{
 \begin{feynman}
@@ -419,7 +444,7 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
     \fermion[label=$\pi$,labelDistance=0.3]{7.00, 5.50}{8.00, 6.00}
 \end{feynman}
 }
-\end{subfigure}
+\end{subfigure}\\
 \begin{comment}
 \vspace{1cm}
 \begin{subfigure}{0.3\linewidth}
@@ -438,7 +463,8 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 }
 \end{subfigure}
 \end{comment}
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
 \centering \hspace{-0cm}\textbf{NC DIS} \\ \vspace{0.3cm}
 \resizebox{1.1\linewidth}{4cm}{
 \begin{feynman}
@@ -455,7 +481,8 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
 }
 \end{subfigure}
 %\hspace{-0.6cm}
-\begin{subfigure}{0.4\linewidth}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
 \centering \textbf{NC Coh} \\ \vspace{0.3cm}
 \resizebox{\linewidth}{4cm}{
 \begin{feynman}
@@ -467,6 +494,19 @@ respectively \cite{Measurement_of_the_Water_to_Scintillator_Charged-Current_Cros
     \fermion[label=$\pi^0$, labelDistance=0.3]{24, 11.15}{26.00, 11.15}
     \fermion[label=$A$, labelDistance=0.2]{24.30, 10.00}{26.00, 10.00}
     \parton{24.00,10.00}{0.30}
+\end{feynman}
+}
+\end{subfigure}
+\begin{subfigure}{0.3\linewidth}
+\vspace{0.3cm}
+\centering \textbf{NC \electron Scat} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{
+\begin{feynman}
+    \fermion[label=$\nu_l$, labelDistance=0.3, showArrow=true, flip=false]{24.00, 12.00}{26.00, 13.00}
+    \fermion[label=$\nu_l$, labelDistance=0.2]{22.00, 13.00}{24.00, 12.00}
+    \weak[color=000000, label=$Z^0$, labelDistance=0.3]{24.00, 10.00}{24.00, 12.00}
+    \fermion[label=$\electron$, labelDistance=0.2, showArrow=true]{24.00, 10.00}{26.00, 9.00}
+    \fermion[label=$\electron$, labelDistance=0.3, showArrow=true]{22.00, 9.00}{24.00, 10.00}
 \end{feynman}
 }
 \end{subfigure}
