@@ -175,11 +175,13 @@ To get a measure of the resolution, which is defined as the width of the distrib
 \end{equation}
 is fitted to each distribution, where \textit{A} is a constant that defines the peak of the Gaussian, $\mu$ is the mean value and $\sigma^2$ is the variance. $\sigma$ is the quantity that defines the width of the Gaussian fit and will therefore also give a measure of the resolution of the associated distribution. For the distributions which use the true energy of the hits (the left plot of \FigureRef{fig:fractional_energy_resolution}), Gaussians are fitted to the entire distribution, whereas for the distributions using the true energy of the showering electron (the right plot of \FigureRef{fig:fractional_energy_resolution}), Gaussians are only fitted to the central region which encompasses the peak of the distribution. The reason for not fitting a Gaussian to the entire distribution in the second case is in order to avoid having the fit be influenced by the non Gaussian tail which is usually caused by issues in the reconstruction. Since the tail in the first case is minimal, this is not a concern and therefore a fit to the whole distribution is suitable. 
 
-The Gaussian fits to the fractional energy separation distributions of each of the three reconstruction algorithms are shown in \FigureRef{fig:gauss_fit_hit_level} and \FigureRef{fig:gauss_fit_showering_e} for the comparison with the true energy of the hits and the true energy of the showering electron respectively. In order for the resolution comparisons to remain valid, the Gaussian fits in \FigureRef{fig:gauss_fit_showering_e} are produced by considering the same x-axis range size. The corresponding $\sigma$ values for each of the Gaussian fits is shown in \TableRef{table:gaus_fit_sigma_values}. 
+The Gaussian fits to the fractional energy separation distributions of each of the three reconstruction algorithms are shown in \FigureRef{fig:gauss_fit_hit_level} and \FigureRef{fig:gauss_fit_showering_e} for the comparison with the true energy of the hits and the true energy of the showering electron respectively. In order for the resolution comparisons to remain valid, the Gaussian fits in \FigureRef{fig:gauss_fit_showering_e} are produced by considering the same x-axis range size. Additionally, the binning range has been chosen such that the distribution shapes are comparable in order to minimise binning effects on the fit width whilst maintaining the same bin width for each method. The corresponding $\sigma$ values for each of the Gaussian fits is shown in \TableRef{table:gaus_fit_sigma_values}. 
 
-The Gaussian fits in \FigureRef{fig:gauss_fit_hit_level} for the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} are fairly similar with \textit{Shower Num Electrons Energy tool} having a slightly broader fit. This is consistent with the \textit{Shower Linear Energy tool} and \textit{Shower ESTAR Energy tool} giving similar results when reconstructing hit energies. Additionally, since the \textit{Shower Num Electrons Energy tool} assigns a larger reconstructed energy to the hits, a somewhat broader resolution is expected. It should be noted that the Gaussian fits will be influenced by binning artefacts in the distributions, which are then mapped to the resolution. 
+The Gaussian fits in \FigureRef{fig:gauss_fit_hit_level} for the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} are fairly similar with \textit{Shower Num Electrons Energy tool} having a slightly broader fit. This is likely due to the \textit{Shower Num Electrons Energy tool} using a fixed recombination value which systematically assigns higher energy values to the hits. It should be noted that the Gaussian fits will be influenced by binning artefacts in the distributions which are then mapped to the resolution. 
 
-The Gaussian fits for the \textit{Shower Num Electrons Energy tool} and the \textit{Shower ESTAR Energy tool} in \FigureRef{fig:gauss_fit_showering_e} have a close to identical width, with the \textit{Shower Linear Energy tool} being noticeably broader. The reconstructed energy is an underestimated for all methods meaning more events will be binned into a given bin than if the reconstructed energy were to be overestimated. This results in a more prominent central peak for the \textit{Shower Num Electrons Energy tool} and the \textit{Shower ESTAR Energy tool}. The wider distribution observed by \textit{Shower Linear Energy tool} appears to be due to the peak straddling two bins.
+The Gaussian fits for all three methods have a similar width in \FigureRef{fig:gauss_fit_showering_e}. All methods underestimate the true energy in this case meaning 
+
+
 
 \begin{figure}[h!]
     \centering
@@ -197,8 +199,8 @@ The Gaussian fits for the \textit{Shower Num Electrons Energy tool} and the \tex
 \begin{figure}[h!]
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap4/hist_gauss_fit/linear_showering_e.pdf}
-    \includegraphics[width = 0.49\textwidth]{figures-chap4/hist_gauss_fit/oldmethod_showering_e.pdf}
-    \includegraphics[width = 0.49\textwidth]{figures-chap4/hist_gauss_fit/ESTAR_showering_e.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/hist_gauss_fit/oldmethod_showering_e_attempt2.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap4/hist_gauss_fit/ESTAR_showering_e_attempt2.pdf}
     \captionsetup{width=0.45\textwidth}
     \parbox[b]{0.49\textwidth}%
   {
@@ -214,8 +216,8 @@ The Gaussian fits for the \textit{Shower Num Electrons Energy tool} and the \tex
  & \multicolumn{2}{c}{$\sigma$ of the Gaussian Fit} \\
 Algorithm & Hits & Showering Electron \\ \hline
 Linear & 0.034  & 0.033 \\
-Num of Electrons & 0.040 & 0.022 \\
-ESTAR & 0.036 & 0.021
+Num of Electrons & 0.040 & 0.031 \\
+ESTAR & 0.036 & 0.031
 \end{tabular}
 \caption[The $\sigma$ value used in the Gaussian fit to the fractional energy separation distributions of each algorithm.]{The $\sigma$ value used in the Gaussian fit to the fractional energy separation distributions of each algorithm. Both the distributions which use the true energy of the hits (\FigureRef{fig:gauss_fit_hit_level}) and the true energy of the showering electron (\FigureRef{fig:gauss_fit_showering_e}) are shown.}
 \label{table:gaus_fit_sigma_values}
