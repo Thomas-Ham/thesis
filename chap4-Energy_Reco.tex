@@ -122,7 +122,7 @@ To purely gauge the performance of a given reconstruction method, it is probably
 
 Generally the validation is performed on a shower-hit level. This means that for a given shower, the energy of each hit is reconstructed and then summed together to obtain the energy of the shower. The exception to this is in the case of the \textit{Linear Energy tool}. During its development, it was customary to sum up the charge of all the hits and then convert to energy. This is why the calibration curve in \FigureRef{fig:linear lookup curve} has energies on the order of a shower level and not a hit level (individual hit energies are usually $\lesssim 5$ MeV) and also why it is possible to evaluate shower energies above 1000 MeV using the ESTAR method. 
 
-\subsection{General Validation of a BNB Sample}
+\subsection{Validation of a BNB Sample}
 
 In order to validate the reconstruction methods, an $e^- + \pi^+$ vertex sample with \gls{bnb}-like properties was produced where the electron is the showering particle. The pattern recognition is comprised of a number of steps some of which rely on the reconstructed vertex. It is therefore important to correctly reconstruct the vertex to avoid inaccuracies in the pattern recognition and it is usually easier to accurately reconstruct the vertex of an event if two particles are emanating from a single point rather than just one particle. Unless otherwise stated, all the validation has been performed using the collection plane. 
 
@@ -310,7 +310,7 @@ On the whole, the fractional separation is observed to be fairly constant across
 
 \newpage
 
-\section{Conclusion}
+\section{Summary of EM Shower Reconstruction}
 
 The \gls{em} shower reconstruction algorithms have been demonstrated to work consistently across all three wire planes in \gls{sbnd} for showers originating from both electrons and photons. The reconstructed energy obtained from the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} show good agreement with the true energy of $1 \sigma$ width hits with the \textit{Shower ESTAR Energy tool} performing slightly better. The \textit{Shower Num Electrons Energy tool} systematically assigns a slightly higher energy to each of the hits. All three methods underestimate the true energy of the showering particle due to inefficiencies in the hit reconstruction plus the expected presence of an overall bias. The \textit{Shower Num Electrons Energy tool} has the closest agreement with the true energy of the showering particle due to assigning higher energies to the individual hits.
 

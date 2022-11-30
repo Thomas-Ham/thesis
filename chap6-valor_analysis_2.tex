@@ -360,7 +360,7 @@ Total        & 157.8                & 2.3                  & 770.9              
 \clearpage
 \subsection{Impact of Systematic Uncertainties}
 
-\textcolor{red}{Not sure where best to put this section? Here or along with the sensitivity curves.}
+%\textcolor{red}{Not sure where best to put this section? Here or along with the sensitivity curves.}
 
 To assess the impact of the different systematic parameters on the oscillation parameters the following study is performed;
 \begin{enumerate}
@@ -581,6 +581,17 @@ The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_
     \label{fig::nue_disapp_single_param}
 \end{figure}
 
+Similarly, \FigureRef{fig:nue_injected_single_param} shows the change in allowed regions from applying the same set of single systematic parameters for both the \nue appearance and disappearance channels. It should be noted 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_app.pdf}
+    \includegraphics[width =0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_disapp.pdf}
+    \caption[\nue appearance and disappearance allowed regions with inclusion of a single systematic parameter at a time.]{\nue appearance and disappearance allowed regions with the inclusion of a single systematic parameter at a time. The systematic parameters considered for the \nue appearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ (Left) and the systematic parameters considered for the \nue disappearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ (Right).}
+    \label{fig:nue_injected_single_param}
+\end{figure}
+
+
 \clearpage
 
 The results from applying the flux, proposal interaction, modern interaction and proposal + modern interaction systematic subgroups for the \nue appearance channel is shown in the left plot of  \FigureRef{fig:nue_app_syst_group_sensitivities}. This highlights the reduction in sensitivity when individually applying each systematic subgroup when compared to the statistical only case. The right hand plot of \FigureRef{fig:nue_app_syst_group_sensitivities} shows the ratio of the exclusion contours to the statistical only case. This gives a clearer measure of the impact on the sensitivity in $\sin^2{2\theta_{\mu e}}$ space. It follows that the interaction systematics have the biggest impact on the sensitivity which in turn are dominated by the modern set of interaction parameters. The proposal set of interaction parameters have the smallest impact with the magnitude of the impact from the flux parameters being somewhere in between the two sets of interaction parameters. 
@@ -607,7 +618,7 @@ The relative contribution of the different systematic groups to the overall excl
 
 \subsection{Impact of Additional Efficiency Systematics}\label{Impact of Additional Efficiency Systematics}
 
-As was mentioned in \SectionRef{sec:other_syst}, efficiency systematics are not currently included in the \textit{standard} analyses. In order to get a measure of the possible impact of efficiency systematics on the sensitivity, various covariance matrices were produced following the scheme outlined in \SectionRef{sec:efficiency_syst}. Matrices were produced to investigate the impact of;
+As was mentioned in \SectionRef{sec:efficiency_syst}, efficiency systematics are not currently included in the \textit{standard} analyses. In order to get a measure of the possible impact of efficiency systematics on the sensitivity, various covariance matrices were produced following the scheme outlined in \SectionRef{sec:efficiency_syst}. Matrices were produced to investigate the impact of;
 \begin{enumerate}
     \item Fully correlated errors only.
     \item Various combinations of uncorrelated errors with a fixed correlated error.
