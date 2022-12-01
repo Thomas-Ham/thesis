@@ -563,7 +563,7 @@ Similar to \FigureRef{fig:nue_sensitivity_detector_contribution}, \FigureRef{fig
 
 \subsection{Impact of Systematic Parameters}
 
-The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ parameter on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least on parameter from each systematic subgroup. Similarly, the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}.
+The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ parameters on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least on parameter from each systematic subgroup. Similarly, the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}.
 
 \begin{figure}[h!]
     \centering
@@ -581,18 +581,7 @@ The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_
     \label{fig::nue_disapp_single_param}
 \end{figure}
 
-Similarly, \FigureRef{fig:nue_injected_single_param} shows the change in allowed regions from applying the same set of single systematic parameters for both the \nue appearance and disappearance channels. It should be noted 
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = 0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_app.pdf}
-    \includegraphics[width =0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_disapp.pdf}
-    \caption[\nue appearance and disappearance allowed regions with inclusion of a single systematic parameter at a time.]{\nue appearance and disappearance allowed regions with the inclusion of a single systematic parameter at a time. The systematic parameters considered for the \nue appearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ (Left) and the systematic parameters considered for the \nue disappearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ (Right).}
-    \label{fig:nue_injected_single_param}
-\end{figure}
-
-
-\clearpage
+\newpage
 
 The results from applying the flux, proposal interaction, modern interaction and proposal + modern interaction systematic subgroups for the \nue appearance channel is shown in the left plot of  \FigureRef{fig:nue_app_syst_group_sensitivities}. This highlights the reduction in sensitivity when individually applying each systematic subgroup when compared to the statistical only case. The right hand plot of \FigureRef{fig:nue_app_syst_group_sensitivities} shows the ratio of the exclusion contours to the statistical only case. This gives a clearer measure of the impact on the sensitivity in $\sin^2{2\theta_{\mu e}}$ space. It follows that the interaction systematics have the biggest impact on the sensitivity which in turn are dominated by the modern set of interaction parameters. The proposal set of interaction parameters have the smallest impact with the magnitude of the impact from the flux parameters being somewhere in between the two sets of interaction parameters. 
 
@@ -604,7 +593,6 @@ The results from applying the flux, proposal interaction, modern interaction and
     \label{fig:nue_app_syst_group_sensitivities}
 \end{figure}
 
-
 The relative contribution of the different systematic groups to the overall exclusion contour for \nue disappearance is shown in \FigureRef{fig:nue_disapp_syst_groups} and is comparable to the \nue appearance case. The interaction systematics again have the largest impact the majority of which is due to the modern set of parameters. The proposal set of parameters have the smallest impact with the magnitude of the impact from the flux parameters being somewhere in between the two sets of interaction parameters.
 
 \begin{figure}[h!]
@@ -615,6 +603,42 @@ The relative contribution of the different systematic groups to the overall excl
     \label{fig:nue_disapp_syst_groups}
 \end{figure}
 
+\newpage
+
+\FigureRef{fig:nue_injected_single_param} shows the change in allowed regions from applying the same set of single systematic parameters for both the \nue appearance and disappearance channels. Additionally, the allowed region with the inclusion of a single parameter are shown along with the corresponding contour from the entire associated set of systematic paramaters for the \nue appearance and \nue disappearance channels in \FigureRef{fig:nue_app_single_syst_sets} and \FigureRef{fig:nue_disapp_single_syst_sets} respectively.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_app.pdf}
+    \includegraphics[width =0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_disapp.pdf}
+    \caption[\nue appearance and disappearance allowed regions with inclusion of a single systematic parameter at a time.]{\nue appearance and disappearance allowed regions with the inclusion of a single systematic parameter at a time. The systematic parameters considered for the \nue appearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ (Left) and the systematic parameters considered for the \nue disappearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ (Right).}
+    \label{fig:nue_injected_single_param}
+\end{figure}
+
+\begin{figure}[h!]
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_app_flux.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_app_proposal.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_app_modern.pdf}}
+  \captionsetup{width=0.49\textwidth}
+  \parbox[b]{0.49\textwidth}%
+  {
+    \caption[The \nue appearance allowed regions with the inclusion of single systematic parameters compared to the region with the inclusion of all parameters in the associated set.]{The \nue appearance allowed region from an injected signal at $\sin^2{2\theta_{\mu e}} = 0.003$, $\Delta m^2_{41}$ = 1.32 eV$^2$ showing the impact of the $f_{\sigma^{\pi}_{INEL}}$ compared to the total flux systematics (Top Left), the impact of $f_{M_A^{CCRes}}$ compared to the total proposal systematics (Top Right) and the impact of both $f_{M_V^{CCRes}}$ and $f_{R_{\pi}^{C Ex}}$ on the total modern systematics (Bottom Left). The stat only and total flux + interaction contours have been included for comparison. \\}
+    \label{fig:nue_app_single_syst_sets} 
+  }
+\end{figure}
+
+\begin{figure}[h!]
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_disapp_flux.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_disapp_proposal.pdf}}
+  {\includegraphics[width=0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_disapp_modern.pdf}}
+  \captionsetup{width=0.49\textwidth}
+  \parbox[b]{0.49\textwidth}%
+  {
+  \caption[The \nue disappearance allowed regions with the inclusion of single systematic parameters compared to the region with the inclusion of all parameters in the associated set.]{The \nue disappearance allowed region from an injected signal at $\sin^2{2\theta_{ee}} = 0.4$, $\Delta m^2_{41}$ = 3 eV$^2$ showing the impact of the $f_{expskin}$ compared to the total flux systematics (Top Left), the impact of $f_{M_A^{CCRes}}$ compared to the total proposal systematics (Top Right) and the impact of both $f_{M_V^{CCRes}}$ and $f_{R_N^{C Ex}}$ on the total modern systematics (Bottom Left). The stat only and total flux + interaction contours have been included for comparison. \\}
+    \label{fig:nue_disapp_single_syst_sets} 
+  }
+\end{figure}
+\clearpage
 
 \subsection{Impact of Additional Efficiency Systematics}\label{Impact of Additional Efficiency Systematics}
 
