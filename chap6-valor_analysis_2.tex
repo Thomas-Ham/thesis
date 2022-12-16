@@ -358,7 +358,7 @@ Total        & 157.8                & 2.3                  & 770.9              
 \end{figure}
 
 \clearpage
-\subsection{Impact of Systematic Uncertainties}
+\subsection{Impact of Systematic Uncertainties}\label{sec:star_plot_study}
 
 %\textcolor{red}{Not sure where best to put this section? Here or along with the sensitivity curves.}
 
@@ -383,14 +383,14 @@ where $\zeta \in \{\sin^2{2\theta}, \Delta m^2_{41}\}$ and the subscript \textit
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/star_plot/nue_app_pulls.pdf}
+    \includegraphics[width = \textwidth]{figures-chap6/star_plot/nue_app_pulls_2.pdf}
     \caption[\nue appearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue appearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
     \label{fig:nue_app_osc_param_pulls}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/star_plot/nue_dsisapp_pulls.pdf}
+    \includegraphics[width = \textwidth]{figures-chap6/star_plot/nue_dsisapp_pulls_2.pdf}
     \caption[\nue disappearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue disappearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
     \label{fig:nue_disapp_osc_param_pulls}
 \end{figure}
@@ -539,7 +539,7 @@ This section will discuss the impact on the sensitivity contours due to;
 
 \subsection{Impact of Detector Combinations}
 
-To see the impact that each detector has on the sensitivity contour, the left plot of \FigureRef{fig:nue_sensitivity_detector_contribution} shows the \nue appearance statistical-only sensitivity contours from each individual detector as well as all possible combinations (the black curve labelled "SBN" refers to a contour from combining all three detectors). It can be seen that for large $\Delta m^2_{41}$ (greater than $\sim$5 eV$^2$), that the \gls{sbnd} detector dominates the sensitivity whereas for small $\Delta m^2_{41}$ (less than $\sim$0.7 eV$^2$) the \gls{icarus} detector dominates. It should also be noted that only by combining the fits from all three detectors can the best sensitivities be obtained. Having this multi-detector design is one of the key advantages of the \gls{sbn} program. The right plot of \FigureRef{fig:nue_sensitivity_detector_contribution} is akin to the left one, but with the inclusion of flux and interaction systematics in the fits. Again, the improvements to the sensitivity are highlighted by combining multiple detectors. 
+To see the impact that each detector has on the sensitivity contour, the left plot of \FigureRef{fig:nue_sensitivity_detector_contribution} shows the \nue appearance statistical-only sensitivity contours from each individual detector as well as all possible combinations (the black curve labelled ``SBN'' refers to a contour from combining all three detectors). It can be seen that for large $\Delta m^2_{41}$ (greater than $\sim$5 eV$^2$), that the \gls{sbnd} detector dominates the sensitivity whereas for small $\Delta m^2_{41}$ (less than $\sim$0.7 eV$^2$) the \gls{icarus} detector dominates. It should also be noted that only by combining the fits from all three detectors can the best sensitivities be obtained. Having this multi-detector design is one of the key advantages of the \gls{sbn} program. The right plot of \FigureRef{fig:nue_sensitivity_detector_contribution} is akin to the left one, but with the inclusion of flux and interaction systematics in the fits. Again, the improvements to the sensitivity are highlighted by combining multiple detectors. 
 
 \begin{figure}[h!]
     \centering
@@ -563,13 +563,13 @@ Similar to \FigureRef{fig:nue_sensitivity_detector_contribution}, \FigureRef{fig
 
 \subsection{Impact of Systematic Parameters}
 
-The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ parameters on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least on parameter from each systematic subgroup. Similarly, the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}.
+The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ parameters on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least one parameter is from each systematic subgroup. Similarly, the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}. Both the statistical only contour and the one including all the flux and interaction systematics are shown for comparison. It should be noted that single parameters may contribute significantly to the total reduction in sensitivity from the inclusion of all systematic parameters. Additionally, the systematics considered were chosen based on a study which used an injected signal meaning the large impact seen there may not be directly mapped to an exclusion contour which gives a possible reason for the relatively minor impact seen due to $f_{\sigma^{\pi}_{INEL}}$ and $f_{R_{\pi}^{C Ex}}$.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_app_single_param.pdf}
     \includegraphics[width =0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_app_single_param_ratio.pdf}
-    \caption[\nue appearance exclusion contours with inclusion of a single systematic parameter at a time.]{Left: \nue appearance exclusion contours with inclusion of a single systematic parameter at a time. The systematic parameters considered are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$. Right: The ratio of the exclusion contours with the inclusion of a systematic parameter the statistical only contour.}
+    \caption[\nue appearance exclusion contours with inclusion of a single systematic parameter at a time.]{Left: \nue appearance exclusion contours with inclusion of a single systematic parameter at a time. The systematic parameters considered are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$. Right: The ratio of the exclusion contours with the inclusion of a single systematic parameter to the statistical only contour.}
     \label{fig:nue_app_single_param}
 \end{figure}
 
@@ -577,7 +577,7 @@ The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_disapp_single_param.pdf}
     \includegraphics[width =0.49\textwidth]{figures-chap6/exclusion_contours/single_param/nue_disapp_single_param_ratio.pdf}
-    \caption[\nue disappearance exclusion contours with inclusion of a single systematic parameter at a time.]{Left: \nue disappearance exclusion contours with inclusion of a single systematic parameter at a time. The systematic parameters considered are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$. Right: The ratio of the exclusion contours with the inclusion of a systematic parameter the statistical only contour.}
+    \caption[\nue disappearance exclusion contours with inclusion of a single systematic parameter at a time.]{Left: \nue disappearance exclusion contours with inclusion of a single systematic parameter at a time. The systematic parameters considered are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$. Right: The ratio of the exclusion contours with the inclusion of a single systematic parameter to the statistical only contour.}
     \label{fig::nue_disapp_single_param}
 \end{figure}
 
@@ -593,7 +593,7 @@ The results from applying the flux, proposal interaction, modern interaction and
     \label{fig:nue_app_syst_group_sensitivities}
 \end{figure}
 
-The relative contribution of the different systematic groups to the overall exclusion contour for \nue disappearance is shown in \FigureRef{fig:nue_disapp_syst_groups} and is comparable to the \nue appearance case. The interaction systematics again have the largest impact the majority of which is due to the modern set of parameters. The proposal set of parameters have the smallest impact with the magnitude of the impact from the flux parameters being somewhere in between the two sets of interaction parameters.
+The relative contribution of the different systematic groups to the overall exclusion contour for \nue disappearance is shown in \FigureRef{fig:nue_disapp_syst_groups} and is comparable to the \nue appearance case. The interaction systematics again have the largest impact, the majority of which is due to the modern set of parameters. The proposal set of parameters have the smallest impact with the magnitude of the impact from the flux parameters being somewhere in between the two sets of interaction parameters.
 
 \begin{figure}[h!]
     \centering
@@ -605,13 +605,14 @@ The relative contribution of the different systematic groups to the overall excl
 
 \newpage
 
-\FigureRef{fig:nue_injected_single_param} shows the change in allowed regions from applying the same set of single systematic parameters for both the \nue appearance and disappearance channels. Additionally, the allowed region with the inclusion of a single parameter are shown along with the corresponding contour from the entire associated set of systematic paramaters for the \nue appearance and \nue disappearance channels in \FigureRef{fig:nue_app_single_syst_sets} and \FigureRef{fig:nue_disapp_single_syst_sets} respectively.
+To further assess the reduction in sensitivities due to specific parameters or parameter groups, allowed regions have been constructed using the same injected signal as was used for the study done in \SectionRef{sec:star_plot_study}. 
+\FigureRef{fig:nue_injected_single_param} shows the change in allowed regions from applying the same set of single systematic parameters for both the \nue appearance and disappearance channels as was done for the exclusion contours. Both the statistical only contour and the one including flux and interaction systematics have again been included for comparison.  Additionally, the allowed region with the inclusion of a single parameter are shown along with the corresponding contour from the entire associated set of systematic paramaters for the \nue appearance and \nue disappearance channels in \FigureRef{fig:nue_app_single_syst_sets} and \FigureRef{fig:nue_disapp_single_syst_sets} respectively. Unlike for the exclusion contours, the  $f_{\sigma^{\pi}_{INEL}}$ and $f_{R_{\pi}^{C Ex}}$ parameters don't show the smallest change across the entire parameter space. The change is comparable to the other parameters for at least some of the parameter space which is more consistent with the size of the impact seen in \SectionRef{sec:star_plot_study}.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width = 0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_app.pdf}
     \includegraphics[width =0.49\textwidth]{figures-chap6/allowed_regions/single_param/nue_disapp.pdf}
-    \caption[\nue appearance and disappearance allowed regions with inclusion of a single systematic parameter at a time.]{\nue appearance and disappearance allowed regions with the inclusion of a single systematic parameter at a time. The systematic parameters considered for the \nue appearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ (Left) and the systematic parameters considered for the \nue disappearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ (Right).}
+    \caption[\nue appearance and disappearance allowed regions with inclusion of a single systematic parameter at a time.]{\nue appearance and disappearance allowed regions with the inclusion of a single systematic parameter at a time. The injected signal for \nue appearance is $\sin^2{2\theta_{\mu e}} = 0.003$, $\Delta m^2_{41}$ = 1.32 eV$^2$ whereas the injected signal for \nue disappearance is $\sin^2{2\theta_{ee}} = 0.4$, $\Delta m^2_{41}$ = 3 eV$^2$. The systematic parameters considered for the \nue appearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ (Left) and the systematic parameters considered for the \nue disappearance channel are $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ (Right).}
     \label{fig:nue_injected_single_param}
 \end{figure}
 
@@ -642,7 +643,7 @@ The relative contribution of the different systematic groups to the overall excl
 
 \subsection{Impact of Additional Efficiency Systematics}\label{Impact of Additional Efficiency Systematics}
 
-As was mentioned in \SectionRef{sec:efficiency_syst}, efficiency systematics are not currently included in the \textit{standard} analyses. In order to get a measure of the possible impact of efficiency systematics on the sensitivity, various covariance matrices were produced following the scheme outlined in \SectionRef{sec:efficiency_syst}. Matrices were produced to investigate the impact of;
+As was mentioned in \SectionRef{sec:efficiency_syst}, efficiency systematics are not currently included in the \textit{standard} analyses. In order to get a measure of the possible impact of efficiency systematics on the sensitivity, various covariance matrices were produced following the scheme outlined in \SectionRef{sec:efficiency_syst}. Matrices were produced to investigate the impact of:
 \begin{enumerate}
     \item Fully correlated errors only.
     \item Various combinations of uncorrelated errors with a fixed correlated error.
@@ -658,7 +659,7 @@ Sensitivities including efficiency uncertainties for the \numu disappearance cha
 
 \subsubsection*{\texorpdfstring{Impact of Efficiency Systematics on \nue Appearance Sensitivities}{Impact of Efficiency Systematics on nue Appearance Sensitivities}}
 
-In order to gauge the contribution of some typical efficiency uncertainty, \FigureRef{fig:nue_app_syst_groups+efficiency} shows the impact on the \nue appearance sensitivity from individual sets of systematic parameters as in \FigureRef{fig:nue_app_syst_group_sensitivities} but with the addition of a 2\% correlated + 2\% uncorrelated efficiency uncertainty. The impact of the efficiency uncertainty is comparable to the proposal interaction systematics having the smallest contribution to the sensitivity. 
+In order to gauge the contribution of some typical efficiency uncertainty, \FigureRef{fig:nue_app_syst_groups+efficiency} shows the impact on the \nue appearance sensitivity from individual sets of systematic parameters as in \FigureRef{fig:nue_app_syst_group_sensitivities} but with the additional case where only a 2\% correlated + 2\% uncorrelated efficiency uncertainty has been applied. The impact of the efficiency uncertainty is comparable to the proposal interaction systematics having the smallest contribution to the sensitivity. 
 
 \begin{figure}[h!]
     \centering
@@ -667,7 +668,7 @@ In order to gauge the contribution of some typical efficiency uncertainty, \Figu
     \label{fig:nue_app_syst_groups+efficiency}
 \end{figure}
 
-The reduction in sensitivity from applying a 10\% correlated uncertainty and a 2\% correlated + 2\% uncorrelated uncertainty are shown in \FigureRef{fig:nue_app_corr_uncorr_error}. Since a correlated error of 10\% has a close to negligible impact, the results from applying correlated uncertainties less than 10\% as was done for the \numu channel have been omitted. Similarly, applying smaller uncorrelated uncertainties would again only have a minor impact so these have also been omitted.  
+The reduction in sensitivity from applying a 10\% correlated uncertainty and a 2\% correlated + 2\% uncorrelated uncertainty on top of the standard flux and interaction systematics are shown in \FigureRef{fig:nue_app_corr_uncorr_error}. Since a correlated error of 10\% has a close to negligible impact, the results from applying correlated uncertainties less than 10\% as was done for the \numu channel have been omitted. Similarly, applying smaller uncorrelated uncertainties would again only have a minor impact so these have also been omitted.  
 
 \begin{figure}[h!]
     \centering
@@ -792,3 +793,18 @@ The exclusion contours comparing the three selections are shown on the left of \
     \label{fig:nue_disapp_bias}
 \end{figure}
 
+\newpage
+\section{\texorpdfstring{Summary of \nue sensitivities within SBN}{Summary of the nue sensitivities within SBN}}
+
+The sensitivities that have been produced for the \gls{sbn} analysis were constructed using the VALOR fitting framework. The oscillation channels, namely \nue appearance and \nue disappearance, have been considered as stand alone analyses as part of a \nue CC inclusive sample with both exclusion and allowed regions being investigated for both. 
+
+The flux and interaction systematics considered are initially provided by the \gls{microboone} and \gls{genie} reweight packages respectively before being processed internally by VALOR. The impact of some possible variations of efficiency systematics have been investigated internally by use of covariance matrices within VALOR. It has been demonstrated that the inclusion of flux and interaction systematics significantly reduce the expected sensitivities, however, since they are already well constrained it is unlikely that their impact may be significantly decreased. The efficiency systematics are currently largely unconstrained, but the impact from various combinations of correlated and uncorrelated uncertainties have been shown to only be relatively minor when included in addition to the flux and interaction systematics. 
+
+The exclusion sensitivities have been produced for each individual detector within \gls{sbn} and all combinations of multi-detector fits including for the full \gls{sbn} program (combining all three detectors). For both oscillation channels, the \gls{sbnd} detector dominates the sensitivity at large values of $\Delta m^2_{41}$ (> 3 eV$^2$) and ICARUS dominates for small values of $\Delta m^2_{41}$ (< 3 eV$^2$). One of the key features of the \gls{sbn} program is the three detector design. This is highlighted by the fact the best sensitivity can only be obtained by combining data from all three detectors. 
+
+The current \gls{sbn} \nue appearance exclusion sensitivity supersedes that of \gls{karmen} for essentially the entire parameters space, whereas the allowed region is much smaller than that obtained from \gls{lsnd}, but is nevertheless consistent with the result. The \nue disappearance exclusion sensitivity improves on that of ND280 for $\Delta m^2_{41}$ values less than 10 eV$^2$ and excludes much of the 90\% allowed region from ND280. Most of the \gls{sbn} allowed region is again still consistent with what was obtained by ND280. 
+
+It is expected that the \gls{sbn} sensitivities may be further improved in the future by considering exclusive samples and not just the \nue CC inclusive one. Additionally, the possibility of producing joint fits which allows the mixing angles to be over constrained would allow for an improvement in the sensitivity by profiling over one of the mixing angles. Finally, the \gls{pot} of $6.6 \times 10^{20}$ used for \gls{sbnd} and \gls{icarus} and the \gls{pot} of $13.2 \times 10^{20}$ used for \gls{microboone} are nominal values estimated for three years of data taking at the time of the \gls{sbn} proposal. Current \gls{bnb} projections estimate that the actual \gls{pot} may be close to two or three times this nominal \gls{pot} value. This increased event rate will also provide a noticeable improvement to the sensitivities. 
+
+
+%Some stoof about constraining the dominant systematics. 

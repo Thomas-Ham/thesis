@@ -5,6 +5,8 @@
 
 \chapter{Single Parameter Variations}\label{app:single_parameter_variations}
 
+The $+3\sigma$ variations between the values obtained directly from the universes and those due to the response function in VALOR have been evaluated for all the systematic parameters that are modelled by response functions. The uncorrelated flux variations are shown in \FigureRef{fig:uncorrelated_flux_variations} whereas the proposal and modern interaction parameters are shown in \FigureRef{fig:proposal_variations} and \FigureRef{fig:modern_variations} respectively. All the uncorrelated flux parameters show prefect agreement between the response functions and the universes. Some of the interaction parameters do show some minor differences, however, the differences are small ($<10$ events) which is negligible when compared with the total event rate. 
+
 \def\proposalxsec{
 genie_ccresAxial_Genie,genie_ncresAxial_Genie,genie_qema_Genie,genie_NC_Genie,genie_NonResRvpCC1pi_Genie,genie_NonResRvnCC1pi_Genie,genie_NonResRvbarnCC1pi_Genie,genie_NonResRvbarpCC1pi_Genie,genie_NonResRvpCC2pi_Genie,genie_NonResRvnCC2pi_Genie,genie_NonResRvbarnCC2pi_Genie,genie_NonResRvbarpCC2pi_Genie,genie_NonResRvpNC1pi_Genie,genie_NonResRvnNC1pi_Genie,genie_NonResRvbarnNC1pi_Genie,genie_NonResRvbarpNC1pi_Genie,genie_NonResRvpNC2pi_Genie,genie_NonResRvnNC2pi_Genie,genie_NonResRvbarnNC2pi_Genie,genie_NonResRvbarpNC2pi_Genie}
 
@@ -21,7 +23,7 @@ genie_ccresAxial_Genie,genie_ncresAxial_Genie,genie_qema_Genie,genie_NC_Genie,ge
     \includegraphics[width =\textwidth]{figures-chap6/tweak_nsigma_nue/\x_nuelikeCChigh_3sigma_\x.png}
 \end{subfigure}
 }
-\caption[Flux systematic parameter validation.]{A comparison of the +3$\sigma$ variations from the response functions used by VALOR and the universes for the complete set of uncorrelated flux systematic parameters.}
+\caption[Flux systematic parameter validation.]{A comparison of the +3$\sigma$ variations from the response functions used by VALOR and the universes for the complete set of uncorrelated flux systematic parameters.}\label{fig:uncorrelated_flux_variations}
 \end{figure}
 
 \begin{figure}
@@ -31,7 +33,7 @@ genie_ccresAxial_Genie,genie_ncresAxial_Genie,genie_qema_Genie,genie_NC_Genie,ge
     \includegraphics[width =\textwidth]{figures-chap6/tweak_nsigma_nue/\x_nuelikeCChigh_3sigma_\x.png}
 \end{subfigure}
 }
-\caption[Proposal interaction systematic parameter validation.]{A comparison of the +3$\sigma$ variations from the response functions used by VALOR and the universes for the complete set of proposal interaction systematic parameters.}
+\caption[Proposal interaction systematic parameter validation.]{A comparison of the +3$\sigma$ variations from the response functions used by VALOR and the universes for the complete set of proposal interaction systematic parameters.}\label{fig:proposal_variations}
 \end{figure}
 
 
@@ -42,12 +44,13 @@ genie_ccresAxial_Genie,genie_ncresAxial_Genie,genie_qema_Genie,genie_NC_Genie,ge
     \includegraphics[width =\textwidth]{figures-chap6/tweak_nsigma_nue/\x_nuelikeCChigh_3sigma_\x.png}
 \end{subfigure}
 }
-\caption[Modern interaction systematic parameter validation.]{A comparison of the +3$\sigma$ variations from the response functions used by VALOR and the universes for the complete set of modern cross-section systematic parameters.}
+\caption[Modern interaction systematic parameter validation.]{A comparison of the +3$\sigma$ variations from the response functions used by VALOR and the universes for the complete set of modern cross-section systematic parameters.}\label{fig:modern_variations}
 \end{figure}
 
 \chapter{Detector Volumes}
 \label{app:Detector_Volumes}
 
+The (X, Y, Z) coordinates that define the active and fiducial volumes of each module or \gls{tpc} are shown in \TableRef{table:active_and_fiducial_volumes} for \gls{sbnd}, \gls{microboone}, and \gls{icarus}.
 
 \begin{table}[h!]
 %\begin{tabular}{lR{15}cc}
@@ -75,7 +78,7 @@ ICARUS TPC 4 & \phantom{-}214.39 -- \phantom{-}339.39 & -148.41 -- 118.41 & -879
 
 The figures in \ChapterRef{chap:Energy_Reco} showing the reconstruction performance were produced whilst running Pandora in cheating mode in order to decouple the reconstruction methods from inefficiencies within the pattern recognition. If Pandora is instead used without cheating mode enabled, the resolution of the reconstruction algorithms is expected to worsen owing to the fact that the number of hits associated with true and reconstructed information is no longer in perfect agreement. 
 
-With cheating mode no longer enabled in Pandora, the true vs reconstructed energy is shown for all three planes using the ESTAR method in \FigureRef{fig:ESTAR_true_vs_reco_no_cheat}. The fractional resolution from the collection plane is shown in \FigureRef{fig:frac_res_no_cheat} for all three reconstruction methods.
+With cheating mode no longer enabled in Pandora, the true vs reconstructed energy is shown for all three planes using the ESTAR method in \FigureRef{fig:ESTAR_true_vs_reco_no_cheat}. The fractional energy separation from the collection plane is shown in \FigureRef{fig:frac_res_no_cheat} for all three reconstruction methods.
 
 \begin{figure}[h!]
     \centering
@@ -93,11 +96,11 @@ With cheating mode no longer enabled in Pandora, the true vs reconstructed energ
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap4/non_cheat/ESTAR_plane2_frac_res.pdf}
-    \caption[Fractional resolution of the shower energy with Pandora being run not in cheating mode.]{Comparison of the fractional energy resolution from a showering electron for the Shower Linear Energy tool, the Shower Num Electrons Energy tool and the Shower ESTAR Energy tool. The true energy is taken to be the true energy of the available hits and for the reconstruction, Pandora was run whilst not in cheating mode.}
+    \caption[Fractional separation of the shower energy with Pandora being run not in cheating mode.]{Comparison of the fractional energy separation from a showering electron for the \textit{Shower Linear Energy tool}, the \textit{Shower Num Electrons Energy tool} and the \textit{Shower ESTAR Energy tool}. The true energy is taken to be the true energy of the available hits and for the reconstruction, Pandora was run whilst not in cheating mode.}
     \label{fig:frac_res_no_cheat}
 \end{figure}
 
-Comparing \FigureRef{fig:ESTAR_true_vs_reco_no_cheat} to the ESTAR plot in \FigureRef{fig:reco_vs_true_hit_level} and \FigureRef{fig:true_vs_reco_for_induction_planes}, it can be seen that the resolution has degraded by disabling cheating mode in Pandora. Similarly, in \FigureRef{fig:frac_res_no_cheat}, each of the distributions has a noticeable tail in the negative x-direction which isn't present in the distributions shown in \FigureRef{fig:fractional_energy_resolution}.
+Comparing \FigureRef{fig:ESTAR_true_vs_reco_no_cheat} to the ESTAR plot in \FigureRef{fig:reco_vs_true_hit_level} and \FigureRef{fig:true_vs_reco_for_induction_planes}, it can be seen that the energy separation has degraded by disabling cheating mode in Pandora. Similarly, in \FigureRef{fig:frac_res_no_cheat}, each of the distributions has a noticeable tail in the negative x-direction which isn't present in the distributions shown in \FigureRef{fig:fractional_energy_resolution}.
 
 
 \chapter{\texorpdfstring{\numu Disappearance Analysis}{numu Disappearance Analysis}}\label{app:numu_disapp}
@@ -106,7 +109,7 @@ A similar analysis and validation to that described in \ChapterRef{chap:VALOR} t
 
 The nominal event rate breakdown for each of the detectors is shown in \FigureRef{fig:numu_disapp_spectra} where an integrated spectrum with oscillation parameters $\sin^2{2\theta_{\mu \mu}} = 0.072$, $\Delta m^2_{41} = 1.32 \text{ eV}^2$ has been overlayed. The overall magnitude of the event rate is several order of magnitude greater than that for \nue owing to the fact that the \gls{bnb} consists predominantly of \numu. As was the case for \nue disappearance, the reduction in events for \gls{sbnd} is relatively small whereas for \gls{microboone} and \gls{icarus} it is much more significant.
 
-The complete \numu disappearance exclusion sensitivities and allowed regions for both the statistical only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:numu_disapp_global_sensitivity} for the entire \gls{sbn} program alongside external limits from the combined results from \gls{sciboone} and \gls{miniboone}, IceCube, \gls{minos} and its successor \gls{minos}+ \cite{MiniBooNE/SciBooNE_numu_disapp_contour} \cite{IceCube_numu_disapp_contour}\cite{MINOS}\cite{MINOS+}. The results for the \gls{sbn} program are shown at a 5$\sigma$ confidence level whereas the exclusion region from the \gls{sciboone}/\gls{miniboone}, IceCube and \gls{minos}/\gls{minos}+ experiments are shown at the 90\% confidence. The IceCube experiment also shows an allowed region at the 99\% confidence level. The results from \gls{sbn} show a stronger sensitivity to that obtained by \gls{miniboone}/\gls{sciboone} for all mass splitting values. The exclusion contour is also comparable to that from \gls{minos}/\gls{minos}+ for $\Delta m^2_{41} \gtrsim 1\text{ eV}^2$, however below this value \gls{minos}/\gls{minos}+ provides a stronger limit. The exclusion contour from IceCube again provides a stronger limit at $\Delta m^2_{41} \lesssim 1\text{ eV}^2$, but for higher values, \gls{sbn} expects to improve on the results from IceCube. The allowed region from IceCube intersect the one from \gls{sbn} so they aren't fully compatible. 
+The complete \numu disappearance exclusion sensitivities and allowed regions for both the statistical only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:numu_disapp_global_sensitivity} for the entire \gls{sbn} program alongside external limits from the combined results from \gls{sciboone} and \gls{miniboone}, IceCube, \gls{minos} and its successor \gls{minos}+ \cite{MiniBooNE/SciBooNE_numu_disapp_contour} \cite{IceCube_numu_disapp_contour}\cite{MINOS}\cite{MINOS+}. The results for the \gls{sbn} program are shown at a 5$\sigma$ confidence level whereas the exclusion region from the \gls{sciboone}/\gls{miniboone}, IceCube and \gls{minos}/\gls{minos}+ experiments are shown at the 90\% confidence level. The IceCube experiment also shows an allowed region at the 99\% confidence level. The results from \gls{sbn} show a stronger sensitivity to that obtained by \gls{miniboone}/\gls{sciboone} for all mass splitting values. The exclusion contour is also comparable to that from \gls{minos}/\gls{minos}+ for $\Delta m^2_{41} \gtrsim 1\text{ eV}^2$, however, below this value \gls{minos}/\gls{minos}+ provides a stronger limit. The exclusion contour from IceCube again provides a stronger limit at $\Delta m^2_{41} \lesssim 1\text{ eV}^2$, but for higher values, \gls{sbn} expects to improve on the results from IceCube. The allowed region from IceCube intersect the one from \gls{sbn} so they aren't fully compatible. 
 
 \begin{figure}[h!]
   {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/numu_disapp_overlay_dmsq_1.32_sinsq2th_0.072_spectrum_sbn_nd_BNB_FHC_0_modes.pdf}}
