@@ -40,6 +40,9 @@
 %\usepackage{lineno}
 %\linenumbers
 
+% redefine the \paragraph command so it acts like subsubsubsection
+\RedeclareSectionCommand[runin=false,afterskip=1ex,afterindent=false]{paragraph}
+
 % sort out the captions
 \captionsetup{width = \textwidth}
 \captionsetup{format = plain} %

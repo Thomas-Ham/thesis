@@ -1,7 +1,7 @@
 \chapter{Sterile Neutrino Oscillation Inputs Within SBN}
 \label{chap:osc_inputs}
 
-In order to perform an oscillation analysis, a number of inputs and analysis choices are required. Typically this involves generating some event sample in each detector for a given analysis, applying a physics hypothesis and some set of systematic uncertainties. A fit comparing the observed and predicted event rate is then performed giving the confidence level of the applied physics hypothesis. This is summarised in \FigureRef{fig:analysis_paradigm} which shows the generic overview of the procedure coupled with the different components. Many of these items are common to all oscillation analyses and are agnostic to the fitting framework. The remainder of this chapter highlights some of the key inputs to the oscillation analysis along with some of the decisions that were made. The actual analysis results are detailed in \SectionRef{chap:VALOR} in addition to explaining how the VALOR framework processes or consumes these inputs where appropriate.
+In order to perform an oscillation analysis, a number of inputs and analysis choices are required. Typically this involves generating some event sample in each detector for a given analysis, applying a physics hypothesis and some set of systematic uncertainties. A fit comparing the observed and predicted event rate is then performed giving the confidence level of the applied physics hypothesis. This is summarised in \FigureRef{fig:analysis_paradigm} which shows the generic overview of the procedure coupled with the different components. Many of these items are common to all oscillation analyses and are agnostic to the fitting framework. The remainder of this chapter gives details of the VALOR neutrino fitting framework which is used to perform the oscillation analysis in this thesis, highlights some of the key inputs to the analysis and details some of the decisions that were made. The actual analysis results are discussed in \SectionRef{chap:VALOR}.
 
 \begin{figure}[!h]
     \centering
@@ -9,6 +9,54 @@ In order to perform an oscillation analysis, a number of inputs and analysis cho
     \caption[SBN Oscillation analysis paradigm.]{Overview of the SBN oscillation analysis paradigm. A given model for the neutrino oscillation, detector, neutrino flux and neutrino cross-section are combined with the appropriate data to give the prediction for the respective detector. Individual detector predictions may be combined to give an overall \gls{sbn} prediction. }
     \label{fig:analysis_paradigm}
 \end{figure}
+
+\section{The VALOR Framework}\label{sec:VALOR_framework}
+The VALOR framework is a neutrino fitting framework that was first developed for the \gls{t2k} experiment but has since been adapted to also cover, Hyper-Kamiokande, \gls{dune} and the \gls{sbn} program \cite{VALOR}.
+
+Performing an analysis within VALOR involves a number of physics parameters that define a physics hypothesis (e.g. neutrino oscillations) and the relevant systematic uncertainties. Event rate predictions are constructed for the associated detector, beam and event sample. These predictions are constructed as a function of a kinematical variable for either a nominal scenario or with variations due to a physics hypothesis and/or systematic uncertainties. This approach allows for joint oscillation and systematic fits to be constructed from a binned likelihood fitting approach for a given event topology. Fits may be performed for individual detectors or for a combination of multiple detectors and may include any number of systematic uncertainties. 
+
+
+
+The data inputs used for an oscillation analysis are mainly provided in the form of \glspl{mct}, which provide a mapping between true and reconstructed variables. They are constructed following the full event processing chain which includes event simulation, reconstruction and selection. Since the \glspl{mct} include the effects from reconstruction and selection, it is not feasible to directly recreate them using only information on the flux, cross-section and efficiency. These \glspl{mct}, \textit{T}, encapsulate a number of quantities describing a given event and are listed below,
+
+\begin{itemize}
+    \item[b] -- Beam configuration e.g. neutrino or anti-neutrino mode,
+    \item[d] -- Detector e.g. \gls{sbnd}, \gls{microboone} or \gls{icarus},
+    \item[s] -- Topological event selection e.g. \nue CC-inclusive, \numu CC-inclusive,
+    \item[m] -- True Reaction Mode e.g. \numu~CC QE, \nue~CC 1$\pi^{\pm}$,
+    \item[r] -- A bin in multi-dimensional reconstructed kinematic space e.g. $E_{\nu, reco}$,
+    \item[t] -- A bin in multi-dimensional true kinematic space e.g. $E_{\nu, true}$,
+\end{itemize}
+
+with $T = T_{d;b;s;m}(r, t)$. By combining \textit{T} with the necessary physics parameters, $\vec{\theta}$, and systematic parameters, $\vec{f}$, the predicted event rate, $n^{pred}_{d;b;s}$, may be expressed as
+\begin{equation}
+n_{d;b;s}^{pred}(r; \vec{\theta}; \vec{f}) =
+   \sum_{m} \sum_{t}  P_{d;b;m}(t; \vec{\theta}) \cdot R_{d;b;s;m}(r,t; \vec{f}) \cdot T_{d;b;s;m}(r,t) \cdot N^{MC},
+   \label{eq:valor_npred}
+\end{equation}
+where $P_{d;b;m}(t; \vec{\theta})$ represents the effect due to a physics hypothesis, $R_{d;b;s;m}(r,t; \vec{f})$ represents the response of a \gls{mct} bin to the systematic variations and $N^{MC} = \mbox{POT}_{b;d}^{data}/\mbox{POT}_{b;d}^{MC}$, which is the normalisation by which to scale the event rate to account for the POT which was used to construct the sample of neutrino events with respect to the nominal POT in the analysis. The variation due to systematic parameters is applied separately to each combination of beam, detector, topological selection and reaction mode in true-reconstructed space and is, therefore, dependant on, \textit{b, d, s} and \textit{m}. The dependence of $P_{d;b;m}(t; \vec{\theta})$ on \textit{d} and \textit{b} is due to \textit{d} and \textit{b} encapsulating the baseline information which is a component of the oscillation probability. The unoscillated \gls{cc} \glspl{mct} are weighted by the appropriate oscillation probability, $P_{\nu_{\alpha} \rightarrow \nu_{\beta}}$, to reflect the change in event rate due to neutrino oscillations. The \gls{nc} \glspl{mct} are left unweighted since they remain unchanged due to flavour oscillations. This distinction between \gls{cc} and \gls{nc} is encapsulated by \textit{m}, hence, $P_{d;b;m}(t; \vec{\theta})$ is required to also be dependent on \textit{m}. 
+
+For $n_{d ; b ; s}^{obs}(r)$ observed events, the log likelihood, $\lnOf{\lambda_{d;b;s}(\vec \theta, \vec f)}$, is given by
+\begin{equation}
+    \lnOf{\lambda_{d;b;s}(\vec \theta, \vec f)} = - \mathlarger{\mathlarger{\sum_{b,d,s,r}}} \Bigg \{ \Big (n_{d;b;s}^{pred}(r,\vec{\theta},\vec{f})
+    - n_{d ; b ; s}^{obs}(r) \Big) + n_{d ; b ; s}^{obs}(r) \cdot \lnOf{\frac{n_{d ; b ; s}^{obs}(r)}{n_{d ; b ; s}^{p r e d}(r , \vec{\theta} , \vec{f})}} \Bigg \}.
+\end{equation}
+An additional term is applied to penalise deviations from the nominal values of systematic parameters which is defined as,
+\begin{equation}
+    \lnOf{\lambda_{syst}(\vec{f})} = -\frac{1}{2} (\vec{f} - \vec{f}_0)^T \mathbf{V^{-1}} (\vec{f} - \vec{f}_0),
+\end{equation}
+where $\vec{f}_0$ is a vector containing the nominal value of all the systematic parameters and \textbf{V} is a covariance matrix containing the uncertainties of the systematic parameters \cite{VALOR_dune}. 
+
+In the limit of large statistics, quantities of the form $-2\lnOf{\lambda}$ have a $\chi^2$ distribution, hence calculating the log-likelihood allows a goodness-of-fit test to be performed \cite{introduction_to_mathematical_statistics_book}. The total goodness-of-fit value is therefore given by,
+\begin{equation}
+    \chi^2_{tot} = -2(\lnOf{\lambda_{d;b;s}(\vec{\theta}, \vec{f})} + \lnOf{\lambda_{syst}(\vec{f})}).
+\end{equation}
+
+In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and $n_{d;b;s}^{pred}$. The Asimov dataset is a dataset where all systematic parameters are set to their nominal values and serves as a proxy for data in cases where only simulations are considered. It has been shown that in the same limit as the $\chi^2$ approximation (in the limit of large statistics), the median of many toy \gls{mc} experiments is equivalent to the Asimov dataset. This allows the significance of a given hypothesis to be compared to the median one whilst only requiring one \textit{toy} experiment instead of needing to compute many toy \gls{mc} experiments \cite{Asimov_dataset}. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. Both regions show the area where the chosen model is either compatible or incompatible with the data. The difference is due to the input data which has either no oscillation signal (an exclusion region) or there is an injected signal (an allowed region). In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillations are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal. %For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float.
+
+
+
+
 
 \section{Monte Carlo Event Production}
 
