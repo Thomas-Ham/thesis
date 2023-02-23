@@ -232,7 +232,7 @@ The close proximity of \gls{sbnd} to the \gls{bnb} means an unprecedented number
 
 \subsection{SBND}\label{sec:SBND}
 
-\gls{sbnd} was purposely designed to be the near detector of the \gls{sbn} program and has an active volume with dimensions (4, 4, 5) m containing 112 tons of liquid argon. It consists of two \glspl{tpc}, where the central shared cathode sits in the middle of the detector with an anode on either side as is shown in \FigureRef{fig:sbnd_schematic}. Each of the \glspl{apa} consists of three wire planes where the first and second induction plane are orientated at $\pm 60^{\circ}$ to the vertical and the collection plane is vertical. In all cases, the wire plane spacing and the wire pitch are 3 mm. The nominal electric field in each of the \glspl{tpc} is 500 V/m \cite{SBN_Proposal}. 
+\gls{sbnd} was purposely designed to be the near detector of the \gls{sbn} program and has a total active volume with dimensions (4, 4, 5) m containing 112 tons of liquid argon. It consists of two \glspl{tpc} and therefore two distinct active volumes. A central shared cathode sits in the middle of the detector with an anode on either side as is shown in \FigureRef{fig:sbnd_schematic} with the detector orientated such that the z-direction is along the neutrino beam line. Each of the \glspl{apa} consists of three wire planes where the first and second induction plane are orientated at $\pm 60^{\circ}$ to the vertical and the collection plane is vertical. In all cases, the wire plane spacing and the wire pitch are 3 mm. The nominal electric field in each of the \glspl{tpc} is 500 V/m \cite{SBN_Proposal}. 
 
 \begin{figure}[!h]
     \centering
@@ -333,7 +333,7 @@ interaction medium and the same technology to detect interactions, the uncertain
 \end{figure}
 
 \newpage
-This main goal of the \gls{sbn} program revolves around sterile neutrino oscillation analyses, however, the close proximity of the \gls{sbn} detectors and in particular \gls{sbnd} to the neutrino beam source will allow for a high statistics study of neutrino argon interactions. This will provide valuable information for future liquid argon-based experiments such as \gls{dune}. \gls{sbnd} is expected to observe on the order of 2 million neutrino \gls{cc} interactions a year which is sufficient to be able to minimise the associated uncertainty to a point such that systematic uncertainties become dominant. As the \gls{bnb} consists predominantly of \numu's, most events will also be \numu based, however the \nue fraction of the \gls{bnb} is sufficient to expect 50,000 \nue events a year in \gls{sbnd} which is enough to perform both inclusive and exclusive analyses. There is also the opportunity to measure rare channels with a big increase in statistics or possibly even for the first time such as final states involving hyperons or $\nue \rightarrow \nue$ elastic scattering \cite{SBN_paper} \cite{light_dark_matter}.
+This main goal of the \gls{sbn} program revolves around sterile neutrino oscillation analyses, however, the close proximity of the \gls{sbn} detectors and in particular \gls{sbnd} to the neutrino beam source will allow for a high statistics study of neutrino argon interactions. This will provide valuable information for future liquid argon-based experiments such as \gls{dune}. \gls{sbnd} is expected to observe on the order of 2 million neutrino \gls{cc} interactions a year which is sufficient to be able to minimise the associated uncertainty to a point such that systematic uncertainties become dominant. As the \gls{bnb} consists predominantly of \numu's, most events will also be \numu based, however the \nue fraction of the \gls{bnb} is sufficient to expect 50,000 \nue events a year in \gls{sbnd} which is enough to perform both inclusive and exclusive analyses. There is also the opportunity to measure rare channels with a big increase in statistics or possibly even for the first time such as final states involving hyperons or $\nu-\electron$ elastic scattering \cite{SBN_paper} \cite{light_dark_matter}.
 
 The large event rate and the high-resolution event reconstruction provided may allow the \gls{sbn} program to be sensitive to \gls{bsm} physics other than sterile neutrino oscillations \cite{SBN_paper}. The potential areas include, but are not limited to,
 \begin{itemize}
@@ -345,6 +345,7 @@ The large event rate and the high-resolution event reconstruction provided may a
 \end{itemize}
 Feynman diagrams of possible light dark matter, heavy sterile neutrino, dark neutrino and millicharged particle interactions are shown in \FigureRef{fig:BSM_feynman_diagrams}.
 
+\begin{comment}
 \begin{figure}
     \centering
     \includegraphics[width = \smallfigwidth]{figures-chap3/light_dark_matter.png}
@@ -354,6 +355,81 @@ Feynman diagrams of possible light dark matter, heavy sterile neutrino, dark neu
     \caption[Feynman diagrams of \gls{bsm} processes.]{Feynman diagrams of \gls{bsm} processes. Top right: Light dark matter. Top Left: Heavy sterile neutrinos. Bottom Left: Dark neutrinos. Bottom Right: Millicharged particles.}
     \label{fig:BSM_feynman_diagrams}
 \end{figure}
+\end{comment}
 
-            
-            
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.4\linewidth}
+\vspace{0.3cm}
+\centering \textbf{Light Dark Matter} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{  
+\begin{feynman}
+    \weak[label=$A^{'*}$, labelDistance=-0.5, showArrow=false, flip=false]{7.00, 7.00}{9.00, 6.00}
+    \weak[label=$\gamma$, labelDistance=0.5, showArrow=false, flip=false]{7.00, 7.00}{9.00, 8.00}
+    \dashed[label=$m$, labelDistance=0.3, showArrow=false, flip=false]{4.00, 7.00}{7.00, 7.00}
+    \fermion[label = $\overline{\chi}$, labelDistance=-0.3, flip=true]{9.00, 6.00}{10.00, 5.50}
+    \fermion[label = $\chi$, labelDistance=0.3]{9.00, 6.00}{10.00, 6.50}
+\end{feynman}
+}
+\end{subfigure}
+\hspace{0.09\linewidth}
+\begin{subfigure}{0.4\linewidth}
+\vspace{0.3cm}
+\centering \textbf{Heavy Sterile Neutrino} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{  
+\begin{feynman}
+    \dashed[showArrow=false, label=$\pi^0/K^0$, labelDistance=0.3]{4.00, 7.00}{6.00, 7.00}
+    \fermion[showArrow=false, label=$N$, labelDistance=-0.4]{6.00, 7.00}{8.00, 7.00}
+    \fermion[showArrow=false]{6.00, 7.00}{7.00, 8.00}
+    \dashed[showArrow=false]{8.00, 7.00}{9.00, 7.00}
+    
+    \dashed[showArrow=false]{9.1, 8.50}{9.1, 5.5}
+    
+    \fermion[showArrow=false]{9.20, 8.0}{9.70, 8.0}
+    \fermion[flip=true, label=$\positron$, labelDistance=0.2]{9.70, 8.0}{10.70, 7.70}
+    \fermion[label=$\electron$, labelDistance=-0.4]{9.70, 8.00}{10.40, 7.3}
+    \fermion[showArrow=false,label=$\nu$, labelDistance=0.3]{9.70, 8.0}{10.70, 8.5}
+    
+    \fermion[showArrow=false]{9.20, 6}{9.70, 6}
+    \fermion[showArrow=false, label=$e^{\pm}$, labelDistance=0.3]{9.70, 6}{10.70, 6.25}
+    \dashed[showArrow=false, label=meson, labelDistance=-0.4]{9.70, 6}{10.70, 5.75}
+\end{feynman}
+}
+\end{subfigure}
+
+\begin{subfigure}{0.4\linewidth}
+\vspace{0.3cm}
+\centering \textbf{Dark Neutrinos} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{  
+\begin{feynman}
+    \fermion[label=$\nu$, labelDistance=0.2]{18.00, 15.00}{20.00, 14.00}
+    \fermion[label=$\nu_D$]{20.00, 14.00}{21.50, 15.00}
+    \weak[label = $Z_D$, labelDistance=0.2]{20.00, 11.00}{20.00, 14.00}
+    \fermion[]{18.00, 10.00}{20.00, 11.00}
+    \fermion[]{20.00, 11.00}{22.00, 10.00}
+    
+    \fermion[label=$\nu$, labelDistance=0.4]{21.50, 15.00}{22.50, 16.00}
+    \weak[label=$Z_D$, labelDistance=0.3]{21.50, 15.00}{23.00, 14.00}
+    \fermion[label=\positron, flip=true, labelDistance=-0.2]{23.00, 14.00}{24.00, 15.00}
+    \fermion[label=\electron, labelDistance=-0.5]{23.00, 14.00}{24.00, 13.00}
+\end{feynman}
+}
+\end{subfigure}
+\hspace{0.09\linewidth}
+\begin{subfigure}{0.4\linewidth}
+\vspace{0.3cm}
+\centering \textbf{Millicharged Particles} \\ \vspace{0.3cm}
+\resizebox{\linewidth}{4cm}{  
+\begin{feynman}
+    \dashed[showArrow=false, label=$\pi^0$]{28.00, 13.00}{30.00, 13.00}
+    \weak[label=$\gamma$, labelDistance=0.6]{30.00, 13.00}{32.00, 15.00}
+    \weak[label=$\gamma^*$, labelDistance=0.4]{30.00, 13.00}{32.00, 11.00}
+    \fermion[label=$\chi$]{32.00, 11.00}{33.00, 12.00}
+    \fermion[flip=true, label=$\overline{\chi}$, labelDistance=-0.5]{32.00, 11.00}{33.00, 10.00}
+\end{feynman}
+}
+\end{subfigure}
+\caption[Feynman diagrams of \gls{bsm} processes.]{Feynman diagrams of \gls{bsm} processes. Top right: Light dark matter. Top Left: Heavy sterile neutrinos. Bottom Left: Dark neutrinos. Bottom Right: Millicharged particles.}
+\label{fig:BSM_feynman_diagrams}
+\end{figure}
