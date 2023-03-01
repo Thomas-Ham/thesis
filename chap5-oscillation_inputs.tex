@@ -22,8 +22,8 @@ The data inputs used for an oscillation analysis are mainly provided in the form
 \begin{itemize}
     \item[b] -- Beam configuration e.g. neutrino or anti-neutrino mode,
     \item[d] -- Detector e.g. \gls{sbnd}, \gls{microboone} or \gls{icarus},
-    \item[s] -- Topological event selection e.g. \nue CC-inclusive, \numu CC-inclusive,
-    \item[m] -- True Reaction Mode e.g. \numu~CC QE, \nue~CC 1$\pi^{\pm}$,
+    \item[s] -- Topological event selection e.g. \nue\gls{cc}-inclusive, \numu\gls{cc}-inclusive,
+    \item[m] -- True Reaction Mode e.g. \numu~\gls{ccqe}, \nue~\gls{cc} 1$\pi^{\pm}$,
     \item[r] -- A bin in multi-dimensional reconstructed kinematic space e.g. $E_{\nu, reco}$,
     \item[t] -- A bin in multi-dimensional true kinematic space e.g. $E_{\nu, true}$,
 \end{itemize}
@@ -128,7 +128,7 @@ The $\nue$ selection follows a similar basis to the $\numu$ selection described 
   \item If more than one shower arising from the vertex has an energy above a 100 MeV, the event is removed. %Showers arising from the vertex are identified and the reconstructed energy is found from smearing the ionisation deposition. If more than one shower with energy above 100 MeV exists, the event is removed. This removes neutral pion events where the pion decays into two photon showers. 
   \item If there is only one photon candidate in the event, a conversion gap cut is applied rejecting any event where the photon shower occurs more than 3 cm from the vertex. 
   \item A weight of 0.06 is applied to the remaining photons which undergo a dE/dx cut resulting in a 94\% background rejection.
-  \item If a misidentified photon originates from a resonant $\numu$ CC interaction, the muon lepton is identified. Events where a muon travels greater than 1 m are assumed to be from $\numu$ CC interactions and the event is removed. 
+  \item If a misidentified photon originates from a resonant $\numu$ \gls{cc} interaction, the muon lepton is identified. Events where a muon travels greater than 1 m are assumed to be from $\numu$ \gls{cc} interactions and the event is removed. 
   %\item Events where the shower has an energy less than 200 MeV are removed.
   \item A weight of 0.8 is applied to all selected events
 to account for an assumed 80\% reconstruction efficiency \cite{Dom's_thesis}.

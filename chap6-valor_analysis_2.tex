@@ -14,8 +14,8 @@ The data inputs used for an oscillation analysis are mainly provided in the form
 \begin{itemize}
     \item[b] -- Beam configuration e.g. neutrino or anti-neutrino mode,
     \item[d] -- Detector e.g. \gls{sbnd}, \gls{microboone} or \gls{icarus},
-    \item[s] -- Topological event selection e.g. \nue CC-inclusive, \numu CC-inclusive,
-    \item[m] -- True Reaction Mode e.g. \numu~CC QE, \nue~CC 1$\pi^{\pm}$,
+    \item[s] -- Topological event selection e.g. \nue \gls{cc}-inclusive, \numu \gls{cc}-inclusive,
+    \item[m] -- True Reaction Mode e.g. \numu~\gls{cc} QE, \nue~\gls{cc} 1$\pi^{\pm}$,
     \item[r] -- A bin in multi-dimensional reconstructed kinematic space e.g. $E_{\nu, reco}$,
     \item[t] -- A bin in multi-dimensional true kinematic space e.g. $E_{\nu, true}$,
 \end{itemize}
@@ -72,14 +72,16 @@ The \numu disappearance channel has for example been investigated by \gls{minos}
     \label{fig:icecube}
 \end{figure}
 
-For the \nue appearance channel, the allowed regions from the \gls{lsnd} and \gls{miniboone} experiments are shown in \FigureRef{fig:nue_app_external}, along with exclusion contours from experiments including, \gls{icarus}, \gls{karmen}, NOMAD, OPERA and E776 (which is combined with solar neutrino data)\cite{LSND_excess}\cite{MiniBooNE_nue_app_contour}\cite{icarus_nue_app_contour}\cite{KARMEN_nue_app_contour}\cite{NOMAD}\cite{OPERA}\cite{E776}. The \gls{lsnd} result are produced from a combination of neutrinos from decay at rest (DaR) $\pi^+$ as well as decay in flight (DiF) pions meaning appearance of both \nue and \nuebar are considered. \gls{miniboone} also observed both neutrino and anti-neutrinos from the \gls{bnb}, whereas the \gls{karmen} experiment considered the oscillations of \numubar exclusively and the remaining experiments mentioned considered the oscillations of \numu exclusively \cite{LSND_KARMEN_nue_app_contour}.
+For the \nue appearance channel, the allowed regions from the \gls{lsnd} and \gls{miniboone} experiments are shown on the left of \FigureRef{fig:allowed_exclusion_region_tension}, along with exclusion contours from experiments including, \gls{icarus}, \gls{karmen}, NOMAD, OPERA and E776 (which is combined with solar neutrino data)\cite{LSND_excess}\cite{MiniBooNE_nue_app_contour}\cite{icarus_nue_app_contour}\cite{KARMEN_nue_app_contour}\cite{NOMAD}\cite{OPERA}\cite{E776}. The \gls{lsnd} result are produced from a combination of neutrinos from decay at rest (DaR) $\pi^+$ as well as decay in flight (DiF) pions meaning appearance of both \nue and \nuebar are considered. \gls{miniboone} also observed both neutrino and anti-neutrinos from the \gls{bnb}, whereas the \gls{karmen} experiment considered the oscillations of \numubar exclusively and the remaining experiments mentioned considered the oscillations of \numu exclusively \cite{LSND_KARMEN_nue_app_contour}.
 
+\begin{comment}
 \begin{figure}[!h]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/external_limits/nue_app_combo.png}
     \caption[\nue appearance limits from the \gls{lsnd}, \gls{miniboone}, \gls{icarus}, \gls{karmen}, NOMAD, OPERA and E776 experiments.]{\nue appearance allowed regions from the \gls{lsnd} and \gls{miniboone} experiments and exclusion contours from the \gls{icarus}, \gls{karmen}, NOMAD, OPERA and E776 experiments \cite{LSND_KARMEN_nue_app_contour}.}
     \label{fig:nue_app_external}
 \end{figure}
+\end{comment}
 
 Finally, the \nue disappearance channel has been investigated with allowed regions being obtained from gallium and reactor experiments and exclusion regions being obtained from \nue-carbon interaction data and solar neutrino data. Additionally, the near detector of the \gls{t2k} experiment has provided both allowed and excluded regions which are shown in the left plot of \FigureRef{fig:nue_disapp_external}. An overlay of the \gls{t2k} exclusion region along with the other experimental results are shown in the right plot of \FigureRef{fig:nue_disapp_external}, all of which are shown at the 95\% CL. In both cases, the coloured star and circles correspond to the best-fit point of a given result \cite{T2K_nue_disapp_contour}. 
 
@@ -91,7 +93,6 @@ Finally, the \nue disappearance channel has been investigated with allowed regio
     \label{fig:nue_disapp_external}
 \end{figure}
 
-\newpage
 The remainder of this chapter will focus on the \nue channels. Some of the key results for the \numu channel are shown in \AppendixRef{app:numu_disapp} and a detailed discussion can be found in \cite{Rhiannon's_thesis}.
 
 
@@ -334,8 +335,8 @@ Total        & 157.8                & 2.3                  & 770.9              
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue CC inclusive reconstructed neutrino energy spectra.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom)
-    reconstructed neutrino energy spectra constructed from the samples of $\nue$~CC~inclusive events. The spectra are broken down into the
+    \caption[SBN \nue \gls{cc} inclusive reconstructed neutrino energy spectra.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom)
+    reconstructed neutrino energy spectra constructed from the samples of $\nue$~\gls{cc}~inclusive events. The spectra are broken down into the
     contributions from each neutrino interaction mode.\\ \phantom{.}\\}
     \label{fig:nominal_nue_spectra} 
   }
@@ -348,7 +349,7 @@ Total        & 157.8                & 2.3                  & 770.9              
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue CC inclusive reconstructed neutrino energy spectra with a 1$\sigma$ prefit envelopes.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom) integrated reconstructed neutrino energy spectra constructed from the samples of $\nue$~CC~inclusive events. A 1$\sigma$ prefit uncertainty envelope from the flux and interaction systematics is also shown. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
+    \caption[SBN \nue \gls{cc} inclusive reconstructed neutrino energy spectra with a 1$\sigma$ prefit envelopes.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom) integrated reconstructed neutrino energy spectra constructed from the samples of $\nue$~\gls{cc}~inclusive events. A 1$\sigma$ prefit uncertainty envelope from the flux and interaction systematics is also shown. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:nominal_nue_spectra_1sigma_enevelope} 
   }
 \end{figure}
@@ -356,7 +357,7 @@ Total        & 157.8                & 2.3                  & 770.9              
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/spectra/envelopes/icarus_pre_post_fit_nue.pdf}
-    \caption[ICARUS \nue CC inclusive neutrino energy spectra with a 1$\sigma$ prefit and postfit envelope.]{ICARUS integrated reconstructed neutrino energy spectrum constructed from the samples of \nue~CC~inclusive events. The $1\sigma$ prefit envelope is shown as well as a $1\sigma$ postfit envelope based on an \gls{sbnd} fit. The reduction in size of the error envelope when going from prefit to postfit shows the impact of \gls{sbnd} on improving the accuracy of the ICARUS prediction.}
+    \caption[ICARUS \nue \gls{cc} inclusive neutrino energy spectra with a 1$\sigma$ prefit and postfit envelope.]{ICARUS integrated reconstructed neutrino energy spectrum constructed from the samples of \nue~\gls{cc}~inclusive events. The $1\sigma$ prefit envelope is shown as well as a $1\sigma$ postfit envelope based on an \gls{sbnd} fit. The reduction in size of the error envelope when going from prefit to postfit shows the impact of \gls{sbnd} on improving the accuracy of the ICARUS prediction.}
     \label{fig:icarus_pre_post_fit}
 \end{figure}
 
@@ -418,7 +419,7 @@ The \nue appearance channel is concerned with oscillations from \numu to \nue me
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue appearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{\mu e}} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the increase in event rate. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
+    \caption[SBN \nue appearance \gls{cc} inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed.]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{\mu e}} = 0.003$ and $\Delta m^2_{41} = 1.32$ eV$^2$ has been overlayed showing the increase in event rate. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
     \label{fig:nue_spectra_with_osc_overlay}}
     }
 \end{figure}
@@ -449,7 +450,7 @@ Mirroring the \nue appearance channel, the \nue disappearance channel observes a
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue disappearance CC inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{ee}} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
+    \caption[SBN \nue disappearance \gls{cc} inclusive reconstructed neutrino energy spectra with oscillated spectrum overlayed]{The nominal spectra as in \FigureRef{fig:nominal_nue_spectra} but an additional integrated oscillated spectrum with oscillation parameters, $\sin^2{2\theta_{ee}} = 0.4$ and $\Delta m^2_{41} = 3$ eV$^2$ has been overlayed which shows the decrease in event rate.\\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:nue_disapp_spectra} 
   }
 \end{figure}
@@ -693,9 +694,9 @@ The reduction in sensitivity from applying a 10\% correlated uncertainty and a 2
 
 Instead of exploring the impact from fully correlated uncertainties or a constant uncorrelated uncertainty across all bins in a detector, \FigureRef{fig:nue_app_bulk_uncertainty} considers the case where a single set of bins are poorly constrained. The sets of bins considered are,
 \begin{itemize}
-    \item CC signal below the peak energy ($< 0.6$ GeV),
-    \item CC signal at the peak energy ([0.6 - 1.0] GeV),
-    \item CC signal above the peak energy ($> 1.0$ GeV),
+    \item \gls{cc} signal below the peak energy ($< 0.6$ GeV),
+    \item \gls{cc} signal at the peak energy ([0.6 - 1.0] GeV),
+    \item \gls{cc} signal above the peak energy ($> 1.0$ GeV),
     \item Background.
 \end{itemize}
 In each case, the uncorrelated uncertainty for the bins of interest are set to 2\% in each of the \gls{sbn} detectors, whilst the rest of the uncorrelated uncertainties are set to 0.5\% and the fully correlated uncertainty is fixed at 2\%. The background and low energy bins have the smallest impact with almost no visible difference whereas the peak and high energy bins do show some small reduction in the sensitivity at $\Delta m^2_{41}$ greater than 1 eV$^2$.
@@ -799,7 +800,7 @@ The exclusion contours comparing the three selections are shown on the left of \
 \newpage
 \section{\texorpdfstring{Summary of \nue sensitivities within SBN}{Summary of the nue sensitivities within SBN}}
 
-The sensitivities that have been produced for the \gls{sbn} analysis were constructed using the VALOR fitting framework. The oscillation channels, namely \nue appearance and \nue disappearance, have been considered as stand-alone analyses as part of a \nue CC inclusive sample with both exclusion and allowed regions being investigated for both. 
+The sensitivities that have been produced for the \gls{sbn} analysis were constructed using the VALOR fitting framework. The oscillation channels, namely \nue appearance and \nue disappearance, have been considered as stand-alone analyses as part of a \nue \gls{cc} inclusive sample with both exclusion and allowed regions being investigated for both. 
 
 The flux and interaction systematics considered are initially provided by the \gls{microboone} and \gls{genie} reweight packages respectively before being processed internally by VALOR. The impact of some possible variations of efficiency systematics have been investigated internally by the use of covariance matrices within VALOR. It has been demonstrated that the inclusion of flux and interaction systematics significantly reduce the expected sensitivities, however, since they are already well constrained it is unlikely that their impact may be significantly decreased. The efficiency systematics are currently largely unconstrained, but the impact from various combinations of correlated and uncorrelated uncertainties have been shown to only be relatively minor when included in addition to the flux and interaction systematics. 
 
@@ -807,7 +808,7 @@ The exclusion sensitivities have been produced for each individual detector with
 
 The current \gls{sbn} \nue appearance exclusion sensitivity supersedes that of \gls{karmen} for essentially the entire parameters space, whereas the allowed region is much smaller than that obtained from \gls{lsnd}, but is nevertheless consistent with the result. The \nue disappearance exclusion sensitivity improves on that of ND280 for $\Delta m^2_{41}$ values less than 10 eV$^2$ and excludes much of the 90\% allowed region from ND280. Most of the \gls{sbn} allowed region is again still consistent with what was obtained by ND280. 
 
-It is expected that the \gls{sbn} sensitivities may be further improved in the future by considering exclusive samples and not just the \nue CC inclusive one. Additionally, the possibility of producing joint fits which allow the mixing angles to be over-constrained would allow for an improvement in the sensitivity by profiling over one of the mixing angles. Finally, the \gls{pot} of $6.6 \times 10^{20}$ used for \gls{sbnd} and \gls{icarus} and the \gls{pot} of $13.2 \times 10^{20}$ used for \gls{microboone} are nominal values estimated for three years of data taking at the time of the \gls{sbn} proposal. Current \gls{bnb} projections estimate that the actual \gls{pot} may be close to two or three times this nominal \gls{pot} value. This increased event rate will also provide a noticeable improvement to the sensitivities. 
+It is expected that the \gls{sbn} sensitivities may be further improved in the future by considering exclusive samples and not just the \nue \gls{cc} inclusive one. Additionally, the possibility of producing joint fits which allow the mixing angles to be over-constrained would allow for an improvement in the sensitivity by profiling over one of the mixing angles. Finally, the \gls{pot} of $6.6 \times 10^{20}$ used for \gls{sbnd} and \gls{icarus} and the \gls{pot} of $13.2 \times 10^{20}$ used for \gls{microboone} are nominal values estimated for three years of data taking at the time of the \gls{sbn} proposal. Current \gls{bnb} projections estimate that the actual \gls{pot} may be close to two or three times this nominal \gls{pot} value. This increased event rate will also provide a noticeable improvement to the sensitivities. 
 
 
 %Some stoof about constraining the dominant systematics. 
