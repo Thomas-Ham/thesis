@@ -48,7 +48,8 @@
 % Allow doi link breaks so the bibliography word spacing isn't horrible
 % see the documentation of "url" for the next command
 %\DeclareUrlCommand\doi{\def\UrlLeft##1\UrlRight{doi:\href{http://dx.doi.org/##1}{##1}}\urlstyle{rm}}
-\DeclareUrlCommand\doi{\def\UrlLeft##1\UrlRight{\href{http://dx.doi.org/##1}{doi:##1}}\urlstyle{same}} %\urlstyle{same} % use the same font for url as the rest of the text
+\DeclareUrlCommand\doi{\def\UrlLeft##1\UrlRight{\href{http://dx.doi.org/##1}{doi:##1}}\urlstyle{tt}} %\urlstyle{same} % use the same font for url as the rest of the text
+\def\UrlBreaks{\do\/\do-\do\.}
 
 %% Start the document
 \begin{document}
@@ -62,13 +63,13 @@
 %% Start the content body of the thesis
 \begin{mainmatter}
   %% Actually, more semantic chapter filenames are better, like "chap-bgtheory.tex"
-  %\input{chap1-introduction}
-  %\input{chap2-motivation_for_steriles}
-  %\input{chap3-SBN_Program}
-  %\input{chap4-Energy_Reco}
-  %\input{chap5-oscillation_inputs}
+  \input{chap1-introduction}
+  \input{chap2-motivation_for_steriles}
+  \input{chap3-SBN_Program}
+  \input{chap4-Energy_Reco}
+  \input{chap5-oscillation_inputs}
   \input{chap6-valor_analysis_2}
-  %\input{chap7-conclusion}
+  \input{chap7-conclusion}
   %% To ignore a specific chapter while working on another, making the build faster, comment it out:
   %\input{chap4}
 \end{mainmatter}

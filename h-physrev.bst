@@ -24,6 +24,7 @@ school
 series
 title
 type
+url
 volume
 year
 }
@@ -759,6 +760,7 @@ format.title output
 reportNumber output
 howpublished new.block.checka
 howpublished output
+url output
 format.doi output
 format.date output
 eprint output
