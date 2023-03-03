@@ -49,6 +49,8 @@
 % see the documentation of "url" for the next command
 %\DeclareUrlCommand\doi{\def\UrlLeft##1\UrlRight{doi:\href{http://dx.doi.org/##1}{##1}}\urlstyle{rm}}
 \DeclareUrlCommand\doi{\def\UrlLeft##1\UrlRight{\href{http://dx.doi.org/##1}{doi:##1}}\urlstyle{tt}} %\urlstyle{same} % use the same font for url as the rest of the text
+
+% Define the characters which can be broken in a link
 \def\UrlBreaks{\do\/\do-\do\.}
 
 %% Start the document
