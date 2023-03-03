@@ -551,6 +551,7 @@ collaboration output
 format.authors "author" output.check
 new.block
 format.title output
+reportNumber output
 format.doi output
 crossref missing$
 { journal field.or.null
