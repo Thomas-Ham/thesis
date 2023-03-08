@@ -20,6 +20,21 @@
 %% Put package includes etc. into preamble.tex for convenience
 \input{preamble}
 
+% hyperref was loaded automatically in hepthesis.cls but the metdata stuff wasn't working (think hyperref) was being loaded at the "wrong" time
+% commented it out there and manually loaded it here - I think hyperref should be loaded at the end but it works fine here so going with it
+\usepackage{hyperref}
+%% Doc-specific PDF metadata
+\makeatletter
+\@ifpackageloaded{hyperref}{%
+	\hypersetup{%
+		pdftitle={New Physics Searches with Single Electromagnetic Shower Events at the Fermilab Short Baseline Neutrino Program},
+		pdfsubject = {PhD thesis},
+		pdfkeywords = {Physics, SBN, SBND, Neutrinos, Sterile Neutrinos, Neutrino Oscillations},
+		pdfauthor = {\textcopyright\ Thomas Ham},
+		colorlinks = true
+}}{}
+\makeatother
+
 %% You can set the line spacing this way
 %\setallspacing{double}
 %% or a section at a time like this
@@ -31,16 +46,7 @@
 %\title{New Physics Searches with Single Electromagnetic Shower Events at the Fermilab Short Baseline Neutrino Program}
 %\author{Thomas Ham}
 
-%% Doc-specific PDF metadata
-\makeatletter
-\@ifpackageloaded{hyperref}{%
-\hypersetup{%
-  pdftitle = {New Physics Searches with Single Electromagnetic Shower Events at the Fermilab Short Baseline Neutrino Program},
-  pdfsubject = {PhD thesis},
-  pdfkeywords = {Physics, SBN, SBND, Neutrinos, Sterile Neutrinos, Neutrino Oscillations},
-  pdfauthor = {\textcopyright\ Thomas Ham}
-}}{}
-\makeatother
+
 
 % Redeclare the \EquationRef command so it uses \ref instead of \eqnref
 \DeclareRobustCommand{\EquationRef}{Equation \ref}
