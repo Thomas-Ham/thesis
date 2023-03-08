@@ -6,9 +6,9 @@
 %documentclass[hyperpdf,nobind,draft,hidefrontback]{hepthesis}
 
 %%For Cambridge soft-bound version
-%\documentclass[hyperpdf,bindnopdf]{hepthesis}
+\documentclass[hyperpdf,bindnopdf]{hepthesis}
 %% For Cambridge hard-bound version (must be one-sided)
-\documentclass[hyperpdf,oneside]{hepthesis}
+%\documentclass[hyperpdf,oneside]{hepthesis}
 %%Get rid of warnings about list of figures and tables but also remove from ToC
 %\documentclass[hyperpdf,oneside,notlot,notlof]{hepthesis}
 
@@ -65,13 +65,13 @@
 %% Start the content body of the thesis
 \begin{mainmatter}
   %% Actually, more semantic chapter filenames are better, like "chap-bgtheory.tex"
-  %\input{chap1-introduction}
+  \input{chap1-introduction}
   \input{chap2-motivation_for_steriles}
-  %\input{chap3-SBN_Program}
-  %\input{chap4-Energy_Reco}
-  %\input{chap5-oscillation_inputs}
-  %\input{chap6-valor_analysis_2}
-  %\input{chap7-conclusion}
+  \input{chap3-SBN_Program}
+  \input{chap4-Energy_Reco}
+  \input{chap5-oscillation_inputs}
+  \input{chap6-valor_analysis_2}
+  \input{chap7-conclusion}
   %% To ignore a specific chapter while working on another, making the build faster, comment it out:
   %\input{chap4}
 \end{mainmatter}
