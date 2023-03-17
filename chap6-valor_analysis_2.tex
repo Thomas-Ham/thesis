@@ -1,8 +1,6 @@
 \chapter{SBN Oscillation Analysis Within the VALOR Framework}
 \label{chap:VALOR}
 
-\begin{comment}
-
 The VALOR framework is a neutrino fitting framework that was first developed for the \gls{t2k} experiment but has since been adapted to also cover, Hyper-Kamiokande, \gls{dune} and the \gls{sbn} program \cite{VALOR}.
 
 Performing an analysis within VALOR involves a number of physics parameters that define a physics hypothesis (e.g. neutrino oscillations) and the relevant systematic uncertainties. Event rate predictions are constructed for the associated detector, beam and event sample. These predictions are constructed as a function of a kinematical variable for either a nominal scenario or with variations due to a physics hypothesis and/or systematic uncertainties. This approach allows for joint oscillation and systematic fits to be constructed from a binned likelihood fitting approach for a given event topology. Fits may be performed for individual detectors or for a combination of multiple detectors and may include any number of systematic uncertainties. 
@@ -46,57 +44,221 @@ In the limit of large statistics, quantities of the form $-2\lnOf{\lambda}$ have
 
 In order to create confidence regions, fits are performed between a certain \textit{Asimov} dataset and $n_{d;b;s}^{pred}$. The Asimov dataset is a dataset where all systematic parameters are set to their nominal values and serves as a proxy for data in cases where only simulations are considered. It has been shown that in the same limit as the $\chi^2$ approximation (in the limit of large statistics), the median of many toy \gls{mc} experiments is equivalent to the Asimov dataset. This allows the significance of a given hypothesis to be compared to the median one whilst only requiring one \textit{toy} experiment instead of needing to compute many toy \gls{mc} experiments \cite{Asimov_dataset}. Two types of confidence regions may be constructed; an \textit{exclusion} region and an \textit{allowed} region. Both regions show the area where the chosen model is either compatible or incompatible with the data. The difference is due to the input data which has either no oscillation signal (an exclusion region) or there is an injected signal (an allowed region). In the case of exclusion regions, the Asimov dataset corresponds to the case where no oscillations are observed which is the null-hypothesis and for allowed regions, the oscillation parameters are set to that of the injected signal. %For the \glspl{mct}, the oscillation parameters are set to a given value and the systematic parameters, if any, are allowed to float.
 
-\end{comment}
 \section{Oscillation Channels Within SBN}
 
 As was discussed in \SectionRef{sec:sbn_physics_capabilities}, the \gls{bnb} is \numu dominated with a small portion of \nue's present. In the presence of mixing with a light sterile neutrino 
 this would result in the disappearance of some percentage of the \numu's due to oscillations. Additionally, \numu to \nue oscillations would result in the increase of the number of \nue's present. Finally, the number of intrinsic \nue's present in the \gls{bnb} coupled with the large event rate \gls{sbn} will detect means there are sufficient statistics to observe the disappearance of some \nue's due to oscillations. This results in three possible oscillation channels, \numu disappearance, \nue appearance and \nue disappearance. The mixing angles which determine their respective oscillation probabilities are shown in Equations (\ref{eqn:sinsq2thmumu} -- \ref{eqn:sinsq2thee}) which also imply that the oscillation channels are coupled (that is the presence of non-zero \nue appearance also requires non-zero \numu disappearance and \nue disappearance). Despite this, currently, the oscillation channels are treated completely independently. In principle oscillations involving \nutau are also possible, but due to the high energy threshold required these are usually not expected to be observed with any significant statistics. The energy range of the \gls{bnb} above the \nutau threshold is of the order 1\%, but since the statistics in \gls{sbnd} are large, this may be sufficient to observe \numu to \nutau appearance. Currently, this channel is not considered in the analysis but may be explored in future work \cite{tau_oscillations}.
 
-The \numu disappearance as well as both the \nue channels have already been explored by a number of different experiments. This has led to tension due to the conflict between null-results from some experiments and the hints of possible mixing with light sterile neutrinos seen by others. 
+The \numu disappearance as well as both the \nue channels have already been explored by a number of different experiments, many of which have been discussed in \SectionRef{subchap:Motivation for Sterile Neutrinos}. This has led to tension due to the conflict between null-results from some experiments and the hints of possible mixing with light sterile neutrinos seen by others. \gls{sbn} will be particularly sensitive to the \numu disappearance and \nue appearance channels due to the high flux of \numu's observed which will allow for the \gls{lsnd} and \gls{miniboone} anomalies to be investigated. Additionally, \gls{sbn} will be simultaneously sensitive to \numu disappearance and \nue appearance. 
 
+\begin{comment}
+    
 The \numu disappearance channel has for example been investigated by \gls{minos}/\gls{minos}+, \gls{miniboone}/\gls{sciboone} and the IceCube experiment. The combined results from the \gls{miniboone} and \gls{sciboone} collaborations and a \gls{miniboone} only analysis (along with other experimental results) are shown on the left of \FigureRef{fig:miniboone_sciboone_minos}. The exclusion contours from \gls{minos} and \gls{minos}+ are shown on the right of \FigureRef{fig:miniboone_sciboone_minos}, with the black line representing the data and the dashed blue line being the expected sensitivity \cite{MiniBooNE/SciBooNE_numu_disapp_contour} \cite{MINOS_numu_disapp_contour}. It should be noted that the results from \gls{minos} are shown as a function of $\sin^2{\theta}$ instead of $\sin^2{2\theta}$ which is used for most other results. The results from 8 years of IceCube data are shown in \FigureRef{fig:icecube} along with other experimental results. The left plot is the 90\% C.L. allowed region, whereas the right plot is the 99\% C.L. exclusion contour. The star in each plot represents the best-fit point. The results depend on both $\theta_{24}$ and $\theta_{34}$, but the contours have been produced under the assumption that $\theta_{34} = 0$ \cite{IceCube_numu_disapp_contour}.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = 0.49\textwidth, height = 0.49\textwidth]{figures-chap6/external_limits/numu_disapp_MiniBooNE_SciBooNE.png}
-    \includegraphics[width = 0.49\textwidth, height = 0.49\textwidth]{figures-chap6/external_limits/numu_disapp_Minos.png}
-    \caption[\nue disappearance limits from the \gls{miniboone}/\gls{sciboone} and \gls{minos}/\gls{minos}+ experiments.]{Left: \numu disappearance exclusion contours obtained from the \gls{miniboone} and \gls{sciboone} experiments along with other experimental results \cite{MiniBooNE/SciBooNE_numu_disapp_contour}. Right: \numu disappearance exclusion contour from the \gls{minos}/\gls{minos}+ experiment \cite{MINOS_numu_disapp_contour}.}
-    \label{fig:miniboone_sciboone_minos}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = 0.49\textwidth]{figures-chap6/external_limits/numu_disapp_icecube_90pct.png}
-    \includegraphics[width = 0.49\textwidth]{figures-chap6/external_limits/numu_disapp_icecube_99pct.png}
-    \caption[\nue disappearance limits from the IceCube experiment.]{\numu disappearance results from the 8 years of IceCube data. The 90\% allowed region (Left) and the 99\% exclusion region are shown under the assumption that $\theta_{34} = 0$ \cite{IceCube_numu_disapp_contour}.}
-    \label{fig:icecube}
-\end{figure}
-
 For the \nue appearance channel, the allowed regions from the \gls{lsnd} and \gls{miniboone} experiments are shown on the left of \FigureRef{fig:allowed_exclusion_region_tension}, along with exclusion contours from experiments including, \gls{icarus}, \gls{karmen}, NOMAD, OPERA and E776 (which is combined with solar neutrino data)\cite{LSND_excess}\cite{MiniBooNE_nue_app_contour}\cite{icarus_nue_app_contour}\cite{KARMEN_nue_app_contour}\cite{NOMAD}\cite{OPERA}\cite{E776}. The \gls{lsnd} result are produced from a combination of neutrinos from decay at rest (DaR) $\pi^+$ as well as decay in flight (DiF) pions meaning appearance of both \nue and \nuebar are considered. \gls{miniboone} also observed both neutrino and antineutrinos from the \gls{bnb}, whereas the \gls{karmen} experiment considered the oscillations of \numubar exclusively and the remaining experiments mentioned considered the oscillations of \numu exclusively \cite{LSND_KARMEN_nue_app_contour}.
+
+Finally, the \nue disappearance channel has been investigated with allowed regions being obtained from gallium and reactor experiments and exclusion regions being obtained from \nue-carbon interaction data and solar neutrino data. Additionally, the near detector of the \gls{t2k} experiment has provided both allowed and excluded regions which are shown in the left plot of \FigureRef{fig:nue_disapp_external}. An overlay of the \gls{t2k} exclusion region along with the other experimental results are shown in the right plot of \FigureRef{fig:nue_disapp_external}, all of which are shown at the 95\% CL. In both cases, the coloured star and circles correspond to the best-fit point of a given result \cite{T2K_nue_disapp_contour}. 
+
+\end{comment}
+The remainder of this chapter will focus on the \nue channels. Some of the key results for the \numu channel are shown in \AppendixRef{app:numu_disapp} and a detailed discussion can be found in \cite{Rhiannon's_thesis}.
+
+\section{Baseline and Binning Analysis Choices}
+
+Two other key analysis choices are the neutrino baseline parameterisation and the binning scheme used for the kinematic variable. As is shown in \EquationRef{eqn:sterile_osc_prob}, the baseline is one of the components that drives the oscillation probability and therefore any approximations to the true baseline must be chosen such that the impact to the oscillation probability is negligible. The kinematic variable used in this analysis is the energy of the neutrino for both true and reconstructed quantities.
+
+\subsection{Baseline}
+For long baseline experiments, it is not uncommon for fitting frameworks to simply use some average value for the baseline since factors such as the interaction point in the detector or the position at which a particle decays into a neutrino would only change the average baseline for the experiment by a negligible amount. However, for short baseline experiments such as \gls{sbn}, these factors may change the baseline significantly, up to around 20\% in \gls{sbnd}. 
+
+In an attempt to minimise computing resources, the true baseline was not initially used, but instead, several approximations to the baseline were tried. To begin with, the average baseline of each \gls{sbn} detector was used for all neutrino energies. This was calculated from the true baseline distribution of \numu events in each detector which are shown in \FigureRef{fig:numu_baseline}. Secondly, a 4-knot spline (named spline V1) for each detector was defined in order to try and better approximate the baseline. This method was improved upon by producing a spline for each of the true energy bins (named spline V2) which are defined in \SectionRef{sec:binning}. In order to establish the impact of any baseline approximations on the oscillation probability, the oscillation probability was plotted as a function of true neutrino energy with the oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$. This oscillation point was chosen to ensure that a region where rapid oscillations occur was being investigated, which would highlight the effect of any baseline choices. The oscillation probabilities as a function of energy are shown in \FigureRef{fig:baseline_osc_probability} for the four different baselines described. It was eventually decided that any approximation would be insufficient and that the true baseline should be used. 
+
+The studies of the baseline approximations were done in the context of the \numu disappearance channel. In principle, within the \nue sample, different approximations should be applied to the different sub-samples since the baseline distribution is not the same for all the sub-samples. For example, the \numu's in the oscillated and \numu sub-samples will both mainly be the result of pion decays whereas the \nue's in the intrinsic sub-sample will have a larger contribution from kaon and secondary muon decays. Pions and kaons have different lifetimes which coupled with the contribution from the decay of secondary particles means that the baseline distribution of the oscillated and \numu sub-sample will be different to that of the intrinsic \nue sub-sample. This was never done since it was decided that the true baseline should be used. The baseline distributions for the intrinsic \nue, oscillated $\nu$ and the overall \nue sample from combining all the sub-samples together are shown in \FigureRef{fig:nue_intrinsic_baseline}, \FigureRef{fig:nue_osc_baseline} and \FigureRef{fig:nue_baseline} respectively for each of the \gls{sbn} detectors. It should be noted that the baseline distributions for oscillated \nue sample from \FigureRef{fig:nue_osc_baseline} and the \numu sample from \FigureRef{fig:numu_baseline} are comparable. This is due to the initial parameters describing the oscillated sample being the same as for the \numu sample. The only difference being the neutrino oscillations from \numu to \nue which is not something that affects the baseline.
 
 \begin{comment}
 \begin{figure}[!h]
     \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/external_limits/nue_app_combo.png}
-    \caption[\nue appearance limits from the \gls{lsnd}, \gls{miniboone}, \gls{icarus}, \gls{karmen}, NOMAD, OPERA and E776 experiments.]{\nue appearance allowed regions from the \gls{lsnd} and \gls{miniboone} experiments and exclusion contours from the \gls{icarus}, \gls{karmen}, NOMAD, OPERA and E776 experiments \cite{LSND_KARMEN_nue_app_contour}.}
-    \label{fig:nue_app_external}
+    \includegraphics[width = 0.32\textwidth]{figures-chap5/SBND_numu.pdf}
+    \includegraphics[width = 0.32\textwidth]{figures-chap5/MicroBooNE_numu.pdf}
+    \includegraphics[width = 0.32\textwidth]{figures-chap5/ICARUS_numu.pdf}
+    \caption{The baseline distribution of events in the \numu sample for each of the \gls{sbn} detectors.}
+    \label{fig:numu_baseline}
 \end{figure}
 \end{comment}
 
-Finally, the \nue disappearance channel has been investigated with allowed regions being obtained from gallium and reactor experiments and exclusion regions being obtained from \nue-carbon interaction data and solar neutrino data. Additionally, the near detector of the \gls{t2k} experiment has provided both allowed and excluded regions which are shown in the left plot of \FigureRef{fig:nue_disapp_external}. An overlay of the \gls{t2k} exclusion region along with the other experimental results are shown in the right plot of \FigureRef{fig:nue_disapp_external}, all of which are shown at the 95\% CL. In both cases, the coloured star and circles correspond to the best-fit point of a given result \cite{T2K_nue_disapp_contour}. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_numu.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_numu.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_numu.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+  {
+    \caption{The baseline distribution of events in the \numu sample for each of the \gls{sbn} detectors. \\\phantom{.}\\}
+    \label{fig:numu_baseline}}
+\end{figure}
+
+
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width = 0.49\textwidth, height = 0.35\textwidth]{figures-chap6/external_limits/nue_disapp_external_T2K.png}
-    \includegraphics[width = 0.49\textwidth, height = 0.35\textwidth]{figures-chap6/external_limits/nue_dissap_external_combo.png}
-    \caption[\nue disappearance limits from gallium and reactor experiments, the near detector of the  \gls{t2k} experiment and from \nue-carbon interaction data and solar neutrino data.]{Left: \nue disappearance exclusion and allowed regions from the near detector of the \gls{t2k} experiment. Right: \nue disappearance allowed regions from gallium and reactor experiments and exclusion regions from \gls{t2k}, \nue-carbon interaction data and solar neutrino data.}
-    \label{fig:nue_disapp_external}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_intrinsic_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_intrinsic_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_intrinsic_nue.pdf} 
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption{The baseline distribution of events in the intrinsic \nue sample for each of the \gls{sbn} detectors. \\\phantom{.}\\}
+    \label{fig:nue_intrinsic_baseline}
+    }
+  \end{figure}
+  
+  \begin{figure}
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_osc.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_osc.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_osc.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption{The baseline distribution of events in the oscillated $\numu \rightarrow \nue$ sample for each of the \gls{sbn} detectors. \\\phantom{.}\\}
+    \label{fig:nue_osc_baseline}
+    }
+  \end{figure}
+  
+  \begin{figure}
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/SBND_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/MicroBooNE_nue.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/ICARUS_nue.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption[The overall \nue baseline distributions.]{The baseline distribution of events in the overall \nue sample which is comprised of events from the intrinsic \nue, oscillated $\nu$, the \numu events from passing the \nue selection and the dirt and cosmic samples (which are not explicitly shown) for each of the \gls{sbn} detectors.}
+    \label{fig:nue_baseline}
+    }
 \end{figure}
 
-The remainder of this chapter will focus on the \nue channels. Some of the key results for the \numu channel are shown in \AppendixRef{app:numu_disapp} and a detailed discussion can be found in \cite{Rhiannon's_thesis}.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/osc_prob_sbnd.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/osc_prob_uboone.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/osc_prob_icarus.pdf}
+    \captionsetup{width=0.45\textwidth}
+    \parbox[b]{0.49\textwidth}%
+    {
+    \caption[Oscillation probability for different baseline parametrisations.]{The oscillation probability as a function of true neutrino energy for the \numu disappearance sample with oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$ in each \gls{sbn} detector. The results from using each baseline parametrisation are shown. \\}
+    \label{fig:baseline_osc_probability}}
+\end{figure}
+
+\clearpage
+\subsection{Binning}\label{sec:binning}
+The energy binning schemes used are the same across each of the three detectors, however, the scheme used is different for the \numu and \nue analyses. Furthermore, there are separate schemes for both the true and reconstructed energies. Each of the binning schemes is outlined below. 
+
+The \numu edge-to-edge binning has 21 bins in reconstructed neutrino energy which are bounded as follows:
+\begin{itemize}
+    \item 1 bin from 0.00-0.20 GeV,
+    \item 2 0.10-GeV bins from 0.20-0.40 GeV,
+    \item 12 0.05-GeV bins from 0.40-1.00 GeV,
+    \item 2 0.25-GeV bins from 1.00-1.50 GeV,
+    \item 3 0.50-GeV bins from 1.50-3.00 GeV and
+    \item 1 bin from 3.00-10.00 GeV.
+\end{itemize}
+
+The \numu edge-to-edge binning has 22 bins in true neutrino energy which are bounded as follows:
+\begin{itemize}
+    \item 1 bin from 0.00-0.30 GeV,
+    \item 3 0.10-GeV bins from 0.30-0.60 GeV,
+    \item 12 0.05-GeV bins from 0.60-1.20 GeV,
+    \item 1 bin from 1.20-1.50 GeV,
+    \item 3 0.50-GeV bins from 1.50-3.00 GeV,
+    \item 1 bin from 3.00-5.00 GeV and
+    \item 1 bin from 5.00-10.00 GeV.
+\end{itemize}
+
+The \nue edge-to-edge binning has 12 bins in reconstructed neutrino energy which are bounded as follows:
+\begin{itemize}
+    \item 1 0.35-GeV bin from 0.00-0.35 GeV,
+    \item 5 0.15-GeV bins from 0.35-1.10 GeV,
+    \item 2 0.20-GeV bins from 1.10-1.50 GeV,
+    \item 2 0.25-GeV bins from 1.50-2.00 GeV,
+    \item 1 bin from 2.00-3.00 GeV and
+    \item 1 bin from 3.00-10.00 GeV.
+\end{itemize}
+
+The \nue edge-to-edge binning has 33 bins in true neutrino energy which are bounded as follows:
+\begin{itemize}
+    \item 2 0.25-GeV bin from 0.00-0.50 GeV,
+    \item 15 0.05-GeV bins from 0.50-1.25 GeV,
+    \item 15 0.25-GeV bins from 1.25-5.00 GeV and
+    \item 1 bin from 5.00-10.00 GeV.
+\end{itemize}
 
 
-\newpage
+\section{Reaction Modes}
+The reaction modes define the topology of neutrino interactions. Categorising neutrino events is a requirement for handling systematic uncertainties since these are reaction mode dependent. The reaction modes are grouped into two sets\footnote{The \gls{cc} QE 0\pi mode is sometimes simply written as \gls{cc} QE.}: the \textit{fine} reaction modes which outline the complete list of all possible reaction modes and the \textit{coarse} reaction modes which define a broader class of interaction which encompass one or more fine reaction mode. The fine reaction modes are listed in \TableRef{table:fine_reac_modes} and are typically used at the analysis level. The coarse reaction modes used depend on the analysis channel and are listed in \TableRef{table:coarse_reac_modes}. They are usually only used when displaying data such as in a breakdown of event rate spectra since using the complete list of reaction modes would be impractical. 
+
+% Fine reaction modes
+\begin{table}[t!]
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabular}{>{\centering\arraybackslash}m{4cm} 
+                  >{\centering\arraybackslash}m{4cm}
+                  >{\centering\arraybackslash}m{4cm}}
+  
+    \toprule
+    \multicolumn{3}{c}{\textit{Fine Reaction Modes}} \\
+    $\numu$, $\numubar$ & $\nue$, $\nuebar$ & $\numu \rightarrow \nue, \numubar \rightarrow \nuebar$ \\
+    \midrule
+    CC QE 0\pi                     & CC QE 0\pi                    & CC QE 0\pi \\
+    NC~Elastic                 & NC~Elastic                & CC 2p2h\\ 
+    CC, NC 2p2h                 & CC, NC 2p2h                & CC 1$\pi^{\pm}$ \\  
+    CC, NC 1$\pi^{\pm}$        & CC, NC 1$\pi^{\pm}$       & CC 1$\pi^{0}$ \\   
+    CC, NC 1$\pi^{0}$          & CC, NC 1$\pi^{0}$         & CC 2$\pi^{\pm}$ \\   
+    CC, NC 2$\pi^{\pm}$        & CC, NC 2$\pi^{\pm}$       & CC 2$\pi^{0}$ \\   
+    CC, NC 2$\pi^{0}$          & CC, NC 2$\pi^{0}$         & CC Coh \\   
+    CC, NC $\pi^{\pm}\pi^{0}$  & CC, NC $\pi^{\pm}\pi^{0}$ & Elastic Scattering \\   
+    CC, NC Coh                 & CC, NC Coh                & CC Other \\  
+    CC, NC Elastic Scattering  & CC+NC Elastic Scattering  \\  
+    NC 1$\gamma$               & NC 1$\gamma$              \\  
+    CC, NC Other               & CC, NC Other              \\  
+    \hdashline
+    \multicolumn{3}{c}{\textit{Cosmic \& Dirt}} \\
+    \bottomrule
+
+  \end{tabular}
+  \caption[Fine Reaction Modes.]{The complete list of reaction modes considered in an \gls{sbn} analysis. The \gls{2p2h} mode is defined as having a charged lepton + 2 nucleon topology distinguishing it from the other topologies.}
+  \label{table:fine_reac_modes}
+\end{table}
+
+
+% Coarse reaction modes
+\begin{table}[t!]
+  \begin{tabular}{>{\centering\arraybackslash}m{4cm} 
+    >{\centering\arraybackslash}m{4cm}}
+  
+    \toprule
+    \multicolumn{2}{c}{\textit{Coarse Reaction Modes}} \\
+    \numu, \numubar & \nue, \nuebar              \\
+    \midrule
+    \numu CC QE 0\pi     & \nue CC QE 0\pi       \\ 
+    \numu CC 2p2h        & \nue CC 2p2h          \\ 
+    \numu CC 1$\pi$      & \nue CC 1$\pi$        \\ 
+    \numu CC 2$\pi$      & \nue CC 2$\pi$        \\ 
+    \numu CC Other       & \nue CC Other         \\ 
+    \numubar CC          & \nuebar CC            \\
+    \nue \& \nuebar CC & \numu CC                \\
+    NC                     & \numubar CC         \\
+    \textit{Cosmic}        & Oscillated \nue CC  \\
+    \textit{Dirt}          & NC 0\pi             \\
+                           & NC Other            \\
+                           & \textit{Cosmic}     \\
+                           & \textit{Dirt}       \\
+    \bottomrule
+
+  \end{tabular}
+  \caption[Coarse Reaction Modes.]{The \textit{coarse} reaction modes used for both the \numu and \nue channels. These are a broader definition of the reaction modes where one or more of the \textit{fine} reaction modes listed in \TableRef{table:fine_reac_modes} would come under the umbrella of a given coarse reaction mode.}
+  \label{table:coarse_reac_modes}
+\end{table}
+
+\clearpage
 \section{Systematic Uncertainties within SBN}
 
 The systematics that are considered as part of the current \gls{sbn} analysis have been detailed in \SectionRef{sec:syst_uncertainties}. Unless explicitly stated, efficiency uncertainties are not considered due to there currently not being a general consensus on their magnitude. 
@@ -472,7 +634,7 @@ The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the \nue d
 \clearpage
 
 
-\section{SBN Sensitivity Contour Construction}\label{sec:sensitivites}
+\section{SBN Contour Construction}\label{sec:sensitivites}
 
 The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Fits are performed for each of the $40 \times 40$ points where the oscillation parameters are fixed and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. Once the fits have been produced, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours at 90\%, 3$\sigma$ and 5$\sigma$ confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}. The contours have been produced for the entire \gls{sbn} program with the inclusion of flux and interaction systematics.
 
@@ -504,6 +666,9 @@ $\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
     \label{fig:nue_app_chisq_surface}
 \end{figure}
 
+\clearpage
+
+\section{SBN Sensitivities}\label{sec:sbn_sensitvities}
 
 The complete \nue appearance exclusion sensitivities and allowed regions for both the statistical-only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:nue_app_global_sensitivity} for the entire \gls{sbn} program alongside external limits from the \gls{lsnd} and \gls{karmen} experiments \cite{LSND_KARMEN_nue_app_contour}. For comparison purposes, it should be noted that the contours produced for the \gls{sbn} program are at the $5\sigma$ confidence level whereas the results from both \gls{lsnd} and \gls{karmen} are at the 99\% confidence level. The results from \gls{sbn} shows an improvement over the \gls{karmen} results for essentially all $\Delta m^2_{41}$ values and the allowed region is largely consistent with the \gls{lsnd} result. 
 
@@ -515,6 +680,7 @@ The complete \nue appearance exclusion sensitivities and allowed regions for bot
     \label{fig:nue_app_global_sensitivity}
 \end{figure}
 
+\newpage
 The complete \nue disappearance exclusion sensitivities and allowed regions for both the statistical-only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:nue_disapp_global_sensitivity} for the entire \gls{sbn} program alongside external limits from the ND280 detector which serves as one of the near detectors as part of the \gls{t2k} experiment \cite{t2k_experiment}. The results for the \gls{sbn} program are shown at a 5$\sigma$ confidence level whereas the allowed region from the \gls{t2k} experiment is shown at both 68\% and 90\% confidence level and the exclusion contour is at a 95\% confidence level \cite{T2K_nue_disapp_contour}. The results from \gls{sbn} exclude a substantial portion of the \gls{t2k} allowed region with the exclusion limits at high $\Delta m^2_{41}$ not being as strong for the current comparison. 
 
 \begin{figure}
@@ -523,23 +689,6 @@ The complete \nue disappearance exclusion sensitivities and allowed regions for 
     \caption[\nue disappearance contours with external limits.]{\nue disappearance exclusion contours and allowed regions for the stat only case and with flux and interaction systematic uncertainties included. External limits from the \gls{t2k} experiments have been overlaid \cite{T2K_nue_disapp_contour}. (The confidence intervals for each contour are shown in the legend and it should be noted that those from external limits are not the same as those from the contours produced for the \gls{sbn} program.)}
     \label{fig:nue_disapp_global_sensitivity}
 \end{figure}
-
-
-\clearpage
-\section{Further Study on Sensitivities}
-
-The sensitivity contours shown in \FigureRef{fig:nue_app_global_sensitivity} and \FigureRef{fig:nue_disapp_global_sensitivity} are produced from combined fits from all the three \gls{sbn} detectors with the inclusion of all the flux and interaction systematic uncertainties outlined in \SectionRef{sec:syst_uncertainties}.
-
-Fits may, however, also be produced for an individual detector or any combination of multiple detectors. Additionally, there is complete freedom to choose which systematic parameters are included in the fits. This allows for the option to only include a single systematic parameter or an entire sub-group of parameters. 
-
-This section will discuss the impact on the sensitivity contours due to;
-\begin{itemize}
-    \item Different combinations of individual and multiple detectors.
-    \item The inclusion of a select number of individual systematic parameters. 
-    \item The inclusion of each set of flux and systematic parameters.
-    \item The inclusion of additional efficiency uncertainties.
-    \item Tweaking the energy smearing used in the event selection based on results from \ChapterRef{chap:Energy_Reco}.
-\end{itemize}
 
 \subsection{Impact of Detector Combinations}
 
@@ -607,8 +756,6 @@ The relative contribution of the different systematic groups to the overall excl
     \label{fig:nue_disapp_syst_groups}
 \end{figure}
 
-\newpage
-
 To further assess the reduction in sensitivities due to specific parameters or parameter groups, allowed regions have been constructed using the same injected signal as was used for the study done in \SectionRef{sec:star_plot_study}. 
 \FigureRef{fig:nue_injected_single_param} shows the change in allowed regions from applying the same set of single systematic parameters for both the \nue appearance and disappearance channels as was done for the exclusion contours. Both the statistical-only contour and the one including flux and interaction systematics have again been included for comparison.  Additionally, the allowed region with the inclusion of a single parameter are shown along with the corresponding contour from the entire associated set of systematic parameters for the \nue appearance and \nue disappearance channels in \FigureRef{fig:nue_app_single_syst_sets} and \FigureRef{fig:nue_disapp_single_syst_sets} respectively. Unlike for the exclusion contours, the  $f_{\sigma^{\pi}_{INEL}}$ and $f_{R_{\pi}^{C Ex}}$ parameters don't show the smallest change across the entire parameter space. The change is comparable to the other parameters for at least some of the parameter space which is more consistent with the size of the impact seen in \SectionRef{sec:star_plot_study}.
 
@@ -643,7 +790,11 @@ To further assess the reduction in sensitivities due to specific parameters or p
     \label{fig:nue_disapp_single_syst_sets} 
   }
 \end{figure}
+
 \clearpage
+\section{Further Study on Sensitivities}
+
+The sensitivity contours shown in \SectionRef{Ref{sec:sbn_sensitvities} are produced using the well validated flux and interaction uncertainties. This section will discuss the impact on exclusion sensitivity contours from the inclusion of additional efficiency uncertainties as well as tweaking the energy smearing used in the event selection based on results from \ChapterRef{chap:Energy_Reco}.
 
 \subsection{Impact of Additional Efficiency Systematics}\label{Impact of Additional Efficiency Systematics}
 
@@ -707,10 +858,6 @@ In each case, the uncorrelated uncertainty for the bins of interest are set to 2
     \caption[\nue appearance with poorly constrained efficiency systematic for a set of bins.]{The impact on the \nue appearance exclusion sensitivity by applying a 2\% fully correlated efficiency uncertainty for each of the \gls{sbn} detectors and a 0.5\% uncorrelated uncertainty for all but a single set of bins where the uncorrelated uncertainty is set to 2\%. The 'peak' energy bins are defined as those covering an energy range of [0.6,~1.0] GeV. The 'high' and 'low' energy bins are defined as those covering energies above and below the peak energy respectively and the 'bkg' bins are all the bins associated with background events. The set of bins of interest are applied to each of the three detectors.}
     \label{fig:nue_app_bulk_uncertainty}
 \end{figure}
-
-
-
-\clearpage
 
 \subsubsection*{\texorpdfstring{Impact of Efficiency Systematics on \nue Disappearance Sensitivities}{Impact of Efficiency Systematics on nue Disappearance Sensitivities}}
 
