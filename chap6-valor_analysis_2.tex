@@ -634,7 +634,7 @@ The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the \nue d
 \clearpage
 
 
-\section{SBN Contour Construction}\label{sec:sensitivites}
+\section{SBN Contour Construction}\label{sec:sensitivites_construction}
 
 The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Fits are performed for each of the $40 \times 40$ points where the oscillation parameters are fixed and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. Once the fits have been produced, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours at 90\%, 3$\sigma$ and 5$\sigma$ confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}. The contours have been produced for the entire \gls{sbn} program with the inclusion of flux and interaction systematics.
 
@@ -668,8 +668,11 @@ $\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
 
 \clearpage
 
-\section{SBN Sensitivities}\label{sec:sbn_sensitvities}
+\section{Sensitivities Studies}\label{sec:sbn_sensitvities}
 
+Following the scheme outlined in \SectionRef{sec:sensitivites_construction}, both allowed and exclusion sensitivity contours are produced for the entire \gls{sbn} program. Additionally, the contribution from individual and combination of detectors on the contours is investigated as well as the impact of different sets of systematic parameters and certain individual parameters. 
+
+\subsection{Full SBN Sensitivities}
 The complete \nue appearance exclusion sensitivities and allowed regions for both the statistical-only case and with the inclusion of flux and interaction systematics are shown in \FigureRef{fig:nue_app_global_sensitivity} for the entire \gls{sbn} program alongside external limits from the \gls{lsnd} and \gls{karmen} experiments \cite{LSND_KARMEN_nue_app_contour}. For comparison purposes, it should be noted that the contours produced for the \gls{sbn} program are at the $5\sigma$ confidence level whereas the results from both \gls{lsnd} and \gls{karmen} are at the 99\% confidence level. The results from \gls{sbn} shows an improvement over the \gls{karmen} results for essentially all $\Delta m^2_{41}$ values and the allowed region is largely consistent with the \gls{lsnd} result. 
 
 
@@ -794,7 +797,7 @@ To further assess the reduction in sensitivities due to specific parameters or p
 \clearpage
 \section{Further Study on Sensitivities}
 
-The sensitivity contours shown in \SectionRef{Ref{sec:sbn_sensitvities} are produced using the well validated flux and interaction uncertainties. This section will discuss the impact on exclusion sensitivity contours from the inclusion of additional efficiency uncertainties as well as tweaking the energy smearing used in the event selection based on results from \ChapterRef{chap:Energy_Reco}.
+The sensitivity contours shown in \SectionRef{sec:sbn_sensitvities} are produced using the well validated flux and interaction uncertainties. This section will discuss the impact on exclusion sensitivity contours from the inclusion of additional efficiency uncertainties as well as tweaking the energy smearing used in the event selection based on results from \ChapterRef{chap:Energy_Reco}.
 
 \subsection{Impact of Additional Efficiency Systematics}\label{Impact of Additional Efficiency Systematics}
 
@@ -859,6 +862,7 @@ In each case, the uncorrelated uncertainty for the bins of interest are set to 2
     \label{fig:nue_app_bulk_uncertainty}
 \end{figure}
 
+\newpage
 \subsubsection*{\texorpdfstring{Impact of Efficiency Systematics on \nue Disappearance Sensitivities}{Impact of Efficiency Systematics on nue Disappearance Sensitivities}}
 
 As was done for \nue appearance, \FigureRef{fig:nue_disapp_syst_groups_detector} shows the impact from \nue disappearance sensitivity from individual sets of systematic parameters as in \FigureRef{fig:nue_disapp_syst_groups} but with the addition of a 2\% correlated + 2\% uncorrelated efficiency uncertainty. The efficiency uncertainty shows the smallest reduction in sensitivity across all ranges of $\Delta m_{41}^2 \gtrsim 3$ and is comparable to the other systematic sets at $\Delta m_{41}^2$ values below $\sim 3$.
@@ -898,7 +902,7 @@ Finally, the impact of having a set of poorly constrained bins is investigated i
     \label{fig:nue_disapp_bulk_uncertainty}
 \end{figure}
 
-\newpage
+\clearpage
 \subsection{Sensitivities Motivated by Shower Energy Reconstruction}
 
 The reconstructed neutrino energy used in the analyses shown so far is based on truth information where smearing has been applied to emulate a reconstructed value. 
@@ -949,7 +953,7 @@ The exclusion contours comparing the three selections are shown on the left of \
 
 The sensitivities that have been produced for the \gls{sbn} analysis were constructed using the VALOR fitting framework. The oscillation channels, namely \nue appearance and \nue disappearance, have been considered as stand-alone analyses as part of a \nue \gls{cc} inclusive sample with both exclusion and allowed regions being investigated for both. 
 
-The flux and interaction systematics considered are initially provided by the \gls{microboone} and \gls{genie} reweight packages respectively before being processed internally by VALOR. The impact of some possible variations of efficiency systematics have been investigated internally by the use of covariance matrices within VALOR. It has been demonstrated that the inclusion of flux and interaction systematics significantly reduce the expected sensitivities, however, since they are already well constrained it is unlikely that their impact may be significantly decreased. The efficiency systematics are currently largely unconstrained, but the impact from various combinations of correlated and uncorrelated uncertainties have been shown to only be relatively minor when included in addition to the flux and interaction systematics. 
+The flux and interaction systematics considered are initially provided by the \gls{microboone} and \gls{genie} reweight packages respectively before being processed internally by VALOR. The impact of some possible variations of efficiency systematics have been investigated by the use of covariance matrices within VALOR. It has been demonstrated that the inclusion of flux and interaction systematics significantly reduce the expected sensitivities, however, since they are already well constrained it is unlikely that their impact may be significantly decreased. The efficiency systematics are currently largely unconstrained, but the impact from various combinations of correlated and uncorrelated uncertainties have been shown to only be relatively minor when included in addition to the flux and interaction systematics. 
 
 The exclusion sensitivities have been produced for each individual detector within \gls{sbn} and all combinations of multi-detector fits including for the full \gls{sbn} program (combining all three detectors). For both oscillation channels, the \gls{sbnd} detector dominates the sensitivity at large values of $\Delta m^2_{41}$ (> 3 eV$^2$) and ICARUS dominates for small values of $\Delta m^2_{41}$ (< 3 eV$^2$). One of the key features of the \gls{sbn} program is the three-detector design. This is highlighted by the fact the best sensitivity can only be obtained by combining data from all three detectors. 
 
