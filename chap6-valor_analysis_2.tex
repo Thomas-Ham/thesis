@@ -62,11 +62,13 @@ Finally, the \nue disappearance channel has been investigated with allowed regio
 \end{comment}
 The remainder of this chapter will focus on the \nue channels. Some of the key results for the \numu channel are shown in \AppendixRef{app:numu_disapp} and a detailed discussion can be found in \cite{Rhiannon's_thesis}.
 
-\section{Baseline and Binning Analysis Choices}
+\section{Implementing and Validating SBN Systematic Uncertainties in VALOR}
+
+\subsection{Baseline and Binning Analysis Choices}
 
 Two other key analysis choices are the neutrino baseline parameterisation and the binning scheme used for the kinematic variable. As is shown in \EquationRef{eqn:sterile_osc_prob}, the baseline is one of the components that drives the oscillation probability and therefore any approximations to the true baseline must be chosen such that the impact to the oscillation probability is negligible. The kinematic variable used in this analysis is the energy of the neutrino for both true and reconstructed quantities.
 
-\subsection{Baseline}
+\subsubsection{Baseline}
 For long baseline experiments, it is not uncommon for fitting frameworks to simply use some average value for the baseline since factors such as the interaction point in the detector or the position at which a particle decays into a neutrino would only change the average baseline for the experiment by a negligible amount. However, for short baseline experiments such as \gls{sbn}, these factors may change the baseline significantly, up to around 20\% in \gls{sbnd}. 
 
 In an attempt to minimise computing resources, the true baseline was not initially used, but instead, several approximations to the baseline were tried. To begin with, the average baseline of each \gls{sbn} detector was used for all neutrino energies. This was calculated from the true baseline distribution of \numu events in each detector which are shown in \FigureRef{fig:numu_baseline}. Secondly, a 4-knot spline (named spline V1) for each detector was defined in order to try and better approximate the baseline. This method was improved upon by producing a spline for each of the true energy bins (named spline V2) which are defined in \SectionRef{sec:binning}. In order to establish the impact of any baseline approximations on the oscillation probability, the oscillation probability was plotted as a function of true neutrino energy with the oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$. This oscillation point was chosen to ensure that a region where rapid oscillations occur was being investigated, which would highlight the effect of any baseline choices. The oscillation probabilities as a function of energy are shown in \FigureRef{fig:baseline_osc_probability} for the four different baselines described. It was eventually decided that any approximation would be insufficient and that the true baseline should be used. 
@@ -150,7 +152,7 @@ The studies of the baseline approximations were done in the context of the \numu
 \end{figure}
 
 \clearpage
-\subsection{Binning}\label{sec:binning}
+\subsubsection{Binning}\label{sec:binning}
 The energy binning schemes used are the same across each of the three detectors, however, the scheme used is different for the \numu and \nue analyses. Furthermore, there are separate schemes for both the true and reconstructed energies. Each of the binning schemes is outlined below. 
 
 The \numu edge-to-edge binning has 21 bins in reconstructed neutrino energy which are bounded as follows:
@@ -193,7 +195,7 @@ The \nue edge-to-edge binning has 33 bins in true neutrino energy which are boun
 \end{itemize}
 
 
-\section{Reaction Modes}
+\subsection{Reaction Modes}
 The reaction modes define the topology of neutrino interactions. Categorising neutrino events is a requirement for handling systematic uncertainties since these are reaction mode dependent. The reaction modes are grouped into two sets\footnote{The \gls{cc} QE 0\pi mode is sometimes simply written as \gls{cc} QE.}: the \textit{fine} reaction modes which outline the complete list of all possible reaction modes and the \textit{coarse} reaction modes which define a broader class of interaction which encompass one or more fine reaction mode. The fine reaction modes are listed in \TableRef{table:fine_reac_modes} and are typically used at the analysis level. The coarse reaction modes used depend on the analysis channel and are listed in \TableRef{table:coarse_reac_modes}. They are usually only used when displaying data such as in a breakdown of event rate spectra since using the complete list of reaction modes would be impractical. 
 
 % Fine reaction modes
@@ -259,13 +261,13 @@ The reaction modes define the topology of neutrino interactions. Categorising ne
 \end{table}
 
 \clearpage
-\section{Systematic Uncertainties within SBN}
+\subsection{Systematic Uncertainties within SBN}
 
 The systematics that are considered as part of the current \gls{sbn} analysis have been detailed in \SectionRef{sec:syst_uncertainties}. Unless explicitly stated, efficiency uncertainties are not considered due to there currently not being a general consensus on their magnitude. 
 
 The systematics from the \gls{genie} and \gls{microboone} reweight packages are initially in the form of weights which correspond to variations of the parameter. Systematic uncertainties in this form can not be directly used in an oscillation analysis, but must instead first be processed internally, the details of which are described below.
 
-\subsection{Processing Systematic Uncertainties}\label{sec:systematic_validation}
+\subsubsection{Processing Systematic Uncertainties}\label{sec:systematic_validation}
 
 Many \textit{universes} are simulated, each with different weights associated with each of the systematic parameters. This allows the impact of varying systematic parameters on the event rate of neutrino interactions to be observed. If the systematic parameters are uncorrelated, the weights are simply an $n \sigma$ variation which is the value used in a given universe. For correlated parameters, the weights are due to a unique variation of all the correlated parameters of a given universe. Of the systematic uncertainties associated with either the \gls{genie} or \gls{microboone} reweight packages, only the neutrino production flux uncertainties which are listed in \TableRef{table:corr_flux} are correlated. All other parameters are uncorrelated. 
 
@@ -279,7 +281,7 @@ For the case of correlated parameters, it is not straightforward to construct re
 where \textit{U} is the number of universes, $N_{i,j}^{u}$ is the event rate in universe $u$ in bin $i$ or $j$ and $N_{i,j}^{cv}$ nominal event rate in
 bin $i$ or $j$.
 
-\subsection{Validating Systematic Uncertainties}
+\subsubsection{Validating Systematic Uncertainties}
 In order to establish that the systematic parameters are being correctly handled within VALOR, a comparison between the event rate variations as seen by VALOR and those obtained directly from the universes is performed. This is done in two different ways; 
 \begin{enumerate}
     \item Tweak the nominal spectra using the response functions within VALOR for a single systematic parameter and then compare them with the spectra that were obtained directly from the universe files.
@@ -328,6 +330,38 @@ As an example, the $+1\sigma$ variation for the $f_{HornCurrent}$, $f_{M_A^{CCRe
    \caption[The ratio between the $\pm 1 \sigma$ variation from VALOR and the universes for the flux, proposal interaction and modern interaction set of systematics.]{The ratio between the $\pm 1 \sigma$ variation from VALOR and the universes for the flux, proposal interaction and modern interaction set of systematic parameters.  \\\phantom{.}\\\phantom{.}\\\phantom{.}\\
    \label{fig:1sigma_variations_toys}}
   }
+\end{figure}
+
+\subsection{SBN Contour Construction}\label{sec:sensitivites_construction}
+
+The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Fits are performed for each of the $40 \times 40$ points where the oscillation parameters are fixed and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. Once the fits have been produced, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours at 90\%, 3$\sigma$ and 5$\sigma$ confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}. The contours have been produced for the entire \gls{sbn} program with the inclusion of flux and interaction systematics.
+
+\begin{table}[h!]
+\begin{tabular}{lcc}
+\multicolumn{1}{c}{\multirow{2}{*}{Analysis Channel}} & \multicolumn{2}{c}{Phase Space Considered} \\
+\multicolumn{1}{c}{} & $\sin^2{2\theta}$ & $\Delta m_{41}^2$ \\ \hline
+\numu Disappearance & $\theta_{\mu\mu}$: [10$^{-3}$ -- 1] & [10$^{-2}$ -- 10$^2$] eV$^2$ \\
+\nue Appearance & $\theta_{\mu e}$: [10$^{-5}$ -- 1] & [10$^{-2}$ -- 10$^2$] eV$^2$ \\
+\nue Disappearance & $\theta_{ee}$: [10$^{-2}$ -- 1] & [10$^{-2}$ -- 10$^2$] eV$^2$
+\end{tabular}
+\caption[The phase space considered for each of the SBN analyses.]{The phase space considered when constructing contours for each of the three oscillation channels within \gls{sbn}.}
+\label{table:analysis_channel_phase_space}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{lllllll}
+ Confidence level & 68\% & 90\% & 95\% & 99\% & 3$\sigma$ & 5$\sigma$ \\ \hline
+$\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
+\end{tabular}
+\caption[$\chi^2_{critical}$ values for various confidence levels.]{The $\chi^2_{critical}$ values corresponding to various confidence levels which are commonly used when performing sensitivity studies. The confidence levels and $\chi^2_{critical}$ are related via $CL = \int_0^{\chi^2_{critical}} \frac{e^{-x/2}x^{u/2-1}}{2^{u/2}\Gamma(u/2)} dx$, where \textit{u} is the degrees of freedom (in this case 1) and $\Gamma$ is the Gamma function \cite{critical_chi2_book}.}
+\label{table:critical_chi2_values}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/nue_app_03d1_chi2_surface.pdf}
+    \caption[\nue appearance contours overlaid on the $\chi^2$ surface.]{The \nue appearance $\chi^2$ surface from fits including flux and interaction systematics. Contours of constant $\chi^2$ values which correspond to 90\%, 3$\sigma$ and 5$\sigma$ confidence levels have been overlaid onto the surface.}
+    \label{fig:nue_app_chisq_surface}
 \end{figure}
 
 \clearpage
@@ -523,44 +557,6 @@ Total        & 157.8                & 2.3                  & 770.9              
     \label{fig:icarus_pre_post_fit}
 \end{figure}
 
-\clearpage
-\subsection{Impact of Systematic Uncertainties}\label{sec:star_plot_study}
-
-%\textcolor{red}{Not sure where best to put this section? Here or along with the sensitivity curves.}
-
-To assess the impact of the different systematic parameters on the oscillation parameters the following study is performed;
-\begin{enumerate}
-    \item Generate a toy experiment with a given oscillation signal with a single systematic parameter, $f_i$, set to $\pm1\sigma$ from its nominal value and all other systematic parameters are set to their nominal value.
-    \item Perform a fit on the toy experiment with $f_i$ fixed to its nominal value. Both the oscillation parameters and all the systematic parameters are initially set to their nominal value and are allowed to float with the exception of $f_i$. The other systematic parameters are allowed to float in order to obtain the best possible agreement between the fit and the toy experiment.
-    \item Steps 1. and 2. are then repeated for all \textit{i} systematic parameters of interest. Both the +1$\sigma$ and -1$\sigma$ variations should be performed for each systematic parameter since the effect on the oscillation parameters is typically not symmetric.  
-\end{enumerate}
-If $f_i$ were allowed to float it would be expected that the fit would be able to recover the same oscillation parameters used in the toy experiment since the same \gls{mc} was used for the toy experiment and the fit. By fixing $f_i$ to its nominal value in the fit, the fit is forced to make a mistake. This results in the fit remapping the changes in $f_i$ to the oscillation parameters (and the other systematic parameters). 
-
-This study was performed for the \nue appearance and disappearance channels using oscillation parameters $\sin^2{2\theta}_{\mu e} = 0.003$, 
-$\Delta m^2_{41} = 1.32$ eV$^2$ and 
-$\sin^2{2\theta}_{ee} = 0.4$, $\Delta m^2_{41} = 3$ eV$^2$ respectively and includes the results from all uncorrelated systematic parameters. The results are shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls}. For both oscillation parameters, the ratio of their value after performing the fit to their nominal value, $\mathcal{R}$, are shown after having varied $f_i$ by $\pm 1 \sigma$. The ratios shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls} are always $\geq 1$ by construction since $\mathcal{R}$ is defined as,
-\begin{equation}
-    \mathcal{R} = \begin{cases}
-    \frac{\zeta_{fit}}{\zeta_{nom}}, & \text{if } \zeta_{fit} > \zeta_{nom} \\
-    \frac{\zeta_{nom}}{\zeta_{fit}}, &\text{if } \zeta_{nom} > \zeta_{fit},
-    \end{cases}
-\end{equation}
-where $\zeta \in \{\sin^2{2\theta}, \Delta m^2_{41}\}$ and the subscript \textit{nom} and \textit{fit} refer to the nominal value of the oscillation parameters and the values after performing the fit respectively. The arrows are colour coded such that black corresponds to the case where $\zeta_{fit} > \zeta_{nom}$ and red corresponds to the case where $\zeta_{nom} > \zeta_{fit}$.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = \textwidth]{figures-chap6/star_plot/nue_app_pulls_2.pdf}
-    \caption[\nue appearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue appearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
-    \label{fig:nue_app_osc_param_pulls}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = \textwidth]{figures-chap6/star_plot/nue_dsisapp_pulls_2.pdf}
-    \caption[\nue disappearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue disappearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
-    \label{fig:nue_disapp_osc_param_pulls}
-\end{figure}
-
 
 \clearpage
 
@@ -632,42 +628,6 @@ The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the \nue d
 
 
 \clearpage
-
-
-\section{SBN Contour Construction}\label{sec:sensitivites_construction}
-
-The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Fits are performed for each of the $40 \times 40$ points where the oscillation parameters are fixed and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. Once the fits have been produced, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. An example of a 2D $\chi^2$ surface with exclusion contours at 90\%, 3$\sigma$ and 5$\sigma$ confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}. The contours have been produced for the entire \gls{sbn} program with the inclusion of flux and interaction systematics.
-
-\begin{table}[h!]
-\begin{tabular}{lcc}
-\multicolumn{1}{c}{\multirow{2}{*}{Analysis Channel}} & \multicolumn{2}{c}{Phase Space Considered} \\
-\multicolumn{1}{c}{} & $\sin^2{2\theta}$ & $\Delta m_{41}^2$ \\ \hline
-\numu Disappearance & $\theta_{\mu\mu}$: [10$^{-3}$ -- 1] & [10$^{-2}$ -- 10$^2$] eV$^2$ \\
-\nue Appearance & $\theta_{\mu e}$: [10$^{-5}$ -- 1] & [10$^{-2}$ -- 10$^2$] eV$^2$ \\
-\nue Disappearance & $\theta_{ee}$: [10$^{-2}$ -- 1] & [10$^{-2}$ -- 10$^2$] eV$^2$
-\end{tabular}
-\caption[The phase space considered for each of the SBN analyses.]{The phase space considered when constructing contours for each of the three oscillation channels within \gls{sbn}.}
-\label{table:analysis_channel_phase_space}
-\end{table}
-
-\begin{table}[h!]
-\begin{tabular}{lllllll}
- Confidence level & 68\% & 90\% & 95\% & 99\% & 3$\sigma$ & 5$\sigma$ \\ \hline
-$\chi^2_{critical}$ & 0.23 & 1.64 & 2.71 & 5.41 & 7.74 & 23.66
-\end{tabular}
-\caption[$\chi^2_{critical}$ values for various confidence levels.]{The $\chi^2_{critical}$ values corresponding to various confidence levels which are commonly used when performing sensitivity studies. The confidence levels and $\chi^2_{critical}$ are related via $CL = \int_0^{\chi^2_{critical}} \frac{e^{-x/2}x^{u/2-1}}{2^{u/2}\Gamma(u/2)} dx$, where \textit{u} is the degrees of freedom (in this case 1) and $\Gamma$ is the Gamma function \cite{critical_chi2_book}.}
-\label{table:critical_chi2_values}
-\end{table}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = \largefigwidth]{figures-chap6/exclusion_contours/nue_app_03d1_chi2_surface.pdf}
-    \caption[\nue appearance contours overlaid on the $\chi^2$ surface.]{The \nue appearance $\chi^2$ surface from fits including flux and interaction systematics. Contours of constant $\chi^2$ values which correspond to 90\%, 3$\sigma$ and 5$\sigma$ confidence levels have been overlaid onto the surface.}
-    \label{fig:nue_app_chisq_surface}
-\end{figure}
-
-\clearpage
-
 \section{Sensitivities Studies}\label{sec:sbn_sensitvities}
 
 Following the scheme outlined in \SectionRef{sec:sensitivites_construction}, both allowed and exclusion sensitivity contours are produced for the entire \gls{sbn} program. Additionally, the contribution from individual and combination of detectors on the contours is investigated as well as the impact of different sets of systematic parameters and certain individual parameters. 
@@ -718,6 +678,47 @@ Similar to \FigureRef{fig:nue_sensitivity_detector_contribution}, \FigureRef{fig
 \newpage
 
 \subsection{Impact of Systematic Parameters}
+
+%\subsection{Impact of Systematic Uncertainties}\label{sec:star_plot_study}
+
+%\textcolor{red}{Not sure where best to put this section? Here or along with the sensitivity curves.}
+
+To assess the impact of the different systematic parameters on the oscillation parameters the following study is performed;
+\begin{enumerate}
+    \item Generate a toy experiment with a given oscillation signal with a single systematic parameter, $f_i$, set to $\pm1\sigma$ from its nominal value and all other systematic parameters are set to their nominal value.
+    \item Perform a fit on the toy experiment with $f_i$ fixed to its nominal value. Both the oscillation parameters and all the systematic parameters are initially set to their nominal value and are allowed to float with the exception of $f_i$. The other systematic parameters are allowed to float in order to obtain the best possible agreement between the fit and the toy experiment.
+    \item Steps 1. and 2. are then repeated for all \textit{i} systematic parameters of interest. Both the +1$\sigma$ and -1$\sigma$ variations should be performed for each systematic parameter since the effect on the oscillation parameters is typically not symmetric.  
+\end{enumerate}
+If $f_i$ were allowed to float it would be expected that the fit would be able to recover the same oscillation parameters used in the toy experiment since the same \gls{mc} was used for the toy experiment and the fit. By fixing $f_i$ to its nominal value in the fit, the fit is forced to make a mistake. This results in the fit remapping the changes in $f_i$ to the oscillation parameters (and the other systematic parameters). 
+
+This study was performed for the \nue appearance and disappearance channels using oscillation parameters $\sin^2{2\theta}_{\mu e} = 0.003$, 
+$\Delta m^2_{41} = 1.32$ eV$^2$ and 
+$\sin^2{2\theta}_{ee} = 0.4$, $\Delta m^2_{41} = 3$ eV$^2$ respectively and includes the results from all uncorrelated systematic parameters. The results are shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls}. For both oscillation parameters, the ratio of their value after performing the fit to their nominal value, $\mathcal{R}$, are shown after having varied $f_i$ by $\pm 1 \sigma$. The ratios shown in \FigureRef{fig:nue_app_osc_param_pulls} and \FigureRef{fig:nue_disapp_osc_param_pulls} are always $\geq 1$ by construction since $\mathcal{R}$ is defined as,
+\begin{equation}
+    \mathcal{R} = \begin{cases}
+    \frac{\zeta_{fit}}{\zeta_{nom}}, & \text{if } \zeta_{fit} > \zeta_{nom} \\
+    \frac{\zeta_{nom}}{\zeta_{fit}}, &\text{if } \zeta_{nom} > \zeta_{fit},
+    \end{cases}
+\end{equation}
+where $\zeta \in \{\sin^2{2\theta}, \Delta m^2_{41}\}$ and the subscript \textit{nom} and \textit{fit} refer to the nominal value of the oscillation parameters and the values after performing the fit respectively. The arrows are colour coded such that black corresponds to the case where $\zeta_{fit} > \zeta_{nom}$ and red corresponds to the case where $\zeta_{nom} > \zeta_{fit}$.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \textwidth]{figures-chap6/star_plot/nue_app_pulls_2.pdf}
+    \caption[\nue appearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue appearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
+    \label{fig:nue_app_osc_param_pulls}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = \textwidth]{figures-chap6/star_plot/nue_dsisapp_pulls_2.pdf}
+    \caption[\nue disappearance oscillation parameter pulls due to varying a single systematic parameter by $\pm1\sigma$.]{The variation in the \nue disappearance oscillation parameters due to varying a single systematic parameter at a time by $\pm1\sigma$.}
+    \label{fig:nue_disapp_osc_param_pulls}
+\end{figure}
+
+
+
+
 
 The impact of the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_N^{C Ex}}$ and $f_{\sigma^{\pi}_{INEL}}$ parameters on the \nue appearance exclusion sensitivities are shown in \FigureRef{fig:nue_app_single_param}. The parameters were applied one at a time and chosen as some that showed the largest variations in \FigureRef{fig:nue_app_osc_param_pulls}, ensuring at least one parameter is from each systematic subgroup. Similarly, the $f_{M_V^{CCRes}}$, $f_{M_A^{CCRes}}$, $f_{R_{\pi}^{C Ex}}$ and $f_{expskin}$ parameters were used for the \nue disappearance channel and the results are shown in \FigureRef{fig::nue_disapp_single_param}. Both the statistical-only contour and the one including all the flux and interaction systematics are shown for comparison. It should be noted that single parameters may contribute significantly to the total reduction in sensitivity from the inclusion of all systematic parameters. Additionally, the systematics considered were chosen based on a study which used an injected signal meaning the large impact seen there may not be directly mapped to an exclusion contour which gives a possible reason for the relatively minor impact seen due to $f_{\sigma^{\pi}_{INEL}}$ and $f_{R_{\pi}^{C Ex}}$.
 
@@ -800,6 +801,67 @@ To further assess the reduction in sensitivities due to specific parameters or p
 The sensitivity contours shown in \SectionRef{sec:sbn_sensitvities} are produced using the well validated flux and interaction uncertainties. This section will discuss the impact on exclusion sensitivity contours from the inclusion of additional efficiency uncertainties as well as tweaking the energy smearing used in the event selection based on results from \ChapterRef{chap:Energy_Reco}.
 
 \subsection{Impact of Additional Efficiency Systematics}\label{Impact of Additional Efficiency Systematics}
+
+Efficiency systematics are not implemented in the \textit{standard} analyses because there currently is not a good handle on how to correctly quantify them. A rigorous scheme akin to those described in \SectionRef{sec:flux_syst} and \SectionRef{sec:interaction_syst} does not exist, so instead in-house methods have been developed which are described below.
+
+The current scheme for implementing efficiency (detector) systematics into a fit is by use of a covariance matrix where each element is defined by the systematics outlined in  \TableRef{table:efficiency_systematics}. This allows for the lack of associated event reweighting schemes to be bypassed whilst still being able to capture varying uncertainties being applied to different kinematic ranges, detectors and signal or background processes in each sample. In general, it is assumed that a covariance matrix $\mathcal{M}_{ij}$ is comprised of both correlated and uncorrelated uncertainties such that
+\begin{equation}
+    \mathcal{M}_{ij} = \mathcal{M}_{ij}^{corr} + \mathcal{M}_{ij}^{uncorr},
+\end{equation}
+where $\mathcal{M}_{ij}^{corr}$ is the correlated component and $\mathcal{M}_{ij}^{uncorr}$ is the uncorrelated component. For correlated uncertainties,
+\begin{equation}
+  \mathcal{M}_{ij}^{corr}=\begin{cases}
+    \sigma_i^2, & \text{$i = j$}\\
+    C_{ij} \sigma_i \sigma_j, & \text{$i \neq j$},
+  \end{cases}
+\end{equation}
+where $C_{ij}$ represents the correlation between the off-diagonal elements and $\sigma_{i,j}$ is some percentage error associated with each systematic. In the case of fully correlated uncertainties, $C_{ij}$ reduces to one and $\sigma_i = \sigma_j$. For uncorrelated uncertainties,
+\begin{equation}
+  \mathcal{M}_{ij}^{uncorr}=\begin{cases}
+    \sigma_i^{\prime2}, & \text{$i = j$}\\
+    0, & \text{$i \neq j$},
+  \end{cases}
+\end{equation}
+with $\sigma_i^{\prime}$ again being a percentage error. 
+If any correlated errors are assumed to by fully correlated, $\mathcal{M}_{ij}$ will then have diagonal elements given by $\sigma_i^2 + \sigma_i^{\prime2}$ and off-diagonal elements given by $\sigma_i^2$.
+
+\begin{table}[h!]
+\begin{adjustbox}{width=\textwidth,center}
+	\begin{tabular}{l lllll}
+		\hline
+		& \multicolumn{5}{c}{\textbf{Applies to}}                                                                                  \\
+		\textbf{Systematic}    & \textbf{Beam} & \textbf{Detector} & \textbf{Sample}        & \textbf{Mode} & \textbf{Reco. energy bin edges}                            \\ \hline
+		$f_0 - f_7$   & FHC  & SBND     & $\numu$CC-like & signal/$\numu$CC & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, $\infty$\}      \\
+		$f_8 - f_{13}$    & FHC  & SBND     & $\numu$CC-like   & bkg/NC               & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{14}$          & FHC  & SBND     & $\numu$CC-like   & bkg/Dirt             & \{0, $\infty$\}                                         \\
+		$f_{15}$          & FHC  & SBND     & $\numu$CC-like   & bkg/Cosmics          & \{0, $\infty$\}                                         \\ \hline
+		$f_{16}-f_{24}$     & FHC  & SBND     & $\nue$CC-like     & signal/$\nue$CC     & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{25} - f_{33}$   & FHC  & SBND     & $\nue$CC-like     & bkg/$\numu$CC      & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{34} - f_{42}$   & FHC  & SBND     & $\nue$CC-like     & bkg/NC1$\gamma$        & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{43} - {f_51}$   & FHC  & SBND     & $\nue$CC-like     & bkg/NC1$\pi^0$         & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{52} - f_{60}$   & FHC  & SBND     & $\nue$CC-like     & bkg/NCother          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, $\infty$\} \\
+		$f_{61} - f_{66}$   & FHC  & SBND     & $\nue$CC-like     & bkg/Dirt             & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\
+		$f_{67} - f_{72}$   & FHC  & SBND     & $\nue$CC-like     & bkg/Cosmics          & \{0, 0.2, 0.4, 0.6, 0.8, 1.0, $\infty$\}                \\ \hline
+		$f_{73} - f_{145}$  & \multicolumn{5}{l}{As above, but for $\mu$B}                                                                        \\ \hline
+		$f_{146} - f_{218}$ & \multicolumn{5}{l}{As above, but for ICARUS}                                                                    \\ \hline
+	\end{tabular}
+\end{adjustbox}
+\caption[Binning scheme for the efficiency uncertainties.]{The binning scheme used to produce the efficiency uncertainty covariance matrices.}
+\label{table:efficiency_systematics}
+\end{table}
+
+All future discussion involving correlated uncertainties should from here on be assumed to be fully correlated even if not explicitly stated. A set of example covariance matrices are shown in \FigureRef{fig:efficiency_cov_matrices}. The top left plot corresponds to a 10\% correlated error only. The remaining three plots all have a correlated error of 2\%, with some varying amounts of an uncorrelated error associated with each systematic. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type1_cor10.00pct.root.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type2_cor2.00pct_sbnduncor1.00pct_ubooneuncor1.00pct_icarusuncor1.00pct.root.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type2_cor2.00pct_sbnduncor2.00pct_ubooneuncor0.50pct_icarusuncor0.50pct.root.pdf}
+    \includegraphics[width = 0.49\textwidth]{figures-chap5/efficiency_matrices/efficiency_error_matrix_48x48_type3_cor2.00pct_bulkuncor0.50pct_allpeakEnumuCCuncor2.00pct.root.pdf}
+    \caption[Example efficiency uncertainty covariance matrices.]{Covariance matrices produced to investigate the effects of efficiency systematics for the \numu disappearance channel. Top left: A 10\% fully correlated error only. Top right: A 2\% fully correlated error with an additional 1\% uncorrelated error across all bins. Bottom left: A 2\% fully correlated error with an additional 2\% uncorrelated error for all \gls{sbnd} bins and a 0.5\% uncorrelated error for all \gls{microboone} and \gls{icarus} bins. Bottom right: A 2\% fully correlated error with an additional 2\% uncorrelated error for the peak energy bins (0.6 - 1.0 GeV) in each detector and a 0.5\% uncorrelated error for all other bins.}
+    \label{fig:efficiency_cov_matrices}
+\end{figure}
+
 
 As was mentioned in \SectionRef{sec:efficiency_syst}, efficiency systematics are not currently included in the \textit{standard} analyses. In order to get a measure of the possible impact of efficiency systematics on the sensitivity, various covariance matrices were produced following the scheme outlined in \SectionRef{sec:efficiency_syst}. Matrices were produced to investigate the impact of:
 \begin{enumerate}
