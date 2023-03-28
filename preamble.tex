@@ -34,9 +34,14 @@
             right=25mm]{geometry}
 
 % glossary - add to toc and remove page numbers
-\usepackage[xindy,toc,nonumberlist]{glossaries} 
-\input{glossary}
+\usepackage[xindy,toc,nonumberlist]{glossaries-extra} 
+\setabbreviationstyle[acronym]{long-short}
 \makeglossaries
+\input{glossary}
+
+
+\glssetcategoryattribute{acronym}{glossname}{firstuc}
+\glssetcategoryattribute{acronym}{glossdesc}{title}
 
 % add line numbers
 %\usepackage{lineno}
