@@ -116,7 +116,7 @@ Currently, uncertainties due to detector effects remain largely unconstrained an
 The flux systematics are grouped into 3 distinct sets with different origins as part of the \gls{microboone} reweight scheme which are detailed below plus the additional \gls{pot} normalisation. 
 
 \subsubsection*{Optical Flux Systematics}
-The optical flux systematics are comprised of two parameters: the \textit{skin effect} and the \textit{horn current}. The horn current parameter is simply the uncertainty of the supplied current to the focusing horn. Since the current is linked to the focusing properties of the horn, uncertainty on the current leads to an uncertainty in the neutrino flux. The focusing horn is surrounded by a conductor where currents travel on the surface of the conductor. The skin effect is a measure of how much these surface currents penetrate into the conductor which in turn affects the internal fields of the conductor. Therefore, due to the skin effect, the strength of the magnetic field that particles propagating through the horn experience may vary \cite{BNB_flux}.
+The optical flux systematics are comprised of two parameters: the \textit{skin effect} and the \textit{horn current}. The horn current parameter is simply the uncertainty of the supplied current to the focusing horn. Since the current is linked to the focusing properties of the horn, uncertainty on the current leads to an uncertainty in the neutrino flux. The focusing horn is surrounded by a conductor on the surface of which currents travel. The skin effect is a measure of how much these surface currents penetrate into the conductor which in turn affects the internal fields of the conductor. Therefore, due to the skin effect, the strength of the magnetic field that particles propagating through the horn experience may vary \cite{BNB_flux}. The uncertainty associated with the horn current and skin effect are tabulated in \TableRef{table:optical_flux_params}.
 
 \begin{table}[!h]
   \renewcommand{\arraystretch}{1.4}    
@@ -132,7 +132,7 @@ The optical flux systematics are comprised of two parameters: the \textit{skin e
     \bottomrule
 
   \end{tabular}
-  \caption[Optical, beam focusing flux systematic parameters.]{Optical systematic flux uncertainties associated with the current in the horn\cite{BNB_flux}.}
+  \caption[Optical, beam focusing flux systematic parameters.]{Optical systematic flux uncertainties associated with the current in the horn\cite{BNB_flux}.}\label{table:optical_flux_params}
 \end{table}
 
 \newpage
@@ -189,6 +189,9 @@ No $K^+$ production rates exist for proton-beryllium interactions at 8.89 GeV/c 
 The major contribution that the $K^0$ makes to the BNB flux is from the decay of the $K^0_L$. The $K^0$ that are produced via strong interactions have equal contents of $K^0_L$ and $K^0_s$, therefore the production rate of $K^0_L$ can be inferred from knowing the production rate of $K^0_s$. The Sanford-Wang parametrisation is again used to estimate the production cross-section by combining data from the BNL E910 experiment at 12.3 GeV/c and 17.5 GeV/c and the KEK experiment at \mbox{12.3 GeV/c}.
 
 For the $K^-$, there is minimal production data available, therefore, simulations are used exclusively. The rate and spectrum of the $K^-$ are estimated by simulating 8.89 GeV/c proton-beryllium interactions \cite{BNB_flux}.
+
+The uncertainty associated with $\overset{(-)}{\nu}_{\!\!\mu}$ and $\overset{(-)}{\nu}_{\!\!e}$ production for each of the pion and kaon mechanisms described above is summarised in \TableRef{table:corr_flux}.
+
 \renewcommand{\arraystretch}{1.4}    
 \begin{table}[!h]
   \renewcommand{\arraystretch}{1.4}    
@@ -265,7 +268,7 @@ where $\lambda^{h\prime}$ is the tweaked mean free path. The modified survival p
 \begin{equation}
   w^h_{mfp}=\begin{cases}
     \frac{1-P^{h\prime}_{surv}}{1-P^h_{surv}}, & \text{if h reinteracts}\\
-    \frac{p^{h\prime}_{surv}}{P^{h}_{surv}}, & \text{if h escapes}.
+    \frac{P^{h\prime}_{surv}}{P^{h}_{surv}}, & \text{if h escapes}.
   \end{cases}
 \end{equation}
 
