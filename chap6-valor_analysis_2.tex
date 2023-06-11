@@ -24,20 +24,21 @@ n_{d;b;s}^{pred}(r; \vec{\theta}; \vec{f}) =
    \sum_{m} \sum_{t}  P_{d;b;m}(t; \vec{\theta}) \cdot R_{d;b;s;m}(r,t; \vec{f}) \cdot T_{d;b;s;m}(r,t) \cdot N^{MC},
    \label{eq:valor_npred}
 \end{equation}
-where $P_{d;b;m}(t; \vec{\theta})$ represents the effect due to a physics hypothesis, $R_{d;b;s;m}(r,t; \vec{f})$ represents the response of a \gls{mct} bin to the systematic variations and $N^{MC} = \mbox{POT}_{b;d}^{data}/\mbox{POT}_{b;d}^{MC}$, which is the normalisation by which to scale the event rate to account for the POT which was used to construct the sample of neutrino events with respect to the nominal POT in the analysis. The variation due to systematic parameters is applied separately to each combination of beam, detector, topological selection and reaction mode in true-reconstructed space and is, therefore, dependant on, \textit{b, d, s} and \textit{m}. The dependence of $P_{d;b;m}(t; \vec{\theta})$ on \textit{d} and \textit{b} is due to \textit{d} and \textit{b} encapsulating the baseline information which is a component of the oscillation probability. The unoscillated \gls{cc} \glspl{mct} are weighted by the appropriate oscillation probability, $P_{\nu_{\alpha} \rightarrow \nu_{\beta}}$, to reflect the change in event rate due to neutrino oscillations. The \gls{nc} \glspl{mct} are left unweighted since they remain unchanged due to flavour oscillations. This distinction between \gls{cc} and \gls{nc} is encapsulated by \textit{m}, hence, $P_{d;b;m}(t; \vec{\theta})$ is required to also be dependent on \textit{m}. 
+where $P_{d;b;m}(t; \vec{\theta})$ represents the effect due to a physics hypothesis, $R_{d;b;s;m}(r,t; \vec{f})$ represents the response of a \gls{mct} bin to the systematic variations and $N^{MC} = \mbox{POT}_{b;d}^{data}/\mbox{POT}_{b;d}^{MC}$, which is the normalisation by which to scale the event rate to account for the POT which was used to construct the sample of neutrino events with respect to the nominal POT in the analysis. Depending at what stage efficiency uncertainties are implemented, they either form part of  $R_{d;b;s;m}(r,t; \vec{f})$ or $T_{d;b;s;m}(r, t)$. Efficiency uncertainties considered as part of the event selection will be reflected in $T_{d;b;s;m}(r, t)$, whereas efficiency systematic uncertainties such as those considered in \SectionRef{sec:Impact of Additional Efficiency Systematics} will be reflected in $R_{d;b;s;m}(r,t; \vec{f})$. The variation due to systematic parameters is applied separately to each combination of beam, detector, topological selection and reaction mode in true-reconstructed space and is, therefore, dependant on, \textit{b, d, s} and \textit{m}. The dependence of $P_{d;b;m}(t; \vec{\theta})$ on \textit{d} and \textit{b} is due to \textit{d} and \textit{b} encapsulating the baseline information which is a component of the oscillation probability. The unoscillated \gls{cc} \glspl{mct} are weighted by the appropriate oscillation probability, $P_{\nu_{\alpha} \rightarrow \nu_{\beta}}$, to reflect the change in event rate due to neutrino oscillations. The \gls{nc} \glspl{mct} are left unweighted since they remain unchanged due to flavour oscillations. This distinction between \gls{cc} and \gls{nc} is encapsulated by \textit{m}, hence, $P_{d;b;m}(t; \vec{\theta})$ is required to also be dependent on \textit{m}. 
 
-For $n_{d ; b ; s}^{obs}(r)$ observed events, the log likelihood, $\lnOf{\lambda_{d;b;s}(\vec \theta, \vec f)}$, is given by
+For $n_{d ; b ; s}^{obs}(r)$ observed events, the log likelihood ratio, $\lnOf{\lambda_{d;b;s}(\vec \theta, \vec f)}$, is given by
 \begin{equation}
     \lnOf{\lambda_{d;b;s}(\vec \theta, \vec f)} = - \mathlarger{\mathlarger{\sum_{b,d,s,r}}} \Bigg \{ \Big (n_{d;b;s}^{pred}(r,\vec{\theta},\vec{f})
     - n_{d ; b ; s}^{obs}(r) \Big) + n_{d ; b ; s}^{obs}(r) \cdot \lnOf{\frac{n_{d ; b ; s}^{obs}(r)}{n_{d ; b ; s}^{p r e d}(r , \vec{\theta} , \vec{f})}} \Bigg \}.
+    \label{eqn:log_likelihood_ratio}
 \end{equation}
-An additional term is applied to penalise deviations from the nominal values of systematic parameters which is defined as,
+The systemtaic parameters are removed via profiling in the fits. This is done by including an additional term which penalises deviations from the nominal values of systematic parameters and is defined as,
 \begin{equation}
     \lnOf{\lambda_{syst}(\vec{f})} = -\frac{1}{2} (\vec{f} - \vec{f}_0)^T \mathbf{V^{-1}} (\vec{f} - \vec{f}_0),
 \end{equation}
-where $\vec{f}_0$ is a vector containing the nominal value of all the systematic parameters and \textbf{V} is a covariance matrix containing the uncertainties of the systematic parameters \cite{VALOR_dune}. 
+where $\vec{f}_0$ is a vector containing the nominal value of all the systematic parameters and \textbf{V} is a covariance matrix containing the uncertainties of the systematic parameters. \textbf{V} is produced by diagonally adding all the covariance matrices from each set of systematic subgroups \cite{VALOR_dune}. 
 
-In the limit of large statistics, quantities of the form $-2\lnOf{\lambda}$ have a $\chi^2$ distribution, hence calculating the log-likelihood allows a goodness-of-fit test to be performed \cite{introduction_to_mathematical_statistics_book}. The total goodness-of-fit value is therefore given by,
+If $\lambda$ is Gaussian, in the limit of large statistics, quantities of the form $-2\lnOf{\lambda}$ approach a $\chi^2$ distribution. Hence, calculating the log-likelihood gives an indication of the goodness-of-fit \cite{introduction_to_mathematical_statistics_book}. The total goodness-of-fit value is therefore given by,
 \begin{equation}
     \chi^2_{tot} = -2(\lnOf{\lambda_{d;b;s}(\vec{\theta}, \vec{f})} + \lnOf{\lambda_{syst}(\vec{f})}).
 \end{equation}
@@ -71,7 +72,7 @@ Two other key analysis choices are the neutrino baseline parameterisation and th
 \subsubsection{Baseline}
 For long baseline experiments, it is not uncommon for fitting frameworks to simply use some average value for the baseline since factors such as the interaction point in the detector or the position at which a particle decays into a neutrino would only change the average baseline for the experiment by a negligible amount. However, for short baseline experiments such as \gls{sbn}, these factors may change the baseline significantly, up to around 20\% in \gls{sbnd}. 
 
-In an attempt to minimise computing resources, the true baseline was not initially used, but instead, several approximations to the baseline were tried. To begin with, the average baseline of each \gls{sbn} detector was used for all neutrino energies. This was calculated from the true baseline distribution of \numu events in each detector which are shown in \FigureRef{fig:numu_baseline}. Secondly, a 4-knot spline (named spline V1) for each detector was defined in order to try and better approximate the baseline. This method was improved upon by producing a spline for each of the true energy bins (named spline V2) which are defined in \SectionRef{sec:binning}. In order to establish the impact of any baseline approximations on the oscillation probability, the oscillation probability was plotted as a function of true neutrino energy with the oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$. This oscillation point was chosen to ensure that a region where rapid oscillations occur was being investigated, which would highlight the effect of any baseline choices. The oscillation probabilities as a function of energy are shown in \FigureRef{fig:baseline_osc_probability} for the four different baselines described. It was eventually decided that any approximation would be insufficient and that the true baseline should be used. 
+In an attempt to minimise computing resources, the true baseline was not initially used, but instead, several approximations to the baseline were tried. To begin with, the average baseline of each \gls{sbn} detector was used for all neutrino energies. This was calculated from the true baseline distribution of \numu events in each detector which are shown in \FigureRef{fig:numu_baseline}. Secondly, a 4-knot spline (named spline V1) for each detector was defined in order to try and better approximate the baseline. This method was improved upon by producing a spline for each of the true energy bins (named spline V2) which are defined in \SectionRef{sec:binning}. In order to establish the impact of any baseline approximations on the oscillation probability, the oscillation probability was plotted as a function of true neutrino energy with the oscillation parameters $\sin^2{2\theta_{\mu\mu}} = 0.01$ and $\Delta m^2_{41} = 50$ eV$^2$. This oscillation point was chosen to ensure that a region where rapid oscillations occur was being investigated, which would highlight the effect of any baseline choices. The oscillation probabilities as a function of energy are shown in \FigureRef{fig:baseline_osc_probability} for the four different baselines described. In order to decouple the oscillation probability from in-house approximations (this was crucial when comparing results between different neutrino fitting frameworks), it was eventually decided that any approximation would be insufficient and that the true baseline should be used. 
 
 \begin{figure}[h!]
 	\centering
@@ -150,6 +151,7 @@ The studies of the baseline approximations were done in the context of the \numu
     }
 \end{figure}
 
+Using the true baseline for real data will not be possible, therefore, baseline approximations will need to be revisited once the analysis transitions from using \gls{mc} to real data. The approach will likely be to produce an approximation similar to spline V2, for each of the samples required. 
 
 \newpage
 \subsubsection{Binning}\label{sec:binning}
@@ -302,9 +304,13 @@ As an example, the $+1\sigma$ variation for the $f_{HornCurrent}$, $f_{M_A^{CCRe
    }
 \end{figure}
 
-\FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from VALOR and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using VALOR and the analogous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios. There are some minor differences between the variations in VALOR and the universes, however, event-perfect agreement is not expected since the 1$\sigma$ variations are found by taking the average from many toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
+\FigureRef{fig:1sigma_variations_toys} shows a double ratio comparison from VALOR and the universes for the flux, proposal interaction and modern interaction systematic parameters. These plots are constructed by first finding the ratio between the 1$\sigma$ variation and the nominal using VALOR (denoted $\text{VALOR}_{1\sigma}$ and $\text{VALOR}_{nom}$ respectively) and the analogous ratio using the universe files. The double ratio is then constructed by taking the ratio of both the previous 1$\sigma$ ratios as is shown in \EquationRef{eqn:syst_double_ratio}. There are some minor differences between the variations in VALOR and the universes, however, perfect agreement is not expected. This due to the $1\sigma$ variations being calculated by finding the average from a limited set of toy samples. Nevertheless, the disagreement is for the most part $< 1\%$ with a maximum of just over 2\%. 
 
-
+\begin{equation}
+	\text{Double Ratio} = 
+	\frac{\text{VALOR}_{1\sigma\hphantom{m}}}{\text{VALOR}_{nom}} \Bigg/ \frac{\text{Universes}_{1\sigma\hphantom{m}}}{\text{Universes}_{nom}}
+	\label{eqn:syst_double_ratio}
+\end{equation}
 
 \begin{figure}[h!]
     \begin{comment}
@@ -338,7 +344,16 @@ As an example, the $+1\sigma$ variation for the $f_{HornCurrent}$, $f_{M_A^{CCRe
 \clearpage
 \subsection{SBN Contour Construction}\label{sec:sensitivites_construction}
 
-The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. Fits are performed for each of the $40 \times 40$ points where the oscillation parameters are fixed and the systematic parameters, if any, are allowed to float up to $\pm5\sigma$ from their nominal value. Once the fits have been produced, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. The confidence levels and $\chi^2_{critical}$ are related via $CL = \int_0^{\chi^2_{critical}} \frac{e^{-x/2}x^{u/2-1}}{2^{u/2}\Gamma(u/2)} dx$, where \textit{u} is the degrees of freedom (in this case 1) and $\Gamma$ is the Gamma function \cite{critical_chi2_book}. An example of a 2D $\chi^2$ surface with exclusion contours at 90\%, 3$\sigma$ and 5$\sigma$ confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}. The contours have been produced for the entire \gls{sbn} program with the inclusion of flux and interaction systematics.
+The relevant phase space for each of the three analysis channels considered is split into a $40 \times 40$ grid. This number was chosen in order to find a balance between having sufficient granularity when constructing contours without having excessive computing times. The dimensions of the phase space considered are different for each analysis channel and are listed in \TableRef{table:analysis_channel_phase_space}. For each of the $40 \times 40$ points, a fit is performed of  \EquationRef{eqn:log_likelihood_ratio} where $\vec{\theta}$ is fixed to the corresponding oscillation parameters and $\vec{f}$ is bounded to to $\pm5\sigma$ from the nominal value, but allowed to float. If no systematics are included (i.e. a statistical only fit is performed), the $\chi^2$ value is simply calculated for the given oscillation parameters. Once the fits have been produced, a contour of constant $\chi^2$ is constructed. The $\chi^2$ value is chosen such that it corresponds to a certain confidence level, \textit{CL}, which for \gls{sbn} analyses is typically 5$\sigma$. The critical value of $\chi^2$, $\chi^2_{critical}$, corresponding to a 5$\sigma$ confidence level along with a number of other $\chi^2_{critical}$ values with their associated confidence levels which are commonly seen in literature are outlined in \TableRef{table:critical_chi2_values}. For a 2-sided test, the confidence levels and $\chi^2_{critical}$ are related via 
+\begin{equation}
+	CL_{\text{2-sided}} = \int_0^{\chi^2_{critical}} \frac{e^{-x/2}x^{u/2-1}}{2^{u/2}\Gamma(u/2)} dx,
+	\label{eqn:confidence_level}
+\end{equation}
+where \textit{u} is the degrees of freedom and $\Gamma$ is the Gamma function. For a 1-sided test the relevant confidence level is given by,
+\begin{equation}
+	CL_{\text{2-sided}} \longrightarrow CL_{\text{1-sided}} = 1-2(1-CL_{\text{2-sided}}).
+\end{equation}
+As an example, if a 99\% one-sided confidence level is to be used, a value of 98\% should be used in \EquationRef{eqn:confidence_level}. In order to find contours of constant $\chi^2$, a 1-dimensional scan is performed across the parameter space, hence \textit{u} in \EquationRef{eqn:confidence_level} is equal to 1 \cite{critical_chi2_book}. An example of a 2D $\chi^2$ surface with exclusion contours at 90\%, 3$\sigma$ and 5$\sigma$ confidence levels for the \nue appearance channel is shown in \FigureRef{fig:nue_app_chisq_surface}. The contours have been produced for the entire \gls{sbn} program with the inclusion of flux and interaction systematics.
 
 \begin{table}[h!]
 \begin{tabular}{lcc}
@@ -428,7 +443,7 @@ The breakdown of the nominal number of events by interaction mode and channel ar
 
 %\noindent Total: 13813.452    (13813.452) \newline
 %POT: 6.600E20
-\caption[Nominal \nue event rate breakdown in \gls{sbnd}.]{Nominal \nue event rate breakdown in \gls{sbnd}.}
+\caption[Nominal \nue event rate breakdown in \gls{sbnd}.]{Nominal \nue event rate breakdown in \gls{sbnd} for $6.6\times10^{20}$ \gls{pot}.}
 \label{table:sbnd_nue_event_rate}
 \end{table}
 
@@ -475,7 +490,7 @@ Total        & 157.8                & 2.3                  & 770.9              
 
 %\noindent Total: 970.564    (970.564) \newline
 %POT: 13.200E20
-\caption[Nominal \nue event rate breakdown in \gls{microboone}.]{Nominal \nue event rate breakdown in \gls{microboone}.}
+\caption[Nominal \nue event rate breakdown in \gls{microboone}.]{Nominal \nue event rate breakdown in \gls{microboone} $13.2\times10^{20}$ \gls{pot}.}
 \label{table:uboone_nue_event_rate}
 \end{table}
 
@@ -522,12 +537,12 @@ Total        & 157.8                & 2.3                  & 770.9              
 
 %\noindent Total: 1781.637    (1781.637) \newline
 %POT: 6.600E20
-\caption[Nominal \nue event rate breakdown in \gls{icarus}.]{Nominal \nue event rate breakdown in \gls{icarus}.}
+\caption[Nominal \nue event rate breakdown in \gls{icarus}.]{Nominal \nue event rate breakdown in \gls{icarus} $6.6\times10^{20}$ \gls{pot}.}
 \label{table:icarus_nue_event_rate}
 \end{table}
 
 \newpage
-Similar to \FigureRef{fig:nominal_nue_spectra}, \FigureRef{fig:nominal_nue_spectra_1sigma_enevelope} again shows the nominal event rate in each \gls{sbn} detector, but in an integrated form. Additionally, $1\sigma$ prefit uncertainty envelopes are shown which are due to the flux and interaction systematics. The accuracy of say the \gls{icarus} prediction can be improved by constraining the systematics from an \gls{sbnd} fit. This is shown in \FigureRef{fig:icarus_pre_post_fit} which shows the nominal integrated \gls{icarus} spectrum along with the prefit uncertainty envelope as in \FigureRef{fig:nominal_nue_spectra_1sigma_enevelope}, but also a postfit uncertainty envelope based on an \gls{sbnd} fit is shown. The reduction in size from the prefit to postfit envelope highlights the impact of \gls{sbnd} on the \gls{icarus} prediction. 
+Similar to \FigureRef{fig:nominal_nue_spectra}, \FigureRef{fig:nominal_nue_spectra_1sigma_enevelope} again shows the nominal event rate in each \gls{sbn} detector, but in an integrated form. Additionally, $1\sigma$ prefit uncertainty envelopes are shown which are due to the flux and interaction systematics. The accuracy of say the \gls{icarus} prediction can be improved by constraining the systematics from an \gls{sbnd} fit. This is shown in \FigureRef{fig:icarus_pre_post_fit} which shows the nominal integrated \gls{icarus} spectrum along with the prefit uncertainty envelope as in \FigureRef{fig:nominal_nue_spectra_1sigma_enevelope}, but also a postfit uncertainty envelope based on an \gls{sbnd} fit where the flux and interaction uncertainties have been constrained is shown. The reduction in size from the prefit to postfit envelope highlights the impact of \gls{sbnd} on the \gls{icarus} prediction. 
 
 \begin{figure}[h!]
   {\includegraphics[width=0.49\textwidth]{figures-chap6/spectra/nue_nominal_spectrum_sbn_nd_BNB_FHC_0_modes.pdf}}
@@ -537,7 +552,7 @@ Similar to \FigureRef{fig:nominal_nue_spectra}, \FigureRef{fig:nominal_nue_spect
   \parbox[b]{0.49\textwidth}%
   {
     \caption[SBN \nue \gls{cc} inclusive reconstructed neutrino energy spectra.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom)
-    reconstructed neutrino energy spectra constructed from the samples of $\nue$~\gls{cc}~inclusive events. The spectra are broken down into the
+    reconstructed neutrino energy spectra constructed from the samples of $\nue$~\gls{cc}~inclusive events. \gls{sbnd} and \gls{icarus} have an exposure of $6.6\times10^{20}$ \gls{pot} whereas \gls{microboone} has an exposure $13.2\times10^{20}$ \gls{pot}. The spectra are broken down into the
     contributions from each neutrino interaction mode.\\ \phantom{.}\\}
     \label{fig:nominal_nue_spectra} 
   }
@@ -550,7 +565,7 @@ Similar to \FigureRef{fig:nominal_nue_spectra}, \FigureRef{fig:nominal_nue_spect
   \captionsetup{width=0.49\textwidth}
   \parbox[b]{0.49\textwidth}%
   {
-    \caption[SBN \nue \gls{cc} inclusive reconstructed neutrino energy spectra with a 1$\sigma$ prefit envelopes.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom) integrated reconstructed neutrino energy spectra constructed from the samples of $\nue$~\gls{cc}~inclusive events. A 1$\sigma$ prefit uncertainty envelope from the flux and interaction systematics is also shown. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
+    \caption[SBN \nue \gls{cc} inclusive reconstructed neutrino energy spectra with a 1$\sigma$ prefit envelopes.]{SBND (top-left), MicroBooNE (top-right) and ICARUS (bottom) integrated reconstructed neutrino energy spectra constructed from the samples of $\nue$~\gls{cc}~inclusive events. \gls{sbnd} and \gls{icarus} have an exposure of $6.6\times10^{20}$ \gls{pot} whereas \gls{microboone} has an exposure $13.2\times10^{20}$ \gls{pot}. A 1$\sigma$ prefit uncertainty envelope from the flux and interaction systematics is also shown. \\\phantom{.}\\\phantom{.}\\\phantom{.}\\}
     \label{fig:nominal_nue_spectra_1sigma_enevelope} 
   }
 \end{figure}
@@ -558,7 +573,7 @@ Similar to \FigureRef{fig:nominal_nue_spectra}, \FigureRef{fig:nominal_nue_spect
 \begin{figure}[h!]
     \centering
     \includegraphics[width = \largefigwidth]{figures-chap6/spectra/envelopes/icarus_pre_post_fit_nue.pdf}
-    \caption[ICARUS \nue \gls{cc} inclusive neutrino energy spectra with a 1$\sigma$ prefit and postfit envelope.]{ICARUS integrated reconstructed neutrino energy spectrum constructed from the samples of \nue~\gls{cc}~inclusive events. The $1\sigma$ prefit envelope is shown as well as a $1\sigma$ postfit envelope based on an \gls{sbnd} fit. The reduction in size of the error envelope when going from prefit to postfit shows the impact of \gls{sbnd} on improving the accuracy of the ICARUS prediction.}
+    \caption[ICARUS \nue \gls{cc} inclusive neutrino energy spectra with a 1$\sigma$ prefit and postfit envelope.]{ICARUS integrated reconstructed neutrino energy spectrum constructed from the samples of \nue~\gls{cc}~inclusive events for an exposure of exposure of $6.6\times10^{20}$ \gls{pot}. The $1\sigma$ prefit envelope is shown as well as a $1\sigma$ postfit envelope based on an \gls{sbnd} fit. The reduction in size of the error envelope when going from prefit to postfit shows the impact of \gls{sbnd} on improving the accuracy of the ICARUS prediction.}
     \label{fig:icarus_pre_post_fit}
 \end{figure}
 
@@ -631,9 +646,11 @@ The top left plot of Figure~\ref{fig:nue_disapp_spectra_ratios} shows the \nue d
 
 
 \clearpage
-\section{Sensitivities Studies}\label{sec:sbn_sensitvities}
+\section{Sensitivity Studies}\label{sec:sbn_sensitvities}
 
 Following the scheme outlined in \SectionRef{sec:sensitivites_construction}, both allowed and exclusion sensitivity contours are produced for the entire \gls{sbn} program. Additionally, the contribution from individual and combination of detectors on the contours is investigated as well as the impact of different sets of systematic parameters and certain individual parameters. 
+
+When fits of multiple detectors are performed, they are done so on an equal footing for all detectors included. Similarly, when systematics are included, they are initially unconstrained (within their bounds). That is, \gls{sbnd} has not been used to constrain parameters in the fit. 
 
 %\section{Further Study on Sensitivities}
 
@@ -781,7 +798,7 @@ To further assess the reduction in sensitivities due to specific parameters or p
 \end{figure}
 
 \newpage
-In addition to the exclusion regions, the allowed region with the inclusion of a single parameter are shown along with the corresponding contour from the entire associated set of systematic parameters for the \nue appearance and \nue disappearance channels in \FigureRef{fig:nue_app_single_syst_sets} and \FigureRef{fig:nue_disapp_single_syst_sets} respectively. Unlike for the exclusion contours, the  $f_{\sigma^{\pi}_{INEL}}$ and $f_{R_{\pi}^{C Ex}}$ parameters don't show the smallest change across the entire parameter space. The change is comparable to the other parameters for at least some of the parameter space which is more consistent with the size of the impact seen in the initial study.
+In addition to the exclusion regions, the allowed region with the inclusion of a single parameter are shown along with the corresponding contour from the entire associated set of systematic parameters for the \nue appearance and \nue disappearance channels in \FigureRef{fig:nue_app_single_syst_sets} and \FigureRef{fig:nue_disapp_single_syst_sets} respectively. Unlike for the exclusion contours, the  $f_{\sigma^{\pi}_{INEL}}$ and $f_{R_{\pi}^{C Ex}}$ parameters do not show the smallest change across the entire parameter space. The change is comparable to the other parameters for at least some of the parameter space which is more consistent with the size of the impact seen in the initial study.
 
 
 \begin{figure}[h!]
@@ -814,11 +831,11 @@ To further constrain some of the dominant systematic uncertainties in future wor
 
 The NA61/SHINE experiment has already collected data from proton interactions on carbon, beryllium and aluminium with proton momenta of 60 GeV/c and 120 GeV/c (only 60 GeV/c protons were used for the aluminium target) \cite{NA61SHINE}. New runs are being considered using a \gls{bnb}-like target to update the currently available dataset. 
 
-As \gls{genie} continues to be developed, further improvements to interaction models and systematic uncertainty constraints are expected. These may arise from the release of new datasets which will allow for new fits to be performed with inclusion of additional or updated data points. Another possibility is for models to be tuned against exclusive data channels as well as joint exclusive channels in addition to inclusive ones \cite{Julia's_thesis}.
+As \gls{genie} continues to be developed, further improvements to interaction models and systematic uncertainty constraints are expected. These may arise from the release of new datasets which will allow for new fits to be performed with inclusion of additional or updated data points. Another possibility is for models to be tuned against exclusive data channels as well as joint exclusive channels in addition to inclusive ones. Exclusive channels have the benefit of allowing for certain interactions to be isolated minimising some of the background contributions \cite{Julia's_thesis}.
 	
 Finally, \gls{sbnd} data may also be used to help constrain systematics. This may be achieved, for example, by measuring neutrino-argon interactions with unprecedented statistics or by utilising the \textit{PRISM} concept. The large statistics will allow for the measurement of many different exclusive final state topologies, some of which remain largely unmeasured within argon. An example is the $\nu \electron \rightarrow \nu \electron$ elastic scattering channel. The cross-section of this interaction is well known and the topological signature is easily identifiable in a \gls{lartpc}. For $6.6 \times 10^{20}$ \gls{pot}, \gls{sbnd} expects to observe $\sim 400$ of these events which is sufficient to make a neutrino flux measurement \cite{SBN_paper} \cite{Measurement_of_neutrino_flux_from_neutrino_electron_elastic_scattering}. 
 
-Due to the close proximity of \gls{sbnd} to the neutrino beam source, it is possible to exploit the PRISM effect by considering neutrino interactions as a function of their off-axis angle. As the off-axis angle increases, the peak of the energy spectrum decreases and the overall spectrum becomes narrower. \gls{sbnd}-PRISM may, therefore, measure neutrino interactions at different off-axis angles and deduce the energy dependence on the cross-section over a range of $\sim 200$ MeV. The narrowing of the energy spectrum at larger off-axis angles may also allow certain effects (typically non quasi-elastic) which start to dominate in the $\gtrsim 1$ GeV region to be disentangled from other contributions. 
+Due to the close proximity of \gls{sbnd} to the neutrino beam source, it is possible to exploit the PRISM effect by considering neutrino interactions as a function of their off-axis angle. The idea of observing interaction over a range of angles in a single detector was first pioneered by the \gls{t2k} collaboration \cite{PRISM-T2K}. As the off-axis angle increases, the peak of the energy spectrum decreases and the overall spectrum becomes narrower. \gls{sbnd}-PRISM may, therefore, measure neutrino interactions at different off-axis angles and deduce the energy dependence on the cross-section over a range of $\sim 200$ MeV. The narrowing of the energy spectrum at larger off-axis angles may also allow certain effects (typically non quasi-elastic) which start to dominate in the $\gtrsim 1$ GeV region to be disentangled from other contributions. 
 
 
 \subsection{Evaluation of Impact of Efficiency Uncertainties}\label{sec:Impact of Additional Efficiency Systematics}
@@ -966,7 +983,7 @@ Mirroring what was done for \nue appearance, \FigureRef{fig:nue_disapp_corr_unco
     \label{fig:nue_disapp_corr_uncorr}
 \end{figure}
 
-A 2\% uncorrelated uncertainty is then applied to each detector one at a time. \FigureRef{fig:nue_disapp_uncorrelated_per_detector} shows that majority of the reduction is due to \gls{sbnd} at above $\Delta m_{41}^2 \sim 10$ (where \gls{sbnd} is dominant). Both \gls{microboone} and \gls{icarus} only have a minimal impact for any $\Delta m^2_{41}$ values. This is consistent with what is shown in \FigureRef{fig:nue_disapp_corr_uncorr}. 
+A 2\% uncorrelated uncertainty is then applied to each detector one at a time. \FigureRef{fig:nue_disapp_uncorrelated_per_detector} shows that majority of the reduction is due to \gls{sbnd} at above $\Delta m_{41}^2 \sim 10$ eV$^2$ (where \gls{sbnd} is dominant). Both \gls{microboone} and \gls{icarus} only have a minimal impact for any $\Delta m^2_{41}$ values. This is consistent with what is shown in \FigureRef{fig:nue_disapp_corr_uncorr}. 
 
 \begin{figure}[h!]
     \centering
@@ -1013,7 +1030,7 @@ The simplistic approach of applying a flat 20\% bias was motivated by the conser
 
 The full \nue event selection as described in \SectionRef{sec:nue_selection} was repeated but with the above changes applied. The events from these selections were then used to produce exclusion contours using the same systematic uncertainties as previously described. The overall event rate from the selections using the reconstructed information motivated by \ChapterRef{chap:Energy_Reco} is lower than the traditional method which relied on energy smearing. 
 
-The exclusion contours comparing the three selections are shown on the left of \FigureRef{fig:nue_app_bias} and \FigureRef{fig:nue_disapp_bias} for \nue appearance and disappearance respectively. The difference between the three exclusion contours is relatively minor and therefore the ratios of the contours to the contour from the original selection are shown on the right of their respective figures. Since the event rate is reduced in the updated selections, it is expected that the overall exclusion sensitivity would also be reduced. This is indeed the case for most values of $\Delta m^2_{41}$ with only a couple of areas where the selection with the flat 20\% bias appears to improve the sensitivity.
+The exclusion contours comparing the three selections are shown on the left of \FigureRef{fig:nue_app_bias} and \FigureRef{fig:nue_disapp_bias} for \nue appearance and disappearance respectively. The difference between the three exclusion contours is relatively minor and therefore the ratios of the contours to the contour from the original selection are shown on the right of their respective figures. Since the event rate is reduced in the updated selections, it is expected that the overall exclusion sensitivity would also be reduced. This is indeed the case for most values of $\Delta m^2_{41}$ with only a couple of areas where the selection with the flat 20\% bias improves the sensitivity. 
 
 \begin{figure}[h!]
     \centering
@@ -1038,7 +1055,7 @@ The sensitivities that have been produced for the \gls{sbn} analysis were constr
 
 The flux and interaction systematics considered are initially provided by the \gls{microboone} and \gls{genie} reweight packages respectively before being processed internally by VALOR. The impact of some possible variations of efficiency systematics have been investigated by the use of covariance matrices within VALOR. It has been demonstrated that the inclusion of flux and interaction systematics significantly reduce the expected sensitivities, however, since they are already well constrained it is unlikely that their impact may be significantly decreased. The efficiency systematics are currently largely unconstrained, but the impact from various combinations of correlated and uncorrelated uncertainties have been shown to only be relatively minor when included in addition to the flux and interaction systematics. 
 
-The exclusion sensitivities have been produced for each individual detector within \gls{sbn} and all combinations of multi-detector fits including for the full \gls{sbn} program (combining all three detectors). For both oscillation channels, the \gls{sbnd} detector dominates the sensitivity at large values of $\Delta m^2_{41}$ (> 3 eV$^2$) and ICARUS dominates for small values of $\Delta m^2_{41}$ (< 3 eV$^2$). One of the key features of the \gls{sbn} program is the three-detector design. This is highlighted by the fact the best sensitivity can only be obtained by combining data from all three detectors. 
+The exclusion sensitivities have been produced for each individual detector within \gls{sbn} and all combinations of multi-detector fits including for the full \gls{sbn} program (combining all three detectors). For both oscillation channels, the \gls{sbnd} detector dominates the sensitivity at large values of $\Delta m^2_{41}$ (> 3 eV$^2$) and ICARUS dominates for small values of $\Delta m^2_{41}$ (< 3 eV$^2$). One of the key features of the \gls{sbn} program is the three-detector design. This is highlighted by the fact that the best sensitivity can only be obtained by combining data from all three detectors. 
 
 The current \gls{sbn} \nue appearance exclusion sensitivity supersedes that of \gls{karmen} for essentially the entire parameters space, whereas the allowed region is much smaller than that obtained from \gls{lsnd}, but is nevertheless consistent with the result. The \nue disappearance exclusion sensitivity improves on that of ND280 for $\Delta m^2_{41}$ values less than 10 eV$^2$ and excludes much of the 90\% allowed region from ND280. Most of the \gls{sbn} allowed region is again still consistent with what was obtained by ND280. 
 

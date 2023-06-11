@@ -1,7 +1,7 @@
 \chapter{Sterile Neutrino Oscillation Inputs Within SBN}
 \label{chap:osc_inputs}
 
-In order to perform an oscillation analysis, a number of inputs and analysis choices are required. Typically this involves generating some event sample in each detector for a given analysis, applying a physics hypothesis and some set of systematic uncertainties. A fit comparing the observed and predicted event rate is then performed giving the confidence level of the applied physics hypothesis. This is summarised in \FigureRef{fig:analysis_paradigm} which shows the generic overview of the procedure coupled with the different components. Many of these items are common to all oscillation analyses and are agnostic to the fitting framework. The remainder of this chapter highlights some of the key inputs to the oscillation analysis along with some of the decisions that were made. The actual analysis results are detailed in \SectionRef{chap:VALOR} in addition to explaining how the VALOR framework processes or consumes these inputs where appropriate.
+In order to perform an oscillation analysis, a number of inputs and analysis choices are required. Typically this involves generating some event sample in each detector for a given analysis, applying a physics hypothesis and some set of systematic uncertainties. A fit comparing the observed and predicted event rate is then performed giving the confidence level of the applied physics hypothesis. This is summarised in \FigureRef{fig:analysis_paradigm} which shows the generic overview of the procedure coupled with the different components. Many of these items are common to all oscillation analyses and are agnostic to the fitting framework. The remainder of this chapter highlights some of the key inputs to the oscillation analysis along with some of the decisions that were made. The actual analysis results are detailed in \ChapterRef{chap:VALOR} in addition to explaining how the VALOR framework processes or consumes these inputs where appropriate.
 
 \begin{figure}[!h]
     \centering
@@ -35,10 +35,10 @@ The actual number of real \numu events expected in \gls{sbnd} is well over 5 mil
 
 \section{Event Reconstruction}\label{sec:pseudo_event_reconstruction}
 
-To emulate reconstructed energies, the true energy of particles are smeared. For the \numu sample, the following conditions are applied. Primary tracks (which is the leading muon in the final state) contained in the active volume, have their true energy smeared by scaling the energy with a Gaussian which has a standard deviation of 0.02. If the primary track is not contained, the energy is instead smeared by a Gaussian with a standard deviation that is given by $-A\lnOfbraces{BL}$,
-where \textit{L} is the track length and $A = 0.102$ and $B = 0.000612$ cm$^{-1}$ \cite{SBN_Proposal}. This emulates the multiple scatterings of the track, but in order for the track to have sufficient resolution, a minimum track length of 100 cm is required. Parameters \textit{A} and \textit{B} were chosen based on the work of \cite{ICARUS_muon_smearing}. Non-primary tracks with a true energy of less than 21 MeV are removed (21 MeV is the kinetic energy threshold for reconstructing tracks \cite{SBN_Proposal}) and any remaining tracks are smeared with a Gaussian which has a standard deviation of 0.05 \cite{SBN_Proposal}. An additional condition that the minimum smeared energy is 0 MeV is applied which ensures that negative energies do not occur.
+To emulate reconstructed energies, the true energy of particles are smeared. For the \numu sample, the following conditions are applied. Primary tracks (which is the leading muon in the final state) contained in the active volume, have their true energy smeared by a Gaussian which has a standard deviation of 0.02 MeV. If the primary track is not contained, the energy is instead smeared by a Gaussian with a standard deviation that is given by $-A\lnOfbraces{BL}$,
+where \textit{L} is the track length and $A = 0.102$ MeV and $B = 0.000612$ cm$^{-1}$ \cite{SBN_Proposal}. This emulates the multiple scatterings of the track, but in order for the track to be deemed reconstructable, a minimum track length of 100 cm is required. Parameters \textit{A} and \textit{B} were chosen based on the work of \cite{ICARUS_muon_smearing}. Non-primary tracks with a true energy of less than 21 MeV are removed (21 MeV is the kinetic energy threshold for reconstructing tracks which is determined by the wire pitch and diffusion effect \cite{SBN_Proposal}) and any remaining tracks are smeared with a Gaussian which has a standard deviation of 0.05 MeV \cite{SBN_Proposal}. An additional condition that the minimum smeared energy is 0 MeV is applied which ensures that negative energies do not occur.
 
-The values used to determine the degree of energy smearing for the \nue sample are different to the \numu sample. The energy of electron and photon showers are smeared with a Gaussian that has a standard deviation of $0.15/\sqrt{E_{true}}$. Contained muons are smeared with a Gaussian that has a standard deviation of 0.15 whereas the smearing of non-contained muons is not considered. Finally, the hadrons are smeared with a Gaussian that has a standard deviation of 0.05. The same condition ensuring that negative energies are not allowed is again applied. A check is also performed to see if there is more than 50 MeV of hadronic activity at the vertex, which is the threshold for the vertex to be considered visible \cite{SBN_Proposal}. Additionally, the reconstruction is assumed to only be sufficiently accurate for showers above 200 MeV, therefore any events with showers that do not exceed this energy threshold are removed. 
+The values used to determine the degree of energy smearing for the \nue sample are different to the \numu sample. The energy of electron and photon showers are smeared with a Gaussian that has a standard deviation of $0.15/\sqrt{E_{true}}$ MeV. Contained muons are smeared with a Gaussian that has a standard deviation of 0.15 MeV whereas the smearing of non-contained muons is not considered. Finally, the hadrons are smeared with a Gaussian that has a standard deviation of 0.05 MeV. The same condition ensuring that negative energies are not allowed is again applied. A check is also performed to see if there is more than 50 MeV of hadronic activity at the vertex, which is the threshold for the vertex to be considered visible \cite{SBN_Proposal}. Additionally, the reconstruction is assumed to only be sufficiently accurate for showers above 200 MeV, therefore any events with showers that do not exceed this energy threshold are removed. 
 
 When reconstructed quantities are considered, background events may mimic the key signature of signal events, resulting in events being misidentified. Some of the most common backgrounds to a \gls{cc} inclusive sample in \gls{sbn} will be due to: 
 
@@ -54,7 +54,7 @@ When reconstructed quantities are considered, background events may mimic the ke
 
 %The event selections are performed in order to first identify \numu or \nue-like interactions. The selection steps are designed to try and produce a pure $\nu_{\mu, e}$ \gls{cc} inclusive sample for each of the analyses, the details of which are outlined below and are performed for each associated event. 
 
-The event selections are performed in order to first identify \numu or \nue-like interactions which form a \numu or \nue \gls{cc} inclusive sample. The selection steps are designed to produce as pure as possible \gls{cc} inclusive sample by rejecting contributions from other samples such as \gls{nc} or cosmics, the details of which are outlined below. 
+The event selections are performed in order to first identify \numu or \nue-like interactions which form a \numu or \nue \gls{cc} inclusive sample. The selection steps are designed to produce a \gls{cc} inclusive sample which maximises the purity and efficiency by rejecting contributions from other samples such as \gls{nc} or cosmics, the details of which are outlined below. 
 
 \subsection{\texorpdfstring{\numu Selection}{numu Selection}}\label{sec:numu_selection}
 
@@ -69,6 +69,8 @@ The event selections are performed in order to first identify \numu or \nue-like
  \item A weight of 0.8 is applied to all selected events to account for an assumed 80\% reconstruction efficiency \cite{SBN_Proposal}. 
 \end{enumerate}
 
+The 80\% reconstruction efficiency is a legacy number that originates from a hand-scanning exercise that was performed at the time of the \gls{sbn} proposal. This number is expected to be updated in future reconstructed events samples. This also applies to the \nue selection described below \cite{SBN_Proposal}.
+
 \subsection{\texorpdfstring{\nue Selection}{nue Selection}}\label{sec:nue_selection}
 
 The $\nue$ selection follows a similar basis to the $\numu$ selection described in section \ref{sec:numu_selection}, however, different criteria for the selection were applied to beam-induced TPC events, dirt events and cosmic events, each of which are outlined below. 
@@ -78,16 +80,16 @@ The $\nue$ selection follows a similar basis to the $\numu$ selection described 
 \begin{enumerate}
   \item Remove any events whose interaction vertex is not located in the fiducial volume. The fiducial volume used is outlined in \TableRef{table:active_and_fiducial_volumes}.
   \item If more than one shower arising from the vertex has an energy above a 100 MeV, the event is removed. %Showers arising from the vertex are identified and the reconstructed energy is found from smearing the ionisation deposition. If more than one shower with energy above 100 MeV exists, the event is removed. This removes neutral pion events where the pion decays into two photon showers. 
-  \item If there is only one photon candidate in the event, a conversion gap cut is applied rejecting any event where the photon shower occurs more than 3 cm from the vertex. 
+  \item If the vertex is visible due to hadronic activity and there is only one photon candidate in the event, a conversion gap cut is applied rejecting any event where the photon shower occurs more than 3 cm from the vertex. 
   \item A weight of 0.06 is applied to the remaining photons which undergo a dE/dx cut resulting in a 94\% background rejection.
-  \item If a misidentified photon originates from a resonant $\numu$ \gls{cc} interaction, the muon lepton is identified. Events where a muon travels greater than 1 m are assumed to be from $\numu$ \gls{cc} interactions and the event is removed. 
+  \item If a photon originates from a resonant $\numu$ \gls{cc} interaction, the muon lepton is identified. Events where a muon travels greater than 1 m are assumed to be from $\numu$ \gls{cc} interactions and the event is removed. 
   %\item Events where the shower has an energy less than 200 MeV are removed.
   \item A weight of 0.8 is applied to all selected events
 to account for an assumed 80\% reconstruction efficiency \cite{Dom's_thesis}.
 \end{enumerate}
 
 \subsubsection*{Dirt Events}
-The selection procedure for dirt events is similar to that of beam-induced events outlined above. However, since the vertex for dirt events occurs outside the detector volume, the conversion gap and muon track length cuts are not undertaken \cite{Dom's_thesis}.
+The selection procedure for signal events from \gls{mc} dirt events is similar to that of beam-induced events outlined above. However, since the vertex for dirt events occurs outside the detector volume, the conversion gap and muon track length cuts are not undertaken \cite{Dom's_thesis}.
 
 \subsubsection*{Cosmic Events}
 A largely separate analysis is applied for cosmic events which is as follows:
@@ -172,7 +174,7 @@ The above approach is applied for both beryllium and aluminium nuclei and the un
 \subsubsection*{Hadronic Neutrino Production Flux Uncertainties}
 The neutrinos in the \gls{bnb} are due to decaying particles which are a result of protons interacting with the beryllium target. Understanding the neutrino flux, therefore, relies on understanding the production of the particles decaying to neutrinos, which are predominately pions for \numu and kaons for \nue (plus the decay of muons which in turn are produced in the meson decays). 
 
-The Sanford-Wang parameterisation is used to estimate the $\pi^{\pm}$ production. It depends on the meson momentum, \textit{p}, and angle relative to the incident proton, \textit{\theta}, and also the proton momentum, $p_B$. The parametrisation is given by
+The Sanford-Wang parameterisation is used to estimate the $\pi^{\pm}$ production. It depends on the meson momentum, \textit{p}, and angle relative to the incident proton, \textit{\theta}, and also the proton momentum, $p_B$ \cite{BNB_flux}. The parametrisation is given by
 
 \begin{equation}
   \hspace{-0.35cm}
@@ -190,7 +192,7 @@ The major contribution that the $K^0$ makes to the BNB flux is from the decay of
 
 For the $K^-$, there is minimal production data available, therefore, simulations are used exclusively. The rate and spectrum of the $K^-$ are estimated by simulating 8.89 GeV/c proton-beryllium interactions \cite{BNB_flux}.
 
-The uncertainty associated with $\overset{(-)}{\nu}_{\!\!\mu}$ and $\overset{(-)}{\nu}_{\!\!e}$ production for each of the pion and kaon mechanisms described above is summarised in \TableRef{table:corr_flux}.
+The uncertainty associated with $\overset{(-)}{\nu}_{\!\!\mu}$ and $\overset{(-)}{\nu}_{\!\!e}$ production for each of the pion and kaon mechanisms described above is summarised in \TableRef{table:corr_flux}. The uncertainties for associated with the production mechanism are calculated by considering a $1\sigma$ variation of the underlying parameters \cite{BNB_flux_TN}. 
 
 \renewcommand{\arraystretch}{1.4}    
 \begin{table}[!h]
@@ -431,9 +433,7 @@ The modern systematics include an additional set of cross-section parameters whi
 
 \newpage
 \subsubsection*{2p2h uncertainty}\label{sec:MEC_uncertainty}
-A \gls{2p2h} uncertainty parameter which specifically affects \gls{2p2h} events is not included from the GENIE event generator since it was decided that the parameter was not sufficiently validated. Instead, a 100\% normalisation uncertainty is applied to all \gls{2p2h} events. The value of the uncertainty was chosen to be a 100\% (maximal) to ensure the effect of the \gls{2p2h} parameter would not be an underestimate. 
-
-
+A \gls{2p2h} uncertainty parameter which specifically affects \gls{2p2h} events is not included from the GENIE event generator since it was decided that the parameter was not sufficiently validated. Instead, a 100\% normalisation uncertainty is applied to all \gls{2p2h} events. The arbitrary value of a 100\% was chosen in order to hopefully not underestimate the uncertainty on the parameter.
 
 \clearpage
 \begin{comment}
