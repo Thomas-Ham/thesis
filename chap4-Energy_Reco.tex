@@ -170,6 +170,8 @@ A comparison of the fractional energy separation, which is defined as $\frac{Rec
     \label{fig:fractional_energy_resolution}
 \end{figure}
 
+\begin{comment}
+
 \newpage
 To get a measure of the resolution, which is defined as the width of the distribution, a Gaussian of the form 
 \begin{equation}
@@ -208,7 +210,6 @@ The Gaussian fits for all three methods have a similar width in \FigureRef{fig:g
     {The fractional energy separation using the true energy of the showering electron with an associated Gaussian fit of the entire distribution. Top Left: \textit{Shower Linear Energy tool}, Top Right: \textit{Shower Num Electrons Energy tool} and Bottom Left: \textit{Shower ESTAR Energy tool}. \\}
     \label{fig:gauss_fit_showering_e}}
 \end{figure}
-
 \newpage
 
 \begin{table}[h!]
@@ -221,6 +222,21 @@ ESTAR & 0.036 & 0.031
 \end{tabular}
 \caption[The $\sigma$ value used in the Gaussian fit to the fractional energy separation distributions of each algorithm.]{The $\sigma$ value used in the Gaussian fit to the fractional energy separation distributions of each algorithm. Both the distributions which use the true energy of the hits (\FigureRef{fig:gauss_fit_hit_level}) and the true energy of the showering electron (\FigureRef{fig:gauss_fit_showering_e}) are shown.}
 \label{table:gaus_fit_sigma_values}
+\end{table}
+\end{comment}
+
+
+Both the mean (which is the bias) and \gls{rms} of each of the distributions when considering both the true energy of the hits and the showering electron are tabulated in \TableRef{table:mean_and_rms}. 
+\begin{table}[h!]
+	\begin{tabular}{lcccc}
+		& \multicolumn{2}{c}{Hits} & \multicolumn{2}{c}{Showering Electron} \\
+		Algorithm        & Mean         & RMS       & Mean                & RMS              \\ \hline
+		Linear           & -0.008       & 0.07      & -0.218              & 0.10             \\
+		Num of Electrons & 0.130        & 0.04      & -0.110              & 0.12             \\
+		ESTAR            & 0.015        & 0.04      & -0.201              & 0.11            
+	\end{tabular}
+	\caption[The mean and \gls{rms} for the fractional energy separation distributions of each algorithm.]{The mean and \gls{rms} for the fractional energy separation distributions of each algorithm. Both the distributions which use the true energy of the hits and the true energy of the showering electron are shown (the left and right plots of \FigureRef{fig:fractional_energy_resolution} respectively).}
+	\label{table:mean_and_rms}
 \end{table}
 
 \newpage
@@ -314,7 +330,7 @@ On the whole, the fractional separation is observed to be fairly constant across
 
 \section{Summary of EM Shower Reconstruction}
 
-The \gls{em} shower reconstruction algorithms have been demonstrated to work consistently across all three wire planes in \gls{sbnd} for showers originating from both electrons and photons. The reconstructed energy obtained from the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} show good agreement with the true energy of $1 \sigma$ width hits with the \textit{Shower ESTAR Energy tool} performing slightly better. The \textit{Shower Num Electrons Energy tool} systematically assigns a slightly higher energy to each of the hits. All three methods underestimate the true energy of the showering particle due to inefficiencies in the hit reconstruction plus the expected presence of an overall bias. The \textit{Shower Num Electrons Energy tool} has the closest agreement with the true energy of the showering particle due to assigning higher energies to the individual hits.
+The \gls{em} shower reconstruction algorithms have been demonstrated to work consistently across all three wire planes in \gls{sbnd} for showers originating from both electrons and photons. The reconstructed energy obtained from the \textit{Shower Linear Energy tool} and the \textit{Shower ESTAR Energy tool} show good agreement with the true energy of $1 \sigma$ width hits with the \textit{Shower ESTAR Energy tool} performing slightly better. The \textit{Shower Num Electrons Energy tool} systematically assigns a slightly higher energy to each of the hits. All three methods underestimate the true energy of the showering particle due to inefficiencies in the hit reconstruction plus the expected presence of an overall bias. The \textit{Shower Num Electrons Energy tool} has the closest agreement with the true energy of the showering particle due to assigning higher energies to the individual hits. Any observed bias may be corrected by appropriately scaling the reconstructed energy so that it matches the true energy. Doing so will, however, introduce an additional systematic uncertainty. 
 
 The reconstruction performance is fairly consistent across all shower energies that are expected to be seen by the \gls{bnb}. There is however a slight dip in performance at the lowest energies when compared with the true energy of the showering particle. This is due to a greater percentage of hits having energies below the threshold value. The reconstruction performance also degrades as the angle at which showers are produced to the beamline increases. This is not expected to be much of a concern as the majority of showers will be forward-going. 
 
